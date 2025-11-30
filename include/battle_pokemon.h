@@ -13,6 +13,14 @@
 
 #include "pokemon_party.h"
 
+/**
+ * @file battle_pokemon.h
+ * @brief Battle pokemon data structure
+ *
+ * Stores the data of a Pokémon while in a battle, this is the object
+ * that the battle engine is build around.
+ */
+
 typedef struct PokemonStatStages {
     u8 attack;
     u8 defense;
@@ -31,9 +39,14 @@ typedef struct MoveCore {
     u8 usedFlag;
 } MoveCore;
 
+/**
+ * @brief Complete move structure
+ *
+ * Stores the data in a move slot while in a battle.
+ */
 typedef struct MoveSet {
-    MoveCore truth;
-    MoveCore surface;
+    MoveCore truth; // Original move of the Pokémon
+    MoveCore surface; // Actual move that can be selected at the moment (this can happen because of Transform and other interactions)
     u8 isLinked; // True if truth and surface are the same move
 } MoveSet;
 

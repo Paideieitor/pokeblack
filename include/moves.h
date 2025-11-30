@@ -11,11 +11,6 @@
  * can be used by a Pokémon.
  */
 
-/**
- * @brief Move enumerator
- *
- * Numerical representation of each move in the game.
- */
 typedef enum Move {
     MOVE_NULL = 0x0,
     MOVE_POUND = 0x1,
@@ -579,11 +574,6 @@ typedef enum Move {
     MOVE_FUSION_BOLT = 0x22F,
 } Move;
 
-/**
- * @brief Move category enumerator
- *
- * Values of the damage type a move can be.
- */
 typedef enum MoveCategory {
     CATEGORY_STATUS = 0x0,
     CATEGORY_PHYSICAL = 0x1,
@@ -612,11 +602,6 @@ typedef enum MoveQuality {
     QUALITY_UNCATEGORIZED = 0xD,
 } MoveQuality;
 
-/**
- * @brief Move target enumerator
- *
- * Values of the possible targets a move can have.
- */
 typedef enum MoveTarget {
     TARGET_SELECT_OTHER = 0x0,
     TARGET_SELECT_ALLY_OR_USER = 0x1,
@@ -634,11 +619,6 @@ typedef enum MoveTarget {
     TARGET_UNKNOWN = 0xD,
 } MoveTarget;
 
-/**
- * @brief Move flags enumerator
- *
- * Values of the flags that can be present in the move data layout.
- */
 typedef enum MoveFlag {
     FLAG_CONTACT = 0x0,
     FLAG_REQUIRES_CHARGE = 0x1,

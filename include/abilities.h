@@ -11,9 +11,6 @@
  * can have.
  */
 
-/**
- * @brief Ability enumerator
- */
 typedef enum Ability {
 	ABILITY_NULL = 0x0,
 	ABILITY_STENCH = 0x1,

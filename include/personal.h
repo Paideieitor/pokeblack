@@ -10,24 +10,24 @@
  * Define the values and structures that represent a Pokémon.
  */
 
-const vector<string> eggGroups = {
-	"None",
-	"Monster",
-	"Water 1",
-	"Bug",
-	"Flying",
-	"Field",
-	"Fairy",
-	"Grass",
-	"Human-Like",
-	"Water 3",
-	"Mineral",
-	"Amorphous",
-	"Water 2",
-	"Ditto",
-	"Dragon",
-	"Unknown",
-};
+typedef enum EggGroup {
+	EGG_NONE = 0x0,
+	EGG_MONSTER = 0x1,
+	EGG_WATER_1 = 0x2,
+	EGG_BUG = 0x3,
+	EGG_FLYING = 0x4,
+	EGG_FIELD = 0x5,
+	EGG_FAIRY = 0x6,
+	EGG_GRASS = 0x7,
+	EGG_HUMAN_LIKE = 0x8,
+	EGG_WATER_3 = 0x9,
+	EGG_MINERAL = 0xA,
+	EGG_AMORPHOUS = 0xB,
+	EGG_WATER_2 = 0xC,
+	EGG_DITTO = 0xD,
+	EGG_DRAGON = 0xE,
+	EGG_UNKNOWN = 0xF,
+} EggGroup;
 
 /**
  * @brief Personal data structure

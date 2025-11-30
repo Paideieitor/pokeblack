@@ -14,9 +14,6 @@
  * delayed effect stores and executes that behavior.
  */
 
-/**
- * @brief Delayed effects enumerator
- */
 typedef enum DelayedEffects {
     DELEFF_WISH = 0x0,
     DELEFF_LUNAR_DANCE = 0x1,

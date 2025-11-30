@@ -9,9 +9,6 @@
  * their effectiveness.
  */
 
-/**
- * @brief Pokémon type enumerator
- */
 typedef enum PokemonType {
 	TYPE_NORMAL = 0x0,
 	TYPE_FIGHT = 0x1,
@@ -33,9 +30,6 @@ typedef enum PokemonType {
 	TYPE_NULL = 0x11,
 } PokemonType;
 
-/**
- * @brief Pokémon type effectiveness enumerator
- */
 typedef enum TypeEffectiveness {
 	EFFECTIVENESS_IMMUNE = 0,
 	EFFECTIVENESS_1_4 = 1,

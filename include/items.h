@@ -11,11 +11,6 @@
  * can be used or equiped on a Pokémon.
  */
 
-/**
- * @brief Item enumerator
- *
- * Numerical representation of each item in the game.
- */
 typedef enum Item {
 	ITEM_NULL = 0x0,
 	ITEM_MASTER_BALL = 0x1,
@@ -644,18 +639,6 @@ typedef enum Item {
 	ITEM_GRAM_2 = 0x270,
 	ITEM_GRAM_3 = 0x271,
 	ITEM_XTRANSCEIVER_F = 0x272,
-	ITEM_MEDAL_BOX = 0x273,
-	ITEM_DNA_SPLICERS_1 = 0x274,
-	ITEM_DNA_SPLICERS_2 = 0x275,
-	ITEM_PERMIT = 0x276,
-	ITEM_OVAL_CHARM = 0x277,
-	ITEM_SHINY_CHARM = 0x278,
-	ITEM_PLASMA_CARD = 0x279,
-	ITEM_GRUBBY_HANKY = 0x27A,
-	ITEM_COLRESS_MACHINE = 0x27B,
-	ITEM_DROPPED_ITEM_1 = 0x27C,
-	ITEM_DROPPED_ITEM_2 = 0x27D,
-	ITEM_REVEAL_GLASS = 0x27E,
 } Item;
 
 /**

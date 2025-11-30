@@ -11,9 +11,6 @@
  * be triggered in battle, that affect the whole field.
  */
 
-/**
- * @brief Weather enumerator
- */
 typedef enum Weather {
     WEATHER_NULL = 0,
     WEATHER_SUN = 1,
@@ -22,9 +19,6 @@ typedef enum Weather {
     WEATHER_SANDSTORM = 4,
 } Weather;
 
-/**
- * @brief Field effect enumerator
- */
 typedef enum FieldEffect {
     FLDEFF_WEATHER = 0x0,
     FLDEFF_TRICK_ROOM = 0x1,
