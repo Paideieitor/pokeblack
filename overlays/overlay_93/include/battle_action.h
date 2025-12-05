@@ -1,7 +1,7 @@
 #ifndef BATTLE_ACTION_H
 #define BATTLE_ACTION_H
 
-#include "defs.h"
+#include "types.h"
 
 /**
  * @file battle_action.h
@@ -22,44 +22,44 @@
  */
 
 typedef struct BattleActionFight {
-    u32 cmd : 4;
-    u32 targetPos : 3;
-    u32 move : 16;
-    u32 pad : 9;
+  u32 cmd : 4;
+  u32 targetPos : 3;
+  u32 move : 16;
+  u32 pad : 9;
 } BattleActionFight;
 
 typedef struct BattleActionItem {
-    u32 cmd : 4;
-    u32 targetPos: 3;
-    u32 item : 16;
-    u32 param : 8; // Example: Used for X items boost amout
-    u32 pad : 1;
+  u32 cmd : 4;
+  u32 targetPos : 3;
+  u32 item : 16;
+  u32 param : 8; // Example: Used for X items boost amout
+  u32 pad : 1;
 } BattleActionItem;
 
 typedef struct BattleActionSwitch {
-    u32 cmd : 4;
-    u32 switchSlot : 3;
-    u32 memberIdx : 3;
-    u32 depleteFlag : 1;
-    u32 pad : 21;
+  u32 cmd : 4;
+  u32 switchSlot : 3;
+  u32 memberIdx : 3;
+  u32 depleteFlag : 1;
+  u32 pad : 21;
 } BattleActionSwitch;
 
 typedef struct BattleActionRun {
-    u32 cmd : 4;
-    u32 pad : 28;
+  u32 cmd : 4;
+  u32 pad : 28;
 } BattleActionRun;
 
 typedef struct BattleActionDefault {
-    u32 cmd : 4;
-    u32 param : 28;
+  u32 cmd : 4;
+  u32 param : 28;
 } BattleActionDefault;
 
 typedef union BattleActionParam {
-    BattleActionFight actFight;
-    BattleActionItem actItem;
-    BattleActionSwitch actSwitch;
-    BattleActionRun actRun;
-    BattleActionDefault actDefault;
+  BattleActionFight actFight;
+  BattleActionItem actItem;
+  BattleActionSwitch actSwitch;
+  BattleActionRun actRun;
+  BattleActionDefault actDefault;
 } BattleActionParam;
 
 #endif // BATTLE_ACTION_H

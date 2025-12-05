@@ -8,8 +8,9 @@
  * @brief Heap management structures and globals
  *
  * This header consolidates all heap-related structures that were previously
- * duplicated across multiple source files. See notes/STRUCT_CONFLICTS_ANALYSIS.md
- * for detailed conflict resolution documentation.
+ * duplicated across multiple source files. See
+ * notes/STRUCT_CONFLICTS_ANALYSIS.md for detailed conflict resolution
+ * documentation.
  */
 
 // =============================================================================
@@ -21,18 +22,71 @@
  *
  * Located at address 0x020AA1AC in RAM.
  *
- * This structure manages the heap system and tracks the current heap block index.
- * The field_08 pointer provides access to a resource array used by allocation functions.
+ * This structure manages the heap system and tracks the current heap block
+ * index. The field_08 pointer provides access to a resource array used by
+ * allocation functions.
  *
  * Size: 12 bytes (0x0C) minimum
  * Note: May have additional fields beyond offset +0x08 (unconfirmed)
  */
 typedef struct HeapManager {
-    u32 field_00;        // +0x00: Unknown purpose
-    u32 field_04;        // +0x04: Current heap block index (used for array indexing)
-    void **field_08;     // +0x08: Pointer to pointer (resource array access)
-    // Note: Additional fields may exist beyond this point
+  u32 field_00;    // +0x00: Unknown purpose
+  u32 field_04;    // +0x04: Current heap block index (used for array indexing)
+  void **field_08; // +0x08: Pointer to pointer (resource array access)
+                   // Note: Additional fields may exist beyond this point
 } HeapManager;
+
+// =============================================================================
+// Heap ID Enum
+// =============================================================================
+
+/**
+ * @brief Heap identifying values
+ *
+ * Values used by the memory management to identify the "owner" of an allocated
+ * heap block.
+ * These are often 2 byte values so we can use a definition to easily reference
+ * Heap IDs to this enumerator.
+ */
+typedef enum HeapID {
+  HEAPID_SYSTEM = 0x0,
+  HEAPID_USER = 0x1,
+  HEAPID_GAMESYSTEM = 0x3,
+  HEAPID_GAMEEVENT = 0x4,
+  HEAPID_TRIAL_HOUSE = 0x5,
+  HEAPID_SAVEDATA = 0x7,
+  HEAPID_NET = 0x8,
+  HEAPID_DEVICE_ALLOC = 0x9,
+  HEAPID_STARTMENU = 0xB,
+  HEAPID_DLP = 0xC,
+  HEAPID_FIELDMAP = 0x15,
+  HEAPID_TITLE = 0x16,
+  HEAPID_POKELIST = 0x17,
+  HEAPID_NAMEIN = 0x1E,
+  HEAPID_IRC_BATTLE_MENU = 0x1F,
+  HEAPID_TRAINER_CARD = 0x26,
+  HEAPID_MUSICAL_EVENT = 0x2C,
+  HEAPID_MUSICAL_DRESSUP = 0x2D,
+  HEAPID_MUSICAL = 0x2E,
+  HEAPID_DEBUG_GENDER_SELECT = 0x39,
+  HEAPID_MICTEST = 0x49,
+  HEAPID_FIELD_PARTICLE = 0x50,
+  HEAPID_BATTLE_RETURN = 0x52,
+  HEAPID_GAMESYNC = 0x67,
+  HEAPID_DEMO3D = 0x6C,
+  HEAPID_INTRO = 0x6F,
+  HEAPID_FIELD_MENU = 0x70,
+  HEAPID_BATTLE_LOAD = 0x76,
+  HEAPID_CDEMO = 0x7F,
+  HEAPID_SAVEDATA_DELETE = 0x81,
+  HEAPID_FIELD_CLACT = 0x89,
+  HEAPID_FIELD_WEATHER = 0x92,
+  HEAPID_FIELD_PLACE_NAME = 0x93,
+  HEAPID_FIELD_SCENEAREA = 0x96,
+  HEAPID_HEAD_MASK = 0x7FFF,
+  HEAPID_TAIL_BIT = 0x8000,
+} HeapID;
+#define HEAP_ID u16
 
 // =============================================================================
 // Heap Block Structure
@@ -45,20 +99,22 @@ typedef struct HeapManager {
  * Each block is 28 bytes (0x1C).
  *
  * Heap blocks track allocated memory regions and their associated resources.
- * The field_04 is set to 0xFFFF during initialization to indicate an invalid/default heap ID.
- * Fields field_14 and field_18 store handles to primary and secondary resources respectively.
+ * The field_04 is set to 0xFFFF during initialization to indicate an
+ * invalid/default heap ID. Fields field_14 and field_18 store handles to
+ * primary and secondary resources respectively.
  *
  * Size: 28 bytes (0x1C) - CONFIRMED via assembly
  */
 typedef struct HeapBlock {
-    u32 field_00;        // +0x00: State/flags (checked for non-zero before init)
-    u16 field_04;        // +0x04: Heap ID (initialized to 0xFFFF)
-    u16 field_06;        // +0x06: Additional flags or padding
-    u32 field_08;        // +0x08: Unknown
-    u32 field_0C;        // +0x0C: Unknown
-    u32 field_10;        // +0x10: Resource pointer (copied to field_14 and field_18 during init)
-    u32 field_14;        // +0x14: Primary resource handle (result of sub_02074894)
-    u32 field_18;        // +0x18: Secondary resource handle (conditionally allocated)
+  u32 field_00;     // +0x00: State/flags (checked for non-zero before init)
+  HEAP_ID field_04; // +0x04: Heap ID (initialized to 0xFFFF)
+  u16 field_06;     // +0x06: Additional flags or padding
+  u32 field_08;     // +0x08: Unknown
+  u32 field_0C;     // +0x0C: Unknown
+  u32 field_10;     // +0x10: Resource pointer (copied to field_14 and field_18
+                    // during init)
+  u32 field_14;     // +0x14: Primary resource handle (result of sub_02074894)
+  u32 field_18; // +0x18: Secondary resource handle (conditionally allocated)
 } HeapBlock;
 
 // =============================================================================
@@ -69,13 +125,13 @@ typedef struct HeapBlock {
  * @brief Global pointer to heap manager structure
  * Address: 0x020AA1AC
  */
-extern HeapManager* gHeapManager;
+extern HeapManager *gHeapManager;
 
 /**
  * @brief Global pointer to heap block array
  * Address: 0x020AA1B8
  */
-extern HeapBlock* gHeapBlocks;
+extern HeapBlock *gHeapBlocks;
 
 // =============================================================================
 // Heap Manager State Structure
@@ -86,36 +142,37 @@ extern HeapBlock* gHeapBlocks;
  *
  * Located at address 0x020AA260 in RAM.
  *
- * This structure manages fade states, async operations, and audio channel state.
- * Used extensively by the fade state machine and overlay system.
+ * This structure manages fade states, async operations, and audio channel
+ * state. Used extensively by the fade state machine and overlay system.
  *
  * Size: At least 48 bytes (0x30+) - partially documented
  */
 typedef struct HeapManagerState {
-    u32 field_00;        // +0x00: Audio channel mask (5 bits for channels 0-4)
-    u32 field_04;        // +0x04: Callback function pointer (set by SetFadeStateCallback)
-    u32 field_08;        // +0x08: Fade active counter (decremented each update)
-    u32 field_0C;        // +0x0C: Mode/param storage
-    u32 field_10;        // +0x10: Allocator pointer (from sub_020726D0/sub_020746E8)
-    u32 field_14;        // +0x14: Async operation handle (0 = complete)
-    u32 field_18;        // +0x18: Unknown
-    u16 field_1C;        // +0x1C: Transition state flag (1 = in transition)
-    u16 field_1E;        // +0x1E: Unknown/padding
-    u32 field_20;        // +0x20: Cleared during reset
-    u32 field_24;        // +0x24: Cleared during reset
-    u16 field_26;        // +0x26: Fade parameter
-    u16 field_28;        // +0x28: Current fade value (active during transition)
-    u16 field_2A;        // +0x2A: Unknown/padding
-    u32 field_2C;        // +0x2C: Fade timing parameter
-    u32 field_30;        // +0x30: Fade timing parameter
-    // Note: Structure may have additional fields beyond 0x30
+  u32 field_00; // +0x00: Audio channel mask (5 bits for channels 0-4)
+  u32 field_04; // +0x04: Callback function pointer (set by
+                // SetFadeStateCallback)
+  u32 field_08; // +0x08: Fade active counter (decremented each update)
+  u32 field_0C; // +0x0C: Mode/param storage
+  u32 field_10; // +0x10: Allocator pointer (from sub_020726D0/sub_020746E8)
+  u32 field_14; // +0x14: Async operation handle (0 = complete)
+  u32 field_18; // +0x18: Unknown
+  u16 field_1C; // +0x1C: Transition state flag (1 = in transition)
+  u16 field_1E; // +0x1E: Unknown/padding
+  u32 field_20; // +0x20: Cleared during reset
+  u32 field_24; // +0x24: Cleared during reset
+  u16 field_26; // +0x26: Fade parameter
+  u16 field_28; // +0x28: Current fade value (active during transition)
+  u16 field_2A; // +0x2A: Unknown/padding
+  u32 field_2C; // +0x2C: Fade timing parameter
+  u32 field_30; // +0x30: Fade timing parameter
+                // Note: Structure may have additional fields beyond 0x30
 } HeapManagerState;
 
 /**
  * @brief Global heap manager state
  * Address: 0x020AA260
  */
-extern HeapManagerState* gHeapManagerState;
+extern HeapManagerState *gHeapManagerState;
 
 // =============================================================================
 // Sound Channel Structure
@@ -134,8 +191,8 @@ extern HeapManagerState* gHeapManagerState;
  * Size: 8 bytes (0x08) per channel
  */
 typedef struct SoundChannel {
-    u32 state;           // +0x00: State flag (0 = inactive)
-    void* data;          // +0x04: Data pointer or handle (cleared by sub_02072E9C)
+  u32 state;  // +0x00: State flag (0 = inactive)
+  void *data; // +0x04: Data pointer or handle (cleared by sub_02072E9C)
 } SoundChannel;
 
 /**
@@ -143,7 +200,7 @@ typedef struct SoundChannel {
  * Address: 0x020AA294
  * Count: 5 channels
  */
-extern SoundChannel* gSoundChannels;
+extern SoundChannel *gSoundChannels;
 
 // =============================================================================
 // Function Declarations
@@ -151,8 +208,8 @@ extern SoundChannel* gSoundChannels;
 
 // Heap Manager functions
 u32 HeapManager_GetCurrentIndex(void);
-u8* HeapManager_GetCurrentBlockPtr(void);
-void HeapManager_SetResourceArray(void* resourceArray);
+u8 *HeapManager_GetCurrentBlockPtr(void);
+void HeapManager_SetResourceArray(void *resourceArray);
 
 // Heap Block functions
 u32 HeapBlock_GetStateValue(void);
@@ -162,7 +219,7 @@ void FadeState_Reset(void);
 void FadeStateMachine_Update(void);
 void FadeState_ProcessTransition(void);
 void FadeState_InitTransition(u32 param1, u16 param2);
-void SetFadeStateCallback(void* callback);
+void SetFadeStateCallback(void *callback);
 
 // Async operations
 u32 AsyncOperation_IsComplete(void);
@@ -171,7 +228,7 @@ u32 AsyncOperation_IsComplete(void);
 // Magic Constants
 // =============================================================================
 
-#define HEAP_INVALID_ID  0xFFFF  // Default/invalid heap ID marker
-#define FADE_MAX_BRIGHTNESS  0x7F  // Maximum fade brightness value
+#define HEAP_INVALID_ID 0xFFFF   // Default/invalid heap ID marker
+#define FADE_MAX_BRIGHTNESS 0x7F // Maximum fade brightness value
 
 #endif // HEAP_H

@@ -22,20 +22,20 @@
  * Defines the data of a Pokémon in the player party.
  */
 typedef struct PartyPokemon {
-    BoxPokemon base;
-    MoveCondition status;
-    u8 level;
-    u8 field_8D;
-    u16 currentHP;
-    u16 maxHP;
-    u16 attack;
-    u16 defense;
-    u16 speed;
-    u16 spAttack;
-    u16 spDefense;
-    MailData mailData;
-    u32 field_D4;
-    u32 field_D8;
+  BoxPokemon base;
+  MoveCondition status;
+  u8 level;
+  u8 field_8D;
+  u16 currentHP;
+  u16 maxHP;
+  u16 attack;
+  u16 defense;
+  u16 speed;
+  u16 spAttack;
+  u16 spDefense;
+  MailData mailData;
+  u32 field_D4;
+  u32 field_D8;
 } PartyPokemon;
 
 /**
@@ -43,14 +43,13 @@ typedef struct PartyPokemon {
  *
  * Defines the data of the player party.
  */
-typedef struct PokemonParty
-{
-    u32 capacity;
-    u32 count;
-    PartyPokemon pokemon[6];
-    u8 presentMemberBits;
-    u8 field_531;
-    u16 field_532;
+typedef struct PokemonParty {
+  u32 capacity;
+  u32 count;
+  PartyPokemon pokemon[6];
+  u8 presentMemberBits;
+  u8 field_531;
+  u16 field_532;
 } PokemonParty;
 
 #endif // POKEMON_PARTY_H

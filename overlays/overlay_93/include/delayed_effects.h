@@ -15,12 +15,11 @@
  */
 
 typedef enum DelayedEffects {
-    DELEFF_WISH = 0x0,
-    DELEFF_LUNAR_DANCE = 0x1,
-    DELEFF_HEALING_WISH = 0x2,
-    DELEFF_FUTURE_SIGHT = 0x3,
-    DELEFF_BATON_PASS = 0x4,
+  DELEFF_WISH = 0x0,
+  DELEFF_LUNAR_DANCE = 0x1,
+  DELEFF_HEALING_WISH = 0x2,
+  DELEFF_FUTURE_SIGHT = 0x3,
+  DELEFF_BATON_PASS = 0x4,
 } DelayedEffects;
 
 #endif // DELAYED_EFFECTS_H
-
