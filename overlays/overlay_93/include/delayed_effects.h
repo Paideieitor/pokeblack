@@ -14,7 +14,7 @@
  * delayed effect stores and executes that behavior.
  */
 
-typedef enum DelayedEffects {
+typedef enum DelayedEffect {
   DELEFF_WISH = 0x0,
   DELEFF_LUNAR_DANCE = 0x1,
   DELEFF_HEALING_WISH = 0x2,

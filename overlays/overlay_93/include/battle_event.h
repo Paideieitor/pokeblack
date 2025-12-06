@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-#include "server_flow.h"
-
 typedef enum BattleEventType {
   EVENT_NULL = 0x0,
   EVENT_ACTION_PROCESSING_START = 0x1,
@@ -203,6 +201,7 @@ typedef struct ALIGNED(4) BattleEventItem {
   u8 battleSlot;
 } BattleEventItem;
 
+struct ServerFlow;
 typedef void (*BattleEventHandler)(BattleEventItem *eventItem,
                                    ServerFlow *serverFlow, u32 battleSlot,
                                    u32 *work);

@@ -11,14 +11,7 @@
 #include "battle_recorder.h"
 #include "battlefield.h"
 #include "combat_set.h"
-
-/**
- * @file battle_client.h
- * @brief Battle client structures
- *
- * Defines the data of each player in the battle, it relies on
- * the BattleServer to handle combat logic.
- */
+#include "escape_info.h"
 
 typedef struct RecPlayerControl {
   u8 field_0;
@@ -31,11 +24,6 @@ typedef struct RecPlayerControl {
   u16 field_A;
   u16 field_C;
 } RecPlayerControl;
-
-typedef struct EscapeInfo {
-  u32 count;
-  u8 clientID[4];
-} EscapeInfo;
 
 typedef struct BattleString {
   u16 strID;
@@ -60,7 +48,7 @@ typedef struct PokemonSelectResult {
 } PokemonSelectResult;
 
 struct MainModule;
-struct BattleCore;
+struct BattleCore; // TODO: define BattleCore
 typedef struct PACKED ALIGNED(4) BattleClient {
   MainModule *mainModule;
   CombatSet *combatSet;
