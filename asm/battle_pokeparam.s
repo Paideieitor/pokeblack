@@ -2355,8 +2355,8 @@ _021D5B64:
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 
-	thumb_func_start FUN_overlay_d_93__021d5b68
-FUN_overlay_d_93__021d5b68: ; 0x021D5B68
+	thumb_func_start BattleMon_IsFainted
+BattleMon_IsFainted: ; 0x021D5B68
 	push {r3, lr}
 	mov r1, #0xd
 	bl BattleMon_Get
@@ -2364,7 +2364,7 @@ FUN_overlay_d_93__021d5b68: ; 0x021D5B68
 	bne _021D5B78
 	mov r0, #1
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021d5b68
+	thumb_func_end BattleMon_IsFainted
 _021D5B78:
 	mov r0, #0
 	pop {r3, pc}
@@ -2385,7 +2385,7 @@ FUN_overlay_d_93__021d5b7c: ; 0x021D5B7C
 	thumb_func_end FUN_overlay_d_93__021d5b7c
 _021D5B94:
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5b68
+	bl BattleMon_IsFainted
 	cmp r0, #0
 	bne _021D5BA0
 	mov r4, #1

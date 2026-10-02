@@ -385,7 +385,7 @@
 	.extern FUN_overlay_d_93__021d5444
 	.extern FUN_overlay_d_93__021d54b4
 	.extern FUN_overlay_d_93__021d54f4
-	.extern FUN_overlay_d_93__021d5b68
+	.extern BattleMon_IsFainted
 	.extern FUN_overlay_d_93__021d5b7c
 	.extern FUN_overlay_d_93__021d62a8
 	.extern FUN_overlay_d_93__021d67d0
@@ -5256,7 +5256,7 @@ _021B8D54:
 	bl thunk_FUN_overlay_d_93__021b98ac
 	add r6, r0, #0
 	beq _021B8D7A
-	bl FUN_overlay_d_93__021d5b68
+	bl BattleMon_IsFainted
 	cmp r0, #0
 	bne _021B8D7A
 	add r0, r6, #0
@@ -8604,7 +8604,7 @@ _021BA492:
 	bl BattleMon_Get
 	add r7, r7, r0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5b68
+	bl BattleMon_IsFainted
 	cmp r0, #0
 	beq _021BA4DE
 	ldr r0, [r5]
