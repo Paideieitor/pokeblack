@@ -28133,7 +28133,7 @@ FUN_overlay_d_93__021c88c8: ; 0x021C88C8
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r1, #0
-	bl FUN_overlay_d_93__021c8918
+	bl BattleHandler_Execute
 	ldr r0, _021C88E0 ; =0x00001D74
 	add r1, r4, #0
 	add r0, r5, r0
@@ -28170,8 +28170,8 @@ _021C890C: .word 0x00001D74
 _021C8910:
 	.byte 0x00, 0x4B, 0x18, 0x47, 0xE5, 0x88, 0x1C, 0x02
 
-	thumb_func_start FUN_overlay_d_93__021c8918
-FUN_overlay_d_93__021c8918: ; 0x021C8918
+	thumb_func_start BattleHandler_Execute
+BattleHandler_Execute: ; 0x021C8918
 	push {r3, r4, r5, r6, r7, lr}
 	ldr r7, _021C8C30 ; =0x00001D74
 	add r4, r0, #0
@@ -28188,7 +28188,7 @@ FUN_overlay_d_93__021c8918: ; 0x021C8918
 	lsl r0, r0, #0x18
 	lsr r7, r0, #0x18
 	b _021C8940
-	thumb_func_end FUN_overlay_d_93__021c8918
+	thumb_func_end BattleHandler_Execute
 _021C893E:
 	mov r7, #1
 _021C8940:
