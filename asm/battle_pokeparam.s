@@ -457,7 +457,7 @@ _021D4DE0:
 	strb r6, [r4, r0]
 	add r0, r4, #0
 	add r0, #0xfc
-	bl FUN_overlay_d_93__021d53c0
+	bl PokemonStatStages_Reset
 	add r0, r4, #0
 	mov r1, #1
 	bl FUN_overlay_d_93__021d63b8
@@ -642,7 +642,7 @@ _021D4FD2:
 	ldr r1, [sp, #4]
 	add r0, r4, r0
 	lsr r2, r2, #0x18
-	bl FUN_overlay_d_93__021d5244
+	bl MoveCore_Load
 	cmp r0, #0
 	beq _021D4FE8
 	add r6, r6, #1
@@ -707,8 +707,8 @@ _021D504A:
 	.balign 4, 0
 _021D5058: .word 0x00000109
 
-	thumb_func_start FUN_overlay_d_93__021d505c
-FUN_overlay_d_93__021d505c: ; 0x021D505C
+	thumb_func_start BattleMon_SaveMovesToParty
+BattleMon_SaveMovesToParty: ; 0x021D505C
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8
 	str r0, [sp]
@@ -721,7 +721,7 @@ FUN_overlay_d_93__021d505c: ; 0x021D505C
 	lsl r0, r0, #2
 	mov r5, #0
 	add r7, r0, #4
-	thumb_func_end FUN_overlay_d_93__021d505c
+	thumb_func_end BattleMon_SaveMovesToParty
 _021D5074:
 	mov r0, #0xe
 	add r1, r5, #0
@@ -753,8 +753,8 @@ _021D5074:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021d50b4
-FUN_overlay_d_93__021d50b4: ; 0x021D50B4
+	thumb_func_start BattleMon_UpdatePPCore
+BattleMon_UpdatePPCore: ; 0x021D50B4
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x24
 	add r7, r0, #0
@@ -796,7 +796,7 @@ FUN_overlay_d_93__021d50b4: ; 0x021D50B4
 	ldr r0, [sp, #8]
 	sub r0, #0x30
 	str r0, [sp, #8]
-	thumb_func_end FUN_overlay_d_93__021d50b4
+	thumb_func_end BattleMon_UpdatePPCore
 _021D5106:
 	mov r0, #0xe
 	add r6, r5, #0
@@ -806,7 +806,7 @@ _021D5106:
 	ldr r1, [sp]
 	add r0, r0, r6
 	lsr r2, r2, #0x18
-	bl FUN_overlay_d_93__021d5244
+	bl MoveCore_Load
 	cmp r0, #0
 	beq _021D5124
 	ldrb r0, [r4]
@@ -837,8 +837,8 @@ _021D5146:
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 
-	thumb_func_start FUN_overlay_d_93__021d5150
-FUN_overlay_d_93__021d5150: ; 0x021D5150
+	thumb_func_start BattleMon_RestoreMoves
+BattleMon_RestoreMoves: ; 0x021D5150
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x10
 	add r5, r0, #0
@@ -873,7 +873,7 @@ FUN_overlay_d_93__021d5150: ; 0x021D5150
 	sub r2, #0x36
 	sub r6, #0x32
 	str r2, [sp]
-	thumb_func_end FUN_overlay_d_93__021d5150
+	thumb_func_end BattleMon_RestoreMoves
 _021D5194:
 	mov r2, #0xe
 	mul r2, r1
@@ -905,8 +905,8 @@ _021D51BC:
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 
-	thumb_func_start FUN_overlay_d_93__021d51cc
-FUN_overlay_d_93__021d51cc: ; 0x021D51CC
+	thumb_func_start MoveSet_ClearUsedFlag
+MoveSet_ClearUsedFlag: ; 0x021D51CC
 	ldrb r2, [r0, #0xb]
 	mov r1, #0xf
 	bic r2, r1
@@ -915,15 +915,15 @@ FUN_overlay_d_93__021d51cc: ; 0x021D51CC
 	bic r2, r1
 	strb r2, [r0, #5]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d51cc
+	thumb_func_end MoveSet_ClearUsedFlag
 
-	thumb_func_start FUN_overlay_d_93__021d51dc
-FUN_overlay_d_93__021d51dc: ; 0x021D51DC
+	thumb_func_start MoveSet_UpdateMaxPP
+MoveSet_UpdateMaxPP: ; 0x021D51DC
 	push {r4, lr}
 	add r4, r0, #0
 	cmp r3, #0
 	beq _021D51FC
-	bl FUN_overlay_d_93__021d5208
+	bl MoveCore_UpdateMaxPP
 	ldrb r0, [r4, #0xc]
 	cmp r0, #0
 	beq _021D5206
@@ -934,17 +934,17 @@ FUN_overlay_d_93__021d51dc: ; 0x021D51DC
 	ldrh r0, [r4, #4]
 	strh r0, [r4, #0xa]
 	pop {r4, pc}
-	thumb_func_end FUN_overlay_d_93__021d51dc
+	thumb_func_end MoveSet_UpdateMaxPP
 _021D51FC:
 	add r0, r4, #6
-	bl FUN_overlay_d_93__021d5208
+	bl MoveCore_UpdateMaxPP
 	mov r0, #0
 	strb r0, [r4, #0xc]
 _021D5206:
 	pop {r4, pc}
 
-	thumb_func_start FUN_overlay_d_93__021d5208
-FUN_overlay_d_93__021d5208: ; 0x021D5208
+	thumb_func_start MoveCore_UpdateMaxPP
+MoveCore_UpdateMaxPP: ; 0x021D5208
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r2, #0
@@ -963,7 +963,7 @@ FUN_overlay_d_93__021d5208: ; 0x021D5208
 	mov r1, #0
 	bl FUN_0201C158
 	b _021D5230
-	thumb_func_end FUN_overlay_d_93__021d5208
+	thumb_func_end MoveCore_UpdateMaxPP
 _021D522E:
 	mov r0, #0
 _021D5230:
@@ -979,8 +979,8 @@ _021D523E:
 	strb r0, [r5, #2]
 	pop {r3, r4, r5, pc}
 
-	thumb_func_start FUN_overlay_d_93__021d5244
-FUN_overlay_d_93__021d5244: ; 0x021D5244
+	thumb_func_start MoveCore_Load
+MoveCore_Load: ; 0x021D5244
 	push {r3, r4, r5, r6, r7, lr}
 	add r6, r2, #0
 	add r4, r1, #0
@@ -1004,7 +1004,7 @@ FUN_overlay_d_93__021d5244: ; 0x021D5244
 	mov r1, #0xf0
 	bic r2, r1
 	strb r2, [r5, #5]
-	thumb_func_end FUN_overlay_d_93__021d5244
+	thumb_func_end MoveCore_Load
 _021D5274:
 	strh r0, [r5]
 	ldrh r0, [r5]
@@ -1103,8 +1103,8 @@ _021D52DE:
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021d533c
-FUN_overlay_d_93__021d533c: ; 0x021D533C
+	thumb_func_start BattleMon_ClearTransformChange
+BattleMon_ClearTransformChange: ; 0x021D533C
 	push {r4, lr}
 	add r4, r0, #0
 	ldrb r1, [r4, #0x1b]
@@ -1116,18 +1116,18 @@ FUN_overlay_d_93__021d533c: ; 0x021D533C
 	mov r3, #1
 	bl BattleMon_LoadBase
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5150
+	bl BattleMon_RestoreMoves
 	ldrb r1, [r4, #0x1b]
 	mov r0, #0x20
 	bic r1, r0
 	strb r1, [r4, #0x1b]
-	thumb_func_end FUN_overlay_d_93__021d533c
+	thumb_func_end BattleMon_ClearTransformChange
 _021D5360:
 	pop {r4, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021d5364
-FUN_overlay_d_93__021d5364: ; 0x021D5364
+	thumb_func_start BattleMon_ClearUsedMoveFlag
+BattleMon_ClearUsedMoveFlag: ; 0x021D5364
 	push {r3, r4, r5, r6, r7, lr}
 	add r6, r0, #0
 	mov r0, #0x41
@@ -1135,12 +1135,12 @@ FUN_overlay_d_93__021d5364: ; 0x021D5364
 	mov r5, #0
 	add r4, r6, r0
 	mov r7, #0xe
-	thumb_func_end FUN_overlay_d_93__021d5364
+	thumb_func_end BattleMon_ClearUsedMoveFlag
 _021D5372:
 	add r0, r5, #0
 	mul r0, r7
 	add r0, r4, r0
-	bl FUN_overlay_d_93__021d51cc
+	bl MoveSet_ClearUsedFlag
 	add r5, r5, #1
 	cmp r5, #4
 	blo _021D5372
@@ -1158,13 +1158,13 @@ _021D5372:
 	.balign 4, 0
 _021D5398: .word 0x0000014A
 
-	thumb_func_start FUN_overlay_d_93__021d539c
-FUN_overlay_d_93__021d539c: ; 0x021D539C
+	thumb_func_start BattleMon_ClearCounters
+BattleMon_ClearCounters: ; 0x021D539C
 	push {r3, r4}
 	mov r4, #0
 	ldr r1, _021D53B4 ; =0x00000157
 	add r3, r4, #0
-	thumb_func_end FUN_overlay_d_93__021d539c
+	thumb_func_end BattleMon_ClearCounters
 _021D53A4:
 	add r2, r0, r4
 	add r4, r4, #1
@@ -1184,16 +1184,16 @@ FUN_021D53B8: ; 0x021D53B8
 	thumb_func_end FUN_021D53B8
 _021D53BC: .word 0x020307B0
 
-	thumb_func_start FUN_overlay_d_93__021d53c0
-FUN_overlay_d_93__021d53c0: ; 0x021D53C0
-	ldr r3, _021D53C4 ; =LAB_overlay_d_93__021d53c8
+	thumb_func_start PokemonStatStages_Reset
+PokemonStatStages_Reset: ; 0x021D53C0
+	ldr r3, _021D53C4 ; =PokemonStatStages_ResetCore
 	bx r3
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d53c0
+	thumb_func_end PokemonStatStages_Reset
 _021D53C4: .word 0x021D53C9
 
-	thumb_func_start LAB_overlay_d_93__021d53c8
-LAB_overlay_d_93__021d53c8: ; 0x021D53C8
+	thumb_func_start PokemonStatStages_ResetCore
+PokemonStatStages_ResetCore: ; 0x021D53C8
 	mov r1, #6
 	strb r1, [r0]
 	strb r1, [r0, #1]
@@ -1204,10 +1204,10 @@ LAB_overlay_d_93__021d53c8: ; 0x021D53C8
 	strb r1, [r0, #6]
 	bx lr
 	.balign 4, 0
-	thumb_func_end LAB_overlay_d_93__021d53c8
+	thumb_func_end PokemonStatStages_ResetCore
 
-	thumb_func_start LAB_overlay_d_93__021d53dc
-LAB_overlay_d_93__021d53dc: ; 0x021D53DC
+	thumb_func_start BattleMon_RestorePokemonStatStages
+BattleMon_RestorePokemonStatStages: ; 0x021D53DC
 	mov r1, #0
 	ldrsb r2, [r0, r1]
 	cmp r2, #6
@@ -1215,7 +1215,7 @@ LAB_overlay_d_93__021d53dc: ; 0x021D53DC
 	mov r1, #6
 	strb r1, [r0]
 	mov r1, #1
-	thumb_func_end LAB_overlay_d_93__021d53dc
+	thumb_func_end BattleMon_RestorePokemonStatStages
 _021D53EA:
 	mov r2, #1
 	ldrsb r3, [r0, r2]
@@ -1725,7 +1725,7 @@ FUN_overlay_d_93__021d5734: ; 0x021D5734
 	add r2, r3, #0
 	ldr r3, [sp, #8]
 	add r0, r4, r0
-	bl FUN_overlay_d_93__021d51dc
+	bl MoveSet_UpdateMaxPP
 	pop {r4, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021d5734
@@ -2896,7 +2896,7 @@ _021D5EF8: .word 0x00000102
 
 	thumb_func_start FUN_overlay_d_93__021d5efc
 FUN_overlay_d_93__021d5efc: ; 0x021D5EFC
-	ldr r3, _021D5F04 ; =LAB_overlay_d_93__021d53dc
+	ldr r3, _021D5F04 ; =BattleMon_RestorePokemonStatStages
 	add r0, #0xfc
 	bx r3
 	nop
@@ -2905,7 +2905,7 @@ _021D5F04: .word 0x021D53DD
 
 	thumb_func_start FUN_overlay_d_93__021d5f08
 FUN_overlay_d_93__021d5f08: ; 0x021D5F08
-	ldr r3, _021D5F10 ; =LAB_overlay_d_93__021d53c8
+	ldr r3, _021D5F10 ; =PokemonStatStages_ResetCore
 	add r0, #0xfc
 	bx r3
 	nop
@@ -3723,13 +3723,13 @@ FUN_overlay_d_93__021d646c: ; 0x021D646C
 	mov r2, #2
 	blx MI_CpuFill8
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d533c
+	bl BattleMon_ClearTransformChange
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5150
+	bl BattleMon_RestoreMoves
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5364
+	bl BattleMon_ClearUsedMoveFlag
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d539c
+	bl BattleMon_ClearCounters
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021d6e88
 	add r0, r5, #0
@@ -3741,7 +3741,7 @@ FUN_overlay_d_93__021d646c: ; 0x021D646C
 	bl FUN_overlay_d_93__021d63b8
 	add r0, r5, #0
 	add r0, #0xfc
-	bl FUN_overlay_d_93__021d53c0
+	bl PokemonStatStages_Reset
 	ldrb r0, [r5, #0x1b]
 	mov r2, #0x6f
 	add r2, #0xd2
@@ -3776,13 +3776,13 @@ FUN_overlay_d_93__021d64f0: ; 0x021D64F0
 	mov r7, #2
 	blx MI_CpuFill8
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d533c
+	bl BattleMon_ClearTransformChange
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5150
+	bl BattleMon_RestoreMoves
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5364
+	bl BattleMon_ClearUsedMoveFlag
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d539c
+	bl BattleMon_ClearCounters
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021d6e88
 	add r0, r5, #0
@@ -3799,7 +3799,7 @@ FUN_overlay_d_93__021d64f0: ; 0x021D64F0
 	bl FUN_overlay_d_93__021d63b8
 	add r0, r5, #0
 	add r0, #0xfc
-	bl FUN_overlay_d_93__021d53c0
+	bl PokemonStatStages_Reset
 	add r0, r4, #2
 	add r0, r5, r0
 	add r1, r6, #0
@@ -3847,13 +3847,13 @@ FUN_overlay_d_93__021d6580: ; 0x021D6580
 	add r0, r4, #0
 	bl FUN_overlay_d_93__021d6d70
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5364
+	bl BattleMon_ClearUsedMoveFlag
 	add r0, r4, #0
 	mov r1, #0
 	bl FUN_overlay_d_93__021d63b8
 	add r4, #0xfc
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d53c0
+	bl PokemonStatStages_Reset
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021d6580
@@ -3950,7 +3950,7 @@ _021D6672:
 	bl FUN_overlay_d_93__021d63b8
 	add r0, r5, #0
 	add r0, #0xfc
-	bl FUN_overlay_d_93__021d53c0
+	bl PokemonStatStages_Reset
 	ldr r0, _021D669C ; =0x00000155
 	mov r1, #0
 	add r0, r5, r0
@@ -4608,7 +4608,7 @@ _021D6AEE:
 	ldr r0, [r5]
 	bl FUN_02017E40
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d505c
+	bl BattleMon_SaveMovesToParty
 	ldr r0, [r5]
 	ldr r1, [sp]
 	bl FUN_02017D70
@@ -4682,7 +4682,7 @@ _021D6BB2:
 _021D6BB6:
 	bl FUN_02017F9C
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d505c
+	bl BattleMon_SaveMovesToParty
 	ldrb r0, [r5, #0x1b]
 	lsl r0, r0, #0x1a
 	lsr r0, r0, #0x1f
@@ -4726,7 +4726,7 @@ FUN_overlay_d_93__021d6bfc: ; 0x021D6BFC
 	mov r3, #0
 	bl BattleMon_LoadBase
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d50b4
+	bl BattleMon_UpdatePPCore
 	pop {r4, pc}
 	thumb_func_end FUN_overlay_d_93__021d6bfc
 _021D6C1A:
@@ -4847,7 +4847,7 @@ _021D6CD2:
 	add r1, r7, r1
 	ldrh r1, [r1, r6]
 	mov r3, #0
-	bl FUN_overlay_d_93__021d51dc
+	bl MoveSet_UpdateMaxPP
 	add r5, r5, #1
 	cmp r5, #4
 	blt _021D6CD2
