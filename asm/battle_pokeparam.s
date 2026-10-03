@@ -553,7 +553,7 @@ _021D4F20:
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
-	bl FUN_overlay_d_93__021d52b4
+	bl BattleMon_LoadBaseCore
 	cmp r6, #0
 	beq _021D4F4C
 	add r0, r4, #0
@@ -1038,8 +1038,8 @@ _021D52B0:
 	add r0, r7, #0
 	pop {r3, r4, r5, r6, r7, pc}
 
-	thumb_func_start FUN_overlay_d_93__021d52b4
-FUN_overlay_d_93__021d52b4: ; 0x021D52B4
+	thumb_func_start BattleMon_LoadBaseCore
+BattleMon_LoadBaseCore: ; 0x021D52B4
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r1, #0
@@ -1059,7 +1059,7 @@ FUN_overlay_d_93__021d52b4: ; 0x021D52B4
 	add r1, r5, #0
 	add r1, #0xf9
 	strb r0, [r1]
-	thumb_func_end FUN_overlay_d_93__021d52b4
+	thumb_func_end BattleMon_LoadBaseCore
 _021D52DE:
 	add r0, r4, #0
 	bl FUN_02017F00
@@ -4017,7 +4017,7 @@ FUN_overlay_d_93__021d66d8: ; 0x021D66D8
 	ldr r1, [r5]
 	add r0, r5, #0
 	mov r2, #1
-	bl FUN_overlay_d_93__021d52b4
+	bl BattleMon_LoadBaseCore
 	add r0, r7, #0
 	ldrh r1, [r5, #0xc]
 	add r0, #0xab
