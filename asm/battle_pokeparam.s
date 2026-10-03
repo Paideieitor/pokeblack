@@ -449,7 +449,7 @@ _021D4DE0:
 	add r0, r4, #0
 	add r1, r5, #0
 	mov r2, #1
-	bl FUN_overlay_d_93__021d4f84
+	bl BattleMon_LoadMoves
 	mov r1, #5
 	lsl r1, r1, #6
 	strb r0, [r4, r1]
@@ -592,8 +592,8 @@ _021D4F4C:
 _021D4F82:
 	pop {r3, r4, r5, r6, r7, pc}
 
-	thumb_func_start FUN_overlay_d_93__021d4f84
-FUN_overlay_d_93__021d4f84: ; 0x021D4F84
+	thumb_func_start BattleMon_LoadMoves
+BattleMon_LoadMoves: ; 0x021D4F84
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x18
 	str r0, [sp]
@@ -615,7 +615,7 @@ FUN_overlay_d_93__021d4f84: ; 0x021D4F84
 	mov r7, #0xe
 	mov r3, #0xf
 	mov r4, #0xf0
-	thumb_func_end FUN_overlay_d_93__021d4f84
+	thumb_func_end BattleMon_LoadMoves
 _021D4FB0:
 	add r0, r2, #0
 	mul r0, r7
@@ -4731,7 +4731,7 @@ FUN_overlay_d_93__021d6bfc: ; 0x021D6BFC
 	thumb_func_end FUN_overlay_d_93__021d6bfc
 _021D6C1A:
 	mov r2, #0
-	bl FUN_overlay_d_93__021d4f84
+	bl BattleMon_LoadMoves
 	pop {r4, pc}
 	.balign 4, 0
 
