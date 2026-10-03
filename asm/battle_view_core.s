@@ -332,7 +332,7 @@
 	.extern FUN_overlay_d_93__021d54c0
 	.extern FUN_overlay_d_93__021d5814
 	.extern FUN_overlay_d_93__021d5b40
-	.extern FUN_overlay_d_93__021d5b7c
+	.extern BattleMon_CanBattle
 	.extern FUN_overlay_d_93__021d5bdc
 	.extern FUN_overlay_d_93__021d5c30
 	.extern FUN_overlay_d_93__021d62a8
@@ -3131,7 +3131,7 @@ _021E60CC:
 	b _021E60FA
 _021E60E6:
 	add r0, r7, #0
-	bl FUN_overlay_d_93__021d5b7c
+	bl BattleMon_CanBattle
 	cmp r0, #0
 	beq _021E60FC
 	add r0, r7, #0

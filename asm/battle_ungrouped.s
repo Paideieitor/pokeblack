@@ -395,7 +395,7 @@
 	.extern FUN_overlay_d_93__021d5b44
 	.extern FUN_overlay_d_93__021d5b48
 	.extern BattleMon_IsFainted
-	.extern FUN_overlay_d_93__021d5b7c
+	.extern BattleMon_CanBattle
 	.extern FUN_overlay_d_93__021d5bb0
 	.extern FUN_overlay_d_93__021d5bdc
 	.extern FUN_overlay_d_93__021d5c08
@@ -7742,7 +7742,7 @@ _021BE438:
 	bl FUN_overlay_d_93__021b9934
 	str r0, [sp, #4]
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5b7c
+	bl BattleMon_CanBattle
 	cmp r0, #0
 	beq _021BE4F8
 	ldr r0, _021BE510 ; =0x00001D74
@@ -17762,7 +17762,7 @@ FUN_overlay_d_93__021c3370: ; 0x021C3370
 	push {r4, lr}
 	add r4, r1, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5b7c
+	bl BattleMon_CanBattle
 	cmp r0, #0
 	bne _021C3382
 	mov r0, #1
@@ -18618,7 +18618,7 @@ _021C3A14:
 	ldr r0, [r6, #4]
 	lsr r1, r1, #0x18
 	bl FUN_overlay_d_93__021b9c00
-	bl FUN_overlay_d_93__021d5b7c
+	bl BattleMon_CanBattle
 	cmp r0, #0
 	beq _021C3A2C
 	add r0, sp, #0
@@ -20849,7 +20849,7 @@ _021C4C96:
 	mov r7, #0
 _021C4CC2:
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5b7c
+	bl BattleMon_CanBattle
 	cmp r0, #0
 	beq _021C4CD6
 	add r0, r4, #0
@@ -29054,7 +29054,7 @@ FUN_overlay_d_93__021c8fa4: ; 0x021C8FA4
 	ldr r0, [r5, #8]
 	bl FUN_overlay_d_93__021b9934
 	add r7, r0, #0
-	bl FUN_overlay_d_93__021d5b7c
+	bl BattleMon_CanBattle
 	cmp r0, #0
 	bne _021C8FD4
 	ldrb r0, [r4, #7]
@@ -29180,7 +29180,7 @@ _021C90A6:
 	ldrb r1, [r1, #8]
 	bl FUN_overlay_d_93__021b9934
 	add r4, r0, #0
-	bl FUN_overlay_d_93__021d5b7c
+	bl BattleMon_CanBattle
 	cmp r0, #0
 	beq _021C913A
 	ldr r0, [sp, #4]

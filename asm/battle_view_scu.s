@@ -349,7 +349,7 @@
 	.extern FUN_overlay_d_93__021d3d90
 	.extern FUN_overlay_d_93__021d5440
 	.extern BattleMon_IsFainted
-	.extern FUN_overlay_d_93__021d5b7c
+	.extern BattleMon_CanBattle
 	.extern FUN_overlay_d_93__021d62a8
 	.extern FUN_overlay_d_93__021d62c4
 	.extern FUN_overlay_d_93__021eecd8
@@ -10626,7 +10626,7 @@ _021EE1B6:
 	b _021EE1F2
 _021EE1CE:
 	ldr r0, [sp, #8]
-	bl FUN_overlay_d_93__021d5b7c
+	bl BattleMon_CanBattle
 	cmp r0, #0
 	bne _021EE1E6
 	lsl r0, r4, #1
