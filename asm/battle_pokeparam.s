@@ -1267,35 +1267,35 @@ _021D543C:
 	add r0, r1, #0
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021d5440
-FUN_overlay_d_93__021d5440: ; 0x021D5440
+	thumb_func_start BattleMon_GetBattleSlot
+BattleMon_GetBattleSlot: ; 0x021D5440
 	ldrb r0, [r0, #0x19]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d5440
+	thumb_func_end BattleMon_GetBattleSlot
 
-	thumb_func_start FUN_overlay_d_93__021d5444
-FUN_overlay_d_93__021d5444: ; 0x021D5444
+	thumb_func_start BattleMon_GetSpecies
+BattleMon_GetSpecies: ; 0x021D5444
 	ldrh r0, [r0, #0xc]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d5444
+	thumb_func_end BattleMon_GetSpecies
 
-	thumb_func_start FUN_overlay_d_93__021d5448
-FUN_overlay_d_93__021d5448: ; 0x021D5448
+	thumb_func_start BattleMon_GetMoveCount
+BattleMon_GetMoveCount: ; 0x021D5448
 	mov r1, #5
 	lsl r1, r1, #6
 	ldrb r0, [r0, r1]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d5448
+	thumb_func_end BattleMon_GetMoveCount
 
-	thumb_func_start FUN_overlay_d_93__021d5450
-FUN_overlay_d_93__021d5450: ; 0x021D5450
+	thumb_func_start BattleMon_CountMoves
+BattleMon_CountMoves: ; 0x021D5450
 	push {r4, r5}
 	mov r2, #0xe
 	mov r5, #0
 	mov r4, #0
 	mov r1, #0xe
 	add r2, #0xf6
-	thumb_func_end FUN_overlay_d_93__021d5450
+	thumb_func_end BattleMon_CountMoves
 _021D545C:
 	add r3, r5, #0
 	mul r3, r1
@@ -1313,8 +1313,8 @@ _021D5470:
 	pop {r4, r5}
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021d5478
-FUN_overlay_d_93__021d5478: ; 0x021D5478
+	thumb_func_start BattleMon_CountUsedMoves
+BattleMon_CountUsedMoves: ; 0x021D5478
 	push {r3, r4, r5, r6}
 	mov r5, #5
 	lsl r5, r5, #6
@@ -1326,7 +1326,7 @@ FUN_overlay_d_93__021d5478: ; 0x021D5478
 	add r3, r0, r5
 	mov r4, #0xe
 	sub r5, #0x31
-	thumb_func_end FUN_overlay_d_93__021d5478
+	thumb_func_end BattleMon_CountUsedMoves
 _021D548E:
 	add r6, r2, #0
 	mul r6, r4
@@ -1350,17 +1350,17 @@ _021D54AE:
 	pop {r3, r4, r5, r6}
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021d54b4
-FUN_overlay_d_93__021d54b4: ; 0x021D54B4
+	thumb_func_start BattleMon_GetUsedMoveCount
+BattleMon_GetUsedMoveCount: ; 0x021D54B4
 	ldr r1, _021D54BC ; =0x00000143
 	ldrb r0, [r0, r1]
 	bx lr
 	nop
-	thumb_func_end FUN_overlay_d_93__021d54b4
+	thumb_func_end BattleMon_GetUsedMoveCount
 _021D54BC: .word 0x00000143
 
-	thumb_func_start FUN_overlay_d_93__021d54c0
-FUN_overlay_d_93__021d54c0: ; 0x021D54C0
+	thumb_func_start BattleMon_GetMove
+BattleMon_GetMove: ; 0x021D54C0
 	mov r2, #0xe
 	add r3, r1, #0
 	mul r3, r2
@@ -1369,19 +1369,40 @@ FUN_overlay_d_93__021d54c0: ; 0x021D54C0
 	ldrh r0, [r0, r2]
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d54c0
-_021D54D0:
-	.byte 0x0E, 0x22, 0x0B, 0x1C, 0x53, 0x43, 0xC0, 0x18, 0xF6, 0x32, 0x80, 0x5A, 0x70, 0x47, 0x00, 0x00
-	.byte 0x0E, 0x22, 0x4A, 0x43, 0x81, 0x18, 0x02, 0x48, 0x08, 0x5C, 0x00, 0x07, 0x00, 0x0F, 0x70, 0x47
-	.byte 0x0F, 0x01, 0x00, 0x00
+	thumb_func_end BattleMon_GetMove
 
-	thumb_func_start FUN_overlay_d_93__021d54f4
-FUN_overlay_d_93__021d54f4: ; 0x021D54F4
+    thumb_func_start BattleMon_GetOriginalMove
+BattleMon_GetOriginalMove: ; 0x021D54D0
+    mov r2, #0xe
+    add r3, r1, #0x0
+    mul r3, r2
+    add r0, r0, r3
+    add r2, #0xf6
+    ldrh r0, [r0, r2]
+    bx lr
+    .balign 4, 0
+    thumb_func_end BattleMon_GetOriginalMove
+
+    thumb_func_start BattleMon_GetMoveUsedFlag
+BattleMon_GetMoveUsedFlag: ; 0X021D54E0
+    mov r2, #0xe
+    mul r2, r1
+    add r1, r0, r2
+	ldr r0, _021D54F0 ; =0x0000010F
+    ldrb r0, [r1, r0]
+    lsl r0, r0, #0x1c
+    lsr r0, r0, #0x1c
+    bx lr
+    thumb_func_end BattleMon_GetMoveUsedFlag
+_021D54F0: .word 0x0000010F 
+
+	thumb_func_start BattleMon_CopyMoves
+BattleMon_CopyMoves: ; 0x021D54F4
 	push {r4, r5, r6, r7}
 	mov r4, #0x41
 	mov r2, #0
 	lsl r4, r4, #2
-	thumb_func_end FUN_overlay_d_93__021d54f4
+	thumb_func_end BattleMon_CopyMoves
 _021D54FC:
 	mov r3, #0xe
 	mul r3, r2
@@ -1407,8 +1428,8 @@ _021D550A:
 	pop {r4, r5, r6, r7}
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021d5528
-FUN_overlay_d_93__021d5528: ; 0x021D5528
+	thumb_func_start BattleMon_GetCurrentMoveData
+BattleMon_GetCurrentMoveData: ; 0x021D5528
 	push {r4, r5}
 	mov r4, #0xe
 	add r5, r1, #0
@@ -1427,10 +1448,10 @@ FUN_overlay_d_93__021d5528: ; 0x021D5528
 	pop {r4, r5}
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d5528
+	thumb_func_end BattleMon_GetCurrentMoveData
 
-	thumb_func_start FUN_overlay_d_93__021d554c
-FUN_overlay_d_93__021d554c: ; 0x021D554C
+	thumb_func_start BattleMon_GetCurrentMoveMissingPP
+BattleMon_GetCurrentMoveMissingPP: ; 0x021D554C
 	mov r2, #0xe
 	add r3, r1, #0
 	mul r3, r2
@@ -1445,11 +1466,25 @@ FUN_overlay_d_93__021d554c: ; 0x021D554C
 	lsr r0, r0, #0x18
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d554c
-_021D5568:
-	.byte 0x0E, 0x22, 0x0B, 0x1C, 0x53, 0x43, 0xC3, 0x18
-	.byte 0x0E, 0x20, 0xF9, 0x30, 0xF8, 0x32, 0x19, 0x5C, 0x98, 0x5C, 0x08, 0x1A, 0x00, 0x06, 0x00, 0x0E
-	.byte 0x70, 0x47, 0x00, 0x00
+	thumb_func_end BattleMon_GetCurrentMoveMissingPP
+
+    thumb_func_start BattleMon_GetOriginalMoveMissingPP
+BattleMon_GetOriginalMoveMissingPP: ; 0x21D5568
+    mov r2, #0xe
+    add r3, r1, #0x0
+    mul r3, r2
+    add r3, r0, r3
+    mov r0, #0xe
+    add r0, #0xf9
+    add r2, #0xf8
+    ldrb r1, [r3, r0]
+    ldrb r0, [r3, r2]
+    sub r0, r1, r0
+    lsl r0, r0, #0x18
+    lsr r0, r0, #0x18
+    bx lr
+    .balign 4, 0
+    thumb_func_end BattleMon_GetOriginalMoveMissingPP
 
 	thumb_func_start FUN_overlay_d_93__021d5584
 FUN_overlay_d_93__021d5584: ; 0x021D5584
