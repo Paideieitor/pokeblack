@@ -28307,7 +28307,7 @@ _021C8A10:
 _021C8A1A:
 	add r0, r4, #0
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021c9de8
+	bl BattleHandler_UseHeldItem
 	b _021C8C5A
 _021C8A24:
 	add r0, r4, #0
@@ -30907,8 +30907,8 @@ FUN_overlay_d_93__021c9dcc: ; 0x021C9DCC
 	pop {r3, r4, r5, pc}
 	thumb_func_end FUN_overlay_d_93__021c9dcc
 
-	thumb_func_start FUN_overlay_d_93__021c9de8
-FUN_overlay_d_93__021c9de8: ; 0x021C9DE8
+	thumb_func_start BattleHandler_UseHeldItem
+BattleHandler_UseHeldItem: ; 0x021C9DE8
 	push {r4, r5, r6, lr}
 	add r4, r1, #0
 	ldr r1, [r4]
@@ -30927,7 +30927,7 @@ FUN_overlay_d_93__021c9de8: ; 0x021C9DE8
 	lsl r0, r0, #0x1e
 	lsr r0, r0, #0x1f
 	beq _021C9E36
-	thumb_func_end FUN_overlay_d_93__021c9de8
+	thumb_func_end BattleHandler_UseHeldItem
 _021C9E10:
 	ldr r0, [r4, #4]
 	lsl r0, r0, #0x1f
