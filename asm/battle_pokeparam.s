@@ -445,7 +445,7 @@ _021D4DE0:
 	add r1, r5, #0
 	mov r2, #1
 	mov r3, #1
-	bl FUN_overlay_d_93__021d4efc
+	bl BattleMon_LoadBase
 	add r0, r4, #0
 	add r1, r5, #0
 	mov r2, #1
@@ -524,8 +524,8 @@ _021D4EF0: .word 0x021F3AA4
 _021D4EF4: .word 0x00000272
 _021D4EF8: .word 0x00002710
 
-	thumb_func_start FUN_overlay_d_93__021d4efc
-FUN_overlay_d_93__021d4efc: ; 0x021D4EFC
+	thumb_func_start BattleMon_LoadBase
+BattleMon_LoadBase: ; 0x021D4EFC
 	push {r3, r4, r5, r6, r7, lr}
 	add r5, r0, #0
 	add r4, r1, #0
@@ -542,7 +542,7 @@ FUN_overlay_d_93__021d4efc: ; 0x021D4EFC
 	mov r2, #0
 	bl FUN_02017E1C
 	strh r0, [r5, #0xe]
-	thumb_func_end FUN_overlay_d_93__021d4efc
+	thumb_func_end BattleMon_LoadBase
 _021D4F20:
 	add r0, r4, #0
 	mov r1, #8
@@ -1114,7 +1114,7 @@ FUN_overlay_d_93__021d533c: ; 0x021D533C
 	ldr r1, [r4]
 	mov r2, #0
 	mov r3, #1
-	bl FUN_overlay_d_93__021d4efc
+	bl BattleMon_LoadBase
 	add r0, r4, #0
 	bl FUN_overlay_d_93__021d5150
 	ldrb r1, [r4, #0x1b]
@@ -3833,7 +3833,7 @@ FUN_overlay_d_93__021d6580: ; 0x021D6580
 	ldr r1, [r4]
 	mov r2, #0
 	mov r3, #1
-	bl FUN_overlay_d_93__021d4efc
+	bl BattleMon_LoadBase
 	ldr r5, _021D65C4 ; =0x00000155
 	mov r1, #0
 	add r0, r4, r5
@@ -4724,7 +4724,7 @@ FUN_overlay_d_93__021d6bfc: ; 0x021D6BFC
 	bne _021D6C1A
 	mov r2, #1
 	mov r3, #0
-	bl FUN_overlay_d_93__021d4efc
+	bl BattleMon_LoadBase
 	add r0, r4, #0
 	bl FUN_overlay_d_93__021d50b4
 	pop {r4, pc}
