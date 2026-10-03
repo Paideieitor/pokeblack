@@ -351,8 +351,8 @@ FUN_overlay_d_93__021d4d64: ; 0x021D4D64
 	pop {r4, pc}
 	thumb_func_end FUN_overlay_d_93__021d4d64
 
-	thumb_func_start FUN_overlay_d_93__021d4d84
-FUN_overlay_d_93__021d4d84: ; 0x021D4D84
+	thumb_func_start BattleMon_Create
+BattleMon_Create: ; 0x021D4D84
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	add r5, r0, #0
@@ -394,7 +394,7 @@ FUN_overlay_d_93__021d4d84: ; 0x021D4D84
 	cmp r1, r0
 	bls _021D4DE0
 	strh r6, [r4, #0x12]
-	thumb_func_end FUN_overlay_d_93__021d4d84
+	thumb_func_end BattleMon_Create
 _021D4DE0:
 	mov r6, #0
 	strh r6, [r4, #0x14]

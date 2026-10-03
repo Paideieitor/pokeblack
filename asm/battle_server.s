@@ -380,7 +380,7 @@
 	.extern FUN_overlay_d_93__021d4b18
 	.extern FUN_overlay_d_93__021d4d24
 	.extern FUN_overlay_d_93__021d4d64
-	.extern FUN_overlay_d_93__021d4d84
+	.extern BattleMon_Create
 	.extern FUN_overlay_d_93__021d5440
 	.extern FUN_overlay_d_93__021d5444
 	.extern FUN_overlay_d_93__021d54b4
@@ -6321,7 +6321,7 @@ _021B94A8:
 	lsl r6, r5, #2
 	add r1, r5, #0
 	mov r2, #0x12
-	bl FUN_overlay_d_93__021d4d84
+	bl BattleMon_Create
 	add r1, r7, r6
 	add r1, #0x84
 	str r0, [r1]
