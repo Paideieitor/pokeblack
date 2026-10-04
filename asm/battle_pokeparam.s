@@ -2427,8 +2427,15 @@ _021D5B94:
 _021D5BA0:
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
-_021D5BA4:
-	.byte 0x01, 0x49, 0x40, 0x5A, 0x70, 0x47, 0xC0, 0x46, 0x46, 0x01, 0x00, 0x00
+
+    thumb_func_start BattleMon_GetTurnCount
+BattleMon_GetTurnCount: ; 0x021D5BA4:
+    ldr r1, _021D5BAC
+    ldrh r0, [r0, r1]
+    bx lr
+    thumb_func_end BattleMon_GetTurnCount
+    .byte 0xc0, 0x46
+_021D5BAC: .word 0x00000146
 
 	thumb_func_start FUN_overlay_d_93__021d5bb0
 FUN_overlay_d_93__021d5bb0: ; 0x021D5BB0
