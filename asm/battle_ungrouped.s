@@ -401,12 +401,12 @@
 	.extern BattleMon_GetHideCondition
 	.extern BattleMon_IsHiding
 	.extern BattleMon_IsStatStageChangeValid
-	.extern FUN_overlay_d_93__021d5dc0
-	.extern FUN_overlay_d_93__021d5e38
-	.extern FUN_overlay_d_93__021d5ea8
-	.extern FUN_overlay_d_93__021d5efc
-	.extern FUN_overlay_d_93__021d5f08
-	.extern FUN_overlay_d_93__021d5f14
+	.extern BattleMon_StatStageUp
+	.extern BattleMon_StatStageDown
+	.extern BattleMon_SetStatStage
+	.extern BattleMon_RestoreStatStages
+	.extern BattleMon_ResetStatStages
+	.extern BattleMon_GetCritStage
 	.extern FUN_overlay_d_93__021d5f38
 	.extern FUN_overlay_d_93__021d5f90
 	.extern FUN_overlay_d_93__021d5fa4
@@ -22710,7 +22710,7 @@ FUN_overlay_d_93__021c5a8c: ; 0x021C5A8C
 	ldr r0, [sp, #0x10]
 	add r1, r4, #0
 	lsr r2, r2, #0x18
-	bl FUN_overlay_d_93__021d5dc0
+	bl BattleMon_StatStageUp
 	str r0, [sp, #0x1c]
 	lsl r0, r0, #0x18
 	lsr r7, r0, #0x18
@@ -22769,7 +22769,7 @@ _021C5B1C:
 	ldr r0, [sp, #0x10]
 	add r1, r4, #0
 	lsr r2, r2, #0x18
-	bl FUN_overlay_d_93__021d5e38
+	bl BattleMon_StatStageDown
 	str r0, [sp, #0x20]
 	lsl r0, r0, #0x18
 	lsr r7, r0, #0x18
@@ -24881,7 +24881,7 @@ FUN_overlay_d_93__021c6bf8: ; 0x021C6BF8
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d5f14
+	bl BattleMon_GetCritStage
 	add r0, r4, r0
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
@@ -29581,31 +29581,31 @@ FUN_overlay_d_93__021c9394: ; 0x021C9394
 	ldrb r2, [r5, #5]
 	add r0, r4, #0
 	mov r1, #1
-	bl FUN_overlay_d_93__021d5ea8
+	bl BattleMon_SetStatStage
 	ldrb r2, [r5, #6]
 	add r0, r4, #0
 	mov r1, #2
-	bl FUN_overlay_d_93__021d5ea8
+	bl BattleMon_SetStatStage
 	ldrb r2, [r5, #7]
 	add r0, r4, #0
 	mov r1, #3
-	bl FUN_overlay_d_93__021d5ea8
+	bl BattleMon_SetStatStage
 	ldrb r2, [r5, #8]
 	add r0, r4, #0
 	mov r1, #4
-	bl FUN_overlay_d_93__021d5ea8
+	bl BattleMon_SetStatStage
 	ldrb r2, [r5, #9]
 	add r0, r4, #0
 	mov r1, #5
-	bl FUN_overlay_d_93__021d5ea8
+	bl BattleMon_SetStatStage
 	ldrb r2, [r5, #0xa]
 	add r0, r4, #0
 	mov r1, #6
-	bl FUN_overlay_d_93__021d5ea8
+	bl BattleMon_SetStatStage
 	ldrb r2, [r5, #0xb]
 	add r0, r4, #0
 	mov r1, #7
-	bl FUN_overlay_d_93__021d5ea8
+	bl BattleMon_SetStatStage
 	ldrb r0, [r5, #6]
 	ldrb r2, [r5, #4]
 	ldrb r3, [r5, #5]
@@ -29662,7 +29662,7 @@ FUN_overlay_d_93__021c9448: ; 0x021C9448
 	mov r1, #0xc
 	bl FUN_overlay_d_93__021cd4b0
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d5efc
+	bl BattleMon_RestoreStatStages
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	pop {r4, r5, r6, pc}
@@ -29699,7 +29699,7 @@ _021C9490:
 	mov r1, #0xd
 	bl FUN_overlay_d_93__021cd4b0
 	ldr r0, [sp, #4]
-	bl FUN_overlay_d_93__021d5f08
+	bl BattleMon_ResetStatStages
 	mov r0, #1
 	str r0, [sp]
 _021C94B8:

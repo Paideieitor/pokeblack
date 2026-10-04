@@ -1206,8 +1206,8 @@ PokemonStatStages_ResetCore: ; 0x021D53C8
 	.balign 4, 0
 	thumb_func_end PokemonStatStages_ResetCore
 
-	thumb_func_start BattleMon_RestorePokemonStatStages
-BattleMon_RestorePokemonStatStages: ; 0x021D53DC
+	thumb_func_start PokemonStatStages_Restore
+PokemonStatStages_Restore: ; 0x021D53DC
 	mov r1, #0
 	ldrsb r2, [r0, r1]
 	cmp r2, #6
@@ -1215,7 +1215,7 @@ BattleMon_RestorePokemonStatStages: ; 0x021D53DC
 	mov r1, #6
 	strb r1, [r0]
 	mov r1, #1
-	thumb_func_end BattleMon_RestorePokemonStatStages
+	thumb_func_end PokemonStatStages_Restore
 _021D53EA:
 	mov r2, #1
 	ldrsb r3, [r0, r2]
@@ -2690,15 +2690,15 @@ BattleMon_GetStatStageVolumeToMax: ; 0x021D5D50
     pop {r3, pc}
 	thumb_func_end BattleMon_GetStatStageVolumeToMax
 
-	thumb_func_start FUN_overlay_d_93__021d5d68
-FUN_overlay_d_93__021d5d68: ; 0x021D5D68
+	thumb_func_start BattleMon_AreStatsLowered
+BattleMon_AreStatsLowered: ; 0x021D5D68
 	mov r1, #0xfc
 	ldrsb r1, [r0, r1]
 	cmp r1, #6
 	bge _021D5D74
 	mov r0, #1
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d5d68
+	thumb_func_end BattleMon_AreStatsLowered
 _021D5D74:
 	mov r1, #0xfd
 	ldrsb r1, [r0, r1]
@@ -2745,8 +2745,8 @@ _021D5DBC:
 	mov r0, #0
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021d5dc0
-FUN_overlay_d_93__021d5dc0: ; 0x021D5DC0
+	thumb_func_start BattleMon_StatStageUp
+BattleMon_StatStageUp: ; 0x021D5DC0
 	cmp r1, #7
 	bhi _021D5E00
 	add r1, r1, r1
@@ -2755,7 +2755,7 @@ FUN_overlay_d_93__021d5dc0: ; 0x021D5DC0
 	lsl r1, r1, #0x10
 	asr r1, r1, #0x10
 	add pc, r1
-	thumb_func_end FUN_overlay_d_93__021d5dc0
+	thumb_func_end BattleMon_StatStageUp
 _021D5DD0: ; jump table
 	.hword 0x002E ; case 0
 	.hword 0x000E ; case 1
@@ -2820,8 +2820,8 @@ _021D5E2A:
 _021D5E30: .word 0x00000101
 _021D5E34: .word 0x00000102
 
-	thumb_func_start FUN_overlay_d_93__021d5e38
-FUN_overlay_d_93__021d5e38: ; 0x021D5E38
+	thumb_func_start BattleMon_StatStageDown
+BattleMon_StatStageDown: ; 0x021D5E38
 	cmp r1, #7
 	bhi _021D5E78
 	add r1, r1, r1
@@ -2830,7 +2830,7 @@ FUN_overlay_d_93__021d5e38: ; 0x021D5E38
 	lsl r1, r1, #0x10
 	asr r1, r1, #0x10
 	add pc, r1
-	thumb_func_end FUN_overlay_d_93__021d5e38
+	thumb_func_end BattleMon_StatStageDown
 _021D5E48: ; jump table
 	.hword 0x002E ; case 0
 	.hword 0x000E ; case 1
@@ -2892,8 +2892,8 @@ _021D5E9C:
 _021D5EA0: .word 0x00000101
 _021D5EA4: .word 0x00000102
 
-	thumb_func_start FUN_overlay_d_93__021d5ea8
-FUN_overlay_d_93__021d5ea8: ; 0x021D5EA8
+	thumb_func_start BattleMon_SetStatStage
+BattleMon_SetStatStage: ; 0x021D5EA8
 	cmp r1, #7
 	bhi _021D5EF0
 	add r1, r1, r1
@@ -2902,7 +2902,7 @@ FUN_overlay_d_93__021d5ea8: ; 0x021D5EA8
 	lsl r1, r1, #0x10
 	asr r1, r1, #0x10
 	add pc, r1
-	thumb_func_end FUN_overlay_d_93__021d5ea8
+	thumb_func_end BattleMon_SetStatStage
 _021D5EB8: ; jump table
 	.hword 0x002E ; case 0
 	.hword 0x000E ; case 1
@@ -2948,26 +2948,26 @@ _021D5EF0:
 _021D5EF4: .word 0x00000101
 _021D5EF8: .word 0x00000102
 
-	thumb_func_start FUN_overlay_d_93__021d5efc
-FUN_overlay_d_93__021d5efc: ; 0x021D5EFC
-	ldr r3, _021D5F04 ; =BattleMon_RestorePokemonStatStages
+	thumb_func_start BattleMon_RestoreStatStages
+BattleMon_RestoreStatStages: ; 0x021D5EFC
+	ldr r3, _021D5F04 ; =PokemonStatStages_Restore
 	add r0, #0xfc
 	bx r3
 	nop
-	thumb_func_end FUN_overlay_d_93__021d5efc
+	thumb_func_end BattleMon_RestoreStatStages
 _021D5F04: .word 0x021D53DD
 
-	thumb_func_start FUN_overlay_d_93__021d5f08
-FUN_overlay_d_93__021d5f08: ; 0x021D5F08
+	thumb_func_start BattleMon_ResetStatStages
+BattleMon_ResetStatStages: ; 0x021D5F08
 	ldr r3, _021D5F10 ; =PokemonStatStages_ResetCore
 	add r0, #0xfc
 	bx r3
 	nop
-	thumb_func_end FUN_overlay_d_93__021d5f08
+	thumb_func_end BattleMon_ResetStatStages
 _021D5F10: .word 0x021D53C9
 
-	thumb_func_start FUN_overlay_d_93__021d5f14
-FUN_overlay_d_93__021d5f14: ; 0x021D5F14
+	thumb_func_start BattleMon_GetCritStage
+BattleMon_GetCritStage: ; 0x021D5F14
 	push {r4, lr}
 	ldr r1, _021D5F34 ; =0x00000142
 	ldrb r4, [r0, r1]
@@ -2981,7 +2981,7 @@ FUN_overlay_d_93__021d5f14: ; 0x021D5F14
 	cmp r4, #4
 	bls _021D5F30
 	mov r4, #4
-	thumb_func_end FUN_overlay_d_93__021d5f14
+	thumb_func_end BattleMon_GetCritStage
 _021D5F30:
 	add r0, r4, #0
 	pop {r4, pc}

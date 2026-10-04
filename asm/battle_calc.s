@@ -341,7 +341,7 @@
 	.extern BattleMon_GetHeldItem
 	.extern BattleMon_IsFullHP
 	.extern BattleMon_GetTurnFlag
-	.extern FUN_overlay_d_93__021d5d68
+	.extern BattleMon_AreStatsLowered
 	.extern BattleMon_HasCondition
 	.extern FUN_overlay_d_93__021d67b8
 	.extern FUN_overlay_d_93__021d6c24
@@ -6126,7 +6126,7 @@ FUN_overlay_d_93__021de270: ; 0x021DE270
 	add r0, r5, #0
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
-	bl FUN_overlay_d_93__021d5d68
+	bl BattleMon_AreStatsLowered
 	cmp r0, #0
 	beq _021DE29C
 	add r0, r6, #0
