@@ -308,7 +308,7 @@
 	.extern FUN_overlay_d_93__021b9940
 	.extern FUN_overlay_d_93__021b9a24
 	.extern BattleMon_GetBattleSlot
-	.extern FUN_overlay_d_93__021d5750
+	.extern BattleMon_HasMove
 	.extern FUN_overlay_d_93__021e8918
 	.extern FUN_overlay_d_93__021e8a98
 	.extern FUN_overlay_d_93__021e8ac8
@@ -617,14 +617,14 @@ FUN_overlay_d_93__021ef934: ; 0x021EF934
 _021EF940: .word 0x021F63F4
 _021EF944: .word 0x021EFC79
 
-	thumb_func_start FUN_overlay_d_93__021ef948
-FUN_overlay_d_93__021ef948: ; 0x021EF948
+	thumb_func_start Battlefield_CheckEffect
+Battlefield_CheckEffect: ; 0x021EF948
 	add r1, r0, #0
 	ldr r0, _021EF950 ; =0x021F63F4
-	ldr r3, _021EF954 ; =FUN_overlay_d_93__021efce4
+	ldr r3, _021EF954 ; =Battlefield_CheckEffectCore
 	bx r3
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021ef948
+	thumb_func_end Battlefield_CheckEffect
 _021EF950: .word 0x021F63F4
 _021EF954: .word 0x021EFCE5
 
@@ -823,7 +823,7 @@ LAB_overlay_d_93__021efa94: ; 0x021EFA94
 	push {r3, r4, r5, r6, r7, lr}
 	add r7, r0, #0
 	add r5, r1, #0
-	bl FUN_overlay_d_93__021efce4
+	bl Battlefield_CheckEffectCore
 	cmp r0, #0
 	beq _021EFAC2
 	add r6, r7, #0
@@ -864,7 +864,7 @@ FUN_overlay_d_93__021efad8: ; 0x021EFAD8
 	add r5, r0, #0
 	add r6, r1, #0
 	add r4, r2, #0
-	bl FUN_overlay_d_93__021efce4
+	bl Battlefield_CheckEffectCore
 	cmp r0, #0
 	beq _021EFB2E
 	mov r0, #0x4a
@@ -922,7 +922,7 @@ FUN_overlay_d_93__021efb34: ; 0x021EFB34
 _021EFB3E:
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021efce4
+	bl Battlefield_CheckEffectCore
 	cmp r0, #0
 	beq _021EFC02
 	lsl r0, r6, #2
@@ -1070,7 +1070,7 @@ _021EFC3A:
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021b9940
 	ldr r1, [sp, #4]
-	bl FUN_overlay_d_93__021d5750
+	bl BattleMon_HasMove
 	cmp r0, #0
 	beq _021EFC6A
 	add sp, #0xc
@@ -1097,7 +1097,7 @@ FUN_overlay_d_93__021efc78: ; 0x021EFC78
 _021EFC82:
 	add r0, r6, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021efce4
+	bl Battlefield_CheckEffectCore
 	cmp r0, #0
 	beq _021EFCCA
 	lsl r0, r4, #2
@@ -1149,15 +1149,15 @@ thunk_EXT_FUN_06898080: ; 0x021EFCD8
 	arm_func_end thunk_EXT_FUN_06898080
 _021EFCE0: .word 0x06898081
 
-	thumb_func_start FUN_overlay_d_93__021efce4
-FUN_overlay_d_93__021efce4: ; 0x021EFCE4
+	thumb_func_start Battlefield_CheckEffectCore
+Battlefield_CheckEffectCore: ; 0x021EFCE4
 	lsl r1, r1, #2
 	add r1, r0, r1
 	mov r0, #0x52
 	lsl r0, r0, #2
 	ldr r0, [r1, r0]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021efce4
+	thumb_func_end Battlefield_CheckEffectCore
 
 	.section .data, 4
 	.global battle_field_data

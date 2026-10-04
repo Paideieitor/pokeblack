@@ -351,7 +351,7 @@
 	.extern BattleMon_IsFainted
 	.extern BattleMon_CanBattle
 	.extern FUN_overlay_d_93__021d62a8
-	.extern FUN_overlay_d_93__021d62c4
+	.extern BattleMon_HasCondition
 	.extern FUN_overlay_d_93__021eecd8
 	.extern FUN_overlay_d_93__021eee24
 	.extern FUN_overlay_d_93__021eee80
@@ -2296,7 +2296,7 @@ _021E9E26:
 	lsr r1, r1, #0x18
 	bl FUN_overlay_d_93__021b9c00
 	mov r1, #0x13
-	bl FUN_overlay_d_93__021d62c4
+	bl BattleMon_HasCondition
 	add r1, r5, r4
 	add r4, r4, #1
 	strb r0, [r1, r6]

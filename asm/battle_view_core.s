@@ -330,13 +330,13 @@
 	.extern BattleMon_GetSpecies
 	.extern BattleMon_GetMoveCount
 	.extern BattleMon_GetMove
-	.extern FUN_overlay_d_93__021d5814
-	.extern FUN_overlay_d_93__021d5b40
+	.extern BattleMon_HasPokemonType
+	.extern BattleMon_GetHeldItem
 	.extern BattleMon_CanBattle
 	.extern FUN_overlay_d_93__021d5bdc
 	.extern FUN_overlay_d_93__021d5c30
 	.extern FUN_overlay_d_93__021d62a8
-	.extern FUN_overlay_d_93__021d62c4
+	.extern BattleMon_HasCondition
 	.extern FUN_overlay_d_93__021d6920
 	.extern FUN_overlay_d_93__021d6940
 	.extern FUN_overlay_d_93__021d69ac
@@ -612,7 +612,7 @@ _021E0494:
 	add r7, r0, #0
 	add r0, r4, #0
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021d5814
+	bl BattleMon_HasPokemonType
 	cmp r0, #0
 	bne _021E04CA
 	add r1, r6, #1
@@ -850,7 +850,7 @@ FUN_overlay_d_93__021e0e28: ; 0x021E0E28
 	mov r1, #7
 	str r0, [sp]
 	mov r6, #0
-	bl FUN_overlay_d_93__021d5814
+	bl BattleMon_HasPokemonType
 	cmp r0, #0
 	beq _021E0EDC
 	ldr r0, [sp]
@@ -1766,7 +1766,7 @@ FUN_overlay_d_93__021e231c: ; 0x021E231C
 	bl FUN_overlay_d_93__021c7cf4
 	mov r1, #2
 	add r7, r0, #0
-	bl FUN_overlay_d_93__021d62c4
+	bl BattleMon_HasCondition
 	cmp r0, #0
 	beq _021E236C
 	add r0, r5, #0
@@ -3900,7 +3900,7 @@ FUN_overlay_d_93__021e869c: ; 0x021E869C
 	bl BattleMon_GetSpecies
 	add r4, r0, #0
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5b40
+	bl BattleMon_GetHeldItem
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	add r0, r4, #0
@@ -3968,7 +3968,7 @@ _021E870C:
 	bl BattleMon_GetSpecies
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5b40
+	bl BattleMon_GetHeldItem
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	add r0, r5, #0
@@ -4532,8 +4532,8 @@ _021E8BD0:
 	.byte 0x04, 0x2A, 0x09, 0xD1, 0xDA, 0x05, 0x92, 0x0E, 0x08, 0x2A, 0x05, 0xD2, 0x03, 0x4A, 0x89, 0x06
 	.byte 0x1A, 0x40, 0xC9, 0x0D, 0x11, 0x43, 0x01, 0x60, 0x70, 0x47, 0xC0, 0x46, 0x07, 0xFE, 0xFF, 0xFF
 
-	thumb_func_start FUN_overlay_d_93__021e8ce0
-FUN_overlay_d_93__021e8ce0: ; 0x021E8CE0
+	thumb_func_start PokemonTypePair_Make
+PokemonTypePair_Make: ; 0x021E8CE0
 	lsl r0, r0, #0x18
 	lsr r2, r0, #0x10
 	lsl r0, r1, #0x18
@@ -4542,11 +4542,11 @@ FUN_overlay_d_93__021e8ce0: ; 0x021E8CE0
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021e8ce0
+	thumb_func_end PokemonTypePair_Make
 
 	thumb_func_start FUN_overlay_d_93__021e8cf0
 FUN_overlay_d_93__021e8cf0: ; 0x021E8CF0
-	ldr r3, _021E8CF8 ; =FUN_overlay_d_93__021e8ce0
+	ldr r3, _021E8CF8 ; =PokemonTypePair_Make
 	add r1, r0, #0
 	bx r3
 	nop
