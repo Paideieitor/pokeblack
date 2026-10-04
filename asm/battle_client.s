@@ -394,9 +394,9 @@
 	.extern BattleMon_IsFullHP
 	.extern BattleMon_IsFainted
 	.extern BattleMon_CanBattle
-	.extern FUN_overlay_d_93__021d5bdc
-	.extern FUN_overlay_d_93__021d5c44
-	.extern FUN_overlay_d_93__021d5d14
+	.extern BattleMon_GetConditionFlag
+	.extern BattleMon_GetHPRatio
+	.extern BattleMon_IsStatStageChangeValid
 	.extern FUN_overlay_d_93__021d5dc0
 	.extern FUN_overlay_d_93__021d5e38
 	.extern FUN_overlay_d_93__021d5ea8
@@ -3829,7 +3829,7 @@ _021CF48C:
 _021CF492:
 	add r0, r5, #0
 	mov r1, #0xc
-	bl FUN_overlay_d_93__021d5bdc
+	bl BattleMon_GetConditionFlag
 	cmp r0, #0
 	beq _021CF4AE
 	cmp r4, #0
@@ -5620,7 +5620,7 @@ FUN_overlay_d_93__021d0248: ; 0x021D0248
 	thumb_func_end FUN_overlay_d_93__021d0248
 _021D0276:
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5c44
+	bl BattleMon_GetHPRatio
 	mov r1, #0x32
 	lsl r1, r1, #0xc
 	cmp r0, r1
@@ -11761,7 +11761,7 @@ _021D3E78:
 	ldrb r1, [r5, #1]
 	add r0, r7, #0
 	mov r2, #1
-	bl FUN_overlay_d_93__021d5d14
+	bl BattleMon_IsStatStageChangeValid
 	cmp r0, #0
 	beq _021D3E9E
 	mov r0, #1

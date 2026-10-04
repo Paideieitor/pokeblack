@@ -333,8 +333,8 @@
 	.extern BattleMon_HasPokemonType
 	.extern BattleMon_GetHeldItem
 	.extern BattleMon_CanBattle
-	.extern FUN_overlay_d_93__021d5bdc
-	.extern FUN_overlay_d_93__021d5c30
+	.extern BattleMon_GetConditionFlag
+	.extern BattleMon_IsHiding
 	.extern FUN_overlay_d_93__021d62a8
 	.extern BattleMon_HasCondition
 	.extern FUN_overlay_d_93__021d6920
@@ -1941,7 +1941,7 @@ _021E2726:
 	blo _021E2726
 _021E272E:
 	mov r1, #7
-	bl FUN_overlay_d_93__021d5bdc
+	bl BattleMon_GetConditionFlag
 	cmp r0, #0
 	beq _021E273A
 	lsl r4, r4, #1
@@ -4038,7 +4038,7 @@ FUN_overlay_d_93__021e8798: ; 0x021E8798
 	add r0, r5, #0
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
-	bl FUN_overlay_d_93__021d5c30
+	bl BattleMon_IsHiding
 	cmp r0, #0
 	bne _021E8800
 	mov r0, #0x12

@@ -340,7 +340,7 @@
 	.extern BattleMon_GetRealStat
 	.extern BattleMon_GetHeldItem
 	.extern BattleMon_IsFullHP
-	.extern FUN_overlay_d_93__021d5bb0
+	.extern BattleMon_GetTurnFlag
 	.extern FUN_overlay_d_93__021d5d68
 	.extern BattleMon_HasCondition
 	.extern FUN_overlay_d_93__021d67b8
@@ -4502,7 +4502,7 @@ FUN_overlay_d_93__021dbd9c: ; 0x021DBD9C
 	beq _021DBE4C
 	ldr r0, [sp, #4]
 	mov r1, #1
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	beq _021DBE1C
 	add r0, r6, #1

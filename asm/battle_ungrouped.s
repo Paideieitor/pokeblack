@@ -396,11 +396,11 @@
 	.extern BattleMon_IsFullHP
 	.extern BattleMon_IsFainted
 	.extern BattleMon_CanBattle
-	.extern FUN_overlay_d_93__021d5bb0
-	.extern FUN_overlay_d_93__021d5bdc
-	.extern FUN_overlay_d_93__021d5c08
-	.extern FUN_overlay_d_93__021d5c30
-	.extern FUN_overlay_d_93__021d5d14
+	.extern BattleMon_GetTurnFlag
+	.extern BattleMon_GetConditionFlag
+	.extern BattleMon_GetHideCondition
+	.extern BattleMon_IsHiding
+	.extern BattleMon_IsStatStageChangeValid
 	.extern FUN_overlay_d_93__021d5dc0
 	.extern FUN_overlay_d_93__021d5e38
 	.extern FUN_overlay_d_93__021d5ea8
@@ -2623,7 +2623,7 @@ FUN_overlay_d_93__021bbcd4: ; 0x021BBCD4
 _021BBCF6:
 	ldr r0, [sp]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021d5bdc
+	bl BattleMon_GetConditionFlag
 	cmp r0, #0
 	beq _021BBD0C
 	ldr r1, [sp]
@@ -7030,7 +7030,7 @@ FUN_overlay_d_93__021bde98: ; 0x021BDE98
 	add r0, r4, #0
 	str r2, [sp, #0x10]
 	str r3, [sp, #0x14]
-	bl FUN_overlay_d_93__021d5c08
+	bl BattleMon_GetHideCondition
 	ldr r6, _021BE200 ; =0x000004A8
 	str r0, [sp, #0x38]
 	ldr r0, [r5, r6]
@@ -7519,7 +7519,7 @@ _021BE2C0:
 	cmp r0, #0x10
 	beq _021BE2D8
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5c08
+	bl BattleMon_GetHideCondition
 	cmp r0, #0x10
 	beq _021BE2D8
 	add r0, r5, #0
@@ -7528,7 +7528,7 @@ _021BE2C0:
 _021BE2D8:
 	add r0, r4, #0
 	mov r1, #0xb
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	beq _021BE300
 	add r0, r4, #0
@@ -8073,7 +8073,7 @@ _021BE70A:
 	beq _021BE7D0
 	ldr r0, [sp, #8]
 	mov r1, #0xa
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	bne _021BE7D0
 	ldr r0, [sp, #8]
@@ -9348,7 +9348,7 @@ FUN_overlay_d_93__021bf0e4: ; 0x021BF0E4
 	beq _021BF134
 	add r0, r6, #0
 	mov r1, #0xc
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	bne _021BF12C
 	ldr r0, [sp, #0x18]
@@ -9912,7 +9912,7 @@ _021BF53E:
 _021BF55C:
 	add r0, r7, #0
 	mov r1, #7
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	beq _021BF598
 	ldr r3, [sp, #8]
@@ -10690,7 +10690,7 @@ _021BFB48:
 _021BFB4A:
 	add r0, r7, #0
 	mov r1, #0xe
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	beq _021BFB5E
 	ldr r1, _021BFBC8 ; =0x00001333
@@ -10995,7 +10995,7 @@ _021BFD9E:
 	add r2, r2, #6
 	bl FUN_overlay_d_93__021cc95c
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5c30
+	bl BattleMon_IsHiding
 	cmp r0, #0
 	beq _021BFDEE
 	add r0, r4, #0
@@ -11087,7 +11087,7 @@ FUN_overlay_d_93__021bfe60: ; 0x021BFE60
 	thumb_func_end FUN_overlay_d_93__021bfe60
 _021BFE88:
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5c08
+	bl BattleMon_GetHideCondition
 	add r2, r0, #0
 	cmp r2, #0x10
 	beq _021BFEA8
@@ -11096,7 +11096,7 @@ _021BFE94:
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c6110
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5c08
+	bl BattleMon_GetHideCondition
 	add r2, r0, #0
 	cmp r2, #0x10
 	bne _021BFE94
@@ -11123,12 +11123,12 @@ FUN_overlay_d_93__021bfeac: ; 0x021BFEAC
 	cmp r0, #0
 	bne _021BFF52
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5c30
+	bl BattleMon_IsHiding
 	cmp r0, #0
 	bne _021BFF52
 	add r0, r4, #0
 	mov r1, #7
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	bne _021BFF38
 	add r0, r4, #0
@@ -11359,7 +11359,7 @@ _021C00B6:
 _021C00B8:
 	add r0, r5, #0
 	mov r1, #6
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	beq _021C00C8
 	mov r6, #7
@@ -11367,7 +11367,7 @@ _021C00B8:
 _021C00C8:
 	add r0, r5, #0
 	mov r1, #4
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	beq _021C00D8
 	mov r6, #6
@@ -15039,7 +15039,7 @@ FUN_overlay_d_93__021c1d60: ; 0x021C1D60
 	add r0, r4, #0
 	mov r1, #5
 	add r6, r2, #0
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	beq _021C1D80
 	add r0, r4, #0
@@ -17343,7 +17343,7 @@ FUN_overlay_d_93__021c3008: ; 0x021C3008
 	add r0, r4, #0
 	add r1, r7, #0
 	add r2, r6, #0
-	bl FUN_overlay_d_93__021d5d14
+	bl BattleMon_IsStatStageChangeValid
 	cmp r0, #0
 	bne _021C305A
 	ldr r0, [sp, #0x38]
@@ -20939,12 +20939,12 @@ _021C4D66:
 	bne _021C4DCE
 	add r0, r4, #0
 	mov r1, #5
-	bl FUN_overlay_d_93__021d5bdc
+	bl BattleMon_GetConditionFlag
 	cmp r0, #0
 	bne _021C4DCE
 	add r0, r4, #0
 	mov r1, #4
-	bl FUN_overlay_d_93__021d5bdc
+	bl BattleMon_GetConditionFlag
 	cmp r0, #0
 	bne _021C4DCE
 	ldr r0, _021C4E00 ; =0x00001D74
@@ -21805,7 +21805,7 @@ FUN_overlay_d_93__021c5418: ; 0x021C5418
 	add r5, r0, #0
 	add r0, r4, #0
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021d5bdc
+	bl BattleMon_GetConditionFlag
 	cmp r0, #0
 	beq _021C5470
 	add r0, r4, #0
@@ -24568,7 +24568,7 @@ FUN_overlay_d_93__021c6948: ; 0x021C6948
 	add r6, r1, #0
 	str r2, [sp]
 	mov r4, #0
-	bl FUN_overlay_d_93__021d5c08
+	bl BattleMon_GetHideCondition
 	add r7, r0, #0
 	cmp r7, #0x10
 	beq _021C69AC
@@ -27450,7 +27450,7 @@ FUN_overlay_d_93__021c8338: ; 0x021C8338
 	push {r3, lr}
 	ldr r0, [r0, #8]
 	bl FUN_overlay_d_93__021b9934
-	bl FUN_overlay_d_93__021d5c30
+	bl BattleMon_IsHiding
 	pop {r3, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021c8338
@@ -28903,7 +28903,7 @@ _021C8E90:
 	lsr r0, r0, #0x1f
 	beq _021C8EAC
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d5c30
+	bl BattleMon_IsHiding
 	cmp r0, #0
 	bne _021C8F08
 _021C8EAC:
@@ -29434,7 +29434,7 @@ _021C927C:
 	ldrsb r2, [r4, r2]
 	ldr r1, [r4, #4]
 	add r0, r7, #0
-	bl FUN_overlay_d_93__021d5d14
+	bl BattleMon_IsStatStageChangeValid
 	cmp r0, #0
 	beq _021C92B4
 	mov r0, #1
@@ -31800,7 +31800,7 @@ FUN_overlay_d_93__021ca47c: ; 0x021CA47C
 	cmp r0, #0
 	bne _021CA560
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5c30
+	bl BattleMon_IsHiding
 	cmp r0, #0
 	bne _021CA560
 	add r0, r4, #0
@@ -31965,7 +31965,7 @@ _021CA604:
 	mov r1, #3
 	add r4, r0, #0
 	mov r7, #0
-	bl FUN_overlay_d_93__021d5bdc
+	bl BattleMon_GetConditionFlag
 	cmp r0, #0
 	beq _021CA64E
 	add r0, r5, #0
@@ -35527,7 +35527,7 @@ FUN_overlay_d_93__021cc0f8: ; 0x021CC0F8
 	mov r1, #9
 	add r6, r3, #0
 	mov r7, #0
-	bl FUN_overlay_d_93__021d5bdc
+	bl BattleMon_GetConditionFlag
 	cmp r0, #0
 	bne _021CC12A
 	add r0, r4, #0
@@ -35755,7 +35755,7 @@ FUN_overlay_d_93__021cc438: ; 0x021CC438
 	ldr r1, [sp, #0x18]
 	add r0, r6, #0
 	add r2, r7, #0
-	bl FUN_overlay_d_93__021d5d14
+	bl BattleMon_IsStatStageChangeValid
 	cmp r0, #0
 	beq _021CC492
 	add r0, r5, #0
