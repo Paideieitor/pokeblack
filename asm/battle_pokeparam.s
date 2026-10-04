@@ -2674,9 +2674,21 @@ _021D5D48:
 	add sp, #4
 	pop {r3, r4, pc}
 	.balign 4, 0
-_021D5D50:
-	.byte 0x08, 0xB5, 0x00, 0xAA, 0x01, 0x32, 0x00, 0xAB, 0xFF, 0xF7, 0xAC, 0xFF, 0x00, 0x21, 0x00, 0xAA
-	.byte 0x52, 0x56, 0x40, 0x56, 0x10, 0x1A, 0x08, 0xBD
+
+	thumb_func_start BattleMon_GetStatStageVolumeToMax
+BattleMon_GetStatStageVolumeToMax: ; 0x021D5D50
+    push {r3, lr}
+    add r2, sp, #0x0
+    add r2, #0x1
+    add r3, sp, #0x0
+    bl BattleMon_GetStatStageBoost
+    mov r1, #0x0
+    add r2, sp, #0x0
+    ldrsb r2, [r2, r1]
+    ldrsb r0, [r0, r1]
+    sub r0, r2, r0
+    pop {r3, pc}
+	thumb_func_end BattleMon_GetStatStageVolumeToMax
 
 	thumb_func_start FUN_overlay_d_93__021d5d68
 FUN_overlay_d_93__021d5d68: ; 0x021D5D68
