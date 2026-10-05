@@ -387,11 +387,11 @@
 	.extern BattleMon_CopyMoves
 	.extern BattleMon_IsFainted
 	.extern BattleMon_CanBattle
-	.extern FUN_overlay_d_93__021d62a8
-	.extern FUN_overlay_d_93__021d67d0
-	.extern FUN_overlay_d_93__021d6b84
-	.extern FUN_overlay_d_93__021d6c24
-	.extern FUN_overlay_d_93__021d6c3c
+	.extern BattleMon_GetStatusCondition
+	.extern BattleMon_WasInBattle
+	.extern BattleMon_Update
+	.extern BattleMon_CheckIllusion
+	.extern BattleMon_SetPartySource
 	.extern FUN_overlay_d_93__021d7840
 	.extern FUN_overlay_d_93__021d787c
 	.extern FUN_overlay_d_93__021d7894
@@ -6160,7 +6160,7 @@ FUN_overlay_d_93__021b937c: ; 0x021B937C
 	add r0, r2, #0
 	add r4, r1, #0
 	str r2, [sp]
-	bl FUN_overlay_d_93__021d6c24
+	bl BattleMon_CheckIllusion
 	cmp r0, #0
 	beq _021B93D6
 	ldr r0, [sp]
@@ -6612,7 +6612,7 @@ _021B96E4:
 	bl FUN_overlay_d_93__021b9bf0
 	ldr r1, [sp, #4]
 	add r5, r0, #0
-	bl FUN_overlay_d_93__021d6b84
+	bl BattleMon_Update
 	add r0, r5, #0
 	bl BattleMon_GetPokemon
 	add r1, r0, #0
@@ -6622,7 +6622,7 @@ _021B96E4:
 	ldr r0, [r2, r0]
 	bl FUN_0201A98C
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d6c24
+	bl BattleMon_CheckIllusion
 	cmp r0, #0
 	beq _021B9744
 	add r0, r5, #0
@@ -6674,7 +6674,7 @@ _021B9762:
 	bl FUN_overlay_d_93__021b9bf0
 	add r1, r7, #0
 	str r0, [sp, #0x10]
-	bl FUN_overlay_d_93__021d6c3c
+	bl BattleMon_SetPartySource
 	add r0, sp, #0x14
 	ldrb r1, [r0, r5]
 	cmp r1, #6
@@ -6741,7 +6741,7 @@ _021B97EA:
 	bne _021B9834
 	ldr r0, [sp, #0x10]
 	mov r1, #1
-	bl FUN_overlay_d_93__021d6b84
+	bl BattleMon_Update
 	ldr r0, [sp, #0x10]
 	bl BattleMon_GetPokemon
 	add r1, r0, #0
@@ -6751,7 +6751,7 @@ _021B97EA:
 	ldr r0, [r2, r0]
 	bl FUN_0201A98C
 	ldr r0, [sp, #0x10]
-	bl FUN_overlay_d_93__021d67d0
+	bl BattleMon_WasInBattle
 	cmp r0, #0
 	beq _021B983A
 	ldr r0, [sp]
@@ -7628,7 +7628,7 @@ _021B9D9C:
 _021B9DA2:
 	lsl r0, r4, #2
 	ldr r0, [r5, r0]
-	bl FUN_overlay_d_93__021d6c24
+	bl BattleMon_CheckIllusion
 	ldrb r0, [r5, #0x18]
 	add r4, r4, #1
 	cmp r4, r0
@@ -8616,7 +8616,7 @@ _021BA492:
 	b _021BA4F4
 _021BA4DE:
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d62a8
+	bl BattleMon_GetStatusCondition
 	cmp r0, #0
 	beq _021BA4F6
 	ldr r0, [r5]

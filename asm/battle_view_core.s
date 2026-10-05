@@ -335,11 +335,11 @@
 	.extern BattleMon_CanBattle
 	.extern BattleMon_GetConditionFlag
 	.extern BattleMon_IsHiding
-	.extern FUN_overlay_d_93__021d62a8
+	.extern BattleMon_GetStatusCondition
 	.extern BattleMon_HasCondition
-	.extern FUN_overlay_d_93__021d6920
-	.extern FUN_overlay_d_93__021d6940
-	.extern FUN_overlay_d_93__021d69ac
+	.extern BattleMon_MoveDamageRecordGetCount
+	.extern BattleMon_GetMoveDamageRecord
+	.extern BattleMon_GetCounter
 	.extern FUN_overlay_d_93__021d6f0c
 	.extern FUN_overlay_d_93__021d7040
 	.extern FUN_overlay_d_93__021d70a8
@@ -351,7 +351,7 @@
 	.extern FUN_overlay_d_93__021d775c
 	.extern FUN_overlay_d_93__021d78ac
 	.extern FUN_overlay_d_93__021d7b10
-	.extern FUN_overlay_d_93__021d7b74
+	.extern BattleMon_DivideMaxHPZeroCheck
 	.extern FUN_overlay_d_93__021d7dc0
 	.extern FUN_overlay_d_93__021eaf7c
 	.extern FUN_overlay_d_93__021eec78
@@ -733,7 +733,7 @@ FUN_overlay_d_93__021e0944: ; 0x021E0944
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
 	mov r1, #2
-	bl FUN_overlay_d_93__021d7b74
+	bl BattleMon_DivideMaxHPZeroCheck
 	add r7, r0, #0
 	add r0, r5, #0
 	mov r1, #7
@@ -898,7 +898,7 @@ FUN_overlay_d_93__021e0e28: ; 0x021E0E28
 	ldr r0, [sp]
 	mov r1, #2
 	strb r4, [r6, #7]
-	bl FUN_overlay_d_93__021d7b74
+	bl BattleMon_DivideMaxHPZeroCheck
 	neg r0, r0
 	str r0, [r6, #0x10]
 	mov r0, #1
@@ -1198,15 +1198,15 @@ FUN_overlay_d_93__021e17dc: ; 0x021E17DC
 	bl FUN_overlay_d_93__021c7cf4
 	str r0, [sp, #4]
 	mov r1, #1
-	bl FUN_overlay_d_93__021d69ac
+	bl BattleMon_GetCounter
 	add r7, r0, #0
 	ldr r0, [sp, #4]
 	mov r1, #2
-	bl FUN_overlay_d_93__021d69ac
+	bl BattleMon_GetCounter
 	add r6, r0, #0
 	ldr r0, [sp, #4]
 	mov r1, #0
-	bl FUN_overlay_d_93__021d69ac
+	bl BattleMon_GetCounter
 	str r0, [sp]
 	cmp r7, #0
 	beq _021E1854
@@ -1454,7 +1454,7 @@ FUN_overlay_d_93__021e1ae4: ; 0x021E1AE4
 	add r0, r7, #0
 	mov r2, #0
 	add r3, r4, #0
-	bl FUN_overlay_d_93__021d6940
+	bl BattleMon_GetMoveDamageRecord
 	cmp r0, #0
 	beq _021E1B3C
 	thumb_func_end FUN_overlay_d_93__021e1ae4
@@ -1481,7 +1481,7 @@ _021E1B26:
 	add r0, r7, #0
 	mov r1, #0
 	add r3, r4, #0
-	bl FUN_overlay_d_93__021d6940
+	bl BattleMon_GetMoveDamageRecord
 	cmp r0, #0
 	bne _021E1B08
 _021E1B3C:
@@ -2445,7 +2445,7 @@ _021E3E98:
 	lsl r1, r5, #0x18
 	add r0, r4, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021d6920
+	bl BattleMon_MoveDamageRecordGetCount
 	cmp r0, #0
 	beq _021E3EFC
 	lsl r1, r5, #0x18
@@ -2454,7 +2454,7 @@ _021E3E98:
 	lsr r1, r1, #0x18
 	mov r2, #0
 	add r3, #2
-	bl FUN_overlay_d_93__021d6940
+	bl BattleMon_GetMoveDamageRecord
 	add r0, sp, #0
 	ldrb r4, [r0, #0xb]
 	add r0, r6, #0
@@ -3135,7 +3135,7 @@ _021E60E6:
 	cmp r0, #0
 	beq _021E60FC
 	add r0, r7, #0
-	bl FUN_overlay_d_93__021d62a8
+	bl BattleMon_GetStatusCondition
 	cmp r0, #0
 	bne _021E60FC
 _021E60FA:
@@ -3687,7 +3687,7 @@ FUN_overlay_d_93__021e80c0: ; 0x021E80C0
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
 	mov r1, #4
-	bl FUN_overlay_d_93__021d69ac
+	bl BattleMon_GetCounter
 	cmp r0, #0
 	beq _021E80F6
 	sub r0, r0, #1
@@ -3719,7 +3719,7 @@ FUN_overlay_d_93__021e8104: ; 0x021E8104
 	add r1, r5, #0
 	bl FUN_overlay_d_93__021c7cf4
 	mov r1, #4
-	bl FUN_overlay_d_93__021d69ac
+	bl BattleMon_GetCounter
 	cmp r0, #0
 	beq _021E8130
 	sub r0, r0, #1
@@ -4140,8 +4140,8 @@ _021E890C:
 _021E8910: .word 0x021F6380
 _021E8914: .word 0x0000008C
 
-	thumb_func_start FUN_overlay_d_93__021e8918
-FUN_overlay_d_93__021e8918: ; 0x021E8918
+	thumb_func_start ConditionData_MakeNull
+ConditionData_MakeNull: ; 0x021E8918
 	push {r3}
 	sub sp, #4
 	mov r0, #0
@@ -4150,10 +4150,10 @@ FUN_overlay_d_93__021e8918: ; 0x021E8918
 	add sp, #4
 	pop {r3}
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021e8918
+	thumb_func_end ConditionData_MakeNull
 
-	thumb_func_start FUN_overlay_d_93__021e8928
-FUN_overlay_d_93__021e8928: ; 0x021E8928
+	thumb_func_start ConditionData_IsNull
+ConditionData_IsNull: ; 0x021E8928
 	push {r0, r1, r2, r3}
 	ldr r0, [sp]
 	lsl r0, r0, #0x1d
@@ -4162,7 +4162,7 @@ FUN_overlay_d_93__021e8928: ; 0x021E8928
 	mov r0, #1
 	add sp, #0x10
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021e8928
+	thumb_func_end ConditionData_IsNull
 _021E8938:
 	mov r0, #0
 	add sp, #0x10
@@ -4350,8 +4350,8 @@ FUN_overlay_d_93__021e8a58: ; 0x021E8A58
 	thumb_func_end FUN_overlay_d_93__021e8a58
 _021E8A74: .word 0xFFFFFE07
 
-	thumb_func_start FUN_overlay_d_93__021e8a78
-FUN_overlay_d_93__021e8a78: ; 0x021E8A78
+	thumb_func_start ConditionData_IsBadlyPoisoned
+ConditionData_IsBadlyPoisoned: ; 0x021E8A78
 	push {r0, r1, r2, r3}
 	ldr r0, [sp]
 	lsl r1, r0, #0x17
@@ -4365,14 +4365,14 @@ FUN_overlay_d_93__021e8a78: ; 0x021E8A78
 	mov r0, #1
 	add sp, #0x10
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021e8a78
+	thumb_func_end ConditionData_IsBadlyPoisoned
 _021E8A92:
 	mov r0, #0
 	add sp, #0x10
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021e8a98
-FUN_overlay_d_93__021e8a98: ; 0x021E8A98
+	thumb_func_start ConditionData_GetBattleSlot
+ConditionData_GetBattleSlot: ; 0x021E8A98
 	push {r0, r1, r2, r3}
 	ldr r2, [sp]
 	lsl r0, r2, #0x1d
@@ -4387,7 +4387,7 @@ FUN_overlay_d_93__021e8a98: ; 0x021E8A98
 	lsr r0, r0, #0x18
 	add sp, #0x10
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021e8a98
+	thumb_func_end ConditionData_GetBattleSlot
 _021E8AB4:
 	cmp r3, #4
 	bne _021E8AC0
@@ -4431,8 +4431,8 @@ _021E8AF0:
 _021E8AF4: .word 0xFFFFFE07
 _021E8AF8: .word 0xFFFF81FF
 
-	thumb_func_start FUN_overlay_d_93__021e8afc
-FUN_overlay_d_93__021e8afc: ; 0x021E8AFC
+	thumb_func_start ConditionData_GetTurnMax
+ConditionData_GetTurnMax: ; 0x021E8AFC
 	push {r0, r1, r2, r3}
 	ldr r0, [sp]
 	lsl r1, r0, #0x1d
@@ -4445,7 +4445,7 @@ FUN_overlay_d_93__021e8afc: ; 0x021E8AFC
 	lsr r0, r0, #0x18
 	add sp, #0x10
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021e8afc
+	thumb_func_end ConditionData_GetTurnMax
 _021E8B14:
 	cmp r1, #4
 	bne _021E8B20
@@ -4466,8 +4466,8 @@ _021E8B28:
 	.byte 0x01, 0x60, 0x70, 0x47, 0x02, 0x2A, 0x05, 0xD1, 0x03, 0x4A, 0x09, 0x04, 0x1A, 0x40, 0xC9, 0x09
 	.byte 0x11, 0x43, 0x01, 0x60, 0x70, 0x47, 0xC0, 0x46, 0xFF, 0x01, 0x00, 0xFE, 0xFF, 0x7F, 0x00, 0x80
 
-	thumb_func_start FUN_overlay_d_93__021e8b80
-FUN_overlay_d_93__021e8b80: ; 0x021E8B80
+	thumb_func_start ConditionData_GetParam
+ConditionData_GetParam: ; 0x021E8B80
 	push {r0, r1, r2, r3}
 	ldr r0, [sp]
 	lsl r1, r0, #0x1d
@@ -4480,7 +4480,7 @@ FUN_overlay_d_93__021e8b80: ; 0x021E8B80
 	lsr r0, r0, #0x10
 	add sp, #0x10
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021e8b80
+	thumb_func_end ConditionData_GetParam
 _021E8B98:
 	cmp r1, #3
 	bne _021E8BA8
@@ -4553,21 +4553,21 @@ FUN_overlay_d_93__021e8cf0: ; 0x021E8CF0
 	thumb_func_end FUN_overlay_d_93__021e8cf0
 _021E8CF8: .word 0x021E8CE1
 
-	thumb_func_start FUN_overlay_d_93__021e8cfc
-FUN_overlay_d_93__021e8cfc: ; 0x021E8CFC
+	thumb_func_start PokemonTypePair_GetType1
+PokemonTypePair_GetType1: ; 0x021E8CFC
 	asr r0, r0, #8
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021e8cfc
+	thumb_func_end PokemonTypePair_GetType1
 
-	thumb_func_start FUN_overlay_d_93__021e8d04
-FUN_overlay_d_93__021e8d04: ; 0x021E8D04
+	thumb_func_start PokemonTypePair_GetType2
+PokemonTypePair_GetType2: ; 0x021E8D04
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021e8d04
+	thumb_func_end PokemonTypePair_GetType2
 
 	thumb_func_start FUN_overlay_d_93__021e8d0c
 FUN_overlay_d_93__021e8d0c: ; 0x021E8D0C
@@ -4575,10 +4575,10 @@ FUN_overlay_d_93__021e8d0c: ; 0x021E8D0C
 	add r6, r0, #0
 	add r5, r1, #0
 	add r4, r2, #0
-	bl FUN_overlay_d_93__021e8cfc
+	bl PokemonTypePair_GetType1
 	strb r0, [r5]
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021e8d04
+	bl PokemonTypePair_GetType2
 	strb r0, [r4]
 	pop {r4, r5, r6, pc}
 	thumb_func_end FUN_overlay_d_93__021e8d0c
@@ -4588,7 +4588,7 @@ FUN_overlay_d_93__021e8d24: ; 0x021E8D24
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r1, #0
-	bl FUN_overlay_d_93__021e8cfc
+	bl PokemonTypePair_GetType1
 	cmp r4, r0
 	bne _021E8D36
 	mov r0, #1
@@ -4596,7 +4596,7 @@ FUN_overlay_d_93__021e8d24: ; 0x021E8D24
 	thumb_func_end FUN_overlay_d_93__021e8d24
 _021E8D36:
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021e8d04
+	bl PokemonTypePair_GetType2
 	cmp r4, r0
 	bne _021E8D44
 	mov r0, #1
@@ -4610,10 +4610,10 @@ FUN_overlay_d_93__021e8d48: ; 0x021E8D48
 	push {r4, r5, r6, lr}
 	add r4, r1, #0
 	add r6, r0, #0
-	bl FUN_overlay_d_93__021e8cfc
+	bl PokemonTypePair_GetType1
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021e8cfc
+	bl PokemonTypePair_GetType1
 	cmp r5, r0
 	bne _021E8D62
 	mov r0, #1
@@ -4621,30 +4621,30 @@ FUN_overlay_d_93__021e8d48: ; 0x021E8D48
 	thumb_func_end FUN_overlay_d_93__021e8d48
 _021E8D62:
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021e8cfc
+	bl PokemonTypePair_GetType1
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021e8d04
+	bl PokemonTypePair_GetType2
 	cmp r5, r0
 	bne _021E8D78
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 _021E8D78:
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021e8d04
+	bl PokemonTypePair_GetType2
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021e8cfc
+	bl PokemonTypePair_GetType1
 	cmp r5, r0
 	bne _021E8D8E
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 _021E8D8E:
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021e8d04
+	bl PokemonTypePair_GetType2
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021e8d04
+	bl PokemonTypePair_GetType2
 	cmp r5, r0
 	bne _021E8DA4
 	mov r0, #1
@@ -4657,10 +4657,10 @@ _021E8DA4:
 FUN_overlay_d_93__021e8da8: ; 0x021E8DA8
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
-	bl FUN_overlay_d_93__021e8cfc
+	bl PokemonTypePair_GetType1
 	add r4, r0, #0
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021e8d04
+	bl PokemonTypePair_GetType2
 	cmp r4, r0
 	bne _021E8DC0
 	mov r0, #1

@@ -309,10 +309,10 @@
 	.extern FUN_overlay_d_93__021b9a24
 	.extern BattleMon_GetBattleSlot
 	.extern BattleMon_HasMove
-	.extern FUN_overlay_d_93__021e8918
-	.extern FUN_overlay_d_93__021e8a98
+	.extern ConditionData_MakeNull
+	.extern ConditionData_GetBattleSlot
 	.extern FUN_overlay_d_93__021e8ac8
-	.extern FUN_overlay_d_93__021e8afc
+	.extern ConditionData_GetTurnMax
 
 	.text
 
@@ -459,7 +459,7 @@ FUN_overlay_d_93__021ef83c: ; 0x021EF83C
 	mov r4, #0
 	add r0, r5, r6
 	str r4, [r0, #8]
-	bl FUN_overlay_d_93__021e8918
+	bl ConditionData_MakeNull
 	add r1, r5, r6
 	str r0, [r1, #0x28]
 	mov r0, #0x4a
@@ -784,7 +784,7 @@ _021EFA4E:
 	blo _021EFA4E
 	add r0, sp, #0x20
 	ldr r0, [r0]
-	bl FUN_overlay_d_93__021e8a98
+	bl ConditionData_GetBattleSlot
 	add r2, r0, #0
 	cmp r2, #0x1f
 	beq _021EFA70
@@ -1008,7 +1008,7 @@ _021EFBD8:
 _021EFBE2:
 	add r7, #0x28
 	ldr r0, [r7]
-	bl FUN_overlay_d_93__021e8a98
+	bl ConditionData_GetBattleSlot
 	cmp r4, r0
 	bne _021EFC02
 	add r1, r5, #0
@@ -1105,7 +1105,7 @@ _021EFC82:
 	add r0, r5, #0
 	add r0, #0x28
 	ldr r0, [r0]
-	bl FUN_overlay_d_93__021e8afc
+	bl ConditionData_GetTurnMax
 	cmp r0, #0
 	beq _021EFCCA
 	ldr r1, [r5, #0x48]

@@ -350,7 +350,7 @@
 	.extern BattleMon_GetBattleSlot
 	.extern BattleMon_IsFainted
 	.extern BattleMon_CanBattle
-	.extern FUN_overlay_d_93__021d62a8
+	.extern BattleMon_GetStatusCondition
 	.extern BattleMon_HasCondition
 	.extern FUN_overlay_d_93__021eecd8
 	.extern FUN_overlay_d_93__021eee24
@@ -10614,7 +10614,7 @@ _021EE18E:
 	b _021EE1F2
 _021EE1B6:
 	ldr r0, [sp, #8]
-	bl FUN_overlay_d_93__021d62a8
+	bl BattleMon_GetStatusCondition
 	cmp r0, #0
 	beq _021EE1CE
 	lsl r0, r4, #1
