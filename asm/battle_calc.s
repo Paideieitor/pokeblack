@@ -328,23 +328,23 @@
 	.extern FUN_overlay_d_93__021c88a4
 	.extern FUN_overlay_d_93__021c88b4
 	.extern FUN_overlay_d_93__021c88c8
-	.extern FUN_overlay_d_93__021d5440
-	.extern FUN_overlay_d_93__021d5444
-	.extern FUN_overlay_d_93__021d5448
-	.extern FUN_overlay_d_93__021d54c0
-	.extern FUN_overlay_d_93__021d554c
-	.extern FUN_overlay_d_93__021d5584
-	.extern FUN_overlay_d_93__021d5778
-	.extern FUN_overlay_d_93__021d57fc
-	.extern FUN_overlay_d_93__021d5814
-	.extern FUN_overlay_d_93__021d58a8
-	.extern FUN_overlay_d_93__021d5b40
-	.extern FUN_overlay_d_93__021d5b48
-	.extern FUN_overlay_d_93__021d5bb0
-	.extern FUN_overlay_d_93__021d5d68
-	.extern FUN_overlay_d_93__021d62c4
-	.extern FUN_overlay_d_93__021d67b8
-	.extern FUN_overlay_d_93__021d6c24
+	.extern BattleMon_GetBattleSlot
+	.extern BattleMon_GetSpecies
+	.extern BattleMon_GetMoveCount
+	.extern BattleMon_GetMove
+	.extern BattleMon_GetCurrentMoveMissingPP
+	.extern BattleMon_GetCurrentMovePP
+	.extern BattleMon_GetMoveSlotByMove
+	.extern BattleMon_GetPokemonTypePair
+	.extern BattleMon_HasPokemonType
+	.extern BattleMon_GetRealStat
+	.extern BattleMon_GetHeldItem
+	.extern BattleMon_IsFullHP
+	.extern BattleMon_GetTurnFlag
+	.extern BattleMon_AreStatsLowered
+	.extern BattleMon_HasCondition
+	.extern BattleMon_GetPreviousSelectedMove
+	.extern BattleMon_CheckIllusion
 	.extern FUN_overlay_d_93__021d6f0c
 	.extern FUN_overlay_d_93__021d7040
 	.extern FUN_overlay_d_93__021d70a8
@@ -899,8 +899,8 @@ _021D78DC:
 	.balign 4, 0
 _021D78E0: .word 0x021F6360
 
-	thumb_func_start FUN_overlay_d_93__021d78e4
-FUN_overlay_d_93__021d78e4: ; 0x021D78E4
+	thumb_func_start GetBoostFromStatStage
+GetBoostFromStatStage: ; 0x021D78E4
 	push {r3, lr}
 	lsl r2, r1, #1
 	ldr r1, _021D7900 ; =_021F0448
@@ -915,7 +915,7 @@ FUN_overlay_d_93__021d78e4: ; 0x021D78E4
 	lsr r0, r0, #0x10
 	pop {r3, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d78e4
+	thumb_func_end GetBoostFromStatStage
 _021D7900: .word 0x021F0448
 _021D7904: .word 0x021F0449
 
@@ -1288,8 +1288,8 @@ _021D7B5A:
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021d7b60
-FUN_overlay_d_93__021d7b60: ; 0x021D7B60
+	thumb_func_start BattleMon_DivideMaxHP
+BattleMon_DivideMaxHP: ; 0x021D7B60
 	push {r4, lr}
 	add r4, r1, #0
 	mov r1, #0xe
@@ -1298,10 +1298,10 @@ FUN_overlay_d_93__021d7b60: ; 0x021D7B60
 	blx FUN_0209C2B0
 	pop {r4, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d7b60
+	thumb_func_end BattleMon_DivideMaxHP
 
-	thumb_func_start FUN_overlay_d_93__021d7b74
-FUN_overlay_d_93__021d7b74: ; 0x021D7B74
+	thumb_func_start BattleMon_DivideMaxHPZeroCheck
+BattleMon_DivideMaxHPZeroCheck: ; 0x021D7B74
 	push {r4, lr}
 	add r4, r1, #0
 	mov r1, #0xe
@@ -1311,7 +1311,7 @@ FUN_overlay_d_93__021d7b74: ; 0x021D7B74
 	cmp r0, #0
 	bne _021D7B8A
 	mov r0, #1
-	thumb_func_end FUN_overlay_d_93__021d7b74
+	thumb_func_end BattleMon_DivideMaxHPZeroCheck
 _021D7B8A:
 	pop {r4, pc}
 
@@ -1368,7 +1368,7 @@ FUN_overlay_d_93__021d7bd4: ; 0x021D7BD4
 	cmp r1, #4
 	bne _021D7C1C
 	mov r1, #5
-	bl FUN_overlay_d_93__021d5814
+	bl BattleMon_HasPokemonType
 	cmp r0, #0
 	beq _021D7BEE
 	mov r0, #0
@@ -1377,7 +1377,7 @@ FUN_overlay_d_93__021d7bd4: ; 0x021D7BD4
 _021D7BEE:
 	add r0, r4, #0
 	mov r1, #8
-	bl FUN_overlay_d_93__021d5814
+	bl BattleMon_HasPokemonType
 	cmp r0, #0
 	beq _021D7BFE
 	mov r0, #0
@@ -1385,14 +1385,14 @@ _021D7BEE:
 _021D7BFE:
 	add r0, r4, #0
 	mov r1, #4
-	bl FUN_overlay_d_93__021d5814
+	bl BattleMon_HasPokemonType
 	cmp r0, #0
 	beq _021D7C20
 	mov r0, #0
 	pop {r4, pc}
 _021D7C0E:
 	mov r1, #0xe
-	bl FUN_overlay_d_93__021d5814
+	bl BattleMon_HasPokemonType
 	cmp r0, #0
 	beq _021D7C20
 	mov r0, #0
@@ -1478,7 +1478,7 @@ _021D7C90: ; jump table
 	.hword 0x005A ; case 4
 _021D7C9A:
 	add r0, r1, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	bl FUN_overlay_d_93__021e899c
 	str r0, [r4]
 	add sp, #0x10
@@ -1517,7 +1517,7 @@ _021D7CD0:
 	bx r3
 _021D7CEC:
 	add r0, r1, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	ldrh r1, [r6]
 	add r5, r0, #0
 	lsl r0, r1, #0x16
@@ -1588,13 +1588,13 @@ _021D7D62:
 	.balign 4, 0
 _021D7D68: .word 0xFFFFFE07
 
-	thumb_func_start FUN_overlay_d_93__021d7d6c
-FUN_overlay_d_93__021d7d6c: ; 0x021D7D6C
+	thumb_func_start Condition_IsBasicStatus
+Condition_IsBasicStatus: ; 0x021D7D6C
 	cmp r0, #6
 	bge _021D7D74
 	mov r0, #1
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d7d6c
+	thumb_func_end Condition_IsBasicStatus
 _021D7D74:
 	mov r0, #0
 	bx lr
@@ -1625,7 +1625,7 @@ _021D7DD4:
 	cmp r0, #7
 	bne _021D7E06
 	add r0, r1, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	bl FUN_overlay_d_93__021e899c
 	add sp, #0x10
 	str r0, [r4]
@@ -1660,7 +1660,7 @@ _021D7E16:
 	beq _021D7E30
 	add r0, r6, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021d62c4
+	bl BattleMon_HasCondition
 	cmp r0, #0
 	beq _021D7E16
 	add r0, r4, #0
@@ -1695,7 +1695,7 @@ _021D7E44:
 FUN_overlay_d_93__021d7eb4: ; 0x021D7EB4
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
-	bl FUN_overlay_d_93__021d5444
+	bl BattleMon_GetSpecies
 	add r6, r0, #0
 	add r0, r5, #0
 	mov r1, #0x13
@@ -2005,7 +2005,7 @@ FUN_overlay_d_93__021d80a8: ; 0x021D80A8
 	push {r4, lr}
 	mov r1, #7
 	mov r4, #7
-	bl FUN_overlay_d_93__021d5814
+	bl BattleMon_HasPokemonType
 	cmp r0, #0
 	beq _021D80B8
 	mov r4, #0
@@ -2025,7 +2025,7 @@ FUN_overlay_d_93__021d80bc: ; 0x021D80BC
 	bl FUN_overlay_d_93__021b8588
 	str r0, [sp, #8]
 	ldr r0, [sp, #4]
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	add r2, r0, #0
 	ldr r1, [sp]
 	add r0, r6, #0
@@ -2610,7 +2610,7 @@ _021D8498:
 	bl FUN_overlay_d_93__021d85b0
 	add r7, r0, #0
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	ldr r1, _021D84EC ; =_021F0E78
 	add r6, r0, #0
 	ldr r1, [r1, r5]
@@ -2671,7 +2671,7 @@ _021D8504:
 	thumb_func_start FUN_overlay_d_93__021d8510
 FUN_overlay_d_93__021d8510: ; 0x021D8510
 	push {r3, r4, r5, lr}
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	add r5, r0, #0
 	mov r0, #4
 	add r1, r5, #0
@@ -2693,7 +2693,7 @@ _021D8536:
 	thumb_func_start FUN_overlay_d_93__021d8538
 FUN_overlay_d_93__021d8538: ; 0x021D8538
 	push {r3, lr}
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	mov r1, #4
 	bl FUN_overlay_d_93__021d7404
 	pop {r3, pc}
@@ -2704,7 +2704,7 @@ FUN_overlay_d_93__021d8538: ; 0x021D8538
 FUN_overlay_d_93__021d8548: ; 0x021D8548
 	push {r4, lr}
 	add r4, r0, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	mov r1, #4
 	bl FUN_overlay_d_93__021d7438
 	cmp r0, #0
@@ -2721,10 +2721,10 @@ FUN_overlay_d_93__021d8564: ; 0x021D8564
 	push {r3, r4, r5, r6, r7, lr}
 	add r6, r1, #0
 	add r7, r0, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	add r4, r0, #0
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	add r5, r0, #0
 	mov r0, #4
 	add r1, r4, #0
@@ -2756,7 +2756,7 @@ _021D85A0:
 FUN_overlay_d_93__021d85b0: ; 0x021D85B0
 	push {r3, lr}
 	mov r1, #0xc
-	bl FUN_overlay_d_93__021d58a8
+	bl BattleMon_GetRealStat
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	pop {r3, pc}
@@ -3017,7 +3017,7 @@ _021D8A30:
 FUN_overlay_d_93__021d8e00: ; 0x021D8E00
 	push {r3, lr}
 	bl FUN_overlay_d_93__021c7cf4
-	bl FUN_overlay_d_93__021d5444
+	bl BattleMon_GetSpecies
 	ldr r1, _021D8E18 ; =0x000001A5
 	cmp r0, r1
 	bne _021D8E14
@@ -3401,7 +3401,7 @@ FUN_overlay_d_93__021d96fc: ; 0x021D96FC
 	add r4, r1, #0
 	bl FUN_overlay_d_93__021c7cf4
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021d62c4
+	bl BattleMon_HasCondition
 	cmp r0, #0
 	beq _021D9740
 	add r0, r5, #0
@@ -3665,10 +3665,10 @@ _021D9744:
 FUN_overlay_d_93__021da5bc: ; 0x021DA5BC
 	push {r3, r4, r5, r6, r7, lr}
 	add r6, r1, #0
-	bl FUN_overlay_d_93__021d57fc
+	bl BattleMon_GetPokemonTypePair
 	str r0, [sp]
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d5448
+	bl BattleMon_GetMoveCount
 	add r7, r0, #0
 	ldr r5, _021DA614 ; =0x00000000
 	beq _021DA610
@@ -3676,7 +3676,7 @@ FUN_overlay_d_93__021da5bc: ; 0x021DA5BC
 _021DA5D2:
 	add r0, r6, #0
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021d54c0
+	bl BattleMon_GetMove
 	add r4, r0, #0
 	bl FUN_0201C1BC
 	cmp r0, #9
@@ -3762,7 +3762,7 @@ FUN_overlay_d_93__021da8dc: ; 0x021DA8DC
 	add r7, r2, #0
 	bl FUN_overlay_d_93__021c7cf4
 	str r0, [sp]
-	bl FUN_overlay_d_93__021d5b48
+	bl BattleMon_IsFullHP
 	cmp r0, #0
 	bne _021DA92C
 	add r0, r6, #0
@@ -3773,7 +3773,7 @@ FUN_overlay_d_93__021da8dc: ; 0x021DA8DC
 	ldr r0, [sp]
 	strb r4, [r5, #6]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021d7b74
+	bl BattleMon_DivideMaxHPZeroCheck
 	strh r0, [r5, #4]
 	mov r0, #2
 	ldr r1, [r5]
@@ -4088,7 +4088,7 @@ FUN_overlay_d_93__021db318: ; 0x021DB318
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
 	add r6, r0, #0
-	bl FUN_overlay_d_93__021d5444
+	bl BattleMon_GetSpecies
 	ldr r1, _021DB370 ; =0x0000015F
 	cmp r0, r1
 	bne _021DB36E
@@ -4131,7 +4131,7 @@ FUN_overlay_d_93__021db374: ; 0x021DB374
 	add r4, r2, #0
 	bl FUN_overlay_d_93__021c7cf4
 	add r5, r0, #0
-	bl FUN_overlay_d_93__021d5444
+	bl BattleMon_GetSpecies
 	ldr r1, _021DB400 ; =0x0000015F
 	cmp r0, r1
 	bne _021DB3FC
@@ -4332,7 +4332,7 @@ FUN_overlay_d_93__021db6fc: ; 0x021DB6FC
 	add r0, r5, #0
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
-	bl FUN_overlay_d_93__021d5b40
+	bl BattleMon_GetHeldItem
 	cmp r0, #0
 	beq _021DB730
 	add r0, r5, #0
@@ -4481,7 +4481,7 @@ FUN_overlay_d_93__021dbd9c: ; 0x021DBD9C
 	bl FUN_overlay_d_93__021c7cf4
 	mov r1, #0xd
 	str r0, [sp, #4]
-	bl FUN_overlay_d_93__021d62c4
+	bl BattleMon_HasCondition
 	cmp r0, #0
 	bne _021DBE4C
 	mov r0, #0x14
@@ -4502,7 +4502,7 @@ FUN_overlay_d_93__021dbd9c: ; 0x021DBD9C
 	beq _021DBE4C
 	ldr r0, [sp, #4]
 	mov r1, #1
-	bl FUN_overlay_d_93__021d5bb0
+	bl BattleMon_GetTurnFlag
 	cmp r0, #0
 	beq _021DBE1C
 	add r0, r6, #1
@@ -4904,7 +4904,7 @@ FUN_overlay_d_93__021dce48: ; 0x021DCE48
 	add r0, r5, #0
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
-	bl FUN_overlay_d_93__021d6c24
+	bl BattleMon_CheckIllusion
 	cmp r0, #0
 	beq _021DCE88
 	add r0, r5, #0
@@ -4951,11 +4951,11 @@ _021DCED0:
 	bne _021DCF10
 	add r0, r6, #0
 	mov r1, #0xc
-	bl FUN_overlay_d_93__021d58a8
+	bl BattleMon_GetRealStat
 	lsl r0, r0, #0x10
 	lsr r7, r0, #0x10
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	ldr r1, _021DCF20 ; =_021F1EA8
 	add r6, r0, #0
 	ldr r1, [r1, r4]
@@ -4988,7 +4988,7 @@ _021DCF20: .word 0x021F1EA8
 	thumb_func_start FUN_overlay_d_93__021dcf24
 FUN_overlay_d_93__021dcf24: ; 0x021DCF24
 	push {r4, r5, r6, lr}
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	add r1, r0, #0
 	mov r0, #5
 	bl FUN_overlay_d_93__021d732c
@@ -5019,7 +5019,7 @@ _021DCF58:
 FUN_overlay_d_93__021dcf5c: ; 0x021DCF5C
 	push {r4, lr}
 	add r4, r0, #0
-	bl FUN_overlay_d_93__021d5b40
+	bl BattleMon_GetHeldItem
 	add r1, r0, #0
 	beq _021DCF74
 	lsl r1, r1, #0x10
@@ -5063,7 +5063,7 @@ _021DCFA0: .word 0x021D7041
 	thumb_func_start FUN_overlay_d_93__021dcfa4
 FUN_overlay_d_93__021dcfa4: ; 0x021DCFA4
 	push {r3, lr}
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	mov r1, #5
 	bl FUN_overlay_d_93__021d7404
 	pop {r3, pc}
@@ -5074,7 +5074,7 @@ FUN_overlay_d_93__021dcfa4: ; 0x021DCFA4
 FUN_overlay_d_93__021dcfb4: ; 0x021DCFB4
 	push {r4, lr}
 	add r4, r0, #0
-	bl FUN_overlay_d_93__021d5440
+	bl BattleMon_GetBattleSlot
 	mov r1, #5
 	bl FUN_overlay_d_93__021d7438
 	cmp r0, #0
@@ -5302,16 +5302,16 @@ FUN_overlay_d_93__021dd338: ; 0x021DD338
 	push {r3, r4, r5, lr}
 	bl FUN_overlay_d_93__021c7cf4
 	add r5, r0, #0
-	bl FUN_overlay_d_93__021d67b8
+	bl BattleMon_GetPreviousSelectedMove
 	add r1, r0, #0
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d5778
+	bl BattleMon_GetMoveSlotByMove
 	add r4, r0, #0
 	cmp r4, #4
 	beq _021DD362
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021d5584
+	bl BattleMon_GetCurrentMovePP
 	cmp r0, #0
 	bne _021DD362
 	add r0, r4, #0
@@ -5327,7 +5327,7 @@ FUN_overlay_d_93__021dd368: ; 0x021DD368
 	push {r4, r5, r6, lr}
 	bl FUN_overlay_d_93__021c7cf4
 	add r6, r0, #0
-	bl FUN_overlay_d_93__021d5448
+	bl BattleMon_GetMoveCount
 	add r4, r0, #0
 	ldr r5, _021DD398 ; =0x00000000
 	beq _021DD394
@@ -5336,7 +5336,7 @@ _021DD37A:
 	lsl r1, r5, #0x18
 	add r0, r6, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021d5584
+	bl BattleMon_GetCurrentMovePP
 	cmp r0, #0
 	bne _021DD38E
 	lsl r0, r5, #0x18
@@ -5379,7 +5379,7 @@ FUN_overlay_d_93__021dd39c: ; 0x021DD39C
 	cmp r0, #0
 	beq _021DD3F8
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d5448
+	bl BattleMon_GetMoveCount
 	add r6, r0, #0
 	ldr r5, _021DD46C ; =0x00000000
 	beq _021DD3F8
@@ -5388,7 +5388,7 @@ _021DD3DE:
 	lsl r1, r5, #0x18
 	add r0, r4, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021d554c
+	bl BattleMon_GetCurrentMoveMissingPP
 	cmp r0, #0
 	beq _021DD3F2
 	lsl r0, r5, #0x18
@@ -5434,7 +5434,7 @@ _021DD3F8:
 	bl FUN_overlay_d_93__021c8860
 	add r0, r4, #0
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021d54c0
+	bl BattleMon_GetMove
 	add r1, r0, #0
 	add r0, r5, #0
 	add r0, #8
@@ -5510,7 +5510,7 @@ FUN_overlay_d_93__021dd70c: ; 0x021DD70C
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
 	mov r1, #0xf
-	bl FUN_overlay_d_93__021d62c4
+	bl BattleMon_HasCondition
 	cmp r0, #0
 	bne _021DD73E
 	mov r0, #1
@@ -5540,7 +5540,7 @@ FUN_overlay_d_93__021dd744: ; 0x021DD744
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
 	mov r1, #0xf
-	bl FUN_overlay_d_93__021d62c4
+	bl BattleMon_HasCondition
 	cmp r0, #0
 	bne _021DD776
 	mov r0, #0
@@ -5569,7 +5569,7 @@ FUN_overlay_d_93__021dd77c: ; 0x021DD77C
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
 	mov r1, #0xf
-	bl FUN_overlay_d_93__021d62c4
+	bl BattleMon_HasCondition
 	cmp r0, #0
 	bne _021DD7B4
 	add r0, r5, #0
@@ -5617,7 +5617,7 @@ FUN_overlay_d_93__021dd7b8: ; 0x021DD7B8
 	bl FUN_overlay_d_93__021dcff8
 	add r1, r0, #0
 	add r0, r7, #0
-	bl FUN_overlay_d_93__021d7b74
+	bl BattleMon_DivideMaxHPZeroCheck
 	strh r0, [r4, #4]
 	add r0, r4, #0
 	mov r2, #0xe3
@@ -5931,7 +5931,7 @@ _021DDEC4:
 	add r6, r0, #0
 	add r0, r4, #0
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021d7b60
+	bl BattleMon_DivideMaxHP
 	cmp r6, r0
 	bhi _021DDEEA
 	mov r0, #1
@@ -6126,7 +6126,7 @@ FUN_overlay_d_93__021de270: ; 0x021DE270
 	add r0, r5, #0
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021c7cf4
-	bl FUN_overlay_d_93__021d5d68
+	bl BattleMon_AreStatsLowered
 	cmp r0, #0
 	beq _021DE29C
 	add r0, r6, #0
@@ -6471,7 +6471,7 @@ FUN_overlay_d_93__021def48: ; 0x021DEF48
 	add r1, r5, #0
 	bl FUN_overlay_d_93__021c7cf4
 	str r0, [sp]
-	bl FUN_overlay_d_93__021d5b48
+	bl BattleMon_IsFullHP
 	cmp r0, #0
 	bne _021DEFB2
 	add r0, r6, #0
@@ -6482,7 +6482,7 @@ FUN_overlay_d_93__021def48: ; 0x021DEF48
 	ldr r0, [sp]
 	strb r5, [r4, #6]
 	mov r1, #0x10
-	bl FUN_overlay_d_93__021d7b74
+	bl BattleMon_DivideMaxHPZeroCheck
 	strh r0, [r4, #4]
 	add r0, r4, #0
 	ldr r2, _021DEFB4 ; =0x00000392
@@ -6566,7 +6566,7 @@ FUN_overlay_d_93__021df1b0: ; 0x021DF1B0
 	bl FUN_overlay_d_93__021dcff8
 	add r1, r0, #0
 	ldr r0, [sp]
-	bl FUN_overlay_d_93__021d7b74
+	bl BattleMon_DivideMaxHPZeroCheck
 	strh r0, [r4, #4]
 	ldrb r1, [r4, #7]
 	mov r0, #2
