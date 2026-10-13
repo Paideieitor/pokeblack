@@ -320,7 +320,7 @@
 	.extern FUN_overlay_d_93__021b8630
 	.extern FUN_overlay_d_93__021b8640
 	.extern FUN_overlay_d_93__021b86a0
-	.extern FUN_overlay_d_93__021b86b8
+	.extern MainModule_GetBattleType
 	.extern FUN_overlay_d_93__021b86c0
 	.extern FUN_overlay_d_93__021b86dc
 	.extern FUN_overlay_d_93__021b86e4
@@ -332,7 +332,7 @@
 	.extern FUN_overlay_d_93__021b8778
 	.extern FUN_overlay_d_93__021b8b9c
 	.extern FUN_overlay_d_93__021b8bc4
-	.extern FUN_overlay_d_93__021b8bec
+	.extern MainModule_GetClientBattlePosition
 	.extern FUN_overlay_d_93__021b8c38
 	.extern FUN_overlay_d_93__021b8c50
 	.extern FUN_overlay_d_93__021b8cb0
@@ -350,8 +350,8 @@
 	.extern FUN_overlay_d_93__021b92b0
 	.extern FUN_overlay_d_93__021b990c
 	.extern FUN_overlay_d_93__021b9920
-	.extern FUN_overlay_d_93__021b9934
-	.extern FUN_overlay_d_93__021b9940
+	.extern PokemonContainer_GetBattleMon
+	.extern PokemonContainer_GetBattleMonConst
 	.extern FUN_overlay_d_93__021b99c0
 	.extern FUN_overlay_d_93__021b99e0
 	.extern FUN_overlay_d_93__021b99f0
@@ -359,12 +359,12 @@
 	.extern FUN_overlay_d_93__021b9a40
 	.extern FUN_overlay_d_93__021b9a6c
 	.extern FUN_overlay_d_93__021b9ab0
-	.extern FUN_overlay_d_93__021b9aec
-	.extern FUN_overlay_d_93__021b9af8
+	.extern PokemonContainer_GetBattleParty
+	.extern PokemonContainer_GetBattlePartyConst
 	.extern FUN_overlay_d_93__021b9b94
 	.extern FUN_overlay_d_93__021b9b98
 	.extern FUN_overlay_d_93__021b9bc4
-	.extern FUN_overlay_d_93__021b9bf0
+	.extern BattleParty_GetBattleMon
 	.extern FUN_overlay_d_93__021b9c00
 	.extern FUN_overlay_d_93__021b9c50
 	.extern FUN_overlay_d_93__021b9ce8
@@ -538,7 +538,7 @@
 	.extern BattleRecordBuilder_AddClientEntries
 	.extern BattleRecordBuilder_Finish
 	.extern FUN_overlay_d_93__021ee9a4
-	.extern FUN_overlay_d_93__021eea58
+	.extern BattleAdapter_Create
 	.extern FUN_overlay_d_93__021eead0
 	.extern FUN_overlay_d_93__021eeae8
 	.extern FUN_overlay_d_93__021eeafc
@@ -577,7 +577,7 @@ FUN_overlay_d_93__021baa94: ; 0x021BAA94
 	add r7, r1, #0
 	ldr r0, [r5, #0x10]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	str r0, [sp, #4]
 	mov r0, #0xc
 	add r6, r4, #0
@@ -604,7 +604,7 @@ FUN_overlay_d_93__021baacc: ; 0x021BAACC
 	ldr r0, [r5, #0x10]
 	add r1, r4, #0
 	add r6, r2, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	mov r3, #0x33
 	lsl r3, r3, #6
 	add r7, r0, #0
@@ -612,7 +612,7 @@ FUN_overlay_d_93__021baacc: ; 0x021BAACC
 	add r0, r6, #0
 	add r1, r4, #0
 	mov r2, #1
-	bl FUN_overlay_d_93__021eea58
+	bl BattleAdapter_Create
 	add r2, r0, #0
 	mov r0, #0xc
 	add r6, r4, #0
@@ -637,7 +637,7 @@ FUN_overlay_d_93__021bab10: ; 0x021BAB10
 	ldr r0, [r5, #0x10]
 	add r4, r1, #0
 	add r7, r2, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	str r0, [sp]
 	mov r0, #0xc
 	add r6, r4, #0
@@ -1113,7 +1113,7 @@ _021BB07A:
 	bl FUN_overlay_d_93__021b8ff4
 	add r1, r0, #0
 	ldr r0, [r5, #0x10]
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	bl FUN_overlay_d_93__021b9b98
 	cmp r0, #2
 	bhs _021BB094
@@ -2144,8 +2144,8 @@ FUN_overlay_d_93__021bb964: ; 0x021BB964
 	bx lr
 	thumb_func_end FUN_overlay_d_93__021bb964
 
-	thumb_func_start FUN_overlay_d_93__021bb968
-FUN_overlay_d_93__021bb968: ; 0x021BB968
+	thumb_func_start ServerFlow_Create
+ServerFlow_Create: ; 0x021BB968
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8
 	add r5, r0, #0
@@ -2186,7 +2186,7 @@ FUN_overlay_d_93__021bb968: ; 0x021BB968
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021bb968
+	thumb_func_end ServerFlow_Create
 _021BB9BC: .word 0x00000245
 _021BB9C0: .word 0x0000212C
 _021BB9C4: .word 0x021F3A70
@@ -2453,7 +2453,7 @@ _021BBBAE:
 	lsl r1, r5, #0x18
 	ldr r0, [r4, #4]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	cmp r0, #0
 	beq _021BBBD2
 	bl BattleMon_IsFainted
@@ -2484,7 +2484,7 @@ _021BBBEE:
 	lsl r1, r5, #0x18
 	ldr r0, [r4, #4]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	add r7, r0, #0
 	beq _021BBC0E
 	bl BattleMon_IsFainted
@@ -3390,7 +3390,7 @@ _021BC2BE:
 	beq _021BC2F2
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	add r7, r0, #0
 	lsl r1, r4, #0x18
 	ldr r0, [r5, #4]
@@ -3450,7 +3450,7 @@ _021BC316:
 	bne _021BC356
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	bl FUN_overlay_d_93__021b9b98
 	cmp r0, #0
 	beq _021BC356
@@ -3580,7 +3580,7 @@ FUN_overlay_d_93__021bc418: ; 0x021BC418
 	cmp r4, #0
 	beq _021BC4C4
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	add r7, r0, #0
 	ldr r0, [r5, #0xc]
 	mov r1, #0x48
@@ -3889,7 +3889,7 @@ _021BC648:
 	add r5, r0, #0
 	ldr r0, [r6, #4]
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	str r0, [r4]
 	mov r0, #1
 	str r0, [sp, #0x10]
@@ -3906,7 +3906,7 @@ _021BC6A4:
 	ldr r0, [r6, #4]
 	add r1, r5, #0
 _021BC6A8:
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	str r0, [r4]
 	add r0, r5, #1
 	lsl r0, r0, #0x18
@@ -3984,7 +3984,7 @@ _021BC728: ; jump table
 _021BC73A:
 	ldr r0, [sp]
 	ldr r0, [r0, #4]
-	bl FUN_overlay_d_93__021b86b8
+	bl MainModule_GetBattleType
 	cmp r0, #0
 	bne _021BC74E
 	ldrb r0, [r4, #0xc]
@@ -5109,7 +5109,7 @@ FUN_overlay_d_93__021bcfac: ; 0x021BCFAC
 	add r5, r0, #0
 	ldr r0, [r5, #4]
 	add r7, r1, #0
-	bl FUN_overlay_d_93__021b86b8
+	bl MainModule_GetBattleType
 	cmp r0, #1
 	bhi _021BD07A
 	add r0, r7, #0
@@ -5617,7 +5617,7 @@ _021BD35E:
 	bl FUN_overlay_d_93__021bb85c
 	ldrb r1, [r5, #1]
 	ldr r0, [r0, #4]
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	str r0, [r4]
 	ldrb r0, [r5, #1]
 	ldrb r1, [r5]
@@ -5647,7 +5647,7 @@ _021BD396:
 	mov r7, #1
 _021BD3A2:
 	ldr r0, [r4, #4]
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	cmp r0, #0
 	beq _021BD3BA
 	bl BattleMon_IsFainted
@@ -5697,7 +5697,7 @@ FUN_overlay_d_93__021bd3e8: ; 0x021BD3E8
 	add r7, r0, #0
 	ldr r0, [r5, #8]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	add r1, r6, #0
 	bl BattleParty_GetMonIndex
 	add r4, r0, #0
@@ -5736,17 +5736,17 @@ FUN_overlay_d_93__021bd43c: ; 0x021BD43C
 	add r4, r1, #0
 	add r6, r2, #0
 	add r7, r3, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	str r0, [sp, #4]
 	ldr r0, [r5, #4]
 	add r1, r4, #0
 	add r2, r6, #0
-	bl FUN_overlay_d_93__021b8bec
+	bl MainModule_GetClientBattlePosition
 	str r0, [sp, #8]
 	ldr r0, [r5, #4]
 	add r1, r4, #0
 	add r2, r7, #0
-	bl FUN_overlay_d_93__021b8bec
+	bl MainModule_GetClientBattlePosition
 	str r0, [sp, #0xc]
 	ldr r0, _021BD4D0 ; =0x00001AB8
 	ldr r1, [sp, #8]
@@ -5769,11 +5769,11 @@ FUN_overlay_d_93__021bd43c: ; 0x021BD43C
 	bl FUN_overlay_d_93__021cd4b0
 	ldr r0, [sp, #4]
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	add r4, r0, #0
 	ldr r0, [sp, #4]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	add r5, r0, #0
 	add r0, r4, #0
 	bl BattleMon_IsFainted
@@ -5818,7 +5818,7 @@ FUN_overlay_d_93__021bd4e4: ; 0x021BD4E4
 	ldr r0, [r5, #8]
 	add r4, r2, #0
 	add r6, r3, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	add r7, r0, #0
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021b9c00
@@ -6164,7 +6164,7 @@ _021BD7BA:
 	cmp r7, #0
 	beq _021BD7E0
 	ldr r0, [r5, #4]
-	bl FUN_overlay_d_93__021b86b8
+	bl MainModule_GetBattleType
 	cmp r0, #0
 	bne _021BD7F0
 	add r0, r4, #0
@@ -6313,7 +6313,7 @@ FUN_overlay_d_93__021bd8f0: ; 0x021BD8F0
 	add r6, r1, #0
 	add r4, r2, #0
 	add r7, r3, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	str r0, [sp, #0xc]
 	ldr r0, [r5, #0xc]
 	mov r1, #0x2a
@@ -6333,7 +6333,7 @@ FUN_overlay_d_93__021bd8f0: ; 0x021BD8F0
 _021BD926:
 	ldr r0, [sp, #0xc]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	str r0, [sp, #0x10]
 	bl BattleMon_GetBattleSlot
 	str r0, [sp, #8]
@@ -6386,7 +6386,7 @@ _021BD98A:
 	ldr r0, [r5, #4]
 	add r1, r6, #0
 	add r2, r4, #0
-	bl FUN_overlay_d_93__021b8bec
+	bl MainModule_GetClientBattlePosition
 	add r1, r0, #0
 	ldr r0, _021BD9C0 ; =0x00001AB8
 	ldr r2, [sp, #8]
@@ -7732,14 +7732,14 @@ _021BE438:
 	add r1, r1, r6
 	ldrb r1, [r1, #1]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldr r1, [sp, #0xc]
 	add r4, r0, #0
 	ldr r1, [r1]
 	ldr r0, [r5, #8]
 	add r1, r1, r6
 	ldrb r1, [r1, #0xd]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #4]
 	add r0, r4, #0
 	bl BattleMon_CanBattle
@@ -7877,7 +7877,7 @@ FUN_overlay_d_93__021be550: ; 0x021BE550
 	beq _021BE608
 	ldrb r1, [r1, #1]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r4, r0, #0
 	ldr r0, _021BE610 ; =0x00001D74
 	ldr r1, _021BE614 ; =0x00000E88
@@ -11210,7 +11210,7 @@ _021BFF80:
 	beq _021C0002
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	mov r1, #0x21
 	add r7, r0, #0
 	bl BattleMon_HasCondition
@@ -12846,7 +12846,7 @@ _021C0C5A:
 	lsl r1, r1, #0x18
 	ldr r0, [r0, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldr r2, [sp, #4]
 	ldr r1, [sp, #0xc]
 	str r0, [r2, r1]
@@ -12897,7 +12897,7 @@ _021C0CC4:
 	lsr r1, r1, #0x1b
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldr r1, [sp]
 	add r4, r4, #1
 	str r0, [r1, r6]
@@ -12947,7 +12947,7 @@ _021C0D0E:
 	lsl r1, r1, #0x18
 	ldr r0, [r0, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldr r2, [sp, #4]
 	ldr r1, [sp, #0xc]
 	str r0, [r2, r1]
@@ -18580,7 +18580,7 @@ FUN_overlay_d_93__021c39cc: ; 0x021C39CC
 	bl FUN_overlay_d_93__021b8588
 	add r4, r0, #0
 	ldr r0, [r5, #4]
-	bl FUN_overlay_d_93__021b86b8
+	bl MainModule_GetBattleType
 	cmp r4, #0
 	bne _021C39EE
 	cmp r0, #0
@@ -20134,11 +20134,11 @@ FUN_overlay_d_93__021c4614: ; 0x021C4614
 _021C4644:
 	ldr r0, [r5, #8]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	add r6, r0, #0
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	str r0, [sp, #8]
 	add r0, r6, #0
 	bl FUN_overlay_d_93__021b9b98
@@ -20332,7 +20332,7 @@ _021C47E4:
 	ldrb r4, [r0, r1]
 	ldr r0, [r7, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	mov r1, #0xe
 	add r5, r0, #0
 	bl BattleMon_Get
@@ -20546,7 +20546,7 @@ _021C4996:
 	add r1, sp, #0x18
 	ldrb r1, [r1, r4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -21369,7 +21369,7 @@ _021C50B0:
 	cmp r1, #0x1f
 	beq _021C50EA
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	mov r1, #0xf
 	bl BattleMon_Get
 	cmp r0, r6
@@ -21549,10 +21549,10 @@ _021C522E:
 	bl FUN_021C52E8
 	add r1, r0, #0
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	ldr r0, [r5, #4]
-	bl FUN_overlay_d_93__021b86b8
+	bl MainModule_GetBattleType
 	cmp r0, #0
 	bne _021C5298
 	ldr r0, [sp, #8]
@@ -21676,7 +21676,7 @@ FUN_overlay_d_93__021c5308: ; 0x021C5308
 	bl FUN_overlay_d_93__021b8ff4
 	add r1, r0, #0
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	add r6, r0, #0
 	add r2, r4, #0
 	ldr r4, _021C534C ; =0x00001B08
@@ -21720,7 +21720,7 @@ _021C5360:
 	ldr r0, [sp, #0x14]
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	mov r1, #0xf
 	add r4, r0, #0
 	bl BattleMon_Get
@@ -23614,7 +23614,7 @@ _021C6166:
 	add r6, r7, r4
 	ldrb r1, [r6, #1]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	str r0, [sp]
 	ldrb r2, [r6, #1]
 	ldr r0, [r5, #0xc]
@@ -25823,7 +25823,7 @@ _021C738C:
 	cmp r1, #0x1f
 	beq _021C73DC
 	ldr r0, [r7, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 _021C73DC:
 	mov r0, #0x51
@@ -26916,7 +26916,7 @@ _021C7CF0: .word 0x00001F86
 	thumb_func_start FUN_overlay_d_93__021c7cf4
 FUN_overlay_d_93__021c7cf4: ; 0x021C7CF4
 	ldr r0, [r0, #8]
-	ldr r3, _021C7CFC ; =FUN_overlay_d_93__021b9934
+	ldr r3, _021C7CFC ; =PokemonContainer_GetBattleMon
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_93__021c7cf4
@@ -27115,7 +27115,7 @@ FUN_overlay_d_93__021c7fcc: ; 0x021C7FCC
 	bl thunk_FUN_overlay_d_93__021b8d08
 	add r1, r0, #0
 	ldr r0, [r4, #8]
-	bl FUN_overlay_d_93__021b9af8
+	bl PokemonContainer_GetBattlePartyConst
 	pop {r4, pc}
 	thumb_func_end FUN_overlay_d_93__021c7fcc
 
@@ -27136,7 +27136,7 @@ FUN_overlay_d_93__021c7fe0: ; 0x021C7FE0
 	beq _021C800A
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9af8
+	bl PokemonContainer_GetBattlePartyConst
 	pop {r3, r4, r5, pc}
 	thumb_func_end FUN_overlay_d_93__021c7fe0
 _021C800A:
@@ -27164,7 +27164,7 @@ FUN_overlay_d_93__021c8030: ; 0x021C8030
 	add r5, r0, #0
 	ldr r0, [r5, #8]
 	add r4, r2, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r2, r0, #0
 	ldr r0, [r5, #4]
 	ldr r1, [r5, #8]
@@ -27331,7 +27331,7 @@ _021C8164: .word 0x021B8589
 	thumb_func_start FUN_overlay_d_93__021c8168
 FUN_overlay_d_93__021c8168: ; 0x021C8168
 	ldr r0, [r0, #4]
-	ldr r3, _021C8170 ; =FUN_overlay_d_93__021b86b8
+	ldr r3, _021C8170 ; =MainModule_GetBattleType
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_93__021c8168
@@ -27356,7 +27356,7 @@ FUN_overlay_d_93__021c8234: ; 0x021C8234
 	push {r4, lr}
 	add r4, r0, #0
 	ldr r0, [r4, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r4, #0
 	mov r2, #1
@@ -27369,7 +27369,7 @@ FUN_overlay_d_93__021c8234: ; 0x021C8234
 FUN_overlay_d_93__021c824c: ; 0x021C824C
 	push {r4, lr}
 	ldr r0, [r0, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	mov r1, #0x11
 	add r4, r0, #0
 	bl BattleMon_Get
@@ -27413,11 +27413,11 @@ FUN_overlay_d_93__021c8290: ; 0x021C8290
 	ldr r0, [r5, #8]
 	add r4, r2, #0
 	add r6, r3, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r2, r0, #0
 	add r0, r5, #0
 	add r1, r7, #0
@@ -27449,7 +27449,7 @@ _021C82C4:
 FUN_overlay_d_93__021c8338: ; 0x021C8338
 	push {r3, lr}
 	ldr r0, [r0, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	bl BattleMon_IsHiding
 	pop {r3, pc}
 	.balign 4, 0
@@ -27459,7 +27459,7 @@ FUN_overlay_d_93__021c8338: ; 0x021C8338
 FUN_overlay_d_93__021c8348: ; 0x021C8348
 	push {r3, lr}
 	ldr r0, [r0, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	mov r1, #4
 	bl BattleMon_GetCounter
 	cmp r0, #0
@@ -27496,7 +27496,7 @@ FUN_overlay_d_93__021c8374: ; 0x021C8374
 _021C8386:
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	mov r1, #0x21
 	bl BattleMon_HasCondition
 	cmp r0, #0
@@ -27512,7 +27512,7 @@ FUN_overlay_d_93__021c83a0: ; 0x021C83A0
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	ldr r0, [r4, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r5, r0, #0
 	add r0, r4, #0
 	add r1, r5, #0
@@ -27598,7 +27598,7 @@ FUN_overlay_d_93__021c8494: ; 0x021C8494
 	push {r4, lr}
 	add r4, r0, #0
 	ldr r0, [r4, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r4, #0
 	mov r2, #1
@@ -28208,7 +28208,7 @@ _021C894C:
 	lsl r1, r1, #0x18
 	ldr r0, [r4, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9940
+	bl PokemonContainer_GetBattleMonConst
 	bl BattleMon_IsFainted
 	cmp r0, #0
 	beq _021C896C
@@ -28624,7 +28624,7 @@ FUN_overlay_d_93__021c8c6c: ; 0x021C8C6C
 	lsr r1, r1, #0x1b
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021c60d4
@@ -28668,7 +28668,7 @@ FUN_overlay_d_93__021c8cbc: ; 0x021C8CBC
 	lsr r1, r1, #0x1b
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021c5a1c
@@ -28701,7 +28701,7 @@ FUN_overlay_d_93__021c8d0c: ; 0x021C8D0C
 	lsl r1, r1, #0x18
 	ldr r0, [r4, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r4, #0
 	bl FUN_overlay_d_93__021c5a34
@@ -28723,11 +28723,11 @@ FUN_overlay_d_93__021c8d2c: ; 0x021C8D2C
 	lsr r1, r1, #0x18
 	add r7, r2, #0
 	mov r6, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #0xc]
 	ldrb r1, [r4, #6]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #8]
 	ldr r1, [sp, #8]
 	add r0, r5, #0
@@ -28813,7 +28813,7 @@ FUN_overlay_d_93__021c8de4: ; 0x021C8DE4
 	cmp r1, #0x1f
 	beq _021C8DFA
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	thumb_func_end FUN_overlay_d_93__021c8de4
 _021C8DFA:
@@ -28825,7 +28825,7 @@ _021C8DFA:
 	beq _021C8E40
 	ldrb r1, [r4, #6]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -28879,7 +28879,7 @@ FUN_overlay_d_93__021c8e58: ; 0x021C8E58
 	beq _021C8F08
 	ldrb r1, [r4, #6]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	ldr r0, [r4]
 	mov r7, #0
@@ -28890,7 +28890,7 @@ FUN_overlay_d_93__021c8e58: ; 0x021C8E58
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	thumb_func_end FUN_overlay_d_93__021c8e58
 _021C8E90:
@@ -28990,7 +28990,7 @@ _021C8F36:
 	beq _021C8F84
 	ldrb r1, [r7, #7]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29049,10 +29049,10 @@ FUN_overlay_d_93__021c8fa4: ; 0x021C8FA4
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldrb r1, [r4, #5]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	bl BattleMon_CanBattle
 	cmp r0, #0
@@ -29101,7 +29101,7 @@ FUN_overlay_d_93__021c9010: ; 0x021C9010
 	add r5, r0, #0
 	ldrb r1, [r4, #5]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29152,7 +29152,7 @@ FUN_overlay_d_93__021c9068: ; 0x021C9068
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #0x14]
 	mov r0, #0
 	str r0, [sp, #0x10]
@@ -29178,7 +29178,7 @@ _021C90A6:
 	ldr r0, [r5, #8]
 	add r1, r2, r1
 	ldrb r1, [r1, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r4, r0, #0
 	bl BattleMon_CanBattle
 	cmp r0, #0
@@ -29294,7 +29294,7 @@ FUN_overlay_d_93__021c9178: ; 0x021C9178
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	b _021C919A
 	thumb_func_end FUN_overlay_d_93__021c9178
@@ -29324,7 +29324,7 @@ _021C91B2:
 	beq _021C9234
 	ldrb r1, [r4, #0xf]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #0x10]
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29404,7 +29404,7 @@ FUN_overlay_d_93__021c9250: ; 0x021C9250
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #0x24]
 	mov r0, #0
 	str r0, [sp, #0x20]
@@ -29425,7 +29425,7 @@ _021C927C:
 	beq _021C92B4
 	ldrb r1, [r7, #0x10]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29475,7 +29475,7 @@ _021C92E2:
 	beq _021C934C
 	ldrb r1, [r7, #0x10]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29573,7 +29573,7 @@ FUN_overlay_d_93__021c9394: ; 0x021C9394
 	beq _021C942C
 	ldrb r1, [r5, #4]
 	ldr r0, [r6, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r4, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29652,7 +29652,7 @@ FUN_overlay_d_93__021c9448: ; 0x021C9448
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29689,7 +29689,7 @@ _021C9490:
 	add r7, r5, r4
 	ldrb r1, [r7, #5]
 	ldr r0, [r6, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #4]
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29727,7 +29727,7 @@ FUN_overlay_d_93__021c94c8: ; 0x021C94C8
 	beq _021C95B4
 	ldrb r1, [r4, #0xe]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldrb r1, [r4, #0xf]
 	add r6, r0, #0
 	lsl r1, r1, #0x1f
@@ -29856,7 +29856,7 @@ FUN_overlay_d_93__021c95d0: ; 0x021C95D0
 	beq _021C9612
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29905,7 +29905,7 @@ FUN_overlay_d_93__021c962c: ; 0x021C962C
 	beq _021C96A6
 	ldrb r1, [r4, #6]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -29992,7 +29992,7 @@ FUN_overlay_d_93__021c96d4: ; 0x021C96D4
 	lsl r1, r1, #0x18
 	ldr r0, [r6, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r4, r0, #0
 	thumb_func_end FUN_overlay_d_93__021c96d4
 _021C96F2:
@@ -30029,7 +30029,7 @@ FUN_overlay_d_93__021c9728: ; 0x021C9728
 	add r5, r1, #0
 	ldrb r1, [r5, #8]
 	ldr r0, [r0, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r4, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -30051,7 +30051,7 @@ FUN_overlay_d_93__021c9750: ; 0x021C9750
 	add r5, r1, #0
 	ldrb r1, [r5, #8]
 	ldr r0, [r0, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r4, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -30074,7 +30074,7 @@ FUN_overlay_d_93__021c9778: ; 0x021C9778
 	add r5, r0, #0
 	ldrb r1, [r4, #8]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -30098,7 +30098,7 @@ FUN_overlay_d_93__021c97a4: ; 0x021C97A4
 	add r5, r0, #0
 	ldrb r1, [r4, #8]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -30288,7 +30288,7 @@ FUN_overlay_d_93__021c98e4: ; 0x021C98E4
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldrb r1, [r4, #4]
 	add r7, r0, #0
 	mov r6, #0
@@ -30489,7 +30489,7 @@ FUN_overlay_d_93__021c9a60: ; 0x021C9A60
 	add r5, r0, #0
 	ldrb r1, [r4, #6]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	mov r1, #0x10
 	add r7, r0, #0
 	bl BattleMon_Get
@@ -30656,7 +30656,7 @@ FUN_overlay_d_93__021c9bb8: ; 0x021C9BB8
 	add r5, r0, #0
 	ldrb r1, [r4, #6]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	ldr r0, [r4]
 	lsl r0, r0, #0x13
@@ -30752,7 +30752,7 @@ _021C9C8A:
 	beq _021C9CA6
 	ldrb r1, [r4, #9]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	bl BattleMon_ClearUsedItem
 	ldrb r2, [r4, #9]
 	ldr r0, [r5, #0xc]
@@ -30778,7 +30778,7 @@ FUN_overlay_d_93__021c9cc0: ; 0x021C9CC0
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldr r1, [r4]
 	add r6, r0, #0
 	lsl r1, r1, #0x13
@@ -30786,7 +30786,7 @@ FUN_overlay_d_93__021c9cc0: ; 0x021C9CC0
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	bl BattleMon_GetHeldItem
 	lsl r0, r0, #0x10
@@ -30898,7 +30898,7 @@ FUN_overlay_d_93__021c9dcc: ; 0x021C9DCC
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	ldr r2, [r4, #8]
 	add r0, r5, #0
@@ -30918,7 +30918,7 @@ BattleHandler_UseHeldItem: ; 0x021C9DE8
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -30960,7 +30960,7 @@ FUN_overlay_d_93__021c9e3c: ; 0x021C9E3C
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -31029,7 +31029,7 @@ FUN_overlay_d_93__021c9ecc: ; 0x021C9ECC
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	ldr r0, [r4, #4]
 	cmp r0, #0
@@ -31059,7 +31059,7 @@ FUN_overlay_d_93__021c9f0c: ; 0x021C9F0C
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	ldrb r0, [r4, #6]
 	ldrb r2, [r4, #4]
@@ -31091,7 +31091,7 @@ FUN_overlay_d_93__021c9f4c: ; 0x021C9F4C
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	ldrb r2, [r4, #5]
 	ldrb r3, [r4, #6]
@@ -31110,11 +31110,11 @@ FUN_overlay_d_93__021c9f6c: ; 0x021C9F6C
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	ldrb r1, [r4, #5]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	ldrh r1, [r4, #6]
 	add r0, r5, #0
@@ -31351,7 +31351,7 @@ FUN_overlay_d_93__021ca128: ; 0x021CA128
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r5, #0
 	mov r2, #1
@@ -31376,7 +31376,7 @@ FUN_overlay_d_93__021ca158: ; 0x021CA158
 	add r5, r0, #0
 	ldrb r1, [r1]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021bc2b0
@@ -31432,11 +31432,11 @@ FUN_overlay_d_93__021ca1d0: ; 0x021CA1D0
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r7, r0, #0
 	ldrb r1, [r4, #5]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	add r0, r7, #0
 	mov r1, #0x10
@@ -31492,7 +31492,7 @@ FUN_overlay_d_93__021ca248: ; 0x021CA248
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	ldrb r2, [r4, #5]
 	add r0, r5, #0
@@ -31517,7 +31517,7 @@ FUN_overlay_d_93__021ca270: ; 0x021CA270
 	add r4, r0, #0
 	ldrb r1, [r5, #4]
 	ldr r0, [r4, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldrh r1, [r5, #6]
 	bl BattleMon_AddHP
 	ldrb r2, [r5, #4]
@@ -31571,7 +31571,7 @@ FUN_overlay_d_93__021ca2e8: ; 0x021CA2E8
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldrh r1, [r4, #6]
 	bl BattleMon_SetWeight
 	ldrb r2, [r4, #4]
@@ -31596,7 +31596,7 @@ FUN_overlay_d_93__021ca318: ; 0x021CA318
 	add r5, r0, #0
 	ldrb r1, [r4, #6]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	ldr r1, [r4]
 	add r6, r0, #0
 	lsl r1, r1, #0x13
@@ -31604,7 +31604,7 @@ FUN_overlay_d_93__021ca318: ; 0x021CA318
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, sp, #0x10
 	str r0, [sp]
@@ -31713,11 +31713,11 @@ FUN_overlay_d_93__021ca3d0: ; 0x021CA3D0
 	bne _021CA476
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	ldrb r1, [r4, #5]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #8]
 	add r0, r6, #0
 	bl BattleMon_IsFainted
@@ -31729,7 +31729,7 @@ FUN_overlay_d_93__021ca3d0: ; 0x021CA3D0
 	bne _021CA476
 	ldr r0, [r5, #8]
 	ldr r1, [sp, #4]
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	add r1, r6, #0
 	str r0, [sp, #0xc]
 	bl BattleParty_GetMonIndex
@@ -31785,11 +31785,11 @@ FUN_overlay_d_93__021ca47c: ; 0x021CA47C
 	lsl r1, r1, #0x18
 	ldr r0, [r5, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r4, r0, #0
 	ldrb r1, [r6, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	str r0, [sp, #8]
 	add r0, r4, #0
 	bl BattleMon_CheckIllusion
@@ -31894,7 +31894,7 @@ FUN_overlay_d_93__021ca570: ; 0x021CA570
 	beq _021CA5B4
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_CheckIllusion
 	cmp r0, #0
@@ -31961,7 +31961,7 @@ _021CA604:
 	add r1, sp, #8
 	ldrb r1, [r1, r6]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	mov r1, #3
 	add r4, r0, #0
 	mov r7, #0
@@ -32058,7 +32058,7 @@ FUN_overlay_d_93__021ca6c4: ; 0x021CA6C4
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -32130,7 +32130,7 @@ FUN_overlay_d_93__021ca748: ; 0x021CA748
 	add r5, r0, #0
 	ldrb r1, [r4, #4]
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -32415,7 +32415,7 @@ _021CA948:
 _021CA958:
 	ldr r0, [r4, #8]
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 _021CA960:
 	add r1, r0, #0
 	add r0, r6, #0
@@ -32432,7 +32432,7 @@ _021CA96E:
 _021CA978:
 	ldr r0, [r4, #8]
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r6, #0
 _021CA984:
@@ -32459,7 +32459,7 @@ _021CA9AE:
 	beq _021CA9C8
 	ldr r0, [r4, #8]
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r6, #0
 	bl FUN_021CAA14
@@ -32706,7 +32706,7 @@ _021CAB86:
 _021CAB90:
 	ldr r0, [r4, #8]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r5, #0
 _021CAB9C:
@@ -32738,7 +32738,7 @@ _021CABD0:
 	beq _021CABDE
 	ldr r0, [r4, #8]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	b _021CAAC4
 _021CABDE:
 	add sp, #0x10
@@ -32762,7 +32762,7 @@ _021CABEA:
 	cmp r1, #0x1f
 	beq _021CAC0E
 	ldr r0, [r4, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r6, r0, #0
 _021CAC0E:
 	add r0, r5, #0
@@ -33112,7 +33112,7 @@ _021CAE7C:
 _021CAE86:
 	ldr r0, [r5, #8]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r1, r0, #0
 	add r0, r6, #0
 _021CAE92:
@@ -33143,7 +33143,7 @@ _021CAEC4:
 	beq _021CAED2
 	ldr r0, [r5, #8]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	b _021CAD66
 _021CAED2:
 	add sp, #0x1c
@@ -33167,7 +33167,7 @@ _021CAEDE:
 	cmp r1, #0x1f
 	beq _021CAF02
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	add r4, r0, #0
 _021CAF02:
 	add r0, r6, #0
@@ -33567,7 +33567,7 @@ FUN_overlay_d_93__021cb174: ; 0x021CB174
 	bl FUN_overlay_d_93__021bb85c
 	ldrb r1, [r4]
 	ldr r0, [r0, #4]
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	add sp, #4
 	pop {r3, r4, pc}
 	thumb_func_end FUN_overlay_d_93__021cb174
@@ -33591,7 +33591,7 @@ FUN_overlay_d_93__021cb1a4: ; 0x021CB1A4
 	bl FUN_overlay_d_93__021bb85c
 	ldrb r1, [r4]
 	ldr r0, [r0, #4]
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	add sp, #4
 	pop {r3, r4, pc}
 	thumb_func_end FUN_overlay_d_93__021cb1a4
@@ -33730,7 +33730,7 @@ FUN_overlay_d_93__021cb2d4: ; 0x021CB2D4
 	ldr r0, [sp]
 	mov r7, #0
 	ldr r0, [r0, #4]
-	bl FUN_overlay_d_93__021b86b8
+	bl MainModule_GetBattleType
 	cmp r0, #1
 	bne _021CB30C
 	ldr r1, [sp, #0x20]
@@ -33838,7 +33838,7 @@ _021CB3C0:
 	add r1, r0, #0
 	ldr r0, [sp]
 	ldr r0, [r0, #8]
-	bl FUN_overlay_d_93__021b9934
+	bl PokemonContainer_GetBattleMon
 	bl BattleMon_IsFainted
 	cmp r0, #0
 	bne _021CB3E2
@@ -34015,7 +34015,7 @@ _021CB52A:
 	lsl r1, r4, #0x18
 	ldr r0, [sp, #4]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	ldr r1, [sp, #8]
 	add r2, r5, r6
 	bl FUN_overlay_d_93__021cb5f0
@@ -34290,7 +34290,7 @@ FUN_overlay_d_93__021cb730: ; 0x021CB730
 	beq _021CB7AA
 	ldr r0, [r5, #8]
 	ldr r1, [sp, #0x34]
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	str r0, [sp, #0x38]
 	ldr r0, [r5, #4]
 	ldr r1, [sp, #0x34]
@@ -34298,7 +34298,7 @@ FUN_overlay_d_93__021cb730: ; 0x021CB730
 	str r0, [sp, #0x3c]
 	ldr r0, [sp, #0x38]
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021b9bf0
+	bl BattleParty_GetBattleMon
 	str r0, [sp, #0x28]
 	bl BattleMon_GetBattleSlot
 	str r0, [sp, #0x30]
@@ -34703,7 +34703,7 @@ _021CBA9A:
 	blo _021CBA7C
 _021CBAA4:
 	ldr r0, [r5, #4]
-	bl FUN_overlay_d_93__021b86b8
+	bl MainModule_GetBattleType
 	cmp r0, #0
 	bne _021CBB18
 	cmp r7, #6
@@ -35847,7 +35847,7 @@ _021CC67C:
 	beq _021CC6CC
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	add r7, r0, #0
 	bl FUN_overlay_d_93__021b9b94
 	cmp r0, #0
@@ -36082,7 +36082,7 @@ _021CC818:
 	ldr r0, [sp]
 	ldr r1, [sp, #0x14]
 	ldr r0, [r0, #8]
-	bl FUN_overlay_d_93__021b9aec
+	bl PokemonContainer_GetBattleParty
 	str r0, [sp, #0x10]
 	bl FUN_overlay_d_93__021b9b94
 	mov r4, #0

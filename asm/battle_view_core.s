@@ -4826,8 +4826,8 @@ FUN_overlay_d_93__021e8f08: ; 0x021E8F08
 	pop {r3, pc}
 	thumb_func_end FUN_overlay_d_93__021e8f08
 
-	thumb_func_start FUN_overlay_d_93__021e8f20
-FUN_overlay_d_93__021e8f20: ; 0x021E8F20
+	thumb_func_start BattleViewCore_Create
+BattleViewCore_Create: ; 0x021E8F20
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x20
 	ldr r7, _021E901C ; =0x0000012D
@@ -4946,7 +4946,7 @@ FUN_overlay_d_93__021e8f20: ; 0x021E8F20
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021e8f20
+	thumb_func_end BattleViewCore_Create
 _021E901C: .word 0x0000012D
 _021E9020: .word 0x021F3AC4
 
