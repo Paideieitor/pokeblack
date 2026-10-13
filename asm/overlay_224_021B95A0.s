@@ -157,13 +157,13 @@ _021B968C:
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021B96FC: .word 0x021B9821
+_021B96FC: .word _021B9820
 _021B9700: .word 0x04001050
 _021B9704: .word 0xFFFF1FFF
-_021B9708: .word 0x021B9C04
-_021B970C: .word 0x021B9D40
-_021B9710: .word 0x021B9D44
-_021B9714: .word 0x021B9D48
+_021B9708: .word _021B9C04 - 1
+_021B970C: .word _021B9D40
+_021B9710: .word _021B9D44
+_021B9714: .word _021B9D48
 _021B9718:
 	.byte 0xF8, 0xB5
 _021B971A:
@@ -420,12 +420,12 @@ FUN_overlay_d_224__021b9940: ; 0x021B9940
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 	thumb_func_end FUN_overlay_d_224__021b9940
-_021B99D0: .word 0x021B9D58
+_021B99D0: .word _021B9D58
 _021B99D4: .word 0x04000050
 _021B99D8: .word 0x04001050
 _021B99DC: .word 0xFFFF1FFF
-_021B99E0: .word 0x021B9CA0
-_021B99E4: .word 0x021B9A59
+_021B99E0: .word _021B9CA0 - 1
+_021B99E4: .word _021B9A58
 
 	thumb_func_start FUN_overlay_d_224__021b99e8
 FUN_overlay_d_224__021b99e8: ; 0x021B99E8
@@ -524,8 +524,8 @@ _021B9A8E:
 	blo _021B9A8E
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021B9AC4: .word 0x021B9C54
-_021B9AC8: .word 0x021B9CD0
+_021B9AC4: .word _021B9C54 - 1
+_021B9AC8: .word _021B9CD0 - 1
 
 	thumb_func_start FUN_overlay_d_224__021b9acc
 FUN_overlay_d_224__021b9acc: ; 0x021B9ACC
@@ -553,7 +553,7 @@ _021B9AD6:
 	blx MI_CpuFill8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021B9B00: .word 0x021B9CD0
+_021B9B00: .word _021B9CD0 - 1
 
 	thumb_func_start FUN_overlay_d_224__021b9b04
 FUN_overlay_d_224__021b9b04: ; 0x021B9B04
@@ -593,7 +593,7 @@ FUN_overlay_d_224__021b9b10: ; 0x021B9B10
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_224__021b9b10
-_021B9B4C: .word 0x021B9C64
+_021B9B4C: .word _021B9C64 - 1
 
 	thumb_func_start FUN_overlay_d_224__021b9b50
 FUN_overlay_d_224__021b9b50: ; 0x021B9B50
@@ -665,11 +665,11 @@ FUN_overlay_d_224__021b9b7c: ; 0x021B9B7C
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 	thumb_func_end FUN_overlay_d_224__021b9b7c
-_021B9BD0: .word 0x021B989D
-_021B9BD4: .word 0x021B9C3C
-_021B9BD8: .word 0x021B9C30
+_021B9BD0: .word _021B989C
+_021B9BD4: .word _021B9C3C - 1
+_021B9BD8: .word _021B9C30 - 1
 _021B9BDC: .word 0x020A1EB8
-_021B9BE0: .word 0x021B9C48
+_021B9BE0: .word _021B9C48 - 1
 _021B9BE4: .word 0x00001555
 
 	thumb_func_start FUN_overlay_d_224__021b9be8

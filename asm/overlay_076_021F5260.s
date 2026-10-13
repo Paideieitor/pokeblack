@@ -86,7 +86,7 @@ _021F5318:
 	str r1, [r4, #0x34]
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021F5320: .word 0x021F5335
+_021F5320: .word FUN_overlay_d_76__021f5334
 	thumb_func_end FUN_021F52D8
 _021F5324:
 	.byte 0x08, 0xB5, 0xDA, 0xF7, 0x1B, 0xF9, 0x80, 0x6A, 0x39, 0xF6, 0xAC, 0xF9

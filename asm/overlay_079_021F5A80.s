@@ -32,7 +32,7 @@ FUN_overlay_79__021f5a80: ; 0x021F5A80
 	pop {r3, r4, r5, r6, pc}
 	.balign 4, 0
 _021F5AB0: .word 0x021F5B70
-_021F5AB4: .word 0x021F5ABD
+_021F5AB4: .word _021F5ABC
 _021F5AB8: .word 0x021F582D
 	thumb_func_end FUN_overlay_79__021f5a80
 _021F5ABC:

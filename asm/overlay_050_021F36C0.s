@@ -208,8 +208,8 @@ _021F3856:
 	bl FUN_overlay_d_50__021f3788
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021F3888: .word 0x021F38A4
-_021F388C: .word 0x021F38B4
+_021F3888: .word _021F38A4 - 1
+_021F388C: .word _021F38B4 - 1
 
 	thumb_func_start FUN_overlay_d_50__021f3890
 FUN_overlay_d_50__021f3890: ; 0x021F3890

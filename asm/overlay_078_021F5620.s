@@ -34,7 +34,7 @@ FUN_overlay_78__021f5620: ; 0x021F5620
 	add sp, #0xc
 	pop {r3, r4, r5, r6, pc}
 	.balign 4, 0
-_021F5650: .word 0x021F5BC8
+_021F5650: .word _021F5BC8 - 1
 _021F5654: .word 0x021F5699
 _021F5658: .word 0x021F5801
 	thumb_func_end FUN_overlay_78__021f5620

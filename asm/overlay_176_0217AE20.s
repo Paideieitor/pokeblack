@@ -377,8 +377,8 @@ LAB_overlay_d_176__0217b050: ; 0x0217B050
 _0217B05A:
 	pop {r4, pc}
 	.balign 4, 0
-_0217B05C: .word 0x0217AFD1
-_0217B060: .word 0x0217E5E0
+_0217B05C: .word _0217AFD0
+_0217B060: .word _0217E5E0
 _0217B064:
 	.byte 0x10, 0xB5, 0x0C, 0x1C, 0x21, 0x68, 0x00, 0x29, 0x04, 0xD0, 0x01, 0x29
 	.byte 0x14, 0xD0, 0x02, 0x29, 0x19, 0xD0, 0x1C, 0xE0
@@ -433,7 +433,7 @@ _0217B0BC:
 	pop {r4, pc}
 	nop
 _0217B0C0: .word 0x0217B00D
-_0217B0C4: .word 0x0217E5E0
+_0217B0C4: .word _0217E5E0
 _0217B0C8:
 	.byte 0x70, 0xB5, 0x88, 0xB0, 0x0D, 0x1C, 0x06, 0x1C
 	.byte 0x28, 0x68, 0x14, 0x1C, 0x03, 0x28, 0x6A, 0xD8, 0x00, 0x18, 0x78, 0x44, 0xC0, 0x88, 0x00, 0x04
@@ -670,8 +670,8 @@ _0217B2D6:
 	add sp, #0x28
 	pop {r4, r5, r6, pc}
 	nop
-_0217B2DC: .word 0x0217B065
-_0217B2E0: .word 0x0217B0C9
+_0217B2DC: .word _0217B064
+_0217B2E0: .word _0217B0C8
 
 	thumb_func_start FUN_overlay_d_176__0217b2e4
 FUN_overlay_d_176__0217b2e4: ; 0x0217B2E4
@@ -717,8 +717,8 @@ FUN_overlay_d_176__0217b2e4: ; 0x0217B2E4
 	pop {r3, r4, r5, r6, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_176__0217b2e4
-_0217B33C: .word 0x0217E5E4
-_0217B340: .word 0x0217B381
+_0217B33C: .word _0217E5E4
+_0217B340: .word _0217B380
 
 	thumb_func_start FUN_overlay_d_176__0217b344
 FUN_overlay_d_176__0217b344: ; 0x0217B344
@@ -785,8 +785,8 @@ LAB_overlay_d_176__0217b3a2: ; 0x0217B3A2
 	nop
 	thumb_func_end LAB_overlay_d_176__0217b3a2
 _0217B3AC: .word 0x0217B3C1
-_0217B3B0: .word 0x0217B4A1
-_0217B3B4: .word 0x0217B6AD
+_0217B3B0: .word _0217B4A0
+_0217B3B4: .word _0217B6AC
 _0217B3B8:
 	.byte 0x00, 0x4B, 0x18, 0x47, 0xA9, 0x8A, 0x1E, 0x02
 	.byte 0x70, 0xB5
@@ -921,7 +921,7 @@ LAB_overlay_d_176__0217b57c: ; 0x0217B57C
 _0217B58E:
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-_0217B590: .word 0x0217B4A1
+_0217B590: .word _0217B4A0
 _0217B594:
 	.byte 0xF8, 0xB5
 _0217B596:
@@ -989,7 +989,7 @@ _0217B618:
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_0217B61C: .word 0x0217B4A1
+_0217B61C: .word _0217B4A0
 _0217B620:
 	.byte 0x70, 0xB5, 0x88, 0xB0, 0x0D, 0x1C, 0x06, 0x1C, 0x28, 0x68, 0x14, 0x1C, 0x00, 0x28, 0x05, 0xD0
 	.byte 0x01, 0x28, 0x23, 0xD0, 0x02, 0x28, 0x2E, 0xD0, 0x08, 0xB0, 0x70, 0xBD
@@ -1055,7 +1055,7 @@ _0217B6A4:
 	add sp, #0x20
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
-_0217B6A8: .word 0x0217B6AD
+_0217B6A8: .word _0217B6AC
 _0217B6AC:
 	.byte 0x70, 0xB5, 0x0C, 0x1C
 	.byte 0x06, 0x1C, 0x20, 0x68, 0x15, 0x1C, 0x03, 0x28, 0x4D, 0xD8, 0x00, 0x18, 0x78, 0x44, 0xC0, 0x88
@@ -1126,7 +1126,7 @@ LAB_overlay_d_176__0217b788: ; 0x0217B788
 _0217B79A:
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-_0217B79C: .word 0x0217B6AD
+_0217B79C: .word _0217B6AC
 _0217B7A0:
 	.byte 0x38, 0xB5
 _0217B7A2:
@@ -1399,7 +1399,7 @@ FUN_overlay_d_176__0217b970: ; 0x0217B970
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_176__0217b970
-_0217B97C: .word 0x0217B3B9
+_0217B97C: .word _0217B3B8
 _0217B980: .word 0x021E8AA1
 
 	thumb_func_start FUN_overlay_d_176__0217b984
@@ -1522,8 +1522,8 @@ _0217BA8A:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 _0217BA90: .word 0x00000109
-_0217BA94: .word 0x0217E600
-_0217BA98: .word 0x0217BB59
+_0217BA94: .word _0217E600
+_0217BA98: .word _0217BB58
 
 	thumb_func_start FUN_overlay_d_176__0217ba9c
 FUN_overlay_d_176__0217ba9c: ; 0x0217BA9C
@@ -2984,7 +2984,7 @@ _0217CC6E:
 	pop {r3, r4, r5, r6, r7, pc}
 _0217CC70:
 	.byte 0xED, 0xC2, 0x17, 0x02
-_0217CC74: .word 0x0217E618
+_0217CC74: .word _0217E618
 _0217CC78:
 	.byte 0x70, 0xB5, 0x0C, 0x1C, 0x21, 0x68, 0x06, 0x1C
 	.byte 0x15, 0x1C, 0x11, 0x29, 0x63, 0xD8, 0x49, 0x18, 0x79, 0x44, 0xC9, 0x88, 0x09, 0x04, 0x09, 0x14
@@ -3825,8 +3825,8 @@ FUN_overlay_d_176__0217d398: ; 0x0217D398
 	pop {r3, r4, r5, r6, pc}
 	nop
 	thumb_func_end FUN_overlay_d_176__0217d398
-_0217D408: .word 0x0217E61C
-_0217D40C: .word 0x0217D459
+_0217D408: .word _0217E61C
+_0217D40C: .word _0217D458
 
 	thumb_func_start FUN_overlay_d_176__0217d410
 FUN_overlay_d_176__0217d410: ; 0x0217D410
@@ -3920,8 +3920,8 @@ _0217D4DA:
 	pop {r4, r5, r6, pc}
 _0217D4E4:
 	.byte 0xFD, 0xD4, 0x17, 0x02
-_0217D4E8: .word 0x0217D731
-_0217D4EC: .word 0x0217D965
+_0217D4E8: .word _0217D730
+_0217D4EC: .word _0217D964
 _0217D4F0: .word 0x0217DA39
 _0217D4F4: .word 0x0217DB0D
 _0217D4F8: .word 0x0217DBE1
@@ -4200,7 +4200,7 @@ _0217D71A:
 _0217D72A:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_0217D72C: .word 0x0217DC21
+_0217D72C: .word _0217DC20
 _0217D730:
 	.byte 0xF8, 0xB5
 _0217D732:
@@ -4475,7 +4475,7 @@ _0217D94E:
 _0217D95E:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_0217D960: .word 0x0217DC21
+_0217D960: .word _0217DC20
 _0217D964:
 	.byte 0x70, 0xB5, 0x0C, 0x1C, 0x21, 0x68, 0x15, 0x1C, 0x08, 0x29, 0x60, 0xD8
 	.byte 0x49, 0x18, 0x79, 0x44, 0xC9, 0x88, 0x09, 0x04, 0x09, 0x14, 0x8F, 0x44
@@ -4563,7 +4563,7 @@ LAB_overlay_d_176__0217dc14: ; 0x0217DC14
 _0217DC1A:
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-_0217DC1C: .word 0x0217DC21
+_0217DC1C: .word _0217DC20
 _0217DC20:
 	.byte 0x00, 0x4B
 _0217DC22:
@@ -5112,8 +5112,8 @@ _0217E046:
 	pop {r3, r4, r5, r6, pc}
 	.balign 4, 0
 _0217E04C: .word 0x00001020
-_0217E050: .word 0x0217E634
-_0217E054: .word 0x0217E544
+_0217E050: .word _0217E634
+_0217E054: .word _0217E544 - 1
 
 	thumb_func_start FUN_overlay_d_176__0217e058
 FUN_overlay_d_176__0217e058: ; 0x0217E058
@@ -5254,9 +5254,9 @@ _0217E144:
 	mov r0, #0
 	pop {r4, pc}
 	.balign 4, 0
-_0217E148: .word 0x0217E564
-_0217E14C: .word 0x0217E630
-_0217E150: .word 0x0217E544
+_0217E148: .word _0217E564 - 1
+_0217E14C: .word _0217E630
+_0217E150: .word _0217E544 - 1
 _0217E154: .word 0x0217E525
 
 	thumb_func_start FUN_overlay_d_176__0217e158
@@ -5565,7 +5565,7 @@ _0217E362:
 	.balign 4, 0
 _0217E374: .word 0x0209DF0C
 _0217E378: .word 0x00001018
-_0217E37C: .word 0x0217E64C
+_0217E37C: .word _0217E64C
 
 	thumb_func_start FUN_overlay_d_176__0217e380
 FUN_overlay_d_176__0217e380: ; 0x0217E380
@@ -5768,7 +5768,7 @@ LAB_overlay_d_176__0217e52e: ; 0x0217E52E
 	bx lr
 	.balign 4, 0
 	thumb_func_end LAB_overlay_d_176__0217e52e
-_0217E534: .word 0x0217E630
+_0217E534: .word _0217E630
 _0217E538:
 	.byte 0x21, 0xAE, 0x17, 0x02, 0xCD, 0xAE, 0x17, 0x02
 	.byte 0x89, 0xAE, 0x17, 0x02

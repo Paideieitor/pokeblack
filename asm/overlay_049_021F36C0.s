@@ -214,8 +214,8 @@ _021F3842:
 	pop {r4, r5, r6, r7, pc}
 	nop
 _021F3858: .word 0x0000096B
-_021F385C: .word 0x021F3894
-_021F3860: .word 0x021F38A4
+_021F385C: .word _021F3894 - 1
+_021F3860: .word _021F38A4 - 1
 
 	thumb_func_start FUN_overlay_d_49__021f3864
 FUN_overlay_d_49__021f3864: ; 0x021F3864

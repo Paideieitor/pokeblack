@@ -32,6 +32,7 @@
 	.extern FUN_021C4DC0
 	.extern FUN_021C4E08
 	.extern FUN_021C4E20
+	.extern FUN_02082A7C
 
 	.text
 
@@ -282,7 +283,7 @@ _021F3992:
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021F39B8: .word 0x021F3CF0
+_021F39B8: .word _021F3CF0 - 1
 
 	thumb_func_start FUN_overlay_d_53__021f39bc
 FUN_overlay_d_53__021f39bc: ; 0x021F39BC
@@ -394,7 +395,7 @@ FUN_overlay_d_53__021f3b30: ; 0x021F3B30
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_53__021f3b30
-_021F3B3C: .word 0x02082A7C
+_021F3B3C: .word FUN_02082A7C
 
 	thumb_func_start FUN_overlay_d_53__021f3b40
 FUN_overlay_d_53__021f3b40: ; 0x021F3B40

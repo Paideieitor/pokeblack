@@ -199,7 +199,7 @@ _02172C86:
 	pop {r4, r5, r6, r7, pc}
 	nop
 _02172CA8: .word 0x0000094C
-_02172CAC: .word 0x02177000
+_02172CAC: .word _02177000
 
 	thumb_func_start FUN_overlay_d_11__02172cb0
 FUN_overlay_d_11__02172cb0: ; 0x02172CB0
@@ -292,8 +292,8 @@ _02172D56:
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
 _02172D5C: .word 0x00008005
-_02172D60: .word 0x02177000
-_02172D64: .word 0x021768C8
+_02172D60: .word _02177000
+_02172D64: .word _021768C8 - 1
 _02172D68: .word 0x02173569
 _02172D6C: .word 0x000008FD
 _02172D70:
@@ -553,7 +553,7 @@ thunk_FUN_overlay_d_11__02175628: ; 0x021736D8
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_11__02175628
-_021736DC: .word 0x02175629
+_021736DC: .word thunk_FUN_overlay_d_11__02175628 + 8016
 _021736E0:
 	.byte 0x01, 0x48, 0x01, 0x21, 0x19, 0x54, 0x70, 0x47, 0xFA, 0x08, 0x00, 0x00, 0x38, 0xB5, 0x05, 0x1C
 	.byte 0xFF, 0xF7, 0xF2, 0xFF, 0x00, 0x28, 0x0D, 0xD1, 0xC5, 0xF6, 0x1E, 0xEE, 0x04, 0x1C, 0xC6, 0xF6
@@ -1864,7 +1864,7 @@ _02175170:
 	pop {r3, r4, r5, r6}
 	bx lr
 	.balign 4, 0
-_02175180: .word 0x02176AA0
+_02175180: .word _02176AA0 - 1
 
 	thumb_func_start FUN_overlay_d_11__02175184
 FUN_overlay_d_11__02175184: ; 0x02175184
@@ -2348,7 +2348,7 @@ _021756C4:
 	mov r0, #0
 	bx lr
 	.balign 4, 0
-_021756CC: .word 0x02176B08
+_021756CC: .word _02176B08 - 1
 
 	thumb_func_start FUN_overlay_d_11__021756d0
 FUN_overlay_d_11__021756d0: ; 0x021756D0
@@ -2371,7 +2371,7 @@ _021756E4:
 	mov r0, #0
 	bx lr
 	.balign 4, 0
-_021756EC: .word 0x02176AD0
+_021756EC: .word _02176AD0 - 1
 _021756F0:
 	.byte 0x18, 0xB4, 0x06, 0x4C, 0x09, 0x06, 0x02, 0x5D, 0x09, 0x0E, 0x40, 0x23, 0xC9, 0x07, 0x9A, 0x43
 	.byte 0x49, 0x0E, 0x11, 0x43, 0x01, 0x55, 0x18, 0xBC, 0x70, 0x47, 0xC0, 0x46, 0x3F, 0x09, 0x00, 0x00
@@ -4173,7 +4173,7 @@ _02176418:
 	blo _021763E6
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_02176420: .word 0x02176C4C
+_02176420: .word _02176C4C - 1
 
 	thumb_func_start FUN_overlay_d_11__02176424
 FUN_overlay_d_11__02176424: ; 0x02176424
@@ -4254,7 +4254,7 @@ _021764FA:
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_02176500: .word 0x02177010
+_02176500: .word _02177010
 _02176504:
 	.byte 0xF8, 0xB5
 _02176506:

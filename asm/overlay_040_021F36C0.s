@@ -137,7 +137,7 @@ _021F3806:
 	strh r5, [r4]
 	pop {r4, r5, r6, pc}
 	nop
-_021F3818: .word 0x021F381D
+_021F3818: .word _021F381C
 _021F381C:
 	.byte 0xF8, 0xB5
 _021F381E:

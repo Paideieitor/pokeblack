@@ -50,7 +50,7 @@ ASPATCH      := $(TOOLSDIR)/mwasmarm_patcher/mwasmarm_patcher$(EXE)
 NDSTOOL      := $(TOOLSDIR)/ndstool/ndstool$(EXE)
 NDSDISASM    := $(TOOLSDIR)/ndsdisasm/ndsdisasm$(EXE)
 
-ASM_PROCESSOR := $(TOOLSDIR)/asm_processor/compile.sh
+ASM_PROCESSOR := bash $(TOOLSDIR)/asm_processor/compile.sh
 PYTHON        := python3
 
 NATIVE_TOOLS := $(ASPATCH)
@@ -184,8 +184,10 @@ $(FORCE_ACTIVE_LIST): $(ASM_SRCS) $(C_SRCS)
 ifeq ($(EXTERN_SYMS),)
 EXTERN_SYMS := $(BUILD_DIR)/extern_syms.lcf
 
-$(EXTERN_SYMS): $(ASM_SRCS) $(C_SRCS)
-	@$(PYTHON) $(SCRIPTS)/gen_extern_syms.py $(SYM_GLOBS) --provided $(C_SRCS) -o $@
+ADDR_SHIFT := $(wildcard $(buildname)/addr_shift.txt)
+
+$(EXTERN_SYMS): $(ASM_SRCS) $(C_SRCS) $(ADDR_SHIFT)
+	@$(PYTHON) $(SCRIPTS)/gen_extern_syms.py $(SYM_GLOBS) --provided $(C_SRCS) $(if $(ADDR_SHIFT),--shift $(ADDR_SHIFT)) -o $@
 endif
 
 LCF_TEMPLATE_PATH    := $(SDK_SPECFILES)/$(LCF_TEMPLATE)

@@ -80,7 +80,7 @@ _021F36DC:
 	pop {r4, r5}
 	bx lr
 	.balign 4, 0
-_021F36EC: .word 0x021F4C58
+_021F36EC: .word _021F4C58 - 1
 	thumb_func_end FUN_overlay_39__021f36c0
 _021F36F0:
 	.byte 0x41, 0x18, 0x01, 0x48, 0x08, 0x5C, 0x70, 0x47, 0xEC, 0x21, 0x00, 0x00, 0xF0, 0xB5, 0x89, 0xB0
@@ -400,15 +400,15 @@ _021F3CAC:
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
 _021F3CB0: .word 0x00008015
-_021F3CB4: .word 0x021F4C38
+_021F3CB4: .word _021F4C38 - 1
 _021F3CB8: .word 0x0000068A
 _021F3CBC: .word 0x000021F0
 _021F3CC0: .word 0x021F4C28
 _021F3CC4: .word 0x000021E4
-_021F3CC8: .word 0x021F4D54
-_021F3CCC: .word 0x021F4CA0
-_021F3CD0: .word 0x021F4CA4
-_021F3CD4: .word 0x021F4CA8
+_021F3CC8: .word _021F4D54 - 1
+_021F3CCC: .word _021F4CA0 - 1
+_021F3CD0: .word _021F4CA4 - 1
+_021F3CD4: .word _021F4CA8 - 1
 
 	thumb_func_start FUN_overlay_d_39__021f3cd8
 FUN_overlay_d_39__021f3cd8: ; 0x021F3CD8
@@ -960,11 +960,11 @@ LAB_overlay_d_39__021f4516: ; 0x021F4516
 	thumb_func_end LAB_overlay_d_39__021f4516
 _021F451C: .word 0x000006DB
 _021F4520: .word 0x00008015
-_021F4524: .word 0x021F4C38
+_021F4524: .word _021F4C38 - 1
 _021F4528: .word 0x000021F0
-_021F452C: .word 0x021F4CF4
-_021F4530: .word 0x021F4C58
-_021F4534: .word 0x021F4C5A
+_021F452C: .word _021F4CF4 - 1
+_021F4530: .word _021F4C58 - 1
+_021F4534: .word _021F4C5A - 1
 _021F4538: .word 0x0000068A
 _021F453C: .word 0x0000068C
 _021F4540: .word 0x00131000
@@ -1313,7 +1313,7 @@ _021F487E:
 	pop {r3, r4}
 	bx lr
 	nop
-_021F4890: .word 0x021F4D78
+_021F4890: .word _021F4D78 - 1
 
 	thumb_func_start FUN_overlay_d_39__021f4894
 FUN_overlay_d_39__021f4894: ; 0x021F4894
@@ -1338,7 +1338,7 @@ _021F48B6:
 	mov r0, #0
 	pop {r4, pc}
 	nop
-_021F48BC: .word 0x021F4BE4
+_021F48BC: .word _021F4BE4 - 1
 
 	thumb_func_start FUN_overlay_d_39__021f48c0
 FUN_overlay_d_39__021f48c0: ; 0x021F48C0
@@ -1726,7 +1726,7 @@ _021F4BA8:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021F4BB8: .word 0x000021EC
-_021F4BBC: .word 0x021F4CA0
+_021F4BBC: .word _021F4CA0 - 1
 _021F4BC0: .word 0x0000068A
 _021F4BC4:
 	.byte 0x17, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00

@@ -2,6 +2,7 @@
 """emit LCF symbol definitions for addresses the ARM9 calls but does not define"""
 
 import argparse
+import bisect
 import glob
 import os
 import re
@@ -9,7 +10,7 @@ import sys
 
 EXTERN_RE = re.compile(r'^\s*\.extern\s+(\S+)\s*$')
 LABEL_RE = re.compile(r'^(\w+):')
-ADDRESSED_RE = re.compile(r'^(?:FUN_|_)([0-9A-Fa-f]{8})(?:_dup\d+)?$')
+ADDRESSED_RE = re.compile(r'^(?:FUN_|ADDR_|_)([0-9A-Fa-f]{8})(?:_dup\d+)?$')
 
 # libsyscall.a types these thumb, an absolute LCF symbol cannot and blx needs it
 PROVIDED_RE = re.compile(r'^SVC_\w+$')
@@ -28,8 +29,21 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('sources', nargs='+')
     parser.add_argument('--provided', nargs='*', default=[], help="linked C sources; the symbols they define are resolved by the linker, not by an LCF address")
+    parser.add_argument('--shift', help="file of '<start> <delta>' lines, addresses from start on move by delta in this version")
     parser.add_argument('-o', '--output', required=True)
     args = parser.parse_args()
+
+    steps = []
+    if args.shift:
+        for line in open(args.shift):
+            fields = line.split()
+            if len(fields) == 2:
+                steps.append((int(fields[0], 16), int(fields[1], 16)))
+        steps.sort()
+
+    def moved(address):
+        index = bisect.bisect_right([start for start, _ in steps], address) - 1
+        return address + steps[index][1] if index >= 0 else address
 
     paths = []
     for pattern in args.sources:
@@ -68,7 +82,7 @@ def main():
             continue
         m = ADDRESSED_RE.match(name)
         if m:
-            resolvable.append((name, int(m.group(1), 16)))
+            resolvable.append((name, moved(int(m.group(1), 16))))
         else:
             unresolvable.append(name)
 

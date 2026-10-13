@@ -32,8 +32,8 @@ FUN_overlay_81__021f5a80: ; 0x021F5A80
 	add sp, #0xc
 	pop {r3, r4, r5, r6, pc}
 	.balign 4, 0
-_021F5AB0: .word 0x021F5D00
-_021F5AB4: .word 0x021F5ABD
+_021F5AB0: .word _021F5D00 - 1
+_021F5AB4: .word _021F5ABC
 _021F5AB8: .word 0x021F582D
 	thumb_func_end FUN_overlay_81__021f5a80
 _021F5ABC:

@@ -62,7 +62,7 @@ FUN_overlay_187__0220af40: ; 0x0220AF40
 	nop
 	thumb_func_end FUN_overlay_187__0220af40
 _0220AF8C: .word 0x000017F4
-_0220AF90: .word 0x0220B2A0
+_0220AF90: .word _0220B2A0 - 1
 _0220AF94:
 	.byte 0xF8, 0xB5
 _0220AF96:
@@ -258,7 +258,7 @@ _0220B0E0:
 	blx MI_CpuFill8
 	pop {r4, pc}
 	nop
-_0220B0F4: .word 0x0220B2E0
+_0220B0F4: .word _0220B2E0
 
 	thumb_func_start FUN_overlay_d_187__0220b0f8
 FUN_overlay_d_187__0220b0f8: ; 0x0220B0F8
@@ -300,7 +300,7 @@ _0220B132:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _0220B138: .word 0x000001E7
-_0220B13C: .word 0x0220B2E4
+_0220B13C: .word _0220B2E4
 _0220B140: .word 0x000017F0
 
 	thumb_func_start FUN_overlay_d_187__0220b144
@@ -366,7 +366,7 @@ FUN_overlay_d_187__0220b164: ; 0x0220B164
 	nop
 	thumb_func_end FUN_overlay_d_187__0220b164
 _0220B1C8: .word 0x0000021E
-_0220B1CC: .word 0x0220B2E4
+_0220B1CC: .word _0220B2E4
 _0220B1D0: .word 0x000017F0
 _0220B1D4: .word 0x0000FFFF
 _0220B1D8:

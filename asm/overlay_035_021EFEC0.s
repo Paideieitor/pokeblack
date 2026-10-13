@@ -314,11 +314,11 @@ _021F0018:
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021F00EC: .word 0x021F0608
-_021F00F0: .word 0x021F05C8
-_021F00F4: .word 0x021F05E8
-_021F00F8: .word 0x021F05BC
-_021F00FC: .word 0x021F05B0
+_021F00EC: .word _021F0608 - 1
+_021F00F0: .word _021F05C8 - 1
+_021F00F4: .word _021F05E8 - 1
+_021F00F8: .word _021F05BC - 1
+_021F00FC: .word _021F05B0 - 1
 
 	thumb_func_start FUN_overlay_d_35__021f0100
 FUN_overlay_d_35__021f0100: ; 0x021F0100
@@ -583,7 +583,7 @@ FUN_overlay_d_35__021f02fc: ; 0x021F02FC
 	nop
 	thumb_func_end FUN_overlay_d_35__021f02fc
 _021F0338: .word 0x021F0640
-_021F033C: .word 0x021F064C
+_021F033C: .word _021F064C
 
 	thumb_func_start FUN_overlay_d_35__021f0340
 FUN_overlay_d_35__021f0340: ; 0x021F0340

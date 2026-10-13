@@ -142,9 +142,9 @@ _021F379E:
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021F37B8: .word 0x021F3918
-_021F37BC: .word 0x021F38F8
-_021F37C0: .word 0x021F3970
+_021F37B8: .word _021F3918 - 1
+_021F37BC: .word _021F38F8 - 1
+_021F37C0: .word _021F3970 - 1
 	thumb_func_end FUN_overlay_65__021f36c0
 
 	thumb_func_start FUN_overlay_d_65__021f37c4

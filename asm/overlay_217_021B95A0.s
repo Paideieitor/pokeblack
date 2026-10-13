@@ -164,6 +164,8 @@
 	.extern FUN_0209C95C
 	.extern FUN_0209CB8C
 	.extern FUN_0209CE10
+	.extern FUN_0201D83C
+	.extern FUN_0201ED04
 
 	.text
 
@@ -207,7 +209,7 @@ _021B95F8:
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-_021B95FC: .word 0x021C2EA0
+_021B95FC: .word _021C2EA0 - 1
 _021B9600:
 	.byte 0x38, 0xB5
 _021B9602:
@@ -628,10 +630,10 @@ FUN_overlay_d_217__021b98b8: ; 0x021B98B8
 	pop {r3, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021b98b8
-_021B98FC: .word 0x021C2E30
-_021B9900: .word 0x021C2E60
-_021B9904: .word 0x021C2E40
-_021B9908: .word 0x021C2E80
+_021B98FC: .word _021C2E30 - 1
+_021B9900: .word _021C2E60 - 1
+_021B9904: .word _021C2E40 - 1
+_021B9908: .word _021C2E80 - 1
 
 	thumb_func_start FUN_overlay_d_217__021b990c
 FUN_overlay_d_217__021b990c: ; 0x021B990C
@@ -1550,7 +1552,7 @@ FUN_overlay_d_217__021ba144: ; 0x021BA144
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021ba144
-_021BA14C: .word 0x021C0E4D
+_021BA14C: .word LAB_overlay_d_217__021c0e4c
 
 	thumb_func_start FUN_overlay_d_217__021ba150
 FUN_overlay_d_217__021ba150: ; 0x021BA150
@@ -1636,7 +1638,7 @@ FUN_overlay_d_217__021ba1c0: ; 0x021BA1C0
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021ba1c0
-_021BA1C8: .word 0x021C09C5
+_021BA1C8: .word LAB_overlay_d_217__021c09c4
 
 	thumb_func_start FUN_overlay_d_217__021ba1cc
 FUN_overlay_d_217__021ba1cc: ; 0x021BA1CC
@@ -1827,7 +1829,7 @@ FUN_overlay_d_217__021ba31c: ; 0x021BA31C
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021ba31c
-_021BA324: .word 0x021C09D9
+_021BA324: .word LAB_overlay_d_217__021c09d8
 
 	thumb_func_start FUN_overlay_d_217__021ba328
 FUN_overlay_d_217__021ba328: ; 0x021BA328
@@ -1987,9 +1989,9 @@ FUN_overlay_d_217__021ba3e8: ; 0x021BA3E8
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021ba3e8
-_021BA400: .word 0x021C3008
-_021BA404: .word 0x021C3004
-_021BA408: .word 0x021C29F9
+_021BA400: .word _021C3008 - 1
+_021BA404: .word _021C3004 - 1
+_021BA408: .word LAB_overlay_d_217__021c29f8
 
 	thumb_func_start FUN_overlay_d_217__021ba40c
 FUN_overlay_d_217__021ba40c: ; 0x021BA40C
@@ -2000,7 +2002,7 @@ FUN_overlay_d_217__021ba40c: ; 0x021BA40C
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021ba40c
-_021BA418: .word 0x021C2A01
+_021BA418: .word LAB_overlay_d_217__021c2a00
 
 	thumb_func_start FUN_overlay_d_217__021ba41c
 FUN_overlay_d_217__021ba41c: ; 0x021BA41C
@@ -2133,7 +2135,7 @@ FUN_overlay_d_217__021ba4e0: ; 0x021BA4E0
 	nop
 	thumb_func_end FUN_overlay_d_217__021ba4e0
 _021BA4F4: .word 0x000005CE
-_021BA4F8: .word 0x021C3FEC
+_021BA4F8: .word _021C3FEC
 
 	thumb_func_start FUN_021BA4FC
 FUN_021BA4FC: ; 0x021BA4FC
@@ -2262,7 +2264,7 @@ FUN_overlay_d_217__021ba5d8: ; 0x021BA5D8
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021ba5d8
-_021BA5E0: .word 0x0201D83D
+_021BA5E0: .word FUN_0201D83C
 
 	thumb_func_start FUN_overlay_d_217__021ba5e4
 FUN_overlay_d_217__021ba5e4: ; 0x021BA5E4
@@ -2302,7 +2304,7 @@ _021BA600:
 	blt _021BA600
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021BA620: .word 0x021C2ED8
+_021BA620: .word _021C2ED8 - 1
 
 	thumb_func_start FUN_overlay_d_217__021ba624
 FUN_overlay_d_217__021ba624: ; 0x021BA624
@@ -2351,7 +2353,7 @@ _021BA642:
 	pop {r3, r4, r5, r6}
 	bx lr
 	.balign 4, 0
-_021BA670: .word 0x021C2EE0
+_021BA670: .word _021C2EE0 - 1
 
 	thumb_func_start FUN_overlay_d_217__021ba674
 FUN_overlay_d_217__021ba674: ; 0x021BA674
@@ -2379,7 +2381,7 @@ FUN_overlay_d_217__021ba68c: ; 0x021BA68C
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021ba68c
-_021BA694: .word 0x021C0E3D
+_021BA694: .word FUN_021C0E3C
 
 	thumb_func_start FUN_overlay_d_217__021ba698
 FUN_overlay_d_217__021ba698: ; 0x021BA698
@@ -2443,11 +2445,11 @@ FUN_overlay_d_217__021ba698: ; 0x021BA698
 	pop {r3, r4, r5, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021ba698
-_021BA72C: .word 0x021C2EEC
-_021BA730: .word 0x021C2F78
-_021BA734: .word 0x021C2F18
-_021BA738: .word 0x021C2F38
-_021BA73C: .word 0x021C2F58
+_021BA72C: .word _021C2EEC - 1
+_021BA730: .word _021C2F78 - 1
+_021BA734: .word _021C2F18 - 1
+_021BA738: .word _021C2F38 - 1
+_021BA73C: .word _021C2F58 - 1
 _021BA740: .word 0x04001050
 _021BA744: .word 0x04000050
 
@@ -2672,7 +2674,7 @@ _021BA876:
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BA8DC: .word 0x021C2F98
+_021BA8DC: .word _021C2F98 - 1
 
 	thumb_func_start FUN_overlay_d_217__021ba8e0
 FUN_overlay_d_217__021ba8e0: ; 0x021BA8E0
@@ -2852,8 +2854,8 @@ _021BAA06:
 	blt _021BAA06
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BAA20: .word 0x021C2ED2
-_021BAA24: .word 0x021C2ED0
+_021BAA20: .word _021C2ED2 - 1
+_021BAA24: .word _021C2ED0 - 1
 
 	thumb_func_start FUN_overlay_d_217__021baa28
 FUN_overlay_d_217__021baa28: ; 0x021BAA28
@@ -2931,7 +2933,7 @@ FUN_overlay_d_217__021baa48: ; 0x021BAA48
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021baa48
-_021BAAB4: .word 0x021C2EFC
+_021BAAB4: .word _021C2EFC - 1
 
 	thumb_func_start FUN_overlay_d_217__021baab8
 FUN_overlay_d_217__021baab8: ; 0x021BAAB8
@@ -2940,7 +2942,7 @@ FUN_overlay_d_217__021baab8: ; 0x021BAAB8
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021baab8
-_021BAAC0: .word 0x0204B3B4
+_021BAAC0: .word FUN_0204B3B4
 
 	thumb_func_start FUN_overlay_d_217__021baac4
 FUN_overlay_d_217__021baac4: ; 0x021BAAC4
@@ -3015,7 +3017,7 @@ _021BAB16:
 	blt _021BAB16
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BAB34: .word 0x021C2FF8
+_021BAB34: .word _021C2FF8 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bab38
 FUN_overlay_d_217__021bab38: ; 0x021BAB38
@@ -3043,7 +3045,7 @@ FUN_overlay_d_217__021bab58: ; 0x021BAB58
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bab58
-_021BAB60: .word 0x021BAB51
+_021BAB60: .word _021BAB50
 _021BAB64: .word 0x02005655
 
 	thumb_func_start thunk_FUN_0200566c
@@ -3052,7 +3054,7 @@ thunk_FUN_0200566c: ; 0x021BAB68
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_0200566c
-_021BAB6C: .word 0x0200566D
+_021BAB6C: .word thunk_FUN_0200566c - 1791228
 
 	thumb_func_start FUN_overlay_d_217__021bab70
 FUN_overlay_d_217__021bab70: ; 0x021BAB70
@@ -4594,7 +4596,7 @@ FUN_overlay_d_217__021bb910: ; 0x021BB910
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bb910
-_021BB918: .word 0x021C0E4D
+_021BB918: .word LAB_overlay_d_217__021c0e4c
 
 	thumb_func_start FUN_overlay_d_217__021bb91c
 FUN_overlay_d_217__021bb91c: ; 0x021BB91C
@@ -4613,7 +4615,7 @@ FUN_overlay_d_217__021bb928: ; 0x021BB928
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bb928
-_021BB930: .word 0x021C09CD
+_021BB930: .word FUN_overlay_d_217__021c09cc
 
 	thumb_func_start FUN_overlay_d_217__021bb934
 FUN_overlay_d_217__021bb934: ; 0x021BB934
@@ -4622,7 +4624,7 @@ FUN_overlay_d_217__021bb934: ; 0x021BB934
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bb934
-_021BB93C: .word 0x021C09C5
+_021BB93C: .word LAB_overlay_d_217__021c09c4
 
 	thumb_func_start FUN_overlay_d_217__021bb940
 FUN_overlay_d_217__021bb940: ; 0x021BB940
@@ -4678,7 +4680,7 @@ FUN_overlay_d_217__021bb978: ; 0x021BB978
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bb978
-_021BB988: .word 0x021BB999
+_021BB988: .word LAB_overlay_d_217__021bb998
 
 	thumb_func_start FUN_overlay_d_217__021bb98c
 FUN_overlay_d_217__021bb98c: ; 0x021BB98C
@@ -4854,7 +4856,7 @@ FUN_overlay_d_217__021bbad0: ; 0x021BBAD0
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bbad0
-_021BBAD8: .word 0x021BC575
+_021BBAD8: .word LAB_overlay_d_217__021bc574
 
 	thumb_func_start FUN_overlay_d_217__021bbadc
 FUN_overlay_d_217__021bbadc: ; 0x021BBADC
@@ -5096,9 +5098,9 @@ _021BBC96:
 _021BBCA2:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BBCA4: .word 0x021C308A
-_021BBCA8: .word 0x021C3080
-_021BBCAC: .word 0x021C30A8
+_021BBCA4: .word _021C308A - 1
+_021BBCA8: .word _021C3080 - 1
+_021BBCAC: .word _021C30A8 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bbcb0
 FUN_overlay_d_217__021bbcb0: ; 0x021BBCB0
@@ -5128,9 +5130,9 @@ FUN_overlay_d_217__021bbcb0: ; 0x021BBCB0
 	pop {r3, r4, r5, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021bbcb0
-_021BBCF0: .word 0x021C30A8
-_021BBCF4: .word 0x021C3080
-_021BBCF8: .word 0x021C308A
+_021BBCF0: .word _021C30A8 - 1
+_021BBCF4: .word _021C3080 - 1
+_021BBCF8: .word _021C308A - 1
 
 	thumb_func_start FUN_overlay_d_217__021bbcfc
 FUN_overlay_d_217__021bbcfc: ; 0x021BBCFC
@@ -5614,7 +5616,7 @@ FUN_overlay_d_217__021bc06c: ; 0x021BC06C
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bc06c
-_021BC078: .word 0x021BC07D
+_021BC078: .word LAB_overlay_d_217__021bc07c
 
 	thumb_func_start LAB_overlay_d_217__021bc07c
 LAB_overlay_d_217__021bc07c: ; 0x021BC07C
@@ -5656,12 +5658,12 @@ LAB_overlay_d_217__021bc07c: ; 0x021BC07C
 	pop {r4, r5, r6, pc}
 	nop
 	thumb_func_end LAB_overlay_d_217__021bc07c
-_021BC0D0: .word 0x021C309E
-_021BC0D4: .word 0x021C3094
-_021BC0D8: .word 0x021C30A8
-_021BC0DC: .word 0x021C30D0
-_021BC0E0: .word 0x021C3080
-_021BC0E4: .word 0x021C308A
+_021BC0D0: .word _021C309E - 1
+_021BC0D4: .word _021C3094 - 1
+_021BC0D8: .word _021C30A8 - 1
+_021BC0DC: .word _021C30D0 - 1
+_021BC0E0: .word _021C3080 - 1
+_021BC0E4: .word _021C308A - 1
 
 	thumb_func_start FUN_overlay_d_217__021bc0e8
 FUN_overlay_d_217__021bc0e8: ; 0x021BC0E8
@@ -6103,7 +6105,7 @@ FUN_overlay_d_217__021bc3ec: ; 0x021BC3EC
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bc3ec
-_021BC3F4: .word 0x0209C0A4
+_021BC3F4: .word FUN_0209C0A4
 
 	thumb_func_start FUN_overlay_d_217__021bc3f8
 FUN_overlay_d_217__021bc3f8: ; 0x021BC3F8
@@ -6339,7 +6341,7 @@ LAB_overlay_d_217__021bc574: ; 0x021BC574
 	bx r3
 	nop
 	thumb_func_end LAB_overlay_d_217__021bc574
-_021BC57C: .word 0x021C09D9
+_021BC57C: .word LAB_overlay_d_217__021c09d8
 
 	thumb_func_start FUN_overlay_d_217__021bc580
 FUN_overlay_d_217__021bc580: ; 0x021BC580
@@ -6358,9 +6360,9 @@ FUN_overlay_d_217__021bc580: ; 0x021BC580
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bc580
-_021BC59C: .word 0x021C3270
-_021BC5A0: .word 0x021C326C
-_021BC5A4: .word 0x021C29F9
+_021BC59C: .word _021C3270 - 1
+_021BC5A0: .word _021C326C - 1
+_021BC5A4: .word LAB_overlay_d_217__021c29f8
 
 	thumb_func_start FUN_overlay_d_217__021bc5a8
 FUN_overlay_d_217__021bc5a8: ; 0x021BC5A8
@@ -6372,7 +6374,7 @@ FUN_overlay_d_217__021bc5a8: ; 0x021BC5A8
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bc5a8
-_021BC5B4: .word 0x021C2A01
+_021BC5B4: .word LAB_overlay_d_217__021c2a00
 
 	thumb_func_start FUN_overlay_d_217__021bc5b8
 FUN_overlay_d_217__021bc5b8: ; 0x021BC5B8
@@ -6451,7 +6453,7 @@ FUN_overlay_d_217__021bc628: ; 0x021BC628
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bc628
-_021BC630: .word 0x021C09B5
+_021BC630: .word FUN_overlay_d_217__021c09b4
 
 	thumb_func_start FUN_overlay_d_217__021bc634
 FUN_overlay_d_217__021bc634: ; 0x021BC634
@@ -6660,7 +6662,7 @@ FUN_overlay_d_217__021bc740: ; 0x021BC740
 	bx lr
 	nop
 	thumb_func_end FUN_overlay_d_217__021bc740
-_021BC754: .word 0x021C3068
+_021BC754: .word _021C3068 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bc758
 FUN_overlay_d_217__021bc758: ; 0x021BC758
@@ -6676,7 +6678,7 @@ FUN_overlay_d_217__021bc758: ; 0x021BC758
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bc758
 _021BC76C: .word 0x00000E67
-_021BC770: .word 0x021C3FFC
+_021BC770: .word _021C3FFC
 
 	thumb_func_start FUN_overlay_d_217__021bc774
 FUN_overlay_d_217__021bc774: ; 0x021BC774
@@ -6869,7 +6871,7 @@ FUN_overlay_d_217__021bc8d8: ; 0x021BC8D8
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bc8d8
-_021BC8E0: .word 0x0201D83D
+_021BC8E0: .word FUN_0201D83C
 
 	thumb_func_start FUN_overlay_d_217__021bc8e4
 FUN_overlay_d_217__021bc8e4: ; 0x021BC8E4
@@ -6894,7 +6896,7 @@ _021BC8EC:
 	blt _021BC8EC
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021BC90C: .word 0x021C3078
+_021BC90C: .word _021C3078 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bc910
 FUN_overlay_d_217__021bc910: ; 0x021BC910
@@ -6953,7 +6955,7 @@ FUN_overlay_d_217__021bc954: ; 0x021BC954
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bc954
-_021BC95C: .word 0x021C0E3D
+_021BC95C: .word FUN_021C0E3C
 
 	thumb_func_start FUN_overlay_d_217__021bc960
 FUN_overlay_d_217__021bc960: ; 0x021BC960
@@ -7034,9 +7036,9 @@ _021BC9C2:
 	pop {r3, r4, r5, r6}
 	bx lr
 	.balign 4, 0
-_021BC9F0: .word 0x021C30B2
-_021BC9F4: .word 0x021C3190
-_021BC9F8: .word 0x021C3070
+_021BC9F0: .word _021C30B2 - 1
+_021BC9F4: .word _021C3190 - 1
+_021BC9F8: .word _021C3070 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bc9fc
 FUN_overlay_d_217__021bc9fc: ; 0x021BC9FC
@@ -7106,12 +7108,12 @@ FUN_overlay_d_217__021bc9fc: ; 0x021BC9FC
 	pop {r3, r4, r5, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021bc9fc
-_021BCAA0: .word 0x021C30C0
-_021BCAA4: .word 0x021C3110
-_021BCAA8: .word 0x021C3130
-_021BCAAC: .word 0x021C30F0
-_021BCAB0: .word 0x021C3150
-_021BCAB4: .word 0x021C3170
+_021BCAA0: .word _021C30C0 - 1
+_021BCAA4: .word _021C3110 - 1
+_021BCAA8: .word _021C3130 - 1
+_021BCAAC: .word _021C30F0 - 1
+_021BCAB0: .word _021C3150 - 1
+_021BCAB4: .word _021C3170 - 1
 _021BCAB8: .word 0x04001050
 _021BCABC: .word 0x04000050
 
@@ -7462,8 +7464,8 @@ _021BCD5E:
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021BCD64: .word 0x021C33C8
-_021BCD68: .word 0x021C3520
+_021BCD64: .word _021C33C8 - 1
+_021BCD68: .word _021C3520 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bcd6c
 FUN_overlay_d_217__021bcd6c: ; 0x021BCD6C
@@ -7757,8 +7759,8 @@ _021BCF72:
 	blt _021BCF72
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BCF90: .word 0x021C3060
-_021BCF94: .word 0x021C305C
+_021BCF90: .word _021C3060 - 1
+_021BCF94: .word _021C305C - 1
 
 	thumb_func_start FUN_overlay_d_217__021bcf98
 FUN_overlay_d_217__021bcf98: ; 0x021BCF98
@@ -7864,7 +7866,7 @@ _021BCFDA:
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BD058: .word 0x021C320C
+_021BD058: .word _021C320C - 1
 
 	thumb_func_start FUN_overlay_d_217__021bd05c
 FUN_overlay_d_217__021bd05c: ; 0x021BD05C
@@ -7929,7 +7931,7 @@ _021BD0A0:
 	blt _021BD0A0
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BD0C0: .word 0x021C3470
+_021BD0C0: .word _021C3470 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bd0c4
 FUN_overlay_d_217__021bd0c4: ; 0x021BD0C4
@@ -8019,7 +8021,7 @@ _021BD16A:
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BD174: .word 0x021C3470
+_021BD174: .word _021C3470 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bd178
 FUN_overlay_d_217__021bd178: ; 0x021BD178
@@ -8141,8 +8143,8 @@ _021BD1B8:
 	add sp, #0x9c
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021BD26C: .word 0x021C3350
-_021BD270: .word 0x021C349C
+_021BD26C: .word _021C3350 - 1
+_021BD270: .word _021C349C - 1
 
 	thumb_func_start FUN_overlay_d_217__021bd274
 FUN_overlay_d_217__021bd274: ; 0x021BD274
@@ -8264,7 +8266,7 @@ _021BD2B4:
 	add sp, #0x9c
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021BD368: .word 0x021C32D8
+_021BD368: .word _021C32D8 - 1
 _021BD36C: .word 0x021C34C8
 
 	thumb_func_start FUN_overlay_d_217__021bd370
@@ -8391,7 +8393,7 @@ _021BD3E4:
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021BD454: .word 0x021C31BC
+_021BD454: .word _021C31BC - 1
 
 	thumb_func_start FUN_overlay_d_217__021bd458
 FUN_overlay_d_217__021bd458: ; 0x021BD458
@@ -8553,7 +8555,7 @@ _021BD546:
 	blt _021BD546
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021BD568: .word 0x021C3260
+_021BD568: .word _021C3260 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bd56c
 FUN_overlay_d_217__021bd56c: ; 0x021BD56C
@@ -8621,7 +8623,7 @@ FUN_overlay_d_217__021bd5c4: ; 0x021BD5C4
 	pop {r4, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021bd5c4
-_021BD5DC: .word 0x021BC611
+_021BD5DC: .word _021BC610
 
 	thumb_func_start FUN_overlay_d_217__021bd5e0
 FUN_overlay_d_217__021bd5e0: ; 0x021BD5E0
@@ -10242,7 +10244,7 @@ FUN_overlay_d_217__021be454: ; 0x021BE454
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021be454
-_021BE45C: .word 0x021C09C5
+_021BE45C: .word LAB_overlay_d_217__021c09c4
 
 	thumb_func_start FUN_overlay_d_217__021be460
 FUN_overlay_d_217__021be460: ; 0x021BE460
@@ -10294,7 +10296,7 @@ FUN_overlay_d_217__021be498: ; 0x021BE498
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021be498
-_021BE4A0: .word 0x021C0E4D
+_021BE4A0: .word LAB_overlay_d_217__021c0e4c
 
 	thumb_func_start FUN_overlay_d_217__021be4a4
 FUN_overlay_d_217__021be4a4: ; 0x021BE4A4
@@ -10931,10 +10933,10 @@ _021BE99E:
 	add sp, #8
 	pop {r4, pc}
 	.balign 4, 0
-_021BE9A8: .word 0x021C3ACB
-_021BE9AC: .word 0x021C3AC8
-_021BE9B0: .word 0x021C3AC9
-_021BE9B4: .word 0x021C3ACA
+_021BE9A8: .word _021C3ACA
+_021BE9AC: .word _021C3AC8 - 1
+_021BE9B0: .word _021C3AC8
+_021BE9B4: .word _021C3ACA - 1
 
 	thumb_func_start FUN_overlay_d_217__021be9b8
 FUN_overlay_d_217__021be9b8: ; 0x021BE9B8
@@ -11000,10 +11002,10 @@ _021BEA22:
 	add sp, #8
 	pop {r4, pc}
 	.balign 4, 0
-_021BEA2C: .word 0x021C3ACB
-_021BEA30: .word 0x021C3AC8
-_021BEA34: .word 0x021C3AC9
-_021BEA38: .word 0x021C3ACA
+_021BEA2C: .word _021C3ACA
+_021BEA30: .word _021C3AC8 - 1
+_021BEA34: .word _021C3AC8
+_021BEA38: .word _021C3ACA - 1
 
 	thumb_func_start FUN_overlay_d_217__021bea3c
 FUN_overlay_d_217__021bea3c: ; 0x021BEA3C
@@ -11252,7 +11254,7 @@ FUN_overlay_d_217__021bec00: ; 0x021BEC00
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bec00
-_021BEC08: .word 0x021C09D9
+_021BEC08: .word LAB_overlay_d_217__021c09d8
 
 	thumb_func_start FUN_overlay_d_217__021bec0c
 FUN_overlay_d_217__021bec0c: ; 0x021BEC0C
@@ -11762,7 +11764,7 @@ FUN_overlay_d_217__021befc0: ; 0x021BEFC0
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021befc0
-_021BEFD0: .word 0x021C2741
+_021BEFD0: .word FUN_overlay_d_217__021c2740
 
 	thumb_func_start FUN_overlay_d_217__021befd4
 FUN_overlay_d_217__021befd4: ; 0x021BEFD4
@@ -11853,7 +11855,7 @@ FUN_overlay_d_217__021beff8: ; 0x021BEFF8
 	nop
 	thumb_func_end FUN_overlay_d_217__021beff8
 _021BF084: .word 0x000002FE
-_021BF088: .word 0x021C3AC8
+_021BF088: .word _021C3AC8 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bf08c
 FUN_overlay_d_217__021bf08c: ; 0x021BF08C
@@ -11926,8 +11928,8 @@ FUN_overlay_d_217__021bf100: ; 0x021BF100
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bf100
-_021BF114: .word 0x021C3628
-_021BF118: .word 0x021C0F5D
+_021BF114: .word _021C3628 - 1
+_021BF118: .word FUN_overlay_d_217__021c0f5c
 
 	thumb_func_start FUN_overlay_d_217__021bf11c
 FUN_overlay_d_217__021bf11c: ; 0x021BF11C
@@ -11944,7 +11946,7 @@ FUN_overlay_d_217__021bf11c: ; 0x021BF11C
 	pop {r4, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021bf11c
-_021BF138: .word 0x021C36B8
+_021BF138: .word _021C36B8 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bf13c
 FUN_overlay_d_217__021bf13c: ; 0x021BF13C
@@ -11961,7 +11963,7 @@ FUN_overlay_d_217__021bf13c: ; 0x021BF13C
 	pop {r4, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021bf13c
-_021BF158: .word 0x021C369A
+_021BF158: .word _021C369A - 1
 
 	thumb_func_start FUN_overlay_d_217__021bf15c
 FUN_overlay_d_217__021bf15c: ; 0x021BF15C
@@ -12342,7 +12344,7 @@ _021BF41E:
 	blx FUN_0204B92C
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021BF478: .word 0x021C3AC8
+_021BF478: .word _021C3AC8 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bf47c
 FUN_overlay_d_217__021bf47c: ; 0x021BF47C
@@ -12461,7 +12463,7 @@ FUN_overlay_d_217__021bf55c: ; 0x021BF55C
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bf55c
-_021BF564: .word 0x021BF581
+_021BF564: .word LAB_overlay_d_217__021bf580
 
 	thumb_func_start FUN_overlay_d_217__021bf568
 FUN_overlay_d_217__021bf568: ; 0x021BF568
@@ -12471,7 +12473,7 @@ FUN_overlay_d_217__021bf568: ; 0x021BF568
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bf568
-_021BF570: .word 0x021BF581
+_021BF570: .word LAB_overlay_d_217__021bf580
 
 	thumb_func_start FUN_overlay_d_217__021bf574
 FUN_overlay_d_217__021bf574: ; 0x021BF574
@@ -12481,7 +12483,7 @@ FUN_overlay_d_217__021bf574: ; 0x021BF574
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bf574
-_021BF57C: .word 0x021BF581
+_021BF57C: .word LAB_overlay_d_217__021bf580
 
 	thumb_func_start LAB_overlay_d_217__021bf580
 LAB_overlay_d_217__021bf580: ; 0x021BF580
@@ -12514,9 +12516,9 @@ FUN_overlay_d_217__021bf594: ; 0x021BF594
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bf594
-_021BF5B0: .word 0x021C3A34
-_021BF5B4: .word 0x021C3A38
-_021BF5B8: .word 0x021C29F9
+_021BF5B0: .word _021C3A34 - 1
+_021BF5B4: .word _021C3A38 - 1
+_021BF5B8: .word LAB_overlay_d_217__021c29f8
 
 	thumb_func_start FUN_overlay_d_217__021bf5bc
 FUN_overlay_d_217__021bf5bc: ; 0x021BF5BC
@@ -12529,7 +12531,7 @@ FUN_overlay_d_217__021bf5bc: ; 0x021BF5BC
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bf5bc
-_021BF5CC: .word 0x021C2A01
+_021BF5CC: .word LAB_overlay_d_217__021c2a00
 
 	thumb_func_start FUN_overlay_d_217__021bf5d0
 FUN_overlay_d_217__021bf5d0: ; 0x021BF5D0
@@ -12739,7 +12741,7 @@ FUN_overlay_d_217__021bf734: ; 0x021BF734
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bf734
-_021BF73C: .word 0x021C09B1
+_021BF73C: .word LAB_overlay_d_217__021c09b0
 
 	thumb_func_start FUN_overlay_d_217__021bf740
 FUN_overlay_d_217__021bf740: ; 0x021BF740
@@ -12748,7 +12750,7 @@ FUN_overlay_d_217__021bf740: ; 0x021BF740
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bf740
-_021BF748: .word 0x021C09B5
+_021BF748: .word FUN_overlay_d_217__021c09b4
 
 	thumb_func_start FUN_overlay_d_217__021bf74c
 FUN_overlay_d_217__021bf74c: ; 0x021BF74C
@@ -13041,9 +13043,9 @@ _021BF8F6:
 _021BF902:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BF904: .word 0x021C3632
-_021BF908: .word 0x021C3646
-_021BF90C: .word 0x021C363C
+_021BF904: .word _021C3632 - 1
+_021BF908: .word _021C3646 - 1
+_021BF90C: .word _021C363C - 1
 
 	thumb_func_start FUN_overlay_d_217__021bf910
 FUN_overlay_d_217__021bf910: ; 0x021BF910
@@ -13209,7 +13211,7 @@ FUN_overlay_d_217__021bfa14: ; 0x021BFA14
 	pop {r3, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021bfa14
-_021BFA2C: .word 0x021C400C
+_021BFA2C: .word _021C400C
 
 	thumb_func_start FUN_overlay_d_217__021bfa30
 FUN_overlay_d_217__021bfa30: ; 0x021BFA30
@@ -13341,7 +13343,7 @@ FUN_overlay_d_217__021bfb24: ; 0x021BFB24
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bfb24
-_021BFB2C: .word 0x021C0E3D
+_021BFB2C: .word FUN_021C0E3C
 
 	thumb_func_start FUN_overlay_d_217__021bfb30
 FUN_overlay_d_217__021bfb30: ; 0x021BFB30
@@ -13375,7 +13377,7 @@ FUN_overlay_d_217__021bfb54: ; 0x021BFB54
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bfb54
-_021BFB5C: .word 0x0201D83D
+_021BFB5C: .word FUN_0201D83C
 
 	thumb_func_start FUN_overlay_d_217__021bfb60
 FUN_overlay_d_217__021bfb60: ; 0x021BFB60
@@ -13415,7 +13417,7 @@ _021BFB7C:
 	blt _021BFB7C
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021BFB9C: .word 0x021C3650
+_021BFB9C: .word _021C3650 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bfba0
 FUN_overlay_d_217__021bfba0: ; 0x021BFBA0
@@ -13459,7 +13461,7 @@ FUN_overlay_d_217__021bfbd0: ; 0x021BFBD0
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bfbd0
-_021BFBD8: .word 0x0201ED05
+_021BFBD8: .word FUN_0201ED04
 
 	thumb_func_start FUN_overlay_d_217__021bfbdc
 FUN_overlay_d_217__021bfbdc: ; 0x021BFBDC
@@ -13764,12 +13766,12 @@ _021BFDD0:
 	add sp, #0x4c
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021BFE28: .word 0x021C367C
-_021BFE2C: .word 0x021C3D44
+_021BFE28: .word _021C367C - 1
+_021BFE2C: .word _021C3D44 - 1
 _021BFE30: .word 0x000F423F
-_021BFE34: .word 0x021C386C
-_021BFE38: .word 0x021C3900
-_021BFE3C: .word 0x021C3994
+_021BFE34: .word _021C386C - 1
+_021BFE38: .word _021C3900 - 1
+_021BFE3C: .word _021C3994 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bfe40
 FUN_overlay_d_217__021bfe40: ; 0x021BFE40
@@ -13805,7 +13807,7 @@ _021BFE50:
 	pop {r4, r5, r6, r7}
 	bx lr
 	nop
-_021BFE7C: .word 0x021C3758
+_021BFE7C: .word _021C3758 - 1
 
 	thumb_func_start FUN_overlay_d_217__021bfe80
 FUN_overlay_d_217__021bfe80: ; 0x021BFE80
@@ -13862,7 +13864,7 @@ FUN_overlay_d_217__021bfed4: ; 0x021BFED4
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021bfed4
-_021BFEE0: .word 0x021C209D
+_021BFEE0: .word FUN_overlay_d_217__021c209c
 
 	thumb_func_start FUN_overlay_d_217__021bfee4
 FUN_overlay_d_217__021bfee4: ; 0x021BFEE4
@@ -13981,7 +13983,7 @@ FUN_overlay_d_217__021bff78: ; 0x021BFF78
 _021BFFB8: .word 0x04000440
 _021BFFBC: .word 0x04000060
 _021BFFC0: .word 0xFFFFCFFF
-_021BFFC4: .word 0x021C365C
+_021BFFC4: .word _021C365C - 1
 
 	thumb_func_start FUN_overlay_d_217__021bffc8
 FUN_overlay_d_217__021bffc8: ; 0x021BFFC8
@@ -14050,11 +14052,11 @@ FUN_overlay_d_217__021bffc8: ; 0x021BFFC8
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021bffc8
-_021C0068: .word 0x021C366C
-_021C006C: .word 0x021C36D8
-_021C0070: .word 0x021C3738
-_021C0074: .word 0x021C36F8
-_021C0078: .word 0x021C3718
+_021C0068: .word _021C366C - 1
+_021C006C: .word _021C36D8 - 1
+_021C0070: .word _021C3738 - 1
+_021C0074: .word _021C36F8 - 1
+_021C0078: .word _021C3718 - 1
 _021C007C: .word 0x04001050
 _021C0080: .word 0x04000050
 
@@ -14288,7 +14290,7 @@ _021C01C2:
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021C022C: .word 0x021C3B7C
+_021C022C: .word _021C3B7C - 1
 
 	thumb_func_start FUN_overlay_d_217__021c0230
 FUN_overlay_d_217__021c0230: ; 0x021C0230
@@ -14503,8 +14505,8 @@ _021C03AA:
 	blt _021C03AA
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021C03C8: .word 0x021C3620
-_021C03CC: .word 0x021C3618
+_021C03C8: .word _021C3620 - 1
+_021C03CC: .word _021C3618 - 1
 
 	thumb_func_start FUN_overlay_d_217__021c03d0
 FUN_overlay_d_217__021c03d0: ; 0x021C03D0
@@ -14610,7 +14612,7 @@ _021C0412:
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021C0490: .word 0x021C37FC
+_021C0490: .word _021C37FC - 1
 
 	thumb_func_start FUN_overlay_d_217__021c0494
 FUN_overlay_d_217__021c0494: ; 0x021C0494
@@ -14675,7 +14677,7 @@ _021C04D8:
 	blt _021C04D8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021C04F8: .word 0x021C37A4
+_021C04F8: .word _021C37A4 - 1
 
 	thumb_func_start FUN_overlay_d_217__021c04fc
 FUN_overlay_d_217__021c04fc: ; 0x021C04FC
@@ -14765,7 +14767,7 @@ _021C05A2:
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021C05AC: .word 0x021C37A4
+_021C05AC: .word _021C37A4 - 1
 
 	thumb_func_start FUN_overlay_d_217__021c05b0
 FUN_overlay_d_217__021c05b0: ; 0x021C05B0
@@ -14887,8 +14889,8 @@ _021C05F0:
 	add sp, #0x114
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021C06A4: .word 0x021C3C54
-_021C06A8: .word 0x021C37D0
+_021C06A4: .word _021C3C54 - 1
+_021C06A8: .word _021C37D0 - 1
 
 	thumb_func_start FUN_overlay_d_217__021c06ac
 FUN_overlay_d_217__021c06ac: ; 0x021C06AC
@@ -15014,7 +15016,7 @@ _021C0720:
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021C0790: .word 0x021C377C
+_021C0790: .word _021C377C - 1
 
 	thumb_func_start FUN_overlay_d_217__021c0794
 FUN_overlay_d_217__021c0794: ; 0x021C0794
@@ -15177,7 +15179,7 @@ _021C0884:
 	blt _021C0884
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021C08A4: .word 0x021C3A28
+_021C08A4: .word _021C3A28 - 1
 
 	thumb_func_start FUN_overlay_d_217__021c08a8
 FUN_overlay_d_217__021c08a8: ; 0x021C08A8
@@ -15222,7 +15224,7 @@ FUN_overlay_d_217__021c08d4: ; 0x021C08D4
 	pop {r4, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021c08d4
-_021C08EC: .word 0x021BF6BD
+_021C08EC: .word _021BF6BC
 
 	thumb_func_start FUN_overlay_d_217__021c08f0
 FUN_overlay_d_217__021c08f0: ; 0x021C08F0
@@ -15233,7 +15235,7 @@ FUN_overlay_d_217__021c08f0: ; 0x021C08F0
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c08f0
-_021C08FC: .word 0x02030EAC
+_021C08FC: .word FUN_02030EAC
 
 	thumb_func_start FUN_overlay_d_217__021c0900
 FUN_overlay_d_217__021c0900: ; 0x021C0900
@@ -15390,7 +15392,7 @@ thunk_FUN_overlay_d_217__021c0d7c: ; 0x021C09D0
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c0d7c
-_021C09D4: .word 0x021C0D7D
+_021C09D4: .word thunk_FUN_overlay_d_217__021c0d7c + 940
 
 	thumb_func_start LAB_overlay_d_217__021c09d8
 LAB_overlay_d_217__021c09d8: ; 0x021C09D8
@@ -15398,7 +15400,7 @@ LAB_overlay_d_217__021c09d8: ; 0x021C09D8
 	bx r3
 	.balign 4, 0
 	thumb_func_end LAB_overlay_d_217__021c09d8
-_021C09DC: .word 0x021C0D39
+_021C09DC: .word LAB_overlay_d_217__021c0d38
 
 	thumb_func_start FUN_overlay_d_217__021c09e0
 FUN_overlay_d_217__021c09e0: ; 0x021C09E0
@@ -15407,7 +15409,7 @@ FUN_overlay_d_217__021c09e0: ; 0x021C09E0
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c09e0
-_021C09E8: .word 0x021C0D5D
+_021C09E8: .word LAB_overlay_d_217__021c0d5c
 
 	thumb_func_start FUN_overlay_d_217__021c09ec
 FUN_overlay_d_217__021c09ec: ; 0x021C09EC
@@ -15416,7 +15418,7 @@ FUN_overlay_d_217__021c09ec: ; 0x021C09EC
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c09ec
-_021C09F4: .word 0x021C0D6D
+_021C09F4: .word LAB_overlay_d_217__021c0d6c
 
 	thumb_func_start FUN_overlay_d_217__021c09f8
 FUN_overlay_d_217__021c09f8: ; 0x021C09F8
@@ -15469,7 +15471,7 @@ FUN_overlay_d_217__021c0a38: ; 0x021C0A38
 	nop
 	thumb_func_end FUN_overlay_d_217__021c0a38
 _021C0A4C: .word 0x000001E1
-_021C0A50: .word 0x021C4020
+_021C0A50: .word _021C4020
 
 	thumb_func_start FUN_021C0A54
 FUN_021C0A54: ; 0x021C0A54
@@ -15721,7 +15723,7 @@ FUN_overlay_d_217__021c0bbc: ; 0x021C0BBC
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021c0bbc
-_021C0C28: .word 0x021C3F80
+_021C0C28: .word _021C3F80 - 1
 
 	thumb_func_start FUN_overlay_d_217__021c0c2c
 FUN_overlay_d_217__021c0c2c: ; 0x021C0C2C
@@ -15730,7 +15732,7 @@ FUN_overlay_d_217__021c0c2c: ; 0x021C0C2C
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c0c2c
-_021C0C34: .word 0x0204B3B4
+_021C0C34: .word FUN_0204B3B4
 
 	thumb_func_start FUN_overlay_d_217__021c0c38
 FUN_overlay_d_217__021c0c38: ; 0x021C0C38
@@ -15758,7 +15760,7 @@ FUN_overlay_d_217__021c0c50: ; 0x021C0C50
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c0c50
-_021C0C58: .word 0x02021541
+_021C0C58: .word FUN_02021540
 
 	thumb_func_start FUN_overlay_d_217__021c0c5c
 FUN_overlay_d_217__021c0c5c: ; 0x021C0C5C
@@ -15856,7 +15858,7 @@ FUN_overlay_d_217__021c0d08: ; 0x021C0D08
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c0d08
-_021C0D10: .word 0x021C29D9
+_021C0D10: .word FUN_overlay_d_217__021c29d8
 
 	thumb_func_start FUN_overlay_d_217__021c0d14
 FUN_overlay_d_217__021c0d14: ; 0x021C0D14
@@ -15870,7 +15872,7 @@ FUN_overlay_d_217__021c0d14: ; 0x021C0D14
 	pop {r3, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021c0d14
-_021C0D28: .word 0x021C3F50
+_021C0D28: .word _021C3F50 - 1
 
 	thumb_func_start FUN_overlay_d_217__021c0d2c
 FUN_overlay_d_217__021c0d2c: ; 0x021C0D2C
@@ -15897,9 +15899,9 @@ LAB_overlay_d_217__021c0d38: ; 0x021C0D38
 	bx r3
 	.balign 4, 0
 	thumb_func_end LAB_overlay_d_217__021c0d38
-_021C0D50: .word 0x021C3F60
-_021C0D54: .word 0x021C3F5C
-_021C0D58: .word 0x021C29F9
+_021C0D50: .word _021C3F60 - 1
+_021C0D54: .word _021C3F5C - 1
+_021C0D58: .word LAB_overlay_d_217__021c29f8
 
 	thumb_func_start LAB_overlay_d_217__021c0d5c
 LAB_overlay_d_217__021c0d5c: ; 0x021C0D5C
@@ -15910,7 +15912,7 @@ LAB_overlay_d_217__021c0d5c: ; 0x021C0D5C
 	bx r3
 	nop
 	thumb_func_end LAB_overlay_d_217__021c0d5c
-_021C0D68: .word 0x021C2A01
+_021C0D68: .word LAB_overlay_d_217__021c2a00
 
 	thumb_func_start LAB_overlay_d_217__021c0d6c
 LAB_overlay_d_217__021c0d6c: ; 0x021C0D6C
@@ -15956,7 +15958,7 @@ _021C0D8E:
 	pop {r4, r5}
 	bx lr
 	nop
-_021C0DB0: .word 0x021C3F48
+_021C0DB0: .word _021C3F48 - 1
 
 	thumb_func_start FUN_overlay_d_217__021c0db4
 FUN_overlay_d_217__021c0db4: ; 0x021C0DB4
@@ -15986,7 +15988,7 @@ FUN_overlay_d_217__021c0dc4: ; 0x021C0DC4
 	pop {r3, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021c0dc4
-_021C0DD8: .word 0x021C4034
+_021C0DD8: .word _021C4034
 
 	thumb_func_start FUN_021C0DDC
 FUN_021C0DDC: ; 0x021C0DDC
@@ -16066,7 +16068,7 @@ FUN_overlay_d_217__021c0e08: ; 0x021C0E08
 	pop {r3, r4, r5, r6, pc}
 	nop
 	thumb_func_end FUN_overlay_d_217__021c0e08
-_021C0E38: .word 0x021C4050
+_021C0E38: .word _021C4050
 
 	thumb_func_start FUN_021C0E3C
 FUN_021C0E3C: ; 0x021C0E3C
@@ -16082,7 +16084,7 @@ LAB_overlay_d_217__021c0e4c: ; 0x021C0E4C
 	bx r3
 	.balign 4, 0
 	thumb_func_end LAB_overlay_d_217__021c0e4c
-_021C0E50: .word 0x021C0EA5
+_021C0E50: .word FUN_021C0EA4
 
 	thumb_func_start thunk_FUN_overlay_d_217__021c0ec0
 thunk_FUN_overlay_d_217__021c0ec0: ; 0x021C0E54
@@ -16090,7 +16092,7 @@ thunk_FUN_overlay_d_217__021c0ec0: ; 0x021C0E54
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c0ec0
-_021C0E58: .word 0x021C0EC1
+_021C0E58: .word thunk_FUN_overlay_d_217__021c0ec0 + 108
 
 	thumb_func_start thunk_FUN_overlay_d_217__021c0edc
 thunk_FUN_overlay_d_217__021c0edc: ; 0x021C0E5C
@@ -16098,7 +16100,7 @@ thunk_FUN_overlay_d_217__021c0edc: ; 0x021C0E5C
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c0edc
-_021C0E60: .word 0x021C0EDD
+_021C0E60: .word thunk_FUN_overlay_d_217__021c0edc + 128
 
 	thumb_func_start thunk_FUN_overlay_d_217__021c0ee4
 thunk_FUN_overlay_d_217__021c0ee4: ; 0x021C0E64
@@ -16106,7 +16108,7 @@ thunk_FUN_overlay_d_217__021c0ee4: ; 0x021C0E64
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c0ee4
-_021C0E68: .word 0x021C0EE5
+_021C0E68: .word thunk_FUN_overlay_d_217__021c0ee4 + 128
 
 	thumb_func_start FUN_overlay_d_217__021c0e6c
 FUN_overlay_d_217__021c0e6c: ; 0x021C0E6C
@@ -16135,7 +16137,7 @@ FUN_overlay_d_217__021c0e78: ; 0x021C0E78
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021c0e78
-_021C0E94: .word 0x021C4050
+_021C0E94: .word _021C4050
 
 	thumb_func_start FUN_overlay_d_217__021c0e98
 FUN_overlay_d_217__021c0e98: ; 0x021C0E98
@@ -16234,7 +16236,7 @@ FUN_overlay_d_217__021c0ef4: ; 0x021C0EF4
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021c0ef4
-_021C0F44: .word 0x021C4058
+_021C0F44: .word _021C4058
 
 	thumb_func_start FUN_overlay_d_217__021c0f48
 FUN_overlay_d_217__021c0f48: ; 0x021C0F48
@@ -16484,7 +16486,7 @@ thunk_FUN_overlay_d_217__021c15b8: ; 0x021C1124
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c15b8
-_021C1128: .word 0x021C15B9
+_021C1128: .word thunk_FUN_overlay_d_217__021c15b8 + 1172
 
 	thumb_func_start FUN_overlay_d_217__021c112c
 FUN_overlay_d_217__021c112c: ; 0x021C112C
@@ -16514,7 +16516,7 @@ FUN_overlay_d_217__021c1154: ; 0x021C1154
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c1154
-_021C115C: .word 0x021C16DD
+_021C115C: .word LAB_overlay_d_217__021c16dc
 
 	thumb_func_start FUN_overlay_d_217__021c1160
 FUN_overlay_d_217__021c1160: ; 0x021C1160
@@ -16523,7 +16525,7 @@ FUN_overlay_d_217__021c1160: ; 0x021C1160
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c1160
-_021C1168: .word 0x021C16DD
+_021C1168: .word LAB_overlay_d_217__021c16dc
 
 	thumb_func_start FUN_overlay_d_217__021c116c
 FUN_overlay_d_217__021c116c: ; 0x021C116C
@@ -16532,7 +16534,7 @@ FUN_overlay_d_217__021c116c: ; 0x021C116C
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c116c
-_021C1174: .word 0x021C16DD
+_021C1174: .word LAB_overlay_d_217__021c16dc
 
 	thumb_func_start FUN_overlay_d_217__021c1178
 FUN_overlay_d_217__021c1178: ; 0x021C1178
@@ -16541,7 +16543,7 @@ FUN_overlay_d_217__021c1178: ; 0x021C1178
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c1178
-_021C1180: .word 0x021C16DD
+_021C1180: .word LAB_overlay_d_217__021c16dc
 
 	thumb_func_start thunk_FUN_overlay_d_217__021c1a58
 thunk_FUN_overlay_d_217__021c1a58: ; 0x021C1184
@@ -16549,7 +16551,7 @@ thunk_FUN_overlay_d_217__021c1a58: ; 0x021C1184
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c1a58
-_021C1188: .word 0x021C1A59
+_021C1188: .word thunk_FUN_overlay_d_217__021c1a58 + 2260
 
 	thumb_func_start thunk_FUN_overlay_d_217__021c1a5c
 thunk_FUN_overlay_d_217__021c1a5c: ; 0x021C118C
@@ -16557,7 +16559,7 @@ thunk_FUN_overlay_d_217__021c1a5c: ; 0x021C118C
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c1a5c
-_021C1190: .word 0x021C1A5D
+_021C1190: .word thunk_FUN_overlay_d_217__021c1a5c + 2256
 
 	thumb_func_start FUN_overlay_d_217__021c1194
 FUN_overlay_d_217__021c1194: ; 0x021C1194
@@ -16595,7 +16597,7 @@ thunk_FUN_overlay_d_217__021c1a84: ; 0x021C11C8
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c1a84
-_021C11CC: .word 0x021C1A85
+_021C11CC: .word thunk_FUN_overlay_d_217__021c1a84 + 2236
 
 	thumb_func_start FUN_overlay_d_217__021c11d0
 FUN_overlay_d_217__021c11d0: ; 0x021C11D0
@@ -16630,7 +16632,7 @@ thunk_FUN_overlay_d_217__021c1d28: ; 0x021C11F4
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c1d28
-_021C11F8: .word 0x021C1D29
+_021C11F8: .word thunk_FUN_overlay_d_217__021c1d28 + 2868
 
 	thumb_func_start FUN_overlay_d_217__021c11fc
 FUN_overlay_d_217__021c11fc: ; 0x021C11FC
@@ -17309,7 +17311,7 @@ LAB_overlay_d_217__021c16dc: ; 0x021C16DC
 	bx r3
 	nop
 	thumb_func_end LAB_overlay_d_217__021c16dc
-_021C16E4: .word 0x021C0E4D
+_021C16E4: .word LAB_overlay_d_217__021c0e4c
 
 	thumb_func_start FUN_overlay_d_217__021c16e8
 FUN_overlay_d_217__021c16e8: ; 0x021C16E8
@@ -18207,7 +18209,7 @@ thunk_FUN_overlay_d_217__021c1e00: ; 0x021C1D74
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c1e00
-_021C1D78: .word 0x021C1E01
+_021C1D78: .word thunk_FUN_overlay_d_217__021c1e00 + 140
 
 	thumb_func_start FUN_overlay_d_217__021c1d7c
 FUN_overlay_d_217__021c1d7c: ; 0x021C1D7C
@@ -18260,7 +18262,7 @@ FUN_overlay_d_217__021c1dbc: ; 0x021C1DBC
 	nop
 	thumb_func_end FUN_overlay_d_217__021c1dbc
 _021C1DDC: .word 0x00000634
-_021C1DE0: .word 0x021C4064
+_021C1DE0: .word _021C4064
 _021C1DE4: .word 0x00000FCC
 
 	thumb_func_start FUN_021C1DE8
@@ -18289,7 +18291,7 @@ FUN_overlay_d_217__021c1e00: ; 0x021C1E00
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c1e00
-_021C1E08: .word 0x021C0E3D
+_021C1E08: .word FUN_021C0E3C
 
 	thumb_func_start FUN_overlay_d_217__021c1e0c
 FUN_overlay_d_217__021c1e0c: ; 0x021C1E0C
@@ -18597,7 +18599,7 @@ thunk_FUN_overlay_d_217__021c20ec: ; 0x021C20C4
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c20ec
-_021C20C8: .word 0x021C20ED
+_021C20C8: .word thunk_FUN_overlay_d_217__021c20ec + 40
 
 	thumb_func_start FUN_overlay_d_217__021c20cc
 FUN_overlay_d_217__021c20cc: ; 0x021C20CC
@@ -18606,7 +18608,7 @@ FUN_overlay_d_217__021c20cc: ; 0x021C20CC
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_217__021c20cc
-_021C20D4: .word 0x021C218D
+_021C20D4: .word FUN_overlay_d_217__021c218c
 
 	thumb_func_start FUN_overlay_d_217__021c20d8
 FUN_overlay_d_217__021c20d8: ; 0x021C20D8
@@ -19219,7 +19221,7 @@ FUN_overlay_d_217__021c2550: ; 0x021C2550
 	nop
 	thumb_func_end FUN_overlay_d_217__021c2550
 _021C2564: .word 0x0000022E
-_021C2568: .word 0x021C4074
+_021C2568: .word _021C4074
 
 	thumb_func_start FUN_overlay_d_217__021c256c
 FUN_overlay_d_217__021c256c: ; 0x021C256C
@@ -19523,7 +19525,7 @@ FUN_overlay_d_217__021c2740: ; 0x021C2740
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021c2740
-_021C2744: .word 0x021C2749
+_021C2744: .word LAB_overlay_d_217__021c2748
 
 	thumb_func_start LAB_overlay_d_217__021c2748
 LAB_overlay_d_217__021c2748: ; 0x021C2748
@@ -19762,7 +19764,7 @@ FUN_overlay_d_217__021c28fc: ; 0x021C28FC
 	pop {r3, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_217__021c28fc
-_021C2910: .word 0x021C407C
+_021C2910: .word _021C407C
 
 	thumb_func_start FUN_021C2914
 FUN_021C2914: ; 0x021C2914
@@ -19810,7 +19812,7 @@ thunk_FUN_overlay_d_217__021c299c: ; 0x021C2950
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c299c
-_021C2954: .word 0x021C299D
+_021C2954: .word thunk_FUN_overlay_d_217__021c299c + 76
 
 	thumb_func_start FUN_overlay_d_217__021c2958
 FUN_overlay_d_217__021c2958: ; 0x021C2958
@@ -19917,7 +19919,7 @@ thunk_FUN_overlay_d_217__021c2a30: ; 0x021C29F0
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c2a30
-_021C29F4: .word 0x021C2A31
+_021C29F4: .word thunk_FUN_overlay_d_217__021c2a30 + 64
 
 	thumb_func_start LAB_overlay_d_217__021c29f8
 LAB_overlay_d_217__021c29f8: ; 0x021C29F8
@@ -19925,7 +19927,7 @@ LAB_overlay_d_217__021c29f8: ; 0x021C29F8
 	bx r3
 	.balign 4, 0
 	thumb_func_end LAB_overlay_d_217__021c29f8
-_021C29FC: .word 0x021C2A19
+_021C29FC: .word LAB_overlay_d_217__021c2a18
 
 	thumb_func_start LAB_overlay_d_217__021c2a00
 LAB_overlay_d_217__021c2a00: ; 0x021C2A00
@@ -19933,7 +19935,7 @@ LAB_overlay_d_217__021c2a00: ; 0x021C2A00
 	bx r3
 	.balign 4, 0
 	thumb_func_end LAB_overlay_d_217__021c2a00
-_021C2A04: .word 0x021C2A29
+_021C2A04: .word FUN_overlay_d_217__021c2a28
 
 	thumb_func_start thunk_FUN_overlay_d_217__021c2d88
 thunk_FUN_overlay_d_217__021c2d88: ; 0x021C2A08
@@ -19941,7 +19943,7 @@ thunk_FUN_overlay_d_217__021c2d88: ; 0x021C2A08
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c2d88
-_021C2A0C: .word 0x021C2D89
+_021C2A0C: .word thunk_FUN_overlay_d_217__021c2d88 + 896
 
 	thumb_func_start thunk_FUN_overlay_d_217__021c2d9c
 thunk_FUN_overlay_d_217__021c2d9c: ; 0x021C2A10
@@ -19949,7 +19951,7 @@ thunk_FUN_overlay_d_217__021c2d9c: ; 0x021C2A10
 	bx r3
 	.balign 4, 0
 	thumb_func_end thunk_FUN_overlay_d_217__021c2d9c
-_021C2A14: .word 0x021C2D9D
+_021C2A14: .word thunk_FUN_overlay_d_217__021c2d9c + 908
 
 	thumb_func_start LAB_overlay_d_217__021c2a18
 LAB_overlay_d_217__021c2a18: ; 0x021C2A18
@@ -20448,7 +20450,7 @@ FUN_overlay_d_217__021c2da0: ; 0x021C2DA0
 	nop
 	thumb_func_end FUN_overlay_d_217__021c2da0
 _021C2DBC: .word 0x0000029B
-_021C2DC0: .word 0x021C408C
+_021C2DC0: .word _021C408C
 
 	thumb_func_start FUN_021C2DC4
 FUN_021C2DC4: ; 0x021C2DC4
@@ -20505,7 +20507,7 @@ _021C2E0A:
 _021C2E18:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021C2E1C: .word 0x021C408C
+_021C2E1C: .word _021C408C
 
 	thumb_func_start FUN_overlay_d_217__021c2e20
 FUN_overlay_d_217__021c2e20: ; 0x021C2E20

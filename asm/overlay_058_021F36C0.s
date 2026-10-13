@@ -57,7 +57,7 @@ FUN_overlay_d_58__021f36c0: ; 0x021F36C0
 	pop {r4, r5, r6, pc}
 	nop
 	thumb_func_end FUN_overlay_d_58__021f36c0
-_021F3710: .word 0x021F3B60
+_021F3710: .word _021F3B60
 
 	thumb_func_start FUN_overlay_d_58__021f3714
 FUN_overlay_d_58__021f3714: ; 0x021F3714

@@ -228,7 +228,7 @@ _0220B01C:
 	nop
 _0220B03C: .word 0x00000043
 _0220B040: .word 0x000000CE
-_0220B044: .word 0x0220B2F9
+_0220B044: .word _0220B2F8
 _0220B048:
 	.byte 0x38, 0xB5
 _0220B04A:
@@ -610,12 +610,12 @@ FUN_overlay_d_207__0220b318: ; 0x0220B318
 	nop
 	thumb_func_end FUN_overlay_d_207__0220b318
 _0220B39C: .word 0x000001C7
-_0220B3A0: .word 0x0220BC20
+_0220B3A0: .word _0220BC20
 _0220B3A4: .word 0x04000050
 _0220B3A8: .word 0x04001050
 _0220B3AC: .word 0xFFFF1FFF
-_0220B3B0: .word 0x0220BAE8
-_0220B3B4: .word 0x0220B435
+_0220B3B0: .word _0220BAE8 - 1
+_0220B3B4: .word _0220B434
 
 	thumb_func_start FUN_overlay_d_207__0220b3b8
 FUN_overlay_d_207__0220b3b8: ; 0x0220B3B8
@@ -685,7 +685,7 @@ FUN_overlay_d_207__0220b428: ; 0x0220B428
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_207__0220b428
-_0220B430: .word 0x0220B559
+_0220B430: .word LAB_overlay_d_207__0220b558
 _0220B434:
 	.byte 0x10, 0xB5, 0x0C, 0x1C, 0x20, 0x1C, 0x00, 0xF0, 0x53, 0xF8, 0x20, 0x1D
 	.byte 0x00, 0xF0, 0x86, 0xF8, 0x10, 0xBD, 0x00, 0x00
@@ -732,8 +732,8 @@ _0220B46A:
 	blo _0220B46A
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_0220B4A0: .word 0x0220BABC
-_0220B4A4: .word 0x0220BB18
+_0220B4A0: .word _0220BABC - 1
+_0220B4A4: .word _0220BB18 - 1
 
 	thumb_func_start FUN_overlay_d_207__0220b4a8
 FUN_overlay_d_207__0220b4a8: ; 0x0220B4A8
@@ -761,7 +761,7 @@ _0220B4B2:
 	blx MI_CpuFill8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_0220B4DC: .word 0x0220BB18
+_0220B4DC: .word _0220BB18 - 1
 
 	thumb_func_start FUN_overlay_d_207__0220b4e0
 FUN_overlay_d_207__0220b4e0: ; 0x0220B4E0
@@ -801,7 +801,7 @@ FUN_overlay_d_207__0220b4ec: ; 0x0220B4EC
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_207__0220b4ec
-_0220B528: .word 0x0220BACC
+_0220B528: .word _0220BACC - 1
 
 	thumb_func_start FUN_overlay_d_207__0220b52c
 FUN_overlay_d_207__0220b52c: ; 0x0220B52C
@@ -1003,8 +1003,8 @@ _0220B6BC:
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_0220B6DC: .word 0x0220BC38
-_0220B6E0: .word 0x0220B945
+_0220B6DC: .word _0220BC38
+_0220B6E0: .word _0220B944
 
 	thumb_func_start FUN_overlay_d_207__0220b6e4
 FUN_overlay_d_207__0220b6e4: ; 0x0220B6E4
@@ -1481,8 +1481,8 @@ _0220BA9C:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	nop
-_0220BAA8: .word 0x0220BBEC
-_0220BAAC: .word 0x0220BBF8
+_0220BAA8: .word _0220BBEC - 1
+_0220BAAC: .word _0220BBF8 - 1
 _0220BAB0:
 	.byte 0x41, 0xAF, 0x20, 0x02, 0xA5, 0xB0, 0x20, 0x02, 0x49, 0xB0, 0x20, 0x02
 _0220BABC:

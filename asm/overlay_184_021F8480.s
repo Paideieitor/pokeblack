@@ -89,7 +89,7 @@ _021F84CC:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 _021F8514: .word 0x00000070
-_021F8518: .word 0x021F85DD
+_021F8518: .word _021F85DC
 _021F851C:
 	.byte 0xF8, 0xB5
 _021F851E:
@@ -203,7 +203,7 @@ LAB_overlay_d_184__021f8616: ; 0x021F8616
 _021F861C:
 	pop {r4, pc}
 	nop
-_021F8620: .word 0x021F8671
+_021F8620: .word _021F8670
 _021F8624:
 	.byte 0x38, 0xB5
 _021F8626:
@@ -280,7 +280,7 @@ _021F86E0:
 	pop {r4, r5, r6, pc}
 _021F86E4:
 	.byte 0x25, 0x86, 0x1F, 0x02
-_021F86E8: .word 0x021F86ED
+_021F86E8: .word _021F86EC
 _021F86EC:
 	.byte 0xF0, 0xB5, 0x89, 0xB0
 	.byte 0x0D, 0x1C, 0x29, 0x68, 0x14, 0x1C, 0x0B, 0x29, 0x22, 0xD8, 0x49, 0x18, 0x79, 0x44, 0xC9, 0x88

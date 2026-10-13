@@ -23,6 +23,7 @@
 	.extern FUN_021656A0
 	.extern FUN_0217A950
 	.extern FUN_0217AA20
+	.extern ADDR_021A1CD8
 
 	.text
 
@@ -133,8 +134,7 @@ FUN_0205B2F8: ; 0x0205B2F8
 	moveq r0, #1
 	movne r0, #0
 	ldmia sp!, {r3, pc}
-	.balign 4, 0
-_0205B338: .word 0x021A1CD8
+_0205B338: .word ADDR_021A1CD8
 	arm_func_end FUN_0205B2F8
 
 	arm_func_start FUN_0205B33C

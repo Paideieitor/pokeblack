@@ -2,6 +2,8 @@
 
 	.extern FUN_0205F72C
 	.extern FUN_02082A7C
+	.extern _02146B60
+	.extern _02146B64
 
 	.text
 
@@ -354,7 +356,7 @@ FUN_020606A8: ; 0x020606A8
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	.balign 4, 0
-_020606CC: .word 0x02146B64
+_020606CC: .word _02146B64
 	arm_func_end FUN_020606A8
 
 	arm_func_start FUN_020606D0
@@ -404,8 +406,8 @@ FUN_0206073E: ; 0x0206073E
 _0206073E:
 	.byte 0xFF, 0xEB
 	.byte 0x10, 0x80, 0xBD, 0xE8
-_02060744: .word 0x02146B60
-_02060748: .word 0x02146B64
+_02060744: .word _02146B60
+_02060748: .word _02146B64
 	thumb_func_end FUN_0206073E
 
 	arm_func_start FUN_0206074C

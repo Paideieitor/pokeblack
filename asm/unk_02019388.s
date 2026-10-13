@@ -4,6 +4,7 @@
 	.extern FUN_02019ABC
 	.extern FUN_02019C38
 	.extern FUN_0201F41C
+	.extern FUN_02045A38
 
 	.text
 
@@ -690,7 +691,7 @@ _0201985C:
 	ldr r1, [sp, #4]
 	add r0, r4, #0
 	mov r2, #0xb
-	.hword 0xF02C, 0xE8EA ; blx FUN_02045A38
+	blx FUN_02045A38
 	add r0, r7, #0
 	bl FUN_02019ABC
 	ldr r2, [r5, #0x10]
@@ -732,7 +733,7 @@ _020198C4:
 	ldr r1, [sp, #4]
 	add r0, r4, #0
 	mov r2, #0xb
-	.hword 0xF02C, 0xE8B6 ; blx FUN_02045A38
+	blx FUN_02045A38
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 _020198D2:
@@ -796,7 +797,7 @@ _02019918:
 _0201993E:
 	add r0, r4, #0
 	mov r2, #8
-	.hword 0xF02C, 0xE87A ; blx FUN_02045A38
+	blx FUN_02045A38
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 _0201994A:
@@ -943,4 +944,5 @@ _02019A44: .word 0xFFFF83FF
 _02019A48: .word 0xFE0FFFFF
 _02019A4C: .word 0xC1FFFFFF
 	thumb_func_end FUN_0201939c
+
 

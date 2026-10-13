@@ -59,7 +59,7 @@ FUN_021F5398: ; 0x021F5398
 	bl FUN_020122C0
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
-_021F53C4: .word 0x021F53C9
+_021F53C4: .word _021F53C8
 	thumb_func_end FUN_021F5398
 _021F53C8:
 	.byte 0xF8, 0xB5, 0x0C, 0x1C, 0x06, 0x1C, 0x1D, 0xF6

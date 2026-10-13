@@ -204,12 +204,12 @@ _021F3806:
 	add sp, #0x3c
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021F3820: .word 0x021F4120
-_021F3824: .word 0x021F4108
+_021F3820: .word _021F4120 - 1
+_021F3824: .word _021F4108 - 1
 _021F3828: .word 0x021F4194
 _021F382C: .word 0x021F4170
 _021F3830: .word 0x021F4204
-_021F3834: .word 0x021F41B8
+_021F3834: .word _021F41B8 - 1
 
 	thumb_func_start FUN_overlay_d_46__021f3838
 FUN_overlay_d_46__021f3838: ; 0x021F3838
@@ -815,7 +815,7 @@ _021F3F94:
 	pop {r4, r5, r6, r7, pc}
 	nop
 _021F3F9C: .word 0x0000055E
-_021F3FA0: .word 0x021F4130
+_021F3FA0: .word _021F4130 - 1
 _021F3FA4: .word 0x000006D3
 
 	thumb_func_start FUN_overlay_d_46__021f3fa8

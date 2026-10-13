@@ -225,7 +225,7 @@ _021DFDA0:
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021DFDA8: .word 0x021DFF60
+_021DFDA8: .word _021DFF60
 _021DFDAC: .word 0x0007F800
 _021DFDB0: .word 0x0007FC00
 _021DFDB4: .word 0xA10F49AE
@@ -331,7 +331,7 @@ FUN_overlay_228__021dff18: ; 0x021DFF18
 	.balign 4, 0
 	thumb_func_end FUN_overlay_228__021dff18
 _021DFF50: .word 0x00000153
-_021DFF54: .word 0x021DFF60
+_021DFF54: .word _021DFF60
 _021DFF58: .word 0x0007F800
 
 	.section .data, 4

@@ -520,7 +520,7 @@ _021D4E8C:
 	add sp, #8
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
-_021D4EF0: .word 0x021F3AA4
+_021D4EF0: .word _021F3AA4
 _021D4EF4: .word 0x00000272
 _021D4EF8: .word 0x00002710
 
@@ -1190,7 +1190,7 @@ PokemonStatStages_Reset: ; 0x021D53C0
 	bx r3
 	.balign 4, 0
 	thumb_func_end PokemonStatStages_Reset
-_021D53C4: .word 0x021D53C9
+_021D53C4: .word PokemonStatStages_ResetCore
 
 	thumb_func_start PokemonStatStages_ResetCore
 PokemonStatStages_ResetCore: ; 0x021D53C8
@@ -2512,7 +2512,7 @@ _021D5C22:
 	mov r0, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021D5C2C: .word 0x021F040C
+_021D5C2C: .word _021F040C
 
 	thumb_func_start BattleMon_IsHiding
 BattleMon_IsHiding: ; 0x021D5C30
@@ -2955,7 +2955,7 @@ BattleMon_RestoreStatStages: ; 0x021D5EFC
 	bx r3
 	nop
 	thumb_func_end BattleMon_RestoreStatStages
-_021D5F04: .word 0x021D53DD
+_021D5F04: .word PokemonStatStages_Restore
 
 	thumb_func_start BattleMon_ResetStatStages
 BattleMon_ResetStatStages: ; 0x021D5F08
@@ -2964,7 +2964,7 @@ BattleMon_ResetStatStages: ; 0x021D5F08
 	bx r3
 	nop
 	thumb_func_end BattleMon_ResetStatStages
-_021D5F10: .word 0x021D53C9
+_021D5F10: .word PokemonStatStages_ResetCore
 
 	thumb_func_start BattleMon_GetCritStage
 BattleMon_GetCritStage: ; 0x021D5F14
@@ -3705,7 +3705,7 @@ BattleMon_SetAppearedTurn: ; 0x021D63EC
 	bx r3
 	.balign 4, 0
 	thumb_func_end BattleMon_SetAppearedTurn
-_021D6404: .word 0x021D67F5
+_021D6404: .word BattleMon_LoadMoveDamageRecord
 
 	thumb_func_start BattleMon_TurnCheck
 BattleMon_TurnCheck: ; 0x021D6408
@@ -4722,7 +4722,7 @@ BattleMon_GetExpForLevel100: ; 0x021D6B6C
 	nop
 	thumb_func_end BattleMon_GetExpForLevel100
 _021D6B7C: .word 0x00000141
-_021D6B80: .word 0x02018585
+_021D6B80: .word FUN_02018584
 
 	thumb_func_start BattleMon_Update
 BattleMon_Update: ; 0x021D6B84
@@ -4986,7 +4986,7 @@ BattleMon_CreateSubstitute: ; 0x021D6D5C
 	nop
 	thumb_func_end BattleMon_CreateSubstitute
 _021D6D68: .word 0x000001F2
-_021D6D6C: .word 0x021D6239
+_021D6D6C: .word BattleMon_CureCondition
 
 	thumb_func_start BattleMon_RemoveSubstitute
 BattleMon_RemoveSubstitute: ; 0x021D6D70

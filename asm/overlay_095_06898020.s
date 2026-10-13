@@ -165,7 +165,7 @@ thunk_EXT_FUN_021d6f0c: ; 0x06898280
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d6f0c
-_06898288: .word 0x021D6F0D
+_06898288: .word thunk_EXT_FUN_021d6f0c - 74191732
 
 	thumb_func_start FUN_0689828C
 FUN_0689828C: ; 0x0689828C
@@ -189,7 +189,7 @@ thunk_EXT_FUN_021d70dc: ; 0x068982A0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d70dc
-_068982A8: .word 0x021D70DD
+_068982A8: .word thunk_EXT_FUN_021d70dc - 74191300
 _068982AC:
 	.byte 0x08, 0xB5, 0x00, 0xF0
 	.byte 0x07, 0xF8, 0x00, 0x28, 0x01, 0xD1, 0x01, 0x20, 0x08, 0xBD, 0x00, 0x20, 0x08, 0xBD, 0x00, 0x00
@@ -232,7 +232,7 @@ thunk_EXT_FUN_021d732c: ; 0x068982F0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d732c
-_068982F8: .word 0x021D732D
+_068982F8: .word thunk_EXT_FUN_021d732c - 74190788
 
 	thumb_func_start FUN_068982FC
 FUN_068982FC: ; 0x068982FC
@@ -246,7 +246,7 @@ thunk_EXT_FUN_021d70a8: ; 0x06898300
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d70a8
-_06898308: .word 0x021D70A9
+_06898308: .word thunk_EXT_FUN_021d70a8 - 74191448
 
 	thumb_func_start FUN_0689830C
 FUN_0689830C: ; 0x0689830C
@@ -260,7 +260,7 @@ thunk_EXT_FUN_021d7360: ; 0x06898310
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d7360
-_06898318: .word 0x021D7361
+_06898318: .word thunk_EXT_FUN_021d7360 - 74190768
 _0689831C:
 	.byte 0x01, 0x21, 0x01, 0x60
 	.byte 0x00, 0x48, 0x70, 0x47
@@ -711,7 +711,7 @@ thunk_EXT_FUN_022033f0: ; 0x06899D58
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_022033f0
-_06899D60: .word 0x022033F1
+_06899D60: .word thunk_EXT_FUN_022033f0 - 74017128
 
 	thumb_func_start FUN_overlay_95__06899d64
 FUN_overlay_95__06899d64: ; 0x06899D64
@@ -1403,7 +1403,7 @@ thunk_EXT_FUN_021b8ff4: ; 0x0689A440
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8ff4
-_0689A448: .word 0x021B8FF5
+_0689A448: .word thunk_EXT_FUN_021b8ff4 - 74323020
 
 	thumb_func_start FUN_0689A44C
 FUN_0689A44C: ; 0x0689A44C
@@ -1417,7 +1417,7 @@ thunk_EXT_FUN_021b9000: ; 0x0689A450
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9000
-_0689A458: .word 0x021B9001
+_0689A458: .word thunk_EXT_FUN_021b9000 - 74323024
 
 	thumb_func_start FUN_0689A45C
 FUN_0689A45C: ; 0x0689A45C
@@ -1761,7 +1761,7 @@ thunk_FUN_02017e1c: ; 0x0689A670
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_FUN_02017e1c
-_0689A678: .word 0x02017E1D
+_0689A678: .word thunk_FUN_02017e1c - 76032084
 
 	thumb_func_start FUN_0689A67C
 FUN_0689A67C: ; 0x0689A67C
@@ -1795,7 +1795,7 @@ thunk_EXT_FUN_021b86b8: ; 0x0689A6A0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b86b8
-_0689A6A8: .word 0x021B86B9
+_0689A6A8: .word thunk_EXT_FUN_021b86b8 - 74325992
 
 	thumb_func_start FUN_0689A6AC
 FUN_0689A6AC: ; 0x0689A6AC
@@ -1819,7 +1819,7 @@ thunk_EXT_FUN_021b904c: ; 0x0689A6C0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b904c
-_0689A6C8: .word 0x021B904D
+_0689A6C8: .word thunk_EXT_FUN_021b904c - 74323572
 
 	thumb_func_start FUN_0689A6CC
 FUN_0689A6CC: ; 0x0689A6CC
@@ -1853,7 +1853,7 @@ thunk_EXT_FUN_021b9af8: ; 0x0689A6F0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9af8
-_0689A6F8: .word 0x021B9AF9
+_0689A6F8: .word thunk_EXT_FUN_021b9af8 - 74320888
 
 	thumb_func_start FUN_0689A6FC
 FUN_0689A6FC: ; 0x0689A6FC
@@ -1867,7 +1867,7 @@ thunk_EXT_FUN_021b9b94: ; 0x0689A700
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9b94
-_0689A708: .word 0x021B9B95
+_0689A708: .word thunk_EXT_FUN_021b9b94 - 74320748
 
 	thumb_func_start FUN_0689A70C
 FUN_0689A70C: ; 0x0689A70C
@@ -1911,7 +1911,7 @@ thunk_EXT_FUN_021d5b7c: ; 0x0689A740
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d5b7c
-_0689A748: .word 0x021D5B7D
+_0689A748: .word thunk_EXT_FUN_021d5b7c - 74206148
 
 	thumb_func_start FUN_0689A74C
 FUN_0689A74C: ; 0x0689A74C
@@ -1925,7 +1925,7 @@ thunk_EXT_FUN_021d3d84: ; 0x0689A750
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d3d84
-_0689A758: .word 0x021D3D85
+_0689A758: .word thunk_EXT_FUN_021d3d84 - 74213836
 
 	thumb_func_start FUN_0689A75C
 FUN_0689A75C: ; 0x0689A75C
@@ -2018,7 +2018,7 @@ thunk_EXT_FUN_021d8414: ; 0x0689A800
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d8414
-_0689A808: .word 0x021D8415
+_0689A808: .word thunk_EXT_FUN_021d8414 - 74195948
 
 	thumb_func_start FUN_0689A80C
 FUN_0689A80C: ; 0x0689A80C
@@ -2090,7 +2090,7 @@ thunk_EXT_FUN_02203040: ; 0x0689A86C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_02203040
-_0689A874: .word 0x02203041
+_0689A874: .word thunk_EXT_FUN_02203040 - 74020908
 
 	thumb_func_start FUN_overlay_95__0689a878
 FUN_overlay_95__0689a878: ; 0x0689A878
@@ -2196,7 +2196,7 @@ thunk_EXT_FUN_021d6d54: ; 0x0689A92C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d6d54
-_0689A934: .word 0x021D6D55
+_0689A934: .word thunk_EXT_FUN_021d6d54 - 74202072
 
 	thumb_func_start FUN_0689A938
 FUN_0689A938: ; 0x0689A938
@@ -2210,7 +2210,7 @@ thunk_EXT_FUN_021d5528: ; 0x0689A93C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d5528
-_0689A944: .word 0x021D5529
+_0689A944: .word thunk_EXT_FUN_021d5528 - 74208276
 
 	thumb_func_start FUN_0689A948
 FUN_0689A948: ; 0x0689A948
@@ -2462,7 +2462,7 @@ thunk_EXT_FUN_021d5448: ; 0x0689AAEC
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d5448
-_0689AAF4: .word 0x021D5449
+_0689AAF4: .word thunk_EXT_FUN_021d5448 - 74208932
 
 	thumb_func_start FUN_0689AAF8
 FUN_0689AAF8: ; 0x0689AAF8
@@ -2520,7 +2520,7 @@ thunk_EXT_FUN_021d8424: ; 0x0689AB3C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d8424
-_0689AB44: .word 0x021D8425
+_0689AB44: .word thunk_EXT_FUN_021d8424 - 74196760
 
 	thumb_func_start FUN_overlay_95__0689ab48
 FUN_overlay_95__0689ab48: ; 0x0689AB48
@@ -2674,7 +2674,7 @@ thunk_EXT_FUN_022030f0: ; 0x0689AC50
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_022030f0
-_0689AC58: .word 0x022030F1
+_0689AC58: .word thunk_EXT_FUN_022030f0 - 74021728
 
 	thumb_func_start FUN_0689AC5C
 FUN_0689AC5C: ; 0x0689AC5C
@@ -2698,7 +2698,7 @@ thunk_EXT_FUN_021d54c0: ; 0x0689AC70
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d54c0
-_0689AC78: .word 0x021D54C1
+_0689AC78: .word thunk_EXT_FUN_021d54c0 - 74209200
 
 	thumb_func_start FUN_0689AC7C
 FUN_0689AC7C: ; 0x0689AC7C
@@ -2712,7 +2712,7 @@ thunk_EXT_FUN_021d83fc: ; 0x0689AC80
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d83fc
-_0689AC88: .word 0x021D83FD
+_0689AC88: .word thunk_EXT_FUN_021d83fc - 74197124
 
 	thumb_func_start FUN_0689AC8C
 FUN_0689AC8C: ; 0x0689AC8C
@@ -2746,7 +2746,7 @@ thunk_EXT_FUN_021d8318: ; 0x0689ACB0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d8318
-_0689ACB8: .word 0x021D8319
+_0689ACB8: .word thunk_EXT_FUN_021d8318 - 74197400
 
 	thumb_func_start FUN_0689ACBC
 FUN_0689ACBC: ; 0x0689ACBC
@@ -2760,7 +2760,7 @@ thunk_EXT_FUN_021d8434: ; 0x0689ACC0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d8434
-_0689ACC8: .word 0x021D8435
+_0689ACC8: .word thunk_EXT_FUN_021d8434 - 74197132
 
 	thumb_func_start FUN_overlay_95__0689accc
 FUN_overlay_95__0689accc: ; 0x0689ACCC
@@ -2847,7 +2847,7 @@ thunk_EXT_FUN_021b8778: ; 0x0689AD40
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8778
-_0689AD48: .word 0x021B8779
+_0689AD48: .word thunk_EXT_FUN_021b8778 - 74327496
 
 	thumb_func_start FUN_overlay_95__0689ad4c
 FUN_overlay_95__0689ad4c: ; 0x0689AD4C
@@ -2922,7 +2922,7 @@ thunk_EXT_FUN_021b9a00: ; 0x0689ADC0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9a00
-_0689ADC8: .word 0x021B9A01
+_0689ADC8: .word thunk_EXT_FUN_021b9a00 - 74322880
 
 	thumb_func_start FUN_0689ADCC
 FUN_0689ADCC: ; 0x0689ADCC
@@ -2936,7 +2936,7 @@ thunk_EXT_FUN_021b8c5c: ; 0x0689ADD0
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8c5c
-_0689ADD8: .word 0x021B8C5D
+_0689ADD8: .word thunk_EXT_FUN_021b8c5c - 74326388
 
 	thumb_func_start FUN_overlay_95__0689addc
 FUN_overlay_95__0689addc: ; 0x0689ADDC
@@ -2993,7 +2993,7 @@ thunk_EXT_FUN_021b8ed8: ; 0x0689AE28
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8ed8
-_0689AE30: .word 0x021B8ED9
+_0689AE30: .word thunk_EXT_FUN_021b8ed8 - 74325840
 
 	thumb_func_start FUN_overlay_95__0689ae34
 FUN_overlay_95__0689ae34: ; 0x0689AE34
@@ -3171,7 +3171,7 @@ thunk_EXT_FUN_02082a48: ; 0x0689AF90
 	ldr pc, _0689AF94 ; =FUN_02082A48
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_02082a48
-_0689AF94: .word 0x02082A48
+_0689AF94: .word thunk_EXT_FUN_02082a48 - 75597129
 
 	thumb_func_start FUN_0689AF98
 FUN_0689AF98: ; 0x0689AF98
@@ -3251,7 +3251,7 @@ thunk_EXT_FUN_021b98ac: ; 0x0689AFFC
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b98ac
-_0689B004: .word 0x021B98AD
+_0689B004: .word thunk_EXT_FUN_021b98ac - 74323792
 
 	thumb_func_start FUN_0689B008
 FUN_0689B008: ; 0x0689B008
@@ -3298,7 +3298,7 @@ thunk_EXT_FUN_021d5444: ; 0x0689B03C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d5444
-_0689B044: .word 0x021D5445
+_0689B044: .word thunk_EXT_FUN_021d5444 - 74210296
 
 	thumb_func_start FUN_0689B048
 FUN_0689B048: ; 0x0689B048
@@ -3312,7 +3312,7 @@ thunk_EXT_FUN_021d59b4: ; 0x0689B04C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d59b4
-_0689B054: .word 0x021D59B5
+_0689B054: .word thunk_EXT_FUN_021d59b4 - 74208920
 
 	thumb_func_start FUN_0689B058
 FUN_0689B058: ; 0x0689B058
@@ -3326,7 +3326,7 @@ thunk_EXT_FUN_021d5864: ; 0x0689B05C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d5864
-_0689B064: .word 0x021D5865
+_0689B064: .word thunk_EXT_FUN_021d5864 - 74209272
 
 	thumb_func_start FUN_0689B068
 FUN_0689B068: ; 0x0689B068
@@ -3340,7 +3340,7 @@ thunk_FUN_02017f00: ; 0x0689B06C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_FUN_02017f00
-_0689B074: .word 0x02017F01
+_0689B074: .word thunk_FUN_02017f00 - 76034412
 
 	thumb_func_start FUN_0689B078
 FUN_0689B078: ; 0x0689B078
@@ -3354,7 +3354,7 @@ thunk_EXT_FUN_021d62a8: ; 0x0689B07C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d62a8
-_0689B084: .word 0x021D62A9
+_0689B084: .word thunk_EXT_FUN_021d62a8 - 74206676
 
 	thumb_func_start FUN_0689B088
 FUN_0689B088: ; 0x0689B088
@@ -3519,7 +3519,7 @@ thunk_EXT_FUN_021b99e0: ; 0x0689B1A8
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b99e0
-_0689B1B0: .word 0x021B99E1
+_0689B1B0: .word thunk_EXT_FUN_021b99e0 - 74323912
 
 	thumb_func_start FUN_0689B1B4
 FUN_0689B1B4: ; 0x0689B1B4
@@ -3654,7 +3654,7 @@ thunk_EXT_FUN_021b8e70: ; 0x0689B308
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8e70
-_0689B310: .word 0x021B8E71
+_0689B310: .word thunk_EXT_FUN_021b8e70 - 74327192
 _0689B314:
 	.byte 0x78, 0x47, 0xC0, 0x46
 
@@ -3664,7 +3664,7 @@ thunk_EXT_FUN_021b8588: ; 0x0689B318
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8588
-_0689B320: .word 0x021B8589
+_0689B320: .word thunk_EXT_FUN_021b8588 - 74329488
 
 	thumb_func_start FUN_0689B324
 FUN_0689B324: ; 0x0689B324
@@ -3678,7 +3678,7 @@ thunk_FUN_0201beb8: ; 0x0689B328
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_FUN_0201beb8
-_0689B330: .word 0x0201BEB9
+_0689B330: .word thunk_FUN_0201beb8 - 76018800
 
 	thumb_func_start FUN_0689B334
 FUN_0689B334: ; 0x0689B334
@@ -3692,7 +3692,7 @@ thunk_EXT_FUN_02202dc4: ; 0x0689B338
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_02202dc4
-_0689B340: .word 0x02202DC5
+_0689B340: .word thunk_EXT_FUN_02202dc4 - 74024308
 
 	thumb_func_start FUN_0689B344
 FUN_0689B344: ; 0x0689B344
@@ -3706,7 +3706,7 @@ thunk_EXT_FUN_021d82d0: ; 0x0689B348
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d82d0
-_0689B350: .word 0x021D82D1
+_0689B350: .word thunk_EXT_FUN_021d82d0 - 74199160
 
 	thumb_func_start FUN_overlay_95__0689b354
 FUN_overlay_95__0689b354: ; 0x0689B354
@@ -3913,7 +3913,7 @@ thunk_FUN_0201bd28: ; 0x0689B4D8
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_FUN_0201bd28
-_0689B4E0: .word 0x0201BD29
+_0689B4E0: .word thunk_FUN_0201bd28 - 76019632
 
 	thumb_func_start FUN_0689B4E4
 FUN_0689B4E4: ; 0x0689B4E4
@@ -3937,7 +3937,7 @@ thunk_EXT_FUN_021b8d8c: ; 0x0689B4F8
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8d8c
-_0689B500: .word 0x021B8D8D
+_0689B500: .word thunk_EXT_FUN_021b8d8c - 74327916
 
 	thumb_func_start FUN_0689B504
 FUN_0689B504: ; 0x0689B504
@@ -3951,7 +3951,7 @@ thunk_EXT_FUN_021d80a8: ; 0x0689B508
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d80a8
-_0689B510: .word 0x021D80A9
+_0689B510: .word thunk_EXT_FUN_021d80a8 - 74200160
 _0689B514:
 	.byte 0xB0, 0x30, 0x00, 0x68, 0x0A, 0x1C, 0x01, 0x4B, 0x05, 0x21, 0x18, 0x47
 	.byte 0x0D, 0x27, 0x20, 0x02, 0x38, 0xB5, 0xB0, 0x30, 0x00, 0x68, 0x0D, 0x1C, 0x00, 0x24, 0x00, 0x21
@@ -4081,7 +4081,7 @@ thunk_EXT_FUN_0220270c: ; 0x0689B744
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_0220270c
-_0689B74C: .word 0x0220270D
+_0689B74C: .word thunk_EXT_FUN_0220270c - 74027064
 
 	thumb_func_start FUN_0689B750
 FUN_0689B750: ; 0x0689B750
@@ -4095,7 +4095,7 @@ thunk_EXT_FUN_021f81ec: ; 0x0689B754
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021f81ec
-_0689B75C: .word 0x021F81ED
+_0689B75C: .word thunk_EXT_FUN_021f81ec - 74069352
 
 	thumb_func_start FUN_0689B760
 FUN_0689B760: ; 0x0689B760
@@ -4109,7 +4109,7 @@ thunk_EXT_FUN_021f8a78: ; 0x0689B764
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021f8a78
-_0689B76C: .word 0x021F8A79
+_0689B76C: .word thunk_EXT_FUN_021f8a78 - 74067180
 
 	thumb_func_start FUN_0689B770
 FUN_0689B770: ; 0x0689B770
@@ -4123,7 +4123,7 @@ thunk_EXT_FUN_022033cc: ; 0x0689B774
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_022033cc
-_0689B77C: .word 0x022033CD
+_0689B77C: .word thunk_EXT_FUN_022033cc - 74023848
 _0689B780:
 	.byte 0xB0, 0x30, 0x00, 0x68, 0x0A, 0x1C, 0x01, 0x4B, 0x06, 0x21, 0x18, 0x47, 0x0D, 0x27, 0x20, 0x02
 	.byte 0xB0, 0x30, 0x00, 0x68, 0x01, 0x49, 0x02, 0x4A, 0x02, 0x4B, 0x18, 0x47, 0x34, 0xD9, 0x89, 0x06
@@ -4848,7 +4848,7 @@ thunk_EXT_FUN_021b8640: ; 0x0689D24C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8640
-_0689D254: .word 0x021B8641
+_0689D254: .word thunk_EXT_FUN_021b8640 - 74337292
 
 	thumb_func_start FUN_overlay_95__0689d258
 FUN_overlay_95__0689d258: ; 0x0689D258
@@ -4912,7 +4912,7 @@ thunk_EXT_FUN_021b8e28: ; 0x0689D2BC
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b8e28
-_0689D2C4: .word 0x021B8E29
+_0689D2C4: .word thunk_EXT_FUN_021b8e28 - 74335380
 
 	thumb_func_start FUN_0689D2C8
 FUN_0689D2C8: ; 0x0689D2C8
@@ -4926,7 +4926,7 @@ thunk_EXT_FUN_021b9920: ; 0x0689D2CC
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9920
-_0689D2D4: .word 0x021B9921
+_0689D2D4: .word thunk_EXT_FUN_021b9920 - 74332588
 
 	thumb_func_start FUN_0689D2D8
 FUN_0689D2D8: ; 0x0689D2D8
@@ -5087,7 +5087,7 @@ thunk_EXT_FUN_021b9ab0: ; 0x0689D40C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9ab0
-_0689D414: .word 0x021B9AB1
+_0689D414: .word thunk_EXT_FUN_021b9ab0 - 74332508
 
 	thumb_func_start FUN_0689D418
 FUN_0689D418: ; 0x0689D418
@@ -5101,7 +5101,7 @@ thunk_EXT_FUN_021b9ac8: ; 0x0689D41C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9ac8
-_0689D424: .word 0x021B9AC9
+_0689D424: .word thunk_EXT_FUN_021b9ac8 - 74332500
 
 	thumb_func_start FUN_0689D428
 FUN_0689D428: ; 0x0689D428
@@ -5115,7 +5115,7 @@ thunk_EXT_FUN_021d5b68: ; 0x0689D42C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d5b68
-_0689D434: .word 0x021D5B69
+_0689D434: .word thunk_EXT_FUN_021d5b68 - 74217668
 
 	thumb_func_start FUN_0689D438
 FUN_0689D438: ; 0x0689D438
@@ -5129,7 +5129,7 @@ thunk_EXT_FUN_021d5440: ; 0x0689D43C
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d5440
-_0689D444: .word 0x021D5441
+_0689D444: .word thunk_EXT_FUN_021d5440 - 74219516
 
 	thumb_func_start FUN_overlay_95__0689d448
 FUN_overlay_95__0689d448: ; 0x0689D448
@@ -5189,7 +5189,7 @@ thunk_EXT_FUN_021b9a24: ; 0x0689D4A4
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9a24
-_0689D4AC: .word 0x021B9A25
+_0689D4AC: .word thunk_EXT_FUN_021b9a24 - 74332800
 
 	thumb_func_start FUN_0689D4B0
 FUN_0689D4B0: ; 0x0689D4B0
@@ -5223,7 +5223,7 @@ thunk_EXT_FUN_021b9934: ; 0x0689D4D4
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b9934
-_0689D4DC: .word 0x021B9935
+_0689D4DC: .word thunk_EXT_FUN_021b9934 - 74333088
 
 	thumb_func_start FUN_0689D4E0
 FUN_0689D4E0: ; 0x0689D4E0
@@ -5237,7 +5237,7 @@ thunk_EXT_FUN_021d6dcc: ; 0x0689D4E4
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021d6dcc
-_0689D4EC: .word 0x021D6DCD
+_0689D4EC: .word thunk_EXT_FUN_021d6dcc - 74213144
 _0689D4F0:
 	.byte 0xF8, 0xB5, 0x82, 0xB0, 0x00, 0x92, 0x4A, 0x00, 0x04, 0x1C, 0x8F, 0x18, 0xE2, 0x5D, 0x01, 0xAE
 	.byte 0xE3, 0x19, 0x32, 0x70, 0x5A, 0x78, 0x72, 0x70, 0x9A, 0x78, 0xB2, 0x70, 0x00, 0x9A, 0x55, 0x00
@@ -5296,7 +5296,7 @@ thunk_EXT_FUN_021b86a0: ; 0x0689D5BC
 	bx ip
 	.balign 4, 0
 	arm_func_end thunk_EXT_FUN_021b86a0
-_0689D5C4: .word 0x021B86A1
+_0689D5C4: .word thunk_EXT_FUN_021b86a0 - 74338076
 
 	thumb_func_start FUN_overlay_95__0689d5c8
 FUN_overlay_95__0689d5c8: ; 0x0689D5C8

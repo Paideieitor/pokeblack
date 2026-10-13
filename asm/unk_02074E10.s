@@ -21,6 +21,12 @@
 	.extern FUN_0208A638
 	.extern FUN_0208A640
 	.extern FUN_0208A674
+	.extern _0207524C
+	.extern _02075274
+	.extern _020752A4
+	.extern _020752D4
+	.extern _020752F4
+	.extern _0214EA54
 
 	.text
 
@@ -142,7 +148,7 @@ _02074F9C:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_02074FA4: .word 0x0207524C
+_02074FA4: .word _0207524C
 	arm_func_end FUN_02074F3C
 
 	arm_func_start FUN_02074FA8
@@ -176,7 +182,7 @@ _02075008:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_02075010: .word 0x0207524C
+_02075010: .word _0207524C
 	arm_func_end FUN_02074FA8
 
 	arm_func_start FUN_02075014
@@ -210,7 +216,7 @@ _02075074:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_0207507C: .word 0x02075274
+_0207507C: .word _02075274
 	arm_func_end FUN_02075014
 
 	arm_func_start FUN_02075080
@@ -244,7 +250,7 @@ _020750E0:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_020750E8: .word 0x020752A4
+_020750E8: .word _020752A4
 	arm_func_end FUN_02075080
 
 	arm_func_start FUN_020750EC
@@ -315,9 +321,9 @@ _020751E0:
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	.balign 4, 0
-_020751E8: .word 0x0214EA54
-_020751EC: .word 0x0214EA54
-_020751F0: .word 0x020752D4
+_020751E8: .word _0214EA54
+_020751EC: .word _0214EA54
+_020751F0: .word _020752D4
 	arm_func_end FUN_020750EC
 _020751F4:
 	.byte 0xF8, 0x40, 0x2D, 0xE9, 0x01, 0x40, 0xB0, 0xE1, 0x00, 0x70, 0xA0, 0xE1
@@ -394,7 +400,7 @@ FUN_0207533C: ; 0x0207533C
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	.balign 4, 0
-_02075400: .word 0x020752F4
+_02075400: .word _020752F4
 	arm_func_end FUN_0207533C
 
 	arm_func_start FUN_02075404

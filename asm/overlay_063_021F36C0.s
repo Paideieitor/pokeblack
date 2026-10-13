@@ -125,7 +125,7 @@ _021F3716:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021F3750: .word 0x021F3D80
-_021F3754: .word 0x021F377D
+_021F3754: .word FUN_overlay_d_63__021f377c
 	thumb_func_end FUN_overlay_63__021f36c0
 _021F3758:
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0x80, 0x30, 0x00, 0x68

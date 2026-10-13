@@ -551,9 +551,9 @@ _021B99B8:
 	add sp, #8
 	pop {r3, r4, r5, pc}
 	nop
-_021B99C8: .word 0x021B9E90
-_021B99CC: .word 0x021B9E60
-_021B99D0: .word 0x021B9E70
+_021B99C8: .word _021B9E90 - 1
+_021B99CC: .word _021B9E60 - 1
+_021B99D0: .word _021B9E70 - 1
 _021B99D4: .word 0x0000FFFF
 
 	thumb_func_start FUN_overlay_d_205__021b99d8
@@ -984,9 +984,9 @@ FUN_overlay_d_205__021b9d58: ; 0x021B9D58
 	pop {r4, pc}
 	nop
 	thumb_func_end FUN_overlay_d_205__021b9d58
-_021B9DA0: .word 0x021B9EFC
-_021B9DA4: .word 0x021B9ECC
-_021B9DA8: .word 0x021B9EDC
+_021B9DA0: .word _021B9EFC - 1
+_021B9DA4: .word _021B9ECC - 1
+_021B9DA8: .word _021B9EDC - 1
 
 	thumb_func_start FUN_overlay_d_205__021b9dac
 FUN_overlay_d_205__021b9dac: ; 0x021B9DAC

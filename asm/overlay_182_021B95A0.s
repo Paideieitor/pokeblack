@@ -78,8 +78,8 @@ _021B9632:
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021B9644: .word 0x021B9B9C
-_021B9648: .word 0x021B9785
+_021B9644: .word _021B9B9C - 1
+_021B9648: .word _021B9784
 _021B964C:
 	.byte 0xF8, 0xB5
 _021B964E:
@@ -371,12 +371,12 @@ FUN_overlay_d_182__021b98e4: ; 0x021B98E4
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 	thumb_func_end FUN_overlay_d_182__021b98e4
-_021B9974: .word 0x021B9CE0
+_021B9974: .word _021B9CE0
 _021B9978: .word 0x04000050
 _021B997C: .word 0x04001050
 _021B9980: .word 0xFFFF1FFF
-_021B9984: .word 0x021B9C48
-_021B9988: .word 0x021B99FD
+_021B9984: .word _021B9C48 - 1
+_021B9988: .word _021B99FC
 
 	thumb_func_start FUN_overlay_d_182__021b998c
 FUN_overlay_d_182__021b998c: ; 0x021B998C
@@ -475,8 +475,8 @@ _021B9A32:
 	blo _021B9A32
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021B9A68: .word 0x021B9BFC
-_021B9A6C: .word 0x021B9C78
+_021B9A68: .word _021B9BFC - 1
+_021B9A6C: .word _021B9C78 - 1
 
 	thumb_func_start FUN_overlay_d_182__021b9a70
 FUN_overlay_d_182__021b9a70: ; 0x021B9A70
@@ -504,7 +504,7 @@ _021B9A7A:
 	blx MI_CpuFill8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021B9AA4: .word 0x021B9C78
+_021B9AA4: .word _021B9C78 - 1
 
 	thumb_func_start FUN_overlay_d_182__021b9aa8
 FUN_overlay_d_182__021b9aa8: ; 0x021B9AA8
@@ -544,7 +544,7 @@ FUN_overlay_d_182__021b9ab4: ; 0x021B9AB4
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_182__021b9ab4
-_021B9AF0: .word 0x021B9C0C
+_021B9AF0: .word _021B9C0C - 1
 
 	thumb_func_start FUN_overlay_d_182__021b9af4
 FUN_overlay_d_182__021b9af4: ; 0x021B9AF4
@@ -616,11 +616,11 @@ FUN_overlay_d_182__021b9b20: ; 0x021B9B20
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 	thumb_func_end FUN_overlay_d_182__021b9b20
-_021B9B74: .word 0x021B9841
-_021B9B78: .word 0x021B9BE4
-_021B9B7C: .word 0x021B9BD8
+_021B9B74: .word _021B9840
+_021B9B78: .word _021B9BE4 - 1
+_021B9B7C: .word _021B9BD8 - 1
 _021B9B80: .word 0x020A1EB8
-_021B9B84: .word 0x021B9BF0
+_021B9B84: .word _021B9BF0 - 1
 _021B9B88: .word 0x00001555
 
 	thumb_func_start FUN_overlay_d_182__021b9b8c

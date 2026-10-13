@@ -95,7 +95,7 @@ _021DC8AA:
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 	nop
-_021DC90C: .word 0x021DCC9C
+_021DC90C: .word _021DCC9C - 1
 _021DC910: .word 0x02FFFC3C
 _021DC914:
 	.byte 0x38, 0xB5

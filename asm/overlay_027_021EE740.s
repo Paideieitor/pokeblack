@@ -67,7 +67,7 @@ FUN_overlay_27__021ee740: ; 0x021EE740
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_27__021ee740
-_021EE798: .word 0x021EEA05
+_021EE798: .word _021EEA04
 _021EE79C: .word 0x00007FDF
 _021EE7A0: .word 0x000006E3
 _021EE7A4:

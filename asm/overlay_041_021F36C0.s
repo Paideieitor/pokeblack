@@ -125,10 +125,10 @@ _021F3758:
 	add sp, #0x80
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021F37A8: .word 0x021F40A4
-_021F37AC: .word 0x021F4208
+_021F37A8: .word _021F40A4 - 1
+_021F37AC: .word _021F4208 - 1
 _021F37B0: .word 0x020A1B38
-_021F37B4: .word 0x021F4660
+_021F37B4: .word _021F4660
 	thumb_func_end FUN_overlay_41__021f36c0
 _021F37B8:
 	.byte 0x38, 0xB5, 0x05, 0x1C, 0x95, 0xF7, 0xB6, 0xFA

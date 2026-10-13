@@ -171,7 +171,7 @@ _02179908:
 	blx FUN_overlay_d_15__0217a148
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_02179928: .word 0x0217AAAC
+_02179928: .word _0217AAAC
 _0217992C: .word 0x0217AAC0
 _02179930: .word 0x0217AAD2
 _02179934: .word 0x0217AAC6
@@ -212,7 +212,7 @@ _02179976:
 _0217997C: .word 0x0217AAC0
 _02179980: .word 0x0217AB40
 _02179984: .word 0x0217ABA0
-_02179988: .word 0x02179B39
+_02179988: .word _02179B38
 _0217998C:
 	.byte 0x01, 0x49, 0xC8, 0x63
 	.byte 0x70, 0x47, 0xC0, 0x46, 0x40, 0xAB, 0x17, 0x02
@@ -264,7 +264,7 @@ _021799E0:
 	pop {r3, pc}
 	.balign 4, 0
 _021799E8: .word 0x0217AB80
-_021799EC: .word 0x0217AAAC
+_021799EC: .word _0217AAAC
 
 	thumb_func_start FUN_overlay_d_15__021799f0
 FUN_overlay_d_15__021799f0: ; 0x021799F0
@@ -367,7 +367,7 @@ _02179A66:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _02179A9C: .word 0x0217AB80
-_02179AA0: .word 0x0217AAAC
+_02179AA0: .word _0217AAAC
 _02179AA4: .word 0x0217ABA0
 _02179AA8: .word 0x0217AB40
 
@@ -714,7 +714,7 @@ LAB_overlay_d_15__02179d78: ; 0x02179D78
 	bx r3
 	.balign 4, 0
 	thumb_func_end LAB_overlay_d_15__02179d78
-_02179D7C: .word 0x0217A024
+_02179D7C: .word FUN_overlay_d_15__0217a024 - 1
 _02179D80:
 	.byte 0x38, 0xB5
 _02179D82:
@@ -876,7 +876,7 @@ _02179ED0:
 	.byte 0x80, 0xAB, 0x17, 0x02
 _02179ED4:
 	.byte 0xC0, 0xAA, 0x17, 0x02
-_02179ED8: .word 0x02179B39
+_02179ED8: .word _02179B38
 _02179EDC: .word 0x0000FFFF
 
 	arm_func_start FUN_overlay_d_15__02179ee0
@@ -954,7 +954,7 @@ FUN_overlay_d_15__02179f74: ; 0x02179F74
 	.balign 4, 0
 	arm_func_end FUN_overlay_d_15__02179f74
 _02179FB8: .word 0x0217ABD8
-_02179FBC: .word 0x0217AAB0
+_02179FBC: .word _0217AAB0
 _02179FC0: .word 0x0217ABA8
 
 	arm_func_start FUN_overlay_d_15__02179fc4
@@ -1078,7 +1078,7 @@ _0217A124:
 	ldmia sp!, {r4, pc}
 	.balign 4, 0
 _0217A12C: .word 0x0217ABA8
-_0217A130: .word 0x0217AAB0
+_0217A130: .word _0217AAB0
 
 	arm_func_start FUN_overlay_d_15__0217a134
 FUN_overlay_d_15__0217a134: ; 0x0217A134
@@ -1103,7 +1103,7 @@ FUN_overlay_d_15__0217a148: ; 0x0217A148
 	.balign 4, 0
 	arm_func_end FUN_overlay_d_15__0217a148
 _0217A16C: .word 0x0217ABA8
-_0217A170: .word 0x0217AAB0
+_0217A170: .word _0217AAB0
 
 	arm_func_start FUN_overlay_d_15__0217a174
 FUN_overlay_d_15__0217a174: ; 0x0217A174
@@ -1410,7 +1410,7 @@ _0217A56C:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 _0217A574: .word 0x0217ABD8
-_0217A578: .word 0x0217AAB0
+_0217A578: .word _0217AAB0
 _0217A57C: .word 0x0217ABA8
 _0217A580: .word 0x0217ABDC
 
@@ -1430,7 +1430,7 @@ FUN_overlay_d_15__0217a594: ; 0x0217A594
 	bx lr
 	.balign 4, 0
 	arm_func_end FUN_overlay_d_15__0217a594
-_0217A5A0: .word 0x0217AAB0
+_0217A5A0: .word _0217AAB0
 
 	arm_func_start FUN_overlay_d_15__0217a5a4
 FUN_overlay_d_15__0217a5a4: ; 0x0217A5A4
@@ -1439,7 +1439,7 @@ FUN_overlay_d_15__0217a5a4: ; 0x0217A5A4
 	bx lr
 	.balign 4, 0
 	arm_func_end FUN_overlay_d_15__0217a5a4
-_0217A5B0: .word 0x0217AAB0
+_0217A5B0: .word _0217AAB0
 
 	arm_func_start FUN_overlay_d_15__0217a5b4
 FUN_overlay_d_15__0217a5b4: ; 0x0217A5B4
@@ -1485,7 +1485,7 @@ FUN_overlay_d_15__0217a60c: ; 0x0217A60C
 	ldmia sp!, {r4, pc}
 	.balign 4, 0
 	arm_func_end FUN_overlay_d_15__0217a60c
-_0217A63C: .word 0x0217AAB4
+_0217A63C: .word _0217AAB4
 _0217A640: .word 0x0217AC90
 _0217A644: .word 0x0000FFFD
 
@@ -1503,7 +1503,7 @@ FUN_overlay_d_15__0217a648: ; 0x0217A648
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
 	arm_func_end FUN_overlay_d_15__0217a648
-_0217A670: .word 0x0217AAB4
+_0217A670: .word _0217AAB4
 
 	arm_func_start FUN_overlay_d_15__0217a674
 FUN_overlay_d_15__0217a674: ; 0x0217A674
@@ -1684,7 +1684,7 @@ _0217A8A8:
 	.balign 4, 0
 _0217A8D0: .word 0x0217ACA0
 _0217A8D4: .word 0x0217AC90
-_0217A8D8: .word 0x0217AAB4
+_0217A8D8: .word _0217AAB4
 _0217A8DC: .word 0x040001A0
 _0217A8E0: .word 0x0217AC90
 _0217A8E4: .word 0x0000A042
@@ -1749,7 +1749,7 @@ _0217A98C:
 	.balign 4, 0
 _0217A9B0: .word 0x0217AD58
 _0217A9B4: .word 0x0217AC90
-_0217A9B8: .word 0x0217AAB4
+_0217A9B8: .word _0217AAB4
 _0217A9BC: .word 0x040001A0
 _0217A9C0: .word 0x0217AC90
 _0217A9C4: .word 0x0000A042

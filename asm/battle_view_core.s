@@ -416,7 +416,7 @@ _021E033A:
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021E0348: .word 0x021F3030
+_021E0348: .word _021F3030
 _021E034C: .word 0x00000102
 _021E0350: .word 0x021F3034
 
@@ -4551,7 +4551,7 @@ FUN_overlay_d_93__021e8cf0: ; 0x021E8CF0
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_93__021e8cf0
-_021E8CF8: .word 0x021E8CE1
+_021E8CF8: .word PokemonTypePair_Make
 
 	thumb_func_start PokemonTypePair_GetType1
 PokemonTypePair_GetType1: ; 0x021E8CFC
@@ -4948,7 +4948,7 @@ FUN_overlay_d_93__021e8f20: ; 0x021E8F20
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021e8f20
 _021E901C: .word 0x0000012D
-_021E9020: .word 0x021F3AC4
+_021E9020: .word _021F3AC4
 
 	thumb_func_start FUN_021E9024
 FUN_021E9024: ; 0x021E9024

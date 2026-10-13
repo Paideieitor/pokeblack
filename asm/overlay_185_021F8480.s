@@ -102,7 +102,7 @@ _021F84CC:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021F8510: .word 0x00000070
-_021F8514: .word 0x021F8605
+_021F8514: .word _021F8604
 _021F8518:
 	.byte 0x70, 0xB5, 0x14, 0x1C, 0x1D, 0x1C, 0x06, 0x1C
 	.byte 0x28, 0x1C, 0x21, 0x1C, 0x00, 0xF0, 0x1A, 0xFC, 0x28, 0x1C, 0x21, 0x1C, 0x00, 0xF0, 0x98, 0xFC
@@ -223,7 +223,7 @@ LAB_overlay_d_185__021f864a: ; 0x021F864A
 _021F8650:
 	pop {r3, r4, r5, pc}
 	nop
-_021F8654: .word 0x021F86A5
+_021F8654: .word _021F86A4
 _021F8658:
 	.byte 0x38, 0xB5
 _021F865A:
@@ -286,7 +286,7 @@ LAB_overlay_d_185__021f86d8: ; 0x021F86D8
 	thumb_func_end LAB_overlay_d_185__021f86d8
 _021F86DC:
 	.byte 0xA9, 0x8A, 0x1F, 0x02
-_021F86E0: .word 0x021F8659
+_021F86E0: .word _021F8658
 _021F86E4:
 	.byte 0x38, 0xB5
 _021F86E6:
@@ -794,7 +794,7 @@ _021F8E52:
 	add sp, #0x30
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021F8E58: .word 0x021F90A0
+_021F8E58: .word _021F90A0
 _021F8E5C: .word 0x00003DA0
 
 	thumb_func_start FUN_overlay_d_185__021f8e60

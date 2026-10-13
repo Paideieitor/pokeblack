@@ -23,6 +23,7 @@
 	.extern FUN_02089CD4
 	.extern FUN_02089D40
 	.extern FUN_0208A2BC
+	.extern _02060468
 
 	.text
 
@@ -206,7 +207,7 @@ FUN_020749B4: ; 0x020749B4
 	mov r1, #0
 	bx ip
 	.balign 4, 0
-_020749C0: .word 0x02060468 ; was FUN_02060468
+_020749C0: .word _02060468 ; was FUN_02060468
 	arm_func_end FUN_020749B4
 
 	arm_func_start FUN_020749C4

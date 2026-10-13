@@ -76,7 +76,7 @@ FUN_overlay_26__021ee740: ; 0x021EE740
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_26__021ee740
-_021EE788: .word 0x021EEA19
+_021EE788: .word _021EEA18
 _021EE78C: .word 0x00007FDF
 _021EE790:
 	.byte 0xF0, 0xB5, 0x83, 0xB0, 0x05, 0x1C, 0x17, 0x1C, 0x0E, 0x1C, 0xB3, 0xF7, 0x0D, 0xFD, 0x04, 0x1C
@@ -594,7 +594,7 @@ _021EEF04:
 	add sp, #0x1c
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021EEF08: .word 0x021EFD08
+_021EEF08: .word _021EFD08 - 1
 
 	thumb_func_start FUN_overlay_d_26__021eef0c
 FUN_overlay_d_26__021eef0c: ; 0x021EEF0C
@@ -893,7 +893,7 @@ _021EF2CE:
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021EF2D4: .word 0x021EFDC0
+_021EF2D4: .word _021EFDC0
 _021EF2D8:
 	.byte 0xF8, 0xB5
 _021EF2DA:
@@ -1339,9 +1339,9 @@ _021EF818:
 	.balign 4, 0
 _021EF81C: .word 0x0000071F
 _021EF820: .word 0x00007F70
-_021EF824: .word 0x021EFD74
-_021EF828: .word 0x021EFD78
-_021EF82C: .word 0x021EFD3C
+_021EF824: .word _021EFD74 - 1
+_021EF828: .word _021EFD78 - 1
+_021EF82C: .word _021EFD3C - 1
 
 	thumb_func_start FUN_overlay_d_26__021ef830
 FUN_overlay_d_26__021ef830: ; 0x021EF830
@@ -1812,7 +1812,7 @@ _021EFB94:
 _021EFB98:
 	pop {r4, r5, r6, pc}
 	nop
-_021EFB9C: .word 0x021EFCF9
+_021EFB9C: .word _021EFCF8
 _021EFBA0: .word 0x00003129
 
 	thumb_func_start FUN_overlay_d_26__021efba4
@@ -1858,7 +1858,7 @@ _021EFBBE:
 _021EFBF2:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021EFBF4: .word 0x021EFD1C
+_021EFBF4: .word _021EFD1C - 1
 _021EFBF8: .word 0x00000693
 
 	thumb_func_start FUN_overlay_d_26__021efbfc
@@ -1890,7 +1890,7 @@ FUN_overlay_d_26__021efbfc: ; 0x021EFBFC
 	pop {r4, pc}
 	nop
 	thumb_func_end FUN_overlay_d_26__021efbfc
-_021EFC34: .word 0x021EFD1C
+_021EFC34: .word _021EFD1C - 1
 _021EFC38: .word 0x00000692
 
 	thumb_func_start FUN_overlay_d_26__021efc3c
@@ -1964,7 +1964,7 @@ _021EFC8C:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021EFCC8: .word 0x00000693
-_021EFCCC: .word 0x021EFD1C
+_021EFCCC: .word _021EFD1C - 1
 _021EFCD0: .word 0x00000692
 
 	thumb_func_start FUN_overlay_d_26__021efcd4

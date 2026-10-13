@@ -304,9 +304,9 @@ FUN_overlay_d_98__021b61e8: ; 0x021B61E8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_98__021b61e8
-_021B62FC: .word 0x021B6E68
-_021B6300: .word 0x021B6D80
-_021B6304: .word 0x021B644D
+_021B62FC: .word _021B6E68
+_021B6300: .word _021B6D80 - 1
+_021B6304: .word _021B644C
 
 	thumb_func_start FUN_overlay_d_98__021b6308
 FUN_overlay_d_98__021b6308: ; 0x021B6308
@@ -438,14 +438,14 @@ FUN_overlay_d_98__021b636c: ; 0x021B636C
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_98__021b636c
-_021B6418: .word 0x021B6DF4
+_021B6418: .word _021B6DF4 - 1
 _021B641C: .word 0x04000050
 _021B6420: .word 0x04001050
 _021B6424: .word 0x04000304
-_021B6428: .word 0x021B6DB0
+_021B6428: .word _021B6DB0 - 1
 _021B642C: .word 0xFFFFCFFF
 _021B6430: .word 0x0000CFDF
-_021B6434: .word 0x021B6DD8
+_021B6434: .word _021B6DD8 - 1
 
 	thumb_func_start FUN_overlay_d_98__021b6438
 FUN_overlay_d_98__021b6438: ; 0x021B6438
@@ -542,10 +542,10 @@ _021B6562:
 	mov r0, #0
 	pop {r4, pc}
 	nop
-_021B6568: .word 0x021B6D98
-_021B656C: .word 0x021B6DC0
+_021B6568: .word _021B6D98 - 1
+_021B656C: .word _021B6DC0 - 1
 _021B6570: .word 0x021B6751
-_021B6574: .word 0x021B6579
+_021B6574: .word _021B6578
 _021B6578:
 	.byte 0x38, 0xB5
 _021B657A:
@@ -835,8 +835,8 @@ FUN_overlay_d_98__021b67d4: ; 0x021B67D4
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_98__021b67d4
-_021B68D4: .word 0x021B6E74
-_021B68D8: .word 0x021B6E24
+_021B68D4: .word _021B6E74
+_021B68D8: .word _021B6E24 - 1
 
 	thumb_func_start FUN_overlay_d_98__021b68dc
 FUN_overlay_d_98__021b68dc: ; 0x021B68DC
@@ -1170,7 +1170,7 @@ FUN_overlay_d_98__021b6b5c: ; 0x021B6B5C
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_98__021b6b5c
-_021B6B64: .word 0x021B6C61
+_021B6B64: .word LAB_overlay_d_98__021b6c60
 
 	thumb_func_start FUN_overlay_d_98__021b6b68
 FUN_overlay_d_98__021b6b68: ; 0x021B6B68
@@ -1179,7 +1179,7 @@ FUN_overlay_d_98__021b6b68: ; 0x021B6B68
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_98__021b6b68
-_021B6B70: .word 0x021B6CDD
+_021B6B70: .word FUN_overlay_d_98__021b6cdc
 
 	thumb_func_start FUN_overlay_d_98__021b6b74
 FUN_overlay_d_98__021b6b74: ; 0x021B6B74

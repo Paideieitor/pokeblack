@@ -33,6 +33,17 @@
 	.extern FUN_02088234
 	.extern FUN_02088398
 	.extern FUN_0209C0A4
+	.extern _02075C38
+	.extern _020A5D08
+	.extern _0214EA90
+	.extern _0214EA9C
+	.extern _0214EAC0
+	.extern _02150178
+	.extern _02150190
+	.extern _0215019C
+	.extern _02150200
+	.extern _02150840
+	.extern ADDR_020761E4
 
 	.text
 
@@ -193,8 +204,8 @@ _0207594C:
 	blt _02075868
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_02075960: .word 0x0214EAC0
-_02075964: .word 0x020A5D08
+_02075960: .word _0214EAC0
+_02075964: .word _020A5D08
 	arm_func_end FUN_02075858
 
 	arm_func_start FUN_02075968
@@ -254,8 +265,8 @@ _020759F4:
 	bl FUN_02086078
 	ldmia sp!, {r4, pc}
 	.balign 4, 0
-_02075A24: .word 0x02150178
-_02075A28: .word 0x0214EA90
+_02075A24: .word _02150178
+_02075A28: .word _0214EA90
 	arm_func_end FUN_02075994
 
 	arm_func_start FUN_02075A2C
@@ -286,8 +297,8 @@ _02075A80:
 	bl FUN_02075968
 	ldmia sp!, {r4, pc}
 	.balign 4, 0
-_02075A8C: .word 0x02150190
-_02075A90: .word 0x0214EA90
+_02075A8C: .word _02150190
+_02075A90: .word _0214EA90
 	arm_func_end FUN_02075A2C
 
 	arm_func_start FUN_02075A94
@@ -351,7 +362,7 @@ FUN_02075B28: ; 0x02075B28
 	bl FUN_0208799C
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
-_02075B50: .word 0x0214EA9C
+_02075B50: .word _0214EA9C
 	arm_func_end FUN_02075B28
 _02075B54:
 	.byte 0x00, 0x00, 0x51, 0xE3, 0x00, 0x00, 0xA0, 0xB3, 0x1E, 0xFF, 0x2F, 0xB1
@@ -446,7 +457,7 @@ _02075C6C:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	.balign 4, 0
-_02075C8C: .word 0x02075C38 ; was FUN_02075C38
+_02075C8C: .word _02075C38 ; was FUN_02075C38
 	arm_func_end FUN_02075C38
 _02075C90:
 	.byte 0x08, 0x40, 0x2D, 0xE9, 0xB0, 0x00, 0xD0, 0xE1, 0x66, 0x3C, 0x00, 0xEB, 0x00, 0x00, 0x50, 0xE3
@@ -514,10 +525,10 @@ _02075D84:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 	.balign 4, 0
-_02075D90: .word 0x02150200
+_02075D90: .word _02150200
 _02075D94: .word 0x02FFFE00
-_02075D98: .word 0x02150840
-_02075D9C: .word 0x020761E4
+_02075D98: .word _02150840
+_02075D9C: .word ADDR_020761E4
 	arm_func_end FUN_02075CAC
 
 	arm_func_start FUN_02075DA0
@@ -526,7 +537,7 @@ FUN_02075DA0: ; 0x02075DA0
 	ldr r0, [r0]
 	bx lr
 	.balign 4, 0
-_02075DAC: .word 0x0215019C
+_02075DAC: .word _0215019C
 	arm_func_end FUN_02075DA0
 
 	arm_func_start FUN_02075DB0
