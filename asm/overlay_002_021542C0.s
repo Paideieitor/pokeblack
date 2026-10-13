@@ -19,6 +19,9 @@
 	.extern Heap_Free
 	.extern FUN_021BE8D4
 	.extern FUN_021BE92C
+	.extern ADDR_02213C4C
+	.extern ADDR_021BE8D4_o21
+	.extern ADDR_021BE92C_o21
 
 	.text
 
@@ -75,7 +78,7 @@ _02154312:
 	add r0, r6, #0
 	mov r2, #0
 	mov r3, #0
-	bl FUN_021BE8D4
+	bl ADDR_021BE8D4_o21
 	add r1, r0, #0
 	add r0, r7, #0
 	bl FUN_02012374
@@ -148,7 +151,7 @@ _021543A8:
 	ldr r1, [r5, #8]
 	add r0, r6, #0
 	mov r3, #0
-	bl FUN_021BE92C
+	bl ADDR_021BE92C_o21
 	add r1, r0, #0
 	add r0, r7, #0
 	bl FUN_02012374
@@ -163,9 +166,10 @@ _021543D2:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021543D8: .word 0x02154460
+_021543D8: .word _02154460
 _021543DC: .word 0x000000C7
-_021543E0: .word 0x02213C4C
+_021543E0:
+	.word ADDR_02213C4C
 _021543E4: .word 0x0000FFFF
 
 	thumb_func_start FUN_overlay_2__021543e8
@@ -204,7 +208,7 @@ _02154416:
 	ldr r0, [sp]
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_02154434: .word 0x021542C1
+_02154434: .word FUN_overlay_2__021542c0
 	thumb_func_end FUN_overlay_2__021543e8
 
 	thumb_func_start FUN_overlay_2__02154438

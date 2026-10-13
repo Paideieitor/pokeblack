@@ -5,6 +5,14 @@
 	.extern MI_CpuFill8
 	.extern MI_CpuCopy8
 	.extern FUN_0235B750
+	.extern FUN_0203F4E4
+	.extern FUN_020596D8
+	.extern Heap_AllocDebug
+	.extern _02082D44
+	.extern _020A7198
+	.extern _02045A38
+	.extern _02157138
+	.extern ADDR_02045994
 
 	.text
 
@@ -127,7 +135,7 @@ FUN_020097C4: ; 0x020097C4
 	ldr r3, _020097EC ; =0x020A7198
 	lsr r0, r0, #0x10
 	mov r2, #1
-	.hword 0xF026, 0xEFAE ; blx Heap_AllocDebug
+	blx Heap_AllocDebug
 	add r4, r0, #0
 	bl FUN_02009800
 	add r0, r4, #0
@@ -135,7 +143,7 @@ FUN_020097C4: ; 0x020097C4
 	pop {r3, r4, pc}
 	nop
 _020097E8: .word 0x000007C4
-_020097EC: .word 0x020A7198
+_020097EC: .word _020A7198
 	thumb_func_end FUN_020097C4
 
 	thumb_func_start FUN_020097F0
@@ -145,7 +153,7 @@ FUN_020097F0: ; 0x020097F0
 	bx r3
 	nop
 _020097F8: .word 0x000007C4
-_020097FC: .word 0x02082D44 ; was MI_CpuCopy8
+_020097FC: .word _02082D44 ; was MI_CpuCopy8
 	thumb_func_end FUN_020097F0
 
 	thumb_func_start FUN_02009800
@@ -167,19 +175,24 @@ FUN_02009800: ; 0x02009800
 
 	arm_func_start FUN_02009820
 FUN_02009820: ; 0x02009820
-	ldmdb r0, {r0, r1, r3, r5, ip, sp, lr, pc} ^
+	.thumb
+	blx FUN_02034ac4
 	arm_func_end FUN_02009820
 _02009824:
-	.byte 0x0D, 0x48, 0x2B, 0xF0, 0x4E, 0xE9, 0x28, 0x1C, 0x4D, 0xF1, 0x84, 0xFC
+	.byte 0x0D, 0x48
+	.thumb
+	blx FUN_02034ac4
+	.byte 0x28, 0x1C
+	bl _02157138
 
 	thumb_func_start FUN_02009830
 FUN_02009830: ; 0x02009830
 	ldr r0, _0200985C ; =0x00000009
-	.hword 0xF02B, 0xE914 ; blx FUN_02034a5c
+	blx FUN_02034a5c
 	add r0, r7, #0
 	blx FUN_02034a5c
 	add r0, r4, #0
-	.hword 0xF02B, 0xE942 ; blx FUN_02034ac4
+	blx FUN_02034ac4
 	add r0, r6, #0
 	blx FUN_02034ac4
 	pop {r3, r4, r5, r6, r7, pc}
@@ -307,7 +320,11 @@ _0200994E:
 
 	arm_func_start FUN_02009988
 FUN_02009988: ; 0x02009988
+#ifdef WHITE
+	.byte 0x70, 0x47, 0x0D, 0x4A
+#else
 	bmi FUN_0235B750
+#endif
 	arm_func_end FUN_02009988
 _0200998C:
 	.byte 0x84, 0x18, 0x0A, 0x1C
@@ -336,10 +353,12 @@ FUN_020099D4: ; 0x020099D4
 	.balign 4, 0
 	thumb_func_end FUN_020099D4
 _020099E4:
-	.byte 0x03, 0x1C, 0x10, 0x1C, 0x07, 0x22, 0x92, 0x01, 0x9B, 0x18, 0x30, 0x22
-	.byte 0x4A, 0x43, 0x99, 0x18, 0x01, 0x4B, 0x10, 0x22, 0x18, 0x47, 0xC0, 0x46, 0x94, 0x59, 0x04, 0x02
 	.byte 0x03, 0x1C, 0x10, 0x1C, 0x07, 0x22, 0x92, 0x01, 0x9B, 0x18, 0x30, 0x22, 0x4A, 0x43, 0x99, 0x18
-	.byte 0x01, 0x4B, 0x10, 0x22, 0x18, 0x47, 0xC0, 0x46, 0x38, 0x5A, 0x04, 0x02
+	.byte 0x01, 0x4B, 0x10, 0x22, 0x18, 0x47, 0xC0, 0x46
+	.word ADDR_02045994
+	.byte 0x03, 0x1C, 0x10, 0x1C, 0x07, 0x22, 0x92, 0x01, 0x9B, 0x18, 0x30, 0x22, 0x4A, 0x43, 0x99, 0x18
+	.byte 0x01, 0x4B, 0x10, 0x22, 0x18, 0x47, 0xC0, 0x46
+	.word _02045A38
 
 	thumb_func_start FUN_02009A1C
 FUN_02009A1C: ; 0x02009A1C
@@ -361,7 +380,7 @@ FUN_02009A26: ; 0x02009A26
 	add r0, #0x40
 	mul r2, r1
 	add r0, r0, r2
-	.hword 0xF04F, 0xEE54 ; blx FUN_020596D8
+	blx FUN_020596D8
 	pop {r3, pc}
 _02009A34:
 	.byte 0x70, 0xB5, 0x06, 0x1C, 0x00, 0x25, 0x00, 0x24
@@ -409,7 +428,7 @@ _02009A8C:
 	add r0, r4, r0
 	add r1, r4, r1
 	mov r2, #0xc
-	.hword 0xF079, 0xE94A ; blx MI_CpuCopy8
+	blx MI_CpuCopy8
 	add r5, r5, #1
 	cmp r5, #0x1f
 	blt _02009A8C
@@ -422,7 +441,7 @@ _02009A8C:
 	add r0, r0, r4
 	mov r1, #0
 	mov r2, #0x30
-	.hword 0xF079, 0xE880 ; blx MI_CpuFill8
+	blx MI_CpuFill8
 	ldr r0, [sp]
 	lsr r1, r4, #2
 	add r0, #0x40
@@ -463,17 +482,17 @@ FUN_02009b0e: ; 0x02009B0E
 	add r0, r5, r0
 	add r1, r5, r1
 	mov r2, #0xc
-	.hword 0xF079, 0xE914 ; blx MI_CpuCopy8
+	blx MI_CpuCopy8
 	ldr r0, [sp]
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0x30
-	.hword 0xF079, 0xE852 ; blx MI_CpuFill8
+	blx MI_CpuFill8
 	ldr r0, [sp, #4]
 	mov r1, #0
 	add r0, r5, r0
 	mov r2, #0xc
-	.hword 0xF079, 0xE84C ; blx MI_CpuFill8
+	blx MI_CpuFill8
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
@@ -492,7 +511,7 @@ FUN_02009B80: ; 0x02009B80
 	add r5, r0, #0
 	add r4, r1, #0
 	add r0, sp, #0
-	.hword 0xF035, 0xECAC ; blx FUN_0203F4E4
+	blx FUN_0203F4E4
 	mov r0, #0x30
 	add r2, r4, #0
 	mul r2, r0
@@ -553,4 +572,5 @@ _02009C20:
 	.byte 0xE6, 0x01, 0x00, 0x00, 0x70, 0xB5, 0x03, 0x1C, 0x00, 0x2A, 0x38, 0xDB, 0x20, 0x2A, 0x36, 0xDA
 	.byte 0x00, 0x29, 0x34, 0xDB, 0x20, 0x29, 0x32, 0xDA, 0x08, 0x1C, 0x30, 0x24, 0x79, 0x25, 0x60, 0x43
 	.byte 0x11, 0x1C, 0xAD, 0x00
+
 

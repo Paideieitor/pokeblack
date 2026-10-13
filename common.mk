@@ -50,7 +50,7 @@ ASPATCH      := $(TOOLSDIR)/mwasmarm_patcher/mwasmarm_patcher$(EXE)
 NDSTOOL      := $(TOOLSDIR)/ndstool/ndstool$(EXE)
 NDSDISASM    := $(TOOLSDIR)/ndsdisasm/ndsdisasm$(EXE)
 
-ASM_PROCESSOR := $(TOOLSDIR)/asm_processor/compile.sh
+ASM_PROCESSOR := bash $(TOOLSDIR)/asm_processor/compile.sh
 PYTHON        := python3
 
 NATIVE_TOOLS := $(ASPATCH)
@@ -100,9 +100,15 @@ MW_LINK_LIB = $(WINE) $(MWLD) -library -nodead -w off -proc $(PROC_LD)
 
 export MWCIncludes := $(SDK_ROOT)/include
 
-LSF               := $(addsuffix .lsf,$(ELFNAME))
+LSF_SRC           := $(addsuffix .lsf,$(ELFNAME))
+OVERLAY_BASE      := $(wildcard $(buildname)/overlay_base.txt)
+ifneq ($(OVERLAY_BASE),)
+LSF               := $(BUILD_DIR)/$(LSF_SRC)
+else
+LSF               := $(LSF_SRC)
+endif
 ifneq ($(LSF),)
-OVERLAYS          := $(shell $(GREP) -o "^Overlay \w+" $(LSF) | cut -d' ' -f2)
+OVERLAYS          := $(shell $(GREP) -o "^Overlay \w+" $(LSF_SRC) | cut -d' ' -f2)
 else
 OVERLAYS          :=
 endif
@@ -184,12 +190,19 @@ $(FORCE_ACTIVE_LIST): $(ASM_SRCS) $(C_SRCS)
 ifeq ($(EXTERN_SYMS),)
 EXTERN_SYMS := $(BUILD_DIR)/extern_syms.lcf
 
-$(EXTERN_SYMS): $(ASM_SRCS) $(C_SRCS)
-	@$(PYTHON) $(SCRIPTS)/gen_extern_syms.py $(SYM_GLOBS) --provided $(C_SRCS) -o $@
+ADDR_SHIFT := $(wildcard $(buildname)/addr_shift.txt)
+OVL_DELTA := $(wildcard $(buildname)/overlay_delta.txt)
+OVL_SHIFT := $(wildcard $(buildname)/overlay_shift.txt)
+
+$(EXTERN_SYMS): $(ASM_SRCS) $(C_SRCS) $(ADDR_SHIFT) $(OVL_DELTA) $(OVL_SHIFT)
+	@$(PYTHON) $(SCRIPTS)/gen_extern_syms.py $(SYM_GLOBS) --provided $(C_SRCS) $(if $(ADDR_SHIFT),--shift $(ADDR_SHIFT)) $(if $(OVL_DELTA),--overlay-delta $(OVL_DELTA)) $(if $(OVL_SHIFT),--overlay-shift $(OVL_SHIFT)) -o $@
 endif
 
 LCF_TEMPLATE_PATH    := $(SDK_SPECFILES)/$(LCF_TEMPLATE)
 RESPONSE_TEMPLATE    := $(SDK_SPECFILES)/mwldarm.response.template
+
+$(BUILD_DIR)/$(LSF_SRC): $(LSF_SRC) $(OVERLAY_BASE)
+	@$(PYTHON) $(SCRIPTS)/gen_lsf.py $< $(OVERLAY_BASE) -o $@
 
 $(LCF): $(LSF) $(LCF_TEMPLATE_PATH) $(EXTERN_SYMS) $(FORCE_ACTIVE_LIST)
 	$(WINE) $(MAKELCF) $(MAKELCF_FLAGS) $< $(LCF_TEMPLATE_PATH) $@

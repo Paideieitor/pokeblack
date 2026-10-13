@@ -59,8 +59,9 @@ def main():
                         help="print the base ROM's file order and exit")
     parser.add_argument('--files', default='black.us/files.txt',
                         help="data files in ROM order, one path per line")
-    parser.add_argument('--data-dir', default='files',
-                        help="committed NitroFS data tree, named by --files")
+    parser.add_argument('--data-dir', action='append',
+                        help="committed NitroFS data tree, named by --files; repeat to try "
+                             "a version's own files before the shared tree, default files")
     parser.add_argument('-o', '--output')
     args = parser.parse_args()
     if not args.list_order and not (args.overlays and args.arm9 and args.banner and args.output):
@@ -75,8 +76,17 @@ def main():
             print(names[index])
         return 0
 
+    data_dirs = args.data_dir or ['files']
+
+    def data_file(name):
+        for directory in data_dirs:
+            path = os.path.join(directory, name)
+            if os.path.exists(path):
+                return path
+        sys.exit(f"error: {name} not found in {', '.join(data_dirs)}")
+
     fnt = open(args.fnt, 'rb').read()
-    order = [line.split('#')[0].strip() for line in open(args.files)]
+    order =[line.split('#')[0].strip() for line in open(args.files)]
     order = [line for line in order if line]
     overlay_count = u(0x54) // 32
     total = overlay_count + len(order)
@@ -109,7 +119,7 @@ def main():
     place(open(args.banner, 'rb').read(), u(0x68))
 
     for index in range(overlay_count, total):
-        blob = open(os.path.join(args.data_dir, order[index - overlay_count]), 'rb').read()
+        blob = open(data_file(order[index - overlay_count]), 'rb').read()
         start, size = place(blob)
         fat.append((start, start + size))
 

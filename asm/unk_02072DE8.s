@@ -1,5 +1,6 @@
 	.include "asm/macros/function.inc"
 
+	.extern ADDR_02073710
 	.extern FUN_02060468
 	.extern FUN_020604AC
 	.extern FUN_02060614
@@ -30,6 +31,15 @@
 	.extern FUN_02089D40
 	.extern FUN_02089D6C
 	.extern FUN_0208A054
+	.extern _02073438
+	.extern _02073484
+	.extern _0207368C
+	.extern _020A5D08
+	.extern _0214E00C
+	.extern _0214E018
+	.extern _0214E024
+	.extern _0214E464
+	.extern _0214E46C
 
 	.text
 
@@ -71,8 +81,8 @@ FUN_02072DE8: ; 0x02072DE8
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	.balign 4, 0
-_02072E74: .word 0x02073710
-_02072E78: .word 0x0214E464
+_02072E74: .word ADDR_02073710
+_02072E78: .word _0214E464
 	arm_func_end FUN_02072DE8
 
 	arm_func_start FUN_02072e7c
@@ -81,7 +91,7 @@ FUN_02072e7c: ; 0x02072E7C
 	ldr r0, [r0]
 	bx ip
 	.balign 4, 0
-_02072E88: .word 0x02073438 ; was FUN_02073438
+_02072E88: .word _02073438 ; was FUN_02073438
 	arm_func_end FUN_02072e7c
 
 	arm_func_start FUN_02072e8c
@@ -90,7 +100,7 @@ FUN_02072e8c: ; 0x02072E8C
 	ldr r0, [r0]
 	bx ip
 	.balign 4, 0
-_02072E98: .word 0x02073484 ; was FUN_02073484
+_02072E98: .word _02073484 ; was FUN_02073484
 	arm_func_end FUN_02072e8c
 
 	arm_func_start FUN_02072e9c
@@ -120,7 +130,7 @@ FUN_02072EC8: ; 0x02072EC8
 	ldrh r0, [r0, r1]
 	bx lr
 	.balign 4, 0
-_02072EDC: .word 0x0214E46C
+_02072EDC: .word _0214E46C
 	arm_func_end FUN_02072EC8
 _02072EE0:
 	.byte 0x70, 0x40, 0x2D, 0xE9, 0x00, 0x60, 0xA0, 0xE1, 0x00, 0x50, 0xA0, 0xE3, 0x3C, 0x00, 0x9F, 0xE5
@@ -128,7 +138,7 @@ _02072EE0:
 	.byte 0x28, 0x40, 0x9F, 0xE5, 0xB4, 0x03, 0xD1, 0xE1, 0x01, 0x00, 0x50, 0xE3, 0xB8, 0x03, 0xD1, 0x01
 	.byte 0x06, 0x00, 0x50, 0x01, 0x04, 0x00, 0xA0, 0xE1, 0x01, 0x50, 0x85, 0x02, 0xBC, 0xB5, 0xFF, 0xEB
 	.byte 0x00, 0x10, 0xB0, 0xE1, 0xF6, 0xFF, 0xFF, 0x1A, 0x05, 0x00, 0xA0, 0xE1, 0x70, 0x80, 0xBD, 0xE8
-	.byte 0x18, 0xE0, 0x14, 0x02
+	.word _0214E018
 
 	arm_func_start FUN_02072f34
 FUN_02072f34: ; 0x02072F34
@@ -203,7 +213,7 @@ FUN_02072FE8: ; 0x02072FE8
 	bl FUN_02089400
 	ldmia sp!, {r3, pc}
 	.balign 4, 0
-_02073014: .word 0x020A5D08
+_02073014: .word _020A5D08
 	arm_func_end FUN_02072FE8
 
 	arm_func_start FUN_02073018
@@ -325,10 +335,10 @@ _02073198:
 	blt _02073198
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	.balign 4, 0
-_020731D0: .word 0x0214E018
-_020731D4: .word 0x0214E00C
-_020731D8: .word 0x0214E024
-_020731DC: .word 0x0214E464
+_020731D0: .word _0214E018
+_020731D4: .word _0214E00C
+_020731D8: .word _0214E024
+_020731DC: .word _0214E464
 	arm_func_end FUN_0207312C
 
 	arm_func_start FUN_020731E0
@@ -427,8 +437,8 @@ _02073328:
 	bne _0207320C
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	.balign 4, 0
-_02073338: .word 0x0214E018
-_0207333C: .word 0x020A5D08
+_02073338: .word _0214E018
+_0207333C: .word _020A5D08
 _02073340: .word 0x00007FFF
 	arm_func_end FUN_020731E0
 
@@ -474,7 +484,7 @@ _020733A8:
 	str r5, [r4]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_020733D8: .word 0x0214E464
+_020733D8: .word _0214E464
 	arm_func_end FUN_02073344
 
 	arm_func_start FUN_020733DC
@@ -482,7 +492,7 @@ FUN_020733DC: ; 0x020733DC
 	ldr ip, _020733E4 ; =FUN_0207368C
 	bx ip
 	.balign 4, 0
-_020733E4: .word 0x0207368C ; was FUN_0207368C
+_020733E4: .word _0207368C ; was FUN_0207368C
 	arm_func_end FUN_020733DC
 
 	arm_func_start FUN_020733E8

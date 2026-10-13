@@ -1,5 +1,8 @@
 	.include "asm/macros/function.inc"
 
+	.extern ADDR_02180A00
+	.extern ADDR_02180A20
+	.extern ADDR_02180A30
 	.extern FUN_02075E9C
 	.extern FUN_02075EAC
 	.extern FUN_02084DF4
@@ -99,11 +102,15 @@ _0218089A:
 	ldrb r0, [r0]
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021808F0: .word 0x02180A30
-_021808F4: .word 0x02180A20
-_021808F8: .word 0x02180A00
+_021808F0:
+	.word ADDR_02180A30
+_021808F4:
+	.word ADDR_02180A20
+_021808F8:
+	.word ADDR_02180A00
 _021808FC: .word 0x000082EA
-_02180900: .word 0x02180A20
+_02180900:
+	.word ADDR_02180A20
 	thumb_func_end FUN_overlay_231__02180820
 
 	thumb_func_start FUN_02180904

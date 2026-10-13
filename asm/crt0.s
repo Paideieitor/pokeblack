@@ -1,5 +1,6 @@
 	.include "asm/macros/function.inc"
 
+	.extern FUN_02073898
 	.extern FUN_0209D724
 	.extern FUN_0209D820
 
@@ -137,7 +138,7 @@ _020049DC: .word 0x02FE0000
 _020049E0: .word 0x00000800
 _020049E4: .word 0x05000000
 _020049E8: .word 0x07000000
-_020049EC: .word 0x02004FB0
+_020049EC: .word _start_ModuleParams
 _020049F0: .word 0x01FF80F0
 _020049F4: .word 0x04000006
 _020049F8: .word 0x02005125 ; was FUN_02005124
@@ -384,10 +385,10 @@ _02004D28:
 	ldmia sp!, {lr}
 	b _02004EA8
 	.balign 4, 0
-_02004D40: .word 0x02004FB0
+_02004D40: .word _start_ModuleParams
 _02004D44: .word 0x02FE0000
 _02004D48: .word 0x02FFE1CC
-_02004D4C: .word 0x02004F7C
+_02004D4C: .word _02004F7C
 	arm_func_end FUN_02004bb4
 
 	arm_func_start FUN_02004d50
@@ -584,17 +585,32 @@ _02004F5C:
 	arm_func_end FUN_02004f20
 _02004F7C:
 	.byte 0xA4, 0x2D, 0x43, 0x02
-	.byte 0xB4, 0x2D, 0x43, 0x02, 0x04, 0x00, 0x40, 0x02, 0x24, 0x2F, 0x41, 0x02, 0x63, 0x14, 0xC0, 0xDE
+	.byte 0xB4, 0x2D, 0x43, 0x02, 0x04, 0x00, 0x40, 0x02
+#ifdef WHITE
+	.byte 0x1C
+#else
+	.byte 0x24
+#endif
+	.byte 0x2F, 0x41, 0x02, 0x63, 0x14, 0xC0, 0xDE
 	.byte 0xDE, 0xC0, 0x14, 0x63, 0xB0, 0x20, 0xD0, 0xE1, 0x02, 0x00, 0x51, 0xE1, 0x1E, 0xFF, 0x2F, 0x01
 	.byte 0x10, 0x30, 0xA0, 0xE3, 0x01, 0x30, 0x53, 0xE2, 0xFD, 0xFF, 0xFF, 0x1A, 0xF8, 0xFF, 0xFF, 0xEA
 	.public _start_ModuleParams
 _start_ModuleParams: ; 0x02004FB0
+#ifdef WHITE
+	.word 0x020AA7A0 ; SDK_AUTOLOAD_LIST
+	.word 0x020AA7E0 ; SDK_AUTOLOAD_LIST_END
+	.word 0x020A9EA0 ; SDK_AUTOLOAD_START
+	.word 0x020A9EA0 ; SDK_STATIC_BSS_START
+	.word 0x021542E0 ; SDK_STATIC_BSS_END
+	.word 0x020738A4 ; SDK_COMPRESSED_STATIC_END
+#else
 	.word 0x020AA780 ; SDK_AUTOLOAD_LIST
 	.word 0x020AA7C0 ; SDK_AUTOLOAD_LIST_END
 	.word 0x020A9E80 ; SDK_AUTOLOAD_START
 	.word 0x020A9E80 ; SDK_STATIC_BSS_START
 	.word 0x021542C0 ; SDK_STATIC_BSS_END
-	.word 0x02073898 ; SDK_COMPRESSED_STATIC_END
+	.word FUN_02073898 ; SDK_COMPRESSED_STATIC_END
+#endif
 	.word 0x0503757C ; SDK_VERSION_ID
 	.word 0xDEC00621 ; SDK_NITROCODE_BE
 	.word 0x2106C0DE ; SDK_NITROCODE_LE

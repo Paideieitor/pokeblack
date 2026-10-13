@@ -35,11 +35,11 @@ CC_NO_DEBUG=$(echo "$CC" | sed 's/ -sym on / /g; s/ -sym on$//g')
 CC_NO_DEBUG="$CC_NO_DEBUG -W off"
 
 # Create a .c file replacing GLOBAL_ASM functions with volatile int writes, and compile.
-"$SCRIPT_DIR/asm_processor.py" "$SRC" --assembler "$AS_NO_DEBUG" --asm-prelude "$ASM_PRELUDE" > "$PADDED_SRC"
+python3 "$SCRIPT_DIR/asm_processor.py" "$SRC" --assembler "$AS_NO_DEBUG" --asm-prelude "$ASM_PRELUDE" > "$PADDED_SRC"
 env $CC_NO_DEBUG -c "$PADDED_SRC" -o "$PADDED_OBJ"
 
 # Inject the assembly into the padded obj file.
-"$SCRIPT_DIR/asm_processor.py" "$SRC" --post-process "$PADDED_OBJ" --assembler "$AS_NO_DEBUG" --asm-prelude "$ASM_PRELUDE"
+python3 "$SCRIPT_DIR/asm_processor.py" "$SRC" --post-process "$PADDED_OBJ" --assembler "$AS_NO_DEBUG" --asm-prelude "$ASM_PRELUDE"
 
 # Copy final object, stripping .comment section
 arm-none-eabi-objcopy --remove-section .comment "$PADDED_OBJ" "$OBJ"

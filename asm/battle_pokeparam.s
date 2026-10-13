@@ -321,6 +321,15 @@
 	.extern PokemonTypePair_GetType1
 	.extern PokemonTypePair_GetType2
 	.extern Battlefield_CheckEffect
+	.extern ADDR_020185C4
+	.extern ADDR_020307B0
+	.extern ADDR_02082BCC
+	.extern ADDR_021F3B8C
+	.extern ADDR_021F3BC4
+	.extern ADDR_021F3CB0
+	.extern ADDR_021F3CBC
+	.extern ADDR_021F3ECC
+	.extern ADDR_021F4470
 
 	.text
 
@@ -330,7 +339,8 @@ FUN_021D4D5C: ; 0x021D4D5C
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_021D4D5C
-_021D4D60: .word 0x020307B0
+_021D4D60:
+	.word ADDR_020307B0
 
 	thumb_func_start FUN_overlay_d_93__021d4d64
 FUN_overlay_d_93__021d4d64: ; 0x021D4D64
@@ -520,7 +530,7 @@ _021D4E8C:
 	add sp, #8
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
-_021D4EF0: .word 0x021F3AA4
+_021D4EF0: .word _021F3AA4
 _021D4EF4: .word 0x00000272
 _021D4EF8: .word 0x00002710
 
@@ -1182,7 +1192,8 @@ FUN_021D53B8: ; 0x021D53B8
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_021D53B8
-_021D53BC: .word 0x020307B0
+_021D53BC:
+	.word ADDR_020307B0
 
 	thumb_func_start PokemonStatStages_Reset
 PokemonStatStages_Reset: ; 0x021D53C0
@@ -1190,7 +1201,7 @@ PokemonStatStages_Reset: ; 0x021D53C0
 	bx r3
 	.balign 4, 0
 	thumb_func_end PokemonStatStages_Reset
-_021D53C4: .word 0x021D53C9
+_021D53C4: .word PokemonStatStages_ResetCore
 
 	thumb_func_start PokemonStatStages_ResetCore
 PokemonStatStages_ResetCore: ; 0x021D53C8
@@ -2512,7 +2523,7 @@ _021D5C22:
 	mov r0, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021D5C2C: .word 0x021F040C
+_021D5C2C: .word _021F040C
 
 	thumb_func_start BattleMon_IsHiding
 BattleMon_IsHiding: ; 0x021D5C30
@@ -2955,7 +2966,7 @@ BattleMon_RestoreStatStages: ; 0x021D5EFC
 	bx r3
 	nop
 	thumb_func_end BattleMon_RestoreStatStages
-_021D5F04: .word 0x021D53DD
+_021D5F04: .word PokemonStatStages_Restore
 
 	thumb_func_start BattleMon_ResetStatStages
 BattleMon_ResetStatStages: ; 0x021D5F08
@@ -2964,7 +2975,7 @@ BattleMon_ResetStatStages: ; 0x021D5F08
 	bx r3
 	nop
 	thumb_func_end BattleMon_ResetStatStages
-_021D5F10: .word 0x021D53C9
+_021D5F10: .word PokemonStatStages_ResetCore
 
 	thumb_func_start BattleMon_GetCritStage
 BattleMon_GetCritStage: ; 0x021D5F14
@@ -3705,7 +3716,7 @@ BattleMon_SetAppearedTurn: ; 0x021D63EC
 	bx r3
 	.balign 4, 0
 	thumb_func_end BattleMon_SetAppearedTurn
-_021D6404: .word 0x021D67F5
+_021D6404: .word BattleMon_LoadMoveDamageRecord
 
 	thumb_func_start BattleMon_TurnCheck
 BattleMon_TurnCheck: ; 0x021D6408
@@ -4722,7 +4733,7 @@ BattleMon_GetExpForLevel100: ; 0x021D6B6C
 	nop
 	thumb_func_end BattleMon_GetExpForLevel100
 _021D6B7C: .word 0x00000141
-_021D6B80: .word 0x02018585
+_021D6B80: .word FUN_02018584
 
 	thumb_func_start BattleMon_Update
 BattleMon_Update: ; 0x021D6B84
@@ -4963,8 +4974,10 @@ _021D6D3A:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021D6D40: .word 0x000001F2
-_021D6D44: .word 0x021F3B8C
-_021D6D48: .word 0x021F3BC4
+_021D6D44:
+	.word ADDR_021F3B8C
+_021D6D48:
+	.word ADDR_021F3BC4
 _021D6D4C: .word 0x00000153
 _021D6D50: .word 0x00002710
 
@@ -4986,7 +4999,7 @@ BattleMon_CreateSubstitute: ; 0x021D6D5C
 	nop
 	thumb_func_end BattleMon_CreateSubstitute
 _021D6D68: .word 0x000001F2
-_021D6D6C: .word 0x021D6239
+_021D6D6C: .word BattleMon_CureCondition
 
 	thumb_func_start BattleMon_RemoveSubstitute
 BattleMon_RemoveSubstitute: ; 0x021D6D70
@@ -5196,7 +5209,8 @@ _021D6E9A:
 	.balign 4, 0
 _021D6E9C: .word 0x000001F6
 _021D6EA0:
-	.byte 0x00, 0x68, 0x01, 0x4B, 0x18, 0x47, 0xC0, 0x46, 0xC5, 0x85, 0x01, 0x02
+	.byte 0x00, 0x68, 0x01, 0x4B, 0x18, 0x47, 0xC0, 0x46
+	.word ADDR_020185C4 + 1
 
 	thumb_func_start FUN_overlay_d_93__021d6eac
 FUN_overlay_d_93__021d6eac: ; 0x021D6EAC
@@ -5224,9 +5238,12 @@ _021D6EB4:
 	bl FUN_overlay_d_93__021d74c8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021D6EDC: .word 0x021F4470
-_021D6EE0: .word 0x021F3CBC
-_021D6EE4: .word 0x021F3CB0
+_021D6EDC:
+	.word ADDR_021F4470
+_021D6EE0:
+	.word ADDR_021F3CBC
+_021D6EE4:
+	.word ADDR_021F3CB0
 
 	thumb_func_start FUN_overlay_d_93__021d6ee8
 FUN_overlay_d_93__021d6ee8: ; 0x021D6EE8
@@ -5246,7 +5263,8 @@ _021D6EF2:
 _021D6EFE:
 	bx lr
 	.balign 4, 0
-_021D6F00: .word 0x021F3CB0
+_021D6F00:
+	.word ADDR_021F3CB0
 _021D6F04: .word 0xFDFFFFFF
 
 	thumb_func_start FUN_overlay_d_93__021d6f08
@@ -5398,7 +5416,8 @@ _021D7008: .word 0xFF00FFFF
 _021D700C: .word 0xFEFFFFFF
 _021D7010: .word 0xFDFFFFFF
 _021D7014: .word 0xBFFFFFFF
-_021D7018: .word 0x021F3CB0
+_021D7018:
+	.word ADDR_021F3CB0
 
 	thumb_func_start FUN_overlay_d_93__021d701c
 FUN_overlay_d_93__021d701c: ; 0x021D701C
@@ -5421,7 +5440,8 @@ _021D7032:
 _021D7038:
 	pop {r4, pc}
 	nop
-_021D703C: .word 0x021F3CB0
+_021D703C:
+	.word ADDR_021F3CB0
 
 	thumb_func_start FUN_overlay_d_93__021d7040
 FUN_overlay_d_93__021d7040: ; 0x021D7040
@@ -5467,7 +5487,8 @@ _021D707E:
 _021D7088:
 	pop {r4, pc}
 	nop
-_021D708C: .word 0x021F3CB0
+_021D708C:
+	.word ADDR_021F3CB0
 _021D7090:
 	.byte 0x06, 0x21, 0x01, 0x61, 0x70, 0x47, 0x00, 0x00, 0x00, 0x69, 0x06, 0x28, 0x01, 0xD1, 0x01, 0x20
 	.byte 0x70, 0x47, 0x00, 0x20, 0x70, 0x47, 0x00, 0x00
@@ -5581,7 +5602,8 @@ _021D7126:
 _021D7132:
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-_021D7134: .word 0x021F3CB0
+_021D7134:
+	.word ADDR_021F3CB0
 _021D7138: .word 0xFFFF0000
 
 	thumb_func_start FUN_overlay_d_93__021d713c
@@ -5724,7 +5746,8 @@ _021D722E:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021D7234: .word 0x021F3CB0
+_021D7234:
+	.word ADDR_021F3CB0
 _021D7238: .word 0xEFFFFFFF
 _021D723C: .word 0xFEFFFFFF
 
@@ -5844,7 +5867,8 @@ _021D7316:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021D731C: .word 0x021F3CB0
+_021D731C:
+	.word ADDR_021F3CB0
 
 	thumb_func_start FUN_overlay_d_93__021d7320
 FUN_overlay_d_93__021d7320: ; 0x021D7320
@@ -5890,7 +5914,8 @@ _021D7356:
 	mov r0, #0
 	bx lr
 	nop
-_021D735C: .word 0x021F3CB0
+_021D735C:
+	.word ADDR_021F3CB0
 
 	thumb_func_start FUN_overlay_d_93__021d7360
 FUN_overlay_d_93__021d7360: ; 0x021D7360
@@ -5962,7 +5987,8 @@ _021D73C8:
 _021D73CE:
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
-_021D73D0: .word 0x021F3CB0
+_021D73D0:
+	.word ADDR_021F3CB0
 
 	thumb_func_start FUN_overlay_d_93__021d73d4
 FUN_overlay_d_93__021d73d4: ; 0x021D73D4
@@ -5991,7 +6017,8 @@ _021D73F4:
 _021D73FA:
 	bx lr
 	.balign 4, 0
-_021D73FC: .word 0x021F3CB0
+_021D73FC:
+	.word ADDR_021F3CB0
 _021D7400: .word 0xFDFFFFFF
 
 	thumb_func_start FUN_overlay_d_93__021d7404
@@ -6024,7 +6051,8 @@ _021D742E:
 	pop {r3, r4}
 	bx lr
 	nop
-_021D7434: .word 0x021F3CB0
+_021D7434:
+	.word ADDR_021F3CB0
 
 	thumb_func_start FUN_overlay_d_93__021d7438
 FUN_overlay_d_93__021d7438: ; 0x021D7438
@@ -6059,7 +6087,8 @@ _021D7466:
 	pop {r3, r4, r5, r6}
 	bx lr
 	.balign 4, 0
-_021D746C: .word 0x021F3CB0
+_021D746C:
+	.word ADDR_021F3CB0
 _021D7470: .word 0xBFFFFFFF
 
 	thumb_func_start FUN_overlay_d_93__021d7474
@@ -6079,8 +6108,10 @@ _021D7480:
 	ldr r0, [r0, r1]
 	bx lr
 	.balign 4, 0
-_021D748C: .word 0x021F3CB0
-_021D7490: .word 0x021F3CBC
+_021D748C:
+	.word ADDR_021F3CB0
+_021D7490:
+	.word ADDR_021F3CBC
 
 	thumb_func_start FUN_overlay_d_93__021d7494
 FUN_overlay_d_93__021d7494: ; 0x021D7494
@@ -6101,8 +6132,10 @@ FUN_overlay_d_93__021d7494: ; 0x021D7494
 _021D74B0:
 	pop {r3, r4, r5, pc}
 	nop
-_021D74B4: .word 0x021F3CB0
-_021D74B8: .word 0x021F3CBC
+_021D74B4:
+	.word ADDR_021F3CB0
+_021D74B8:
+	.word ADDR_021F3CBC
 
 	thumb_func_start FUN_overlay_d_93__021d74bc
 FUN_overlay_d_93__021d74bc: ; 0x021D74BC
@@ -6112,7 +6145,8 @@ FUN_overlay_d_93__021d74bc: ; 0x021D74BC
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021d74bc
-_021D74C4: .word 0x02082BCC
+_021D74C4:
+	.word ADDR_02082BCC
 
 	thumb_func_start FUN_overlay_d_93__021d74c8
 FUN_overlay_d_93__021d74c8: ; 0x021D74C8
@@ -6130,7 +6164,8 @@ _021D74D0:
 	blo _021D74D0
 	bx lr
 	nop
-_021D74E0: .word 0x021F3ECC
+_021D74E0:
+	.word ADDR_021F3ECC
 
 	thumb_func_start FUN_overlay_d_93__021d74e4
 FUN_overlay_d_93__021d74e4: ; 0x021D74E4
@@ -6144,7 +6179,7 @@ FUN_overlay_d_93__021d74e4: ; 0x021D74E4
 _021D74F2:
 	pop {r3, pc}
 	.balign 4, 0
-_021D74F4: .word 0x021F3ECC
+_021D74F4: .word ADDR_021F3ECC
 
 
 

@@ -45,8 +45,7 @@ ifndef SECURE_CRC
 $(error Unsupported ROM: $(GAME_VERSION) $(GAME_LANGUAGE))
 endif
 
-# add white here when it's supported
-SUPPORTED_ROMS   := black.us
+SUPPORTED_ROMS   := black.us white.us
 ifneq ($(filter $(buildname),$(SUPPORTED_ROMS)),$(buildname))
 $(error $(buildname) is not supported, choose from: $(SUPPORTED_ROMS))
 endif
