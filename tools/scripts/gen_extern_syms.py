@@ -10,7 +10,7 @@ import sys
 
 EXTERN_RE = re.compile(r'^\s*\.extern\s+(\S+)\s*$')
 LABEL_RE = re.compile(r'^(\w+):')
-ADDRESSED_RE = re.compile(r'^(?:FUN_|ADDR_|_)([0-9A-Fa-f]{8})(?:_dup\d+)?$')
+ADDRESSED_RE = re.compile(r'^(?:FUN_|ADDR_|_)([0-9A-Fa-f]{8})(?:_dup\d+)?(?:_o(\d+))?$')
 
 # libsyscall.a types these thumb, an absolute LCF symbol cannot and blx needs it
 PROVIDED_RE = re.compile(r'^SVC_\w+$')
@@ -29,6 +29,8 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('sources', nargs='+')
     parser.add_argument('--provided', nargs='*', default=[], help="linked C sources; the symbols they define are resolved by the linker, not by an LCF address")
+    parser.add_argument('--overlay-delta', help="file of '<overlay id> <delta>' lines, names ending in _o<id> move by that delta in this version")
+    parser.add_argument('--overlay-shift', help="file of '<overlay id> <start> <delta>' lines, piecewise moves inside one overlay")
     parser.add_argument('--shift', help="file of '<start> <delta>' lines, addresses from start on move by delta in this version")
     parser.add_argument('-o', '--output', required=True)
     args = parser.parse_args()
@@ -40,6 +42,27 @@ def main():
             if len(fields) == 2:
                 steps.append((int(fields[0], 16), int(fields[1], 16)))
         steps.sort()
+
+    deltas = {}
+    if args.overlay_delta:
+        for line in open(args.overlay_delta):
+            fields = line.split()
+            if len(fields) == 2:
+                deltas[int(fields[0])] = int(fields[1], 16)
+
+    pieces = {}
+    if args.overlay_shift:
+        for line in open(args.overlay_shift):
+            fields = line.split()
+            if len(fields) == 3:
+                pieces.setdefault(int(fields[0]), []).append((int(fields[1], 16), int(fields[2], 16)))
+        for table in pieces.values():
+            table.sort()
+
+    def inside(overlay, address):
+        table = pieces[overlay]
+        index = bisect.bisect_right([start for start, _ in table], address) - 1
+        return address + (table[index][1] if index >= 0 else 0)
 
     def moved(address):
         index = bisect.bisect_right([start for start, _ in steps], address) - 1
@@ -82,7 +105,14 @@ def main():
             continue
         m = ADDRESSED_RE.match(name)
         if m:
-            resolvable.append((name, moved(int(m.group(1), 16))))
+            overlay = int(m.group(2)) if m.group(2) else None
+            address = int(m.group(1), 16)
+            if overlay is not None and overlay in pieces:
+                resolvable.append((name, inside(overlay, address)))
+            elif overlay is not None and overlay in deltas:
+                resolvable.append((name, address + deltas[overlay]))
+            else:
+                resolvable.append((name, moved(address)))
         else:
             unresolvable.append(name)
 

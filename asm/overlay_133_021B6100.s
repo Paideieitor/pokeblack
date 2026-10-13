@@ -204,6 +204,10 @@
 	.extern FUN_021FCDEC
 	.extern FUN_021FCE00
 	.extern FUN_021FD6A4
+	.extern ADDR_020307B0
+	.extern ADDR_020A1448
+	.extern ADDR_020A1B38
+	.extern ADDR_020A8148
 
 	.text
 
@@ -1407,7 +1411,8 @@ _021B6B8C: .word _021BA4F8 - 1
 _021B6B90: .word _021BA498 - 1
 _021B6B94: .word _021BA4B8 - 1
 _021B6B98: .word _021BA4D8 - 1
-_021B6B9C: .word 0x020A1448
+_021B6B9C:
+	.word ADDR_020A1448
 _021B6BA0: .word _021BA5C4 - 1
 
 	thumb_func_start FUN_overlay_d_133__021b6ba4
@@ -2325,7 +2330,8 @@ _021B7312:
 	.balign 4, 0
 _021B734C: .word 0x0000188C
 _021B7350: .word 0xFFFF0000
-_021B7354: .word 0x020A8148
+_021B7354:
+	.word ADDR_020A8148
 _021B7358: .word 0x0000181C
 _021B735C: .word _021BA3E0 - 1
 _021B7360: .word 0x00001249
@@ -3119,7 +3125,8 @@ _021B79A8: .word 0x0000181C
 _021B79AC: .word 0x00001249
 _021B79B0: .word 0x00001834
 _021B79B4: .word 0x00001838
-_021B79B8: .word 0x020A1B38
+_021B79B8:
+	.word ADDR_020A1B38
 _021B79BC: .word 0x00008008
 _021B79C0: .word 0x000009C4
 _021B79C4: .word 0xFFFFF63C
@@ -6298,7 +6305,8 @@ _021B93D4:
 _021B93EC: .word 0x3F2AAAAB
 _021B93F0: .word 0x42400000
 _021B93F4: .word 0x0000182C
-_021B93F8: .word 0x020A1B38
+_021B93F8:
+	.word ADDR_020A1B38
 _021B93FC: .word 0x00000000
 _021B9400: .word 0x45800000
 _021B9404: .word 0x0000184C
@@ -7118,7 +7126,8 @@ _021B9A76:
 	pop {r4, r5, r6, r7, pc}
 	nop
 _021B9A7C: .word 0x00001854
-_021B9A80: .word 0x020A1B38
+_021B9A80:
+	.word ADDR_020A1B38
 _021B9A84: .word 0x45800000
 
 	thumb_func_start FUN_overlay_d_133__021b9a88
@@ -7938,7 +7947,8 @@ FUN_021BA0F8: ; 0x021BA0F8
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_021BA0F8
-_021BA0FC: .word 0x020307B0
+_021BA0FC:
+	.word ADDR_020307B0
 
 	thumb_func_start FUN_overlay_d_133__021ba100
 FUN_overlay_d_133__021ba100: ; 0x021BA100
@@ -8320,7 +8330,8 @@ _021BA314:
 	add sp, #0x1c
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021BA31C: .word 0x020A1B38
+_021BA31C:
+	.word ADDR_020A1B38
 _021BA320: .word 0x45800000
 
 	thumb_func_start FUN_overlay_d_133__021ba324
@@ -8406,7 +8417,8 @@ _021BA3BA:
 	add sp, #0x1c
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021BA3D0: .word 0x020A1B38
+_021BA3D0:
+	.word ADDR_020A1B38
 _021BA3D4: .word 0x45800000
 _021BA3D8:
 	.byte 0xE3, 0x00, 0x80, 0x00, 0x00, 0x01, 0x00, 0x00

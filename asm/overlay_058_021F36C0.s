@@ -1,5 +1,11 @@
 	.include "asm/macros/function.inc"
 
+	.extern ADDR_020A2B38
+	.extern ADDR_020A4B38
+	.extern ADDR_021BE480_o21
+	.extern ADDR_021BE4A4_o21
+	.extern ADDR_021F3A3C
+	.extern ADDR_021F3A84
 	.extern FUN_020056EC
 	.extern FUN_02006148
 	.extern FUN_02006224
@@ -20,6 +26,8 @@
 	.extern FUN_021BE480
 	.extern FUN_021BE4A4
 	.extern FUN_021BE760
+	.extern FUN_overlay_d_21__021be418
+	.extern FUN_overlay_d_21__021be760
 
 	.text
 
@@ -50,7 +58,7 @@ FUN_overlay_d_58__021f36c0: ; 0x021F36C0
 	ldr r1, _021F3710 ; =_021F3B60
 	add r0, r4, #0
 	mov r2, #0
-	bl FUN_021BE760
+	bl FUN_overlay_d_21__021be760
 	add r0, r6, #0
 	add r1, r5, #0
 	bl FUN_overlay_d_58__021f38f4
@@ -69,7 +77,7 @@ FUN_overlay_d_58__021f3714: ; 0x021F3714
 	add r0, r4, #0
 	bl FUN_02188D2C
 	mov r1, #0
-	bl FUN_021BE418
+	bl FUN_overlay_d_21__021be418
 	add r0, r4, #0
 	mov r1, #1
 	bl FUN_021897A0
@@ -112,7 +120,7 @@ _021F3772:
 	str r0, [r5]
 	ldr r0, [sp, #4]
 	lsr r2, r2, #0x10
-	bl FUN_021BE480
+	bl ADDR_021BE480_o21
 	add r7, r0, #0
 	ldr r0, [r5]
 	lsl r1, r0, #0x10
@@ -141,7 +149,7 @@ _021F37B2:
 	mov r1, #0
 	lsr r2, r2, #0x10
 	mov r7, #0
-	bl FUN_021BE480
+	bl ADDR_021BE480_o21
 	ldr r1, [r5]
 	lsl r2, r1, #0x10
 	ldr r1, _021F38E4 ; =0x01710000
@@ -171,7 +179,7 @@ _021F37E8:
 	str r0, [r5]
 	ldr r0, [sp, #4]
 	lsr r2, r2, #0x10
-	bl FUN_021BE480
+	bl ADDR_021BE480_o21
 	add r7, r0, #0
 	ldr r0, [r5]
 	lsl r1, r0, #0x10
@@ -199,7 +207,7 @@ _021F3828:
 	mov r1, #0
 	lsr r2, r2, #0x10
 	mov r7, #0
-	bl FUN_021BE480
+	bl ADDR_021BE480_o21
 	ldr r1, [r5]
 	lsl r2, r1, #0x10
 	mov r1, #0x73
@@ -318,7 +326,7 @@ FUN_overlay_d_58__021f391c: ; 0x021F391C
 	mov r1, #0
 	lsr r2, r2, #0x10
 	add r6, r0, #0
-	bl FUN_021BE480
+	bl ADDR_021BE480_o21
 	ldr r1, _021F3A24 ; =0x01770000
 	mov r2, #0
 	str r1, [r0]
@@ -342,12 +350,12 @@ FUN_overlay_d_58__021f391c: ; 0x021F391C
 	mov r1, #0
 	lsr r2, r2, #0x10
 	mov r3, #1
-	bl FUN_021BE4A4
+	bl ADDR_021BE4A4_o21
 	lsl r2, r4, #0x10
 	add r0, r6, #0
 	mov r1, #0
 	lsr r2, r2, #0x10
-	bl FUN_021BE480
+	bl ADDR_021BE480_o21
 	ldr r1, _021F3A2C ; =0x01710000
 	ldr r2, [sp, #4]
 	str r1, [r0]
@@ -365,13 +373,13 @@ FUN_overlay_d_58__021f391c: ; 0x021F391C
 	mov r1, #0
 	lsr r2, r2, #0x10
 	mov r3, #1
-	bl FUN_021BE4A4
+	bl ADDR_021BE4A4_o21
 	add r2, r5, #2
 	lsl r2, r2, #0x10
 	add r0, r6, #0
 	mov r1, #0
 	lsr r2, r2, #0x10
-	bl FUN_021BE480
+	bl ADDR_021BE480_o21
 	ldr r1, _021F3A30 ; =0x01C60000
 	mov r2, #0
 	str r1, [r0]
@@ -395,13 +403,13 @@ FUN_overlay_d_58__021f391c: ; 0x021F391C
 	mov r1, #0
 	lsr r2, r2, #0x10
 	mov r3, #1
-	bl FUN_021BE4A4
+	bl ADDR_021BE4A4_o21
 	add r2, r4, #2
 	lsl r2, r2, #0x10
 	add r0, r6, #0
 	mov r1, #0
 	lsr r2, r2, #0x10
-	bl FUN_021BE480
+	bl ADDR_021BE480_o21
 	mov r1, #0x73
 	lsl r1, r1, #0x12
 	str r1, [r0]
@@ -420,17 +428,19 @@ FUN_overlay_d_58__021f391c: ; 0x021F391C
 	mov r1, #0
 	lsr r2, r2, #0x10
 	mov r3, #1
-	bl FUN_021BE4A4
+	bl ADDR_021BE4A4_o21
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_58__021f391c
 _021F3A24: .word 0x01770000
-_021F3A28: .word 0x020A2B38
+_021F3A28:
+	.word ADDR_020A2B38
 _021F3A2C: .word 0x01710000
 _021F3A30: .word 0x01C60000
 _021F3A34: .word 0x020B0000
-_021F3A38: .word 0x020A4B38
+_021F3A38:
+	.word ADDR_020A4B38
 _021F3A3C:
 	.byte 0xDE, 0x00, 0x00, 0x00
 	.byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDE, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00
@@ -455,6 +465,9 @@ _021F3A3C:
 	.global overlay_058_021F36C0_data
 overlay_058_021F36C0_data:
 _021F3B60:
-	.byte 0x3C, 0x3A, 0x1F, 0x02, 0x06, 0x00, 0x00, 0x00, 0x84, 0x3A, 0x1F, 0x02, 0x0C, 0x00, 0x00, 0x00
+	.word ADDR_021F3A3C
+	.byte 0x06, 0x00, 0x00, 0x00
+	.word ADDR_021F3A84
+	.byte 0x0C, 0x00, 0x00, 0x00
 	.byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	; 0x021F3B80
