@@ -58,7 +58,7 @@ def build_target(sym, entry, wine):
             referenced.add(m.group(1) or m.group(2))
     externs = ''.join(f'\t.extern {s}\n' for s in sorted(referenced - defined))
 
-    open(src, 'w').write(f'\t.include "asm/macros/function.inc"\n\n{externs}\n\t.text\n\n{body}\n'
+    open(src, 'w').write(f'\t.include "macros/function.inc"\n\n{externs}\n\t.text\n\n{body}\n'
                          f'\t.type {sym}, @function\n\t.size {sym}, . - {sym}\n')
     r = subprocess.run(wine + [MWAS] + ASFLAGS + ['-o', obj, src], capture_output=True, text=True)
     return obj if r.returncode == 0 else None
