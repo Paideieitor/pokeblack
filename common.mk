@@ -101,8 +101,6 @@ NDSDISASM    := $(TOOLSDIR)/ndsdisasm/ndsdisasm$(EXE)
 ASM_PROCESSOR := bash $(TOOLSDIR)/asm_processor/compile.sh
 PYTHON        := python3
 
-NATIVE_TOOLS := $(ASPATCH)
-
 TOOLDIRS := $(foreach tool,$(NATIVE_TOOLS),$(dir $(tool)))
 
 # Directories
