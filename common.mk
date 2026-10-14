@@ -166,7 +166,7 @@ DUMMY := $(shell mkdir -p $(ALL_BUILDDIRS))
 
 .SECONDARY:
 .DELETE_ON_ERROR:
-.PHONY: all tidy clean tools clean-tools update skrew skrewrm skrewup $(TOOLDIRS)
+.PHONY: all tidy clean tools clean-tools update purge skrew skrewrm skrewup $(TOOLDIRS)
 .PRECIOUS: $(SBIN)
 
 ifeq ($(NODEP),)
@@ -227,6 +227,10 @@ clean-tools:
 	$(foreach tool,$(TOOLDIRS),$(MAKE) -C $(tool) clean;)
 
 update: skrewup
+
+purge:
+	rm -rf build
+	rm -rf $(SKREW_DIR)
 
 # addresses the module calls but does not contain, defined for the linker because the assembler cannot turn an absolute address into a PC-relative branch
 FORCE_ACTIVE_LIST := $(BUILD_DIR)/force_active.txt
