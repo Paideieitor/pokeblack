@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_020056EC
 	.extern FUN_0203F4E4
@@ -260,10 +260,10 @@ _021F3892:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021F3898: .word 0x000001B1
-_021F389C: .word 0x021F3AD4
-_021F38A0: .word 0x021F3B4C
-_021F38A4: .word 0x021F3A98
-_021F38A8: .word 0x021F3BEC
+_021F389C: .word _021F3AD4 - 1
+_021F38A0: .word _021F3B4C - 1
+_021F38A4: .word _021F3A98 - 1
+_021F38A8: .word _021F3BEC - 1
 	thumb_func_end FUN_overlay_36__021f36c0
 
 	thumb_func_start FUN_021F38AC
@@ -529,10 +529,10 @@ _021F3A66:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021F3A6C: .word 0x021F3A7C
-_021F3A70: .word 0x021F3AD4
-_021F3A74: .word 0x021F3A82
-_021F3A78: .word 0x021F3A90
+_021F3A6C: .word _021F3A7C - 1
+_021F3A70: .word _021F3AD4 - 1
+_021F3A74: .word _021F3A82 - 1
+_021F3A78: .word _021F3A90 - 1
 _021F3A7C:
 	.byte 0x09, 0x0A, 0x0B, 0x0C
 	.byte 0x0D, 0x0E

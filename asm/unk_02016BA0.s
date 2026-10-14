@@ -1,10 +1,11 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern Heap_Free
 	.extern FUN_02030EAC
 	.extern FUN_02030EE8
 	.extern FUN_0209C508
 	.extern FUN_0209AB80
+	.extern FUN_0209B750
 
 	.text
 
@@ -13,29 +14,34 @@ FUN_02016BA0: ; 0x02016BA0
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	ldr r0, [r5, #0xc]
-	.hword 0xF019, 0xEE04 ; blx Heap_Free
+	blx Heap_Free
 	ldr r0, [r5, #0x1c]
 	blx Heap_Free
 	ldr r0, [r5, #0x14]
-	.hword 0xF019, 0xEDFE ; blx Heap_Free
+	blx Heap_Free
 	ldr r0, [r5, #0x24]
 	blx Heap_Free
 	add r0, r5, #0
 	add r0, #0x98
 	ldr r0, [r0]
-	.hword 0xF019, 0xEDF6 ; blx Heap_Free
+	blx Heap_Free
 	ldr r0, [r5, #0x2c]
 	thumb_func_end FUN_02016BA0
 _02016BC8:
+#ifdef WHITE
+	.byte 0x19, 0xF0, 0xF0, 0xED
+	.thumb
+#else
 	.byte 0x19, 0xF0
 
 	non_word_aligned_thumb_func_start FUN_02016bca
 FUN_02016bca: ; 0x02016BCA
 	.hword 0xEDF2
+#endif
 	add r0, r5, #0
 	add r0, #0xd4
 	ldr r0, [r0]
-	.hword 0xF019, 0xEDEE ; blx Heap_Free
+	blx Heap_Free
 	add r0, r5, #0
 	add r0, #0xd8
 	ldr r0, [r0]
@@ -90,12 +96,12 @@ _02016C20:
 	ldr r0, [r4, #0x14]
 	cmp r0, #0
 	beq _02016C2A
-	.hword 0xF019, 0xEDC4 ; blx Heap_Free
+	blx Heap_Free
 _02016C2A:
 	add r0, r4, #0
 	blx Heap_Free
 	add r0, r5, #0
-	.hword 0xF01A, 0xE93C ; blx FUN_02030EAC
+	blx FUN_02030EAC
 	pop {r3, r4, r5, pc}
 	thumb_func_end FUN_02016c14
 
@@ -107,11 +113,11 @@ FUN_02016C38: ; 0x02016C38
 	add r4, r0, #0
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0xc]
-	.hword 0xF019, 0xEDB4 ; blx Heap_Free
+	blx Heap_Free
 	ldr r0, [r4, #4]
 	blx Heap_Free
 	add r0, r4, #0
-	.hword 0xF019, 0xEDAE ; blx Heap_Free
+	blx Heap_Free
 	add r0, r5, #0
 	blx FUN_02030EAC
 	pop {r3, r4, r5, pc}
@@ -134,7 +140,7 @@ _02016C72:
 	add r0, #0xa8
 	ldr r0, [r0]
 	add r0, r0, #2
-	.hword 0xF084, 0xED6A ; blx FUN_0209B750
+	blx FUN_0209B750
 	add r2, r0, #0
 	add r3, r1, #0
 	mov r0, #0
@@ -612,4 +618,5 @@ _02016FC2:
 	add sp, #0x98
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
+
 

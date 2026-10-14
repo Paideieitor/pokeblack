@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_0205AB54
 	.extern FUN_0205C214
@@ -13,6 +13,9 @@
 	.extern FUN_02165144
 	.extern FUN_02165204
 	.extern FUN_0216576C
+	.extern _020A1634
+	.extern ADDR_021A1988
+	.extern ADDR_021A1990
 
 	.text
 
@@ -110,9 +113,9 @@ _0205E0C0:
 	bl FUN_02165144
 	ldmia sp!, {r4, r5, r6, pc}
 	.balign 4, 0
-_0205E104: .word 0x020A1634
-_0205E108: .word 0x021A1988
-_0205E10C: .word 0x021A1990
+_0205E104: .word _020A1634
+_0205E108: .word ADDR_021A1988
+_0205E10C: .word ADDR_021A1990
 	arm_func_end FUN_0205DFA8
 
 	arm_func_start FUN_0205E110
@@ -142,9 +145,9 @@ FUN_0205E110: ; 0x0205E110
 	mov r0, #3
 	ldmia sp!, {r4, pc}
 	.balign 4, 0
-_0205E170: .word 0x020A1634
-_0205E174: .word 0x021A1988
-_0205E178: .word 0x021A1990
+_0205E170: .word _020A1634
+_0205E174: .word ADDR_021A1988
+_0205E178: .word ADDR_021A1990
 	arm_func_end FUN_0205E110
 
 	arm_func_start FUN_0205E17C
@@ -225,9 +228,9 @@ _0205E284:
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
 _0205E28C: .word 0x000082EA
-_0205E290: .word 0x020A1634
-_0205E294: .word 0x021A1988
-_0205E298: .word 0x021A1990
+_0205E290: .word _020A1634
+_0205E294: .word ADDR_021A1988
+_0205E298: .word ADDR_021A1990
 	arm_func_end FUN_0205E1D0
 
 	arm_func_start FUN_0205E29C
@@ -435,8 +438,8 @@ _0205E57C:
 	ldmia sp!, {r4, pc}
 	.balign 4, 0
 _0205E584: .word 0x000082EA
-_0205E588: .word 0x020A1634
-_0205E58C: .word 0x021A1988
+_0205E588: .word _020A1634
+_0205E58C: .word ADDR_021A1988
 	arm_func_end FUN_0205E444
 
 	arm_func_start FUN_0205E590

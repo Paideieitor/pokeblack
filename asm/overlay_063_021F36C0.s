@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_02006148
 	.extern FUN_020061E4
@@ -58,6 +58,18 @@
 	.extern FUN_021BB3C4
 	.extern FUN_021BB3D0
 	.extern FUN_021BB480
+	.extern ADDR_020307B0
+	.extern ADDR_021F3D80
+	.extern FUN_02030EAC
+	.extern FUN_overlay_d_21__021bb260
+	.extern FUN_overlay_d_21__021b7a84
+	.extern FUN_overlay_d_21__021b7d38
+	.extern FUN_overlay_d_21__021b7d50
+	.extern FUN_overlay_d_21__021b8028
+	.extern FUN_overlay_d_21__021bb3c4
+	.extern FUN_overlay_d_21__021bb480
+	.extern ADDR_021BB388_o21
+	.extern ADDR_021BB3D0_o21
 
 	.text
 
@@ -124,12 +136,16 @@ _021F3716:
 	add r0, r4, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021F3750: .word 0x021F3D80
-_021F3754: .word 0x021F377D
+_021F3750:
+	.word ADDR_021F3D80
+_021F3754: .word FUN_overlay_d_63__021f377c
 	thumb_func_end FUN_overlay_63__021f36c0
 _021F3758:
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0x80, 0x30, 0x00, 0x68
-	.byte 0x3D, 0xF6, 0xA4, 0xEB, 0x20, 0x1C, 0x3D, 0xF6, 0x24, 0xE8, 0x10, 0xBD, 0x00, 0x68, 0x09, 0x28
+	blx FUN_02030EAC
+	.byte 0x20, 0x1C
+	blx ADDR_020307B0
+	.byte 0x10, 0xBD, 0x00, 0x68, 0x09, 0x28
 	.byte 0x01, 0xD1, 0x01, 0x20, 0x70, 0x47, 0x00, 0x20, 0x70, 0x47, 0x00, 0x00
 
 	thumb_func_start FUN_overlay_d_63__021f377c
@@ -173,7 +189,7 @@ _021F37AA:
 	blx FUN_0207CDB8
 	ldr r0, [r4, #8]
 	add r1, sp, #0x68
-	bl FUN_021B8028
+	bl FUN_overlay_d_21__021b8028
 	mov r0, #0xc
 	ldrsh r0, [r5, r0]
 	ldr r2, [sp, #0x68]
@@ -278,7 +294,7 @@ _021F37AA:
 	add r0, r2, r1
 	str r0, [r4, #0x34]
 	ldr r0, [r4, #4]
-	bl FUN_021BB480
+	bl FUN_overlay_d_21__021bb480
 	add r2, r4, #0
 	add r1, r4, #0
 	add r3, r4, #0
@@ -287,7 +303,7 @@ _021F37AA:
 	add r3, #0x78
 	str r0, [sp, #0x10]
 	str r2, [sp]
-	bl FUN_021B7A84
+	bl FUN_overlay_d_21__021b7a84
 	cmp r0, #0
 	bne _021F38C4
 	mov r0, #9
@@ -315,11 +331,11 @@ _021F38C4:
 	ldrh r0, [r0]
 	strh r0, [r5, #0xa]
 	ldr r0, [sp, #0x10]
-	bl FUN_021B7D50
+	bl FUN_overlay_d_21__021b7d50
 	str r0, [sp, #0xc]
 	ldr r0, [r4, #4]
 	add r1, r6, #0
-	bl FUN_021BB3C4
+	bl FUN_overlay_d_21__021bb3c4
 	bl FUN_021AB0F8
 	mov r1, #1
 	tst r0, r1
@@ -355,7 +371,7 @@ _021F3930:
 	sub r0, r0, #1
 	strh r0, [r5, #8]
 	ldr r0, [r4, #4]
-	bl FUN_021BB3C4
+	bl FUN_overlay_d_21__021bb3c4
 	bl FUN_021AB0F8
 	mov r1, #1
 	tst r0, r1
@@ -394,7 +410,7 @@ _021F3980:
 	ldr r0, [sp, #0x10]
 	add r1, #0x78
 	add r2, #0x2c
-	bl FUN_021B7D38
+	bl FUN_overlay_d_21__021b7d38
 	add r0, r4, #0
 	add r1, r4, #0
 	add r5, sp, #0x5c
@@ -471,7 +487,7 @@ _021F3A0A:
 	add r1, r4, #0
 	ldr r0, [r4, #4]
 	add r1, #0x78
-	bl FUN_021BB3D0
+	bl ADDR_021BB3D0_o21
 	ldr r0, [r4, #0x18]
 	bl FUN_0218EC5C
 	cmp r0, #0
@@ -508,7 +524,7 @@ _021F3A50:
 	blx FUN_0207CA00
 	ldr r0, [r4, #4]
 	mov r1, #0
-	bl FUN_021BB260
+	bl FUN_overlay_d_21__021bb260
 	ldr r0, [r4, #0x18]
 	mov r1, #2
 	bl FUN_0218E124
@@ -813,9 +829,9 @@ _021F3CFA:
 	bl FUN_021A3044
 	ldr r0, [r4, #4]
 	mov r1, #1
-	bl FUN_021BB260
+	bl FUN_overlay_d_21__021bb260
 	ldr r0, [r4, #4]
-	bl FUN_021BB388
+	bl ADDR_021BB388_o21
 	b _021F3D3E
 _021F3D34:
 	add r1, r4, #0

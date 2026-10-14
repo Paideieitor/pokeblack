@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_0207DF60
 	.extern FUN_02082244
@@ -6,6 +6,7 @@
 	.extern FUN_02082A60
 	.extern FUN_02082A90
 	.extern FUN_0272FB78
+	.extern _020A84C0
 
 	.text
 
@@ -154,7 +155,7 @@ _0207E450:
 	bl FUN_02082A60
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
-_0207E464: .word 0x020A84C0
+_0207E464: .word _020A84C0
 	arm_func_end FUN_0207E3D0
 
 	arm_func_start FUN_0207E468
@@ -207,7 +208,7 @@ _0207E4FC:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	.balign 4, 0
-_0207E518: .word 0x020A84C0
+_0207E518: .word _020A84C0
 	arm_func_end FUN_0207E468
 
 	arm_func_start FUN_0207E51C
@@ -260,7 +261,7 @@ _0207E5B0:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	.balign 4, 0
-_0207E5CC: .word 0x020A84C0
+_0207E5CC: .word _020A84C0
 	arm_func_end FUN_0207E51C
 
 	arm_func_start FUN_0207E5D0
@@ -313,7 +314,7 @@ _0207E664:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	.balign 4, 0
-_0207E680: .word 0x020A84C0
+_0207E680: .word _020A84C0
 	arm_func_end FUN_0207E5D0
 
 	arm_func_start FUN_0207E684
@@ -353,7 +354,7 @@ _0207E6EC:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	.balign 4, 0
-_0207E704: .word 0x020A84C0
+_0207E704: .word _020A84C0
 	arm_func_end FUN_0207E684
 
 	arm_func_start FUN_0207E708
@@ -390,7 +391,7 @@ _0207E764:
 	bl FUN_02082A90
 	ldmia sp!, {r3, pc}
 	.balign 4, 0
-_0207E77C: .word 0x020A84C0
+_0207E77C: .word _020A84C0
 	arm_func_end FUN_0207E708
 
 	arm_func_start FUN_0207E780
@@ -430,7 +431,7 @@ _0207E7E8:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	.balign 4, 0
-_0207E800: .word 0x020A84C0
+_0207E800: .word _020A84C0
 	arm_func_end FUN_0207E780
 
 	arm_func_start FUN_0207E804
@@ -470,7 +471,7 @@ _0207E86C:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	.balign 4, 0
-_0207E884: .word 0x020A84C0
+_0207E884: .word _020A84C0
 	arm_func_end FUN_0207E804
 
 	arm_func_start FUN_0207E888
@@ -525,6 +526,6 @@ _0207E928:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	.balign 4, 0
-_0207E940: .word 0x020A84C0
+_0207E940: .word _020A84C0
 	arm_func_end FUN_0207E888
 

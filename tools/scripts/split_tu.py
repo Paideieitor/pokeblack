@@ -72,7 +72,7 @@ def main():
     p.add_argument('--outdir', required=True)
     p.add_argument('--boundary', action='append', required=True,
                    metavar='ADDR:NAME', help="0x021B6100:battle_server")
-    p.add_argument('--macros', default='asm/macros/function.inc')
+    p.add_argument('--macros', default='macros/function.inc')
     p.add_argument('--lsf')
     p.add_argument('--dry-run', action='store_true')
     args = p.parse_args()

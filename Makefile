@@ -30,8 +30,15 @@ MAKELCF_FLAGS   = \
 
 include common.mk
 
+ifeq ($(GAME_VERSION),WHITE)
+BASEROM        := baserom_white.nds
+BASEROM_SHA1   := bc696a0dfb448c7b3a8a206f0f8214411a039208
+BASEROM_NAME   := Pokemon White
+else
 BASEROM        := baserom.nds
 BASEROM_SHA1   := 26ad0b9967aa279c4a266ee69f52b9b2332399a5
+BASEROM_NAME   := Pokemon Black
+endif
 EXTRACT_DIR    := $(BUILD_DIR)/extracted
 ARM9_CONFIG    := ndsdisasm_config/arm9_config.cfg
 
@@ -70,7 +77,6 @@ MAKEFLAGS += --no-print-directory
 
 all:
 	$(MAKE) tools
-	$(MAKE) patch_mwasmarm
 	$(MAKE) $(ROM)
 
 main: $(SBIN) $(ELF)
@@ -89,7 +95,7 @@ compare: ; @$(MAKE) COMPARE=1
 check-baserom:
 	@if [ ! -f $(BASEROM) ]; then \
 		echo "error: $(BASEROM) not found in the repository root."; \
-		echo "       Supply your own dump of Pokemon Black (USA/EUR, v1.0, NDSi Enhanced)."; \
+		echo "       Supply your own dump of $(BASEROM_NAME) (USA/EUR, v1.0, NDSi Enhanced)."; \
 		echo "       Expected sha1: $(BASEROM_SHA1)"; \
 		exit 1; \
 	fi
@@ -140,7 +146,7 @@ $(ROM): $(PACKED_ARM9) sub $(BANNER)
 		--header $(HEADER_TEMPLATE) --fnt $(FNT) --twl-tail $(TWL_TAIL) \
 		--overlays $(PACKED_DIR) --arm9 $(PACKED_ARM9) --arm7 $(SUB_SBIN) \
 		--banner $(BANNER) --table $(PACKED_DIR)/main_table.sbin \
-		--files $(FILE_ORDER) -o $@
+		--files $(FILE_ORDER) --data-dir $(buildname)/files --data-dir files -o $@
 ifeq ($(COMPARE),1)
 	@$(SHA1SUM) --quiet -c $(ROM_SHA1) && echo "ROM matches $(ROM_SHA1)"
 endif
@@ -191,7 +197,7 @@ CANARY_SHA  := test/toolchain_canary.sha1
 # frozen source, so this stays valid however much of the game gets decompiled;
 # it predates the project warning policy and codegen does not depend on it
 check-toolchain: MWCFLAGS += -W off
-check-toolchain: patch_mwasmarm
+check-toolchain:
 	@$(MW_COMPILE) -c -o $(CANARY_OBJ) $(CANARY_SRC)
 	@$(OBJCOPY) -O binary --only-section=.text $(CANARY_OBJ) $(CANARY_TEXT)
 	@actual=$$($(SHA1SUM) $(CANARY_TEXT) | cut -d' ' -f1); \
@@ -221,5 +227,8 @@ info:
 black:         ; @$(MAKE) GAME_VERSION=BLACK
 compare_black: ; @$(MAKE) GAME_VERSION=BLACK COMPARE=1
 clean_black:   ; @$(MAKE) GAME_VERSION=BLACK clean
+white:         ; @$(MAKE) GAME_VERSION=WHITE
+compare_white: ; @$(MAKE) GAME_VERSION=WHITE COMPARE=1
+clean_white:   ; @$(MAKE) GAME_VERSION=WHITE clean
 
-.PHONY: black compare_black clean_black main compare-arm9
+.PHONY: black compare_black clean_black white compare_white clean_white main compare-arm9

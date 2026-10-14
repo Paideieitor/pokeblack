@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_020862D4
 	.extern FUN_02087988
@@ -11,6 +11,7 @@
 	.extern FUN_02089894
 	.extern FUN_0208AF18
 	.extern FUN_0208B220
+	.extern _02152FA4
 
 	.text
 
@@ -96,7 +97,8 @@ _0208A6B0:
 	.byte 0x02, 0x18, 0xA0, 0xE1, 0x21, 0x18, 0x0C, 0xE0, 0xBA, 0x13, 0xC3, 0xE1, 0x04, 0x30, 0x93, 0xE5
 	.byte 0x00, 0x00, 0x53, 0xE3, 0x08, 0xD0, 0x8D, 0x02, 0xF8, 0x80, 0xBD, 0x08, 0xFF, 0x10, 0x04, 0xE2
 	.byte 0x00, 0x20, 0xA0, 0xE3, 0x33, 0xFF, 0x2F, 0xE1, 0x08, 0xD0, 0x8D, 0xE2, 0xF8, 0x80, 0xBD, 0xE8
-	.byte 0x47, 0xF6, 0xFF, 0xEB, 0x08, 0xD0, 0x8D, 0xE2, 0xF8, 0x80, 0xBD, 0xE8, 0xA4, 0x2F, 0x15, 0x02
+	.byte 0x47, 0xF6, 0xFF, 0xEB, 0x08, 0xD0, 0x8D, 0xE2, 0xF8, 0x80, 0xBD, 0xE8
+	.word _02152FA4
 	.byte 0xAA, 0xFF, 0xFF, 0x02
 
 	arm_func_start FUN_0208A924
@@ -130,8 +132,8 @@ _0208A96C:
 	bl FUN_020885A0
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
-_0208A990: .word 0x02152FA4
-_0208A994: .word 0x0208A6B0
+_0208A990: .word _02152FA4
+_0208A994: .word _0208A6B0
 	arm_func_end FUN_0208A924
 
 	arm_func_start FUN_0208A998
@@ -244,7 +246,7 @@ _0208AB00:
 	strh r0, [r6, #0x34]
 	ldmia sp!, {r4, r5, r6, pc}
 	.balign 4, 0
-_0208AB10: .word 0x02152FA4
+_0208AB10: .word _02152FA4
 _0208AB14: .word 0x04000280
 _0208AB18: .word 0x040002A0
 	arm_func_end FUN_0208AA2C
@@ -290,7 +292,7 @@ _0208AB84:
 	bl FUN_0208799C
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
-_0208ABB0: .word 0x02152FA4
+_0208ABB0: .word _02152FA4
 _0208ABB4: .word 0x0000FFFE
 	arm_func_end FUN_0208AB1C
 
@@ -317,7 +319,7 @@ FUN_0208ABB8: ; 0x0208ABB8
 	strh r1, [r4, #6]
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
-_0208AC08: .word 0x02152FA4
+_0208AC08: .word _02152FA4
 	arm_func_end FUN_0208ABB8
 
 	arm_func_start FUN_0208AC0C
@@ -391,7 +393,7 @@ _0208ACE0:
 	bl FUN_0208799C
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_0208AD0C: .word 0x02152FA4
+_0208AD0C: .word _02152FA4
 _0208AD10: .word 0x0000FFFD
 	arm_func_end FUN_0208AC0C
 
@@ -437,7 +439,7 @@ _0208AD7C:
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
 _0208ADA8: .word 0x03000200
-_0208ADAC: .word 0x02152FA4
+_0208ADAC: .word _02152FA4
 _0208ADB0: .word 0x0000FFFB
 	arm_func_end FUN_0208AD14
 
@@ -534,10 +536,10 @@ _0208AEF4:
 	strh r1, [r0, #4]
 	ldmia sp!, {r4, r5, r6, pc}
 	.balign 4, 0
-_0208AF00: .word 0x02152FA4
+_0208AF00: .word _02152FA4
 _0208AF04: .word 0x0000FFFE
 	arm_func_end FUN_0208ADB4
 _0208AF08:
-	.byte 0x04, 0x00, 0x9F, 0xE5, 0xB0, 0x01, 0xD0, 0xE1
-	.byte 0x1E, 0xFF, 0x2F, 0xE1, 0xA4, 0x2F, 0x15, 0x02
+	.byte 0x04, 0x00, 0x9F, 0xE5, 0xB0, 0x01, 0xD0, 0xE1, 0x1E, 0xFF, 0x2F, 0xE1
+	.word _02152FA4
 

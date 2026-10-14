@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_02008550
 	.extern FUN_0201058C
@@ -37,7 +37,7 @@ FUN_overlay_d_30__021efec4: ; 0x021EFEC4
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_30__021efec4
-_021EFEC8: .word 0x021EFEC1
+_021EFEC8: .word LAB_overlay_d_30__021efec0
 
 	thumb_func_start FUN_overlay_d_30__021efecc
 FUN_overlay_d_30__021efecc: ; 0x021EFECC
@@ -97,8 +97,8 @@ FUN_overlay_d_30__021efecc: ; 0x021EFECC
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_30__021efecc
-_021EFF4C: .word 0x021F0134
-_021EFF50: .word 0x021F0140
+_021EFF4C: .word _021F0134 - 1
+_021EFF50: .word _021F0140 - 1
 
 	thumb_func_start FUN_overlay_d_30__021eff54
 FUN_overlay_d_30__021eff54: ; 0x021EFF54
@@ -213,9 +213,9 @@ _021EFF5C:
 	add sp, #0x6c
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021F004C: .word 0x021F014C
-_021F0050: .word 0x021F016C
-_021F0054: .word 0x021F018C
+_021F004C: .word _021F014C - 1
+_021F0050: .word _021F016C - 1
+_021F0054: .word _021F018C - 1
 
 	thumb_func_start FUN_overlay_d_30__021f0058
 FUN_overlay_d_30__021f0058: ; 0x021F0058
@@ -231,7 +231,7 @@ FUN_overlay_d_30__021f0058: ; 0x021F0058
 	pop {r4, pc}
 	nop
 	thumb_func_end FUN_overlay_d_30__021f0058
-_021F0074: .word 0x021F00C5
+_021F0074: .word _021F00C4
 _021F0078: .word 0x00000149
 
 	thumb_func_start FUN_overlay_d_30__021f007c
@@ -291,7 +291,7 @@ FUN_overlay_d_30__021f00c8: ; 0x021F00C8
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_30__021f00c8
 _021F00F0: .word 0x0000017A
-_021F00F4: .word 0x021F01C0
+_021F00F4: .word _021F01C0
 
 	thumb_func_start FUN_overlay_d_30__021f00f8
 FUN_overlay_d_30__021f00f8: ; 0x021F00F8

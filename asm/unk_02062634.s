@@ -1,6 +1,8 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_02062F90
+	.extern _02062634
+	.extern _02062BAC
 
 	.text
 
@@ -29,7 +31,7 @@ FUN_02062670: ; 0x02062670
 	ldr ip, _02062678 ; =FUN_02062634
 	bx ip
 	.balign 4, 0
-_02062678: .word 0x02062634 ; was FUN_02062634
+_02062678: .word _02062634 ; was FUN_02062634
 	arm_func_end FUN_02062670
 
 	arm_func_start FUN_0206267C
@@ -37,7 +39,7 @@ FUN_0206267C: ; 0x0206267C
 	ldr ip, _02062684 ; =FUN_02062634
 	bx ip
 	.balign 4, 0
-_02062684: .word 0x02062634 ; was FUN_02062634
+_02062684: .word _02062634 ; was FUN_02062634
 	arm_func_end FUN_0206267C
 
 	arm_func_start FUN_02062688
@@ -163,7 +165,7 @@ FUN_02062810: ; 0x02062810
 	add r0, r0, #8
 	bx ip
 	.balign 4, 0
-_0206281C: .word 0x02062BAC ; was FUN_02062BAC
+_0206281C: .word _02062BAC ; was FUN_02062BAC
 	arm_func_end FUN_02062810
 
 	arm_func_start FUN_02062820
@@ -276,7 +278,7 @@ FUN_0206295C: ; 0x0206295C
 	add r0, r0, #8
 	bx ip
 	.balign 4, 0
-_02062968: .word 0x02062BAC ; was FUN_02062BAC
+_02062968: .word _02062BAC ; was FUN_02062BAC
 	arm_func_end FUN_0206295C
 
 	arm_func_start FUN_0206296C

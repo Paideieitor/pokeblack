@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_020056EC
 	.extern FUN_020120F4
@@ -51,6 +51,15 @@
 	.extern FUN_02191870
 	.extern FUN_0219196C
 	.extern FUN_021A3074
+	.extern ADDR_0216DAC8
+	.extern ADDR_021F39C0
+	.extern ADDR_021F3A64
+	.extern ADDR_021F3AA4
+	.extern ADDR_021F4124
+	.extern ADDR_021F414C
+	.extern ADDR_021F4174
+	.extern ADDR_021F41F0
+	.extern ADDR_021F4458
 
 	.text
 
@@ -191,7 +200,8 @@ _021F3AE8:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 _021F3B10:
-	.byte 0xD2, 0x21, 0x89, 0x00, 0x01, 0x4B, 0x40, 0x18, 0x18, 0x47, 0xC0, 0x46, 0x59, 0x44, 0x1F, 0x02
+	.byte 0xD2, 0x21, 0x89, 0x00, 0x01, 0x4B, 0x40, 0x18, 0x18, 0x47, 0xC0, 0x46
+	.word ADDR_021F4458 + 1
 
 	thumb_func_start FUN_overlay_d_55__021f3b20
 FUN_overlay_d_55__021f3b20: ; 0x021F3B20
@@ -434,8 +444,8 @@ _021F3C8C:
 	add sp, #0x18
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_021F3CDC: .word 0x021F4620
-_021F3CE0: .word 0x021F4620
+_021F3CDC: .word _021F4620
+_021F3CE0: .word _021F4620
 
 	thumb_func_start FUN_overlay_d_55__021f3ce4
 FUN_overlay_d_55__021f3ce4: ; 0x021F3CE4
@@ -463,7 +473,7 @@ FUN_overlay_d_55__021f3cf4: ; 0x021F3CF4
 _021F3D06:
 	pop {r4, pc}
 	.balign 4, 0
-_021F3D08: .word 0x021F45C0
+_021F3D08: .word _021F45C0 - 1
 
 	thumb_func_start FUN_overlay_d_55__021f3d0c
 FUN_overlay_d_55__021f3d0c: ; 0x021F3D0C
@@ -526,8 +536,8 @@ _021F3D26:
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021F3D88: .word 0x021F4620
-_021F3D8C: .word 0x021F45C8
+_021F3D88: .word _021F4620
+_021F3D8C: .word _021F45C8 - 1
 
 	thumb_func_start FUN_overlay_d_55__021f3d90
 FUN_overlay_d_55__021f3d90: ; 0x021F3D90
@@ -567,7 +577,8 @@ FUN_overlay_d_55__021f3dbc: ; 0x021F3DBC
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_55__021f3dbc
-_021F3DD0: .word 0x0216DAC9
+_021F3DD0:
+	.word ADDR_0216DAC8 + 1
 
 	thumb_func_start FUN_overlay_d_55__021f3dd4
 FUN_overlay_d_55__021f3dd4: ; 0x021F3DD4
@@ -1568,8 +1579,8 @@ FUN_overlay_d_55__021f4510: ; 0x021F4510
 	bx lr
 	nop
 	thumb_func_end FUN_overlay_d_55__021f4510
-_021F4528: .word 0x021F45E0
-_021F452C: .word 0x021F45D0
+_021F4528: .word _021F45E0 - 1
+_021F452C: .word _021F45D0 - 1
 
 	thumb_func_start FUN_overlay_d_55__021f4530
 FUN_overlay_d_55__021f4530: ; 0x021F4530
@@ -1654,15 +1665,20 @@ _021F45BC:
 	pop {r4, pc}
 	.balign 4, 0
 _021F45C0:
-	.byte 0x75, 0x41, 0x1F, 0x02, 0xF1, 0x41, 0x1F, 0x02
+	.word ADDR_021F4174 + 1
+	.word ADDR_021F41F0 + 1
 _021F45C8:
-	.byte 0x25, 0x41, 0x1F, 0x02, 0x4D, 0x41, 0x1F, 0x02
+	.word ADDR_021F4124 + 1
+	.word ADDR_021F414C + 1
 _021F45D0:
 	.byte 0x06, 0x02, 0x11, 0x0E, 0x11, 0x0A, 0x0E, 0x02, 0x0A, 0x11, 0x0A, 0x06, 0x02, 0x06, 0x0E, 0x06
 _021F45E0:
 	.byte 0x01, 0x16, 0x02, 0x14, 0x04, 0x15, 0x03, 0x13, 0x01, 0x13, 0x02, 0x16, 0x03, 0x14, 0x04, 0x15
-	.byte 0x00, 0x00, 0x00, 0x00, 0xD8, 0x03, 0x00, 0x00, 0xC1, 0x39, 0x1F, 0x02, 0x65, 0x3A, 0x1F, 0x02
-	.byte 0xA5, 0x3A, 0x1F, 0x02, 0x00, 0x00, 0x00, 0x00
+	.byte 0x00, 0x00, 0x00, 0x00, 0xD8, 0x03, 0x00, 0x00
+	.word ADDR_021F39C0 + 1
+	.word ADDR_021F3A64 + 1
+	.word ADDR_021F3AA4 + 1
+	.byte 0x00, 0x00, 0x00, 0x00
 
 	.section .data, 4
 	.global overlay_055_021F39C0_data

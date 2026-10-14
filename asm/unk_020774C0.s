@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_02004490
 	.extern FUN_02077410
@@ -87,7 +87,11 @@ FUN_02077568: ; 0x02077568
 	mov r4, #0
 _02077594:
 	mov r0, r6
+#ifdef WHITE
+	.byte 0x5F, 0x34, 0xFE, 0xFB
+#else
 	blx FUN_02004490
+#endif
 	mov r0, r5
 	mov r1, r7
 	mov r2, r4

@@ -19,6 +19,11 @@
 .macro arm_func_end name
 	.endm
 
+.macro non_word_aligned_arm_func_start name
+	.global \name
+	.arm
+	.endm
+
 .macro non_word_aligned_thumb_func_start name
 	.global \name
 	.thumb

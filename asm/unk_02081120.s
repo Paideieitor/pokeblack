@@ -1,8 +1,17 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_02080D68
 	.extern MI_CpuFill8
 	.extern MI_CpuCopy8
+	.extern _020813D8
+	.extern _0208142C
+	.extern _020814C0
+	.extern _02081E7C
+	.extern _020A5CAC
+	.extern _020A5CB8
+	.extern _020A84C4
+	.extern _020A8688
+	.extern _02150E68
 
 	.text
 
@@ -134,7 +143,7 @@ _020812A8:
 	bl MI_CpuFill8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	.balign 4, 0
-_020812DC: .word 0x020A84C4
+_020812DC: .word _020A84C4
 	arm_func_end FUN_0208122C
 _020812E0:
 	.byte 0x70, 0x40, 0x2D, 0xE9, 0x00, 0x60, 0xA0, 0xE1, 0x2C, 0x40, 0x96, 0xE5, 0x00, 0x10, 0xA0, 0xE3
@@ -181,7 +190,7 @@ _0208138C:
 	bne _0208132C
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	.balign 4, 0
-_02081398: .word 0x020A8688
+_02081398: .word _020A8688
 	arm_func_end FUN_0208130C
 
 	arm_func_start FUN_0208139C
@@ -198,10 +207,10 @@ FUN_0208139C: ; 0x0208139C
 	mov r0, r2
 	bx lr
 	.balign 4, 0
-_020813C8: .word 0x02150E68
-_020813CC: .word 0x020812E0
-_020813D0: .word 0x020A8688
-_020813D4: .word 0x02081E7C
+_020813C8: .word _02150E68
+_020813CC: .word _020812E0
+_020813D0: .word _020A8688
+_020813D4: .word _02081E7C
 	arm_func_end FUN_0208139C
 
 	arm_func_start FUN_020813D8
@@ -271,7 +280,7 @@ _020814B0:
 	bne _0208144C
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	.balign 4, 0
-_020814BC: .word 0x020A8688
+_020814BC: .word _020A8688
 	arm_func_end FUN_0208142C
 
 	arm_func_start FUN_020814C0
@@ -402,8 +411,8 @@ _02081574:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-_020816B0: .word 0x020A5CAC
-_020816B4: .word 0x020A5CAD
+_020816B0: .word _020A5CAC
+_020816B4: .word _020A5CAC + 1
 	arm_func_end FUN_020814C0
 _020816B8:
 	.byte 0xF8, 0x40, 0x2D, 0xE9, 0x60, 0xD0, 0x4D, 0xE2
@@ -448,10 +457,10 @@ FUN_020816FC: ; 0x020816FC
 	add sp, sp, #0x98
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	.balign 4, 0
-_02081780: .word 0x020A5CB8
-_02081784: .word 0x020813D8 ; was FUN_020813D8
-_02081788: .word 0x0208142C ; was FUN_0208142C
-_0208178C: .word 0x020814C0 ; was FUN_020814C0
+_02081780: .word _020A5CB8
+_02081784: .word _020813D8 ; was FUN_020813D8
+_02081788: .word _0208142C ; was FUN_0208142C
+_0208178C: .word _020814C0 ; was FUN_020814C0
 	arm_func_end FUN_020816FC
 
 	arm_func_start FUN_02081790

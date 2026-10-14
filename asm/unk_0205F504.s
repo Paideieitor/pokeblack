@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_0205C4C8
 	.extern FUN_0205FFC4
@@ -12,6 +12,10 @@
 	.extern FUN_02087058
 	.extern FUN_02087244
 	.extern FUN_0215F7E8
+	.extern _020A813C
+	.extern _02146B00
+	.extern _02146B20
+	.extern _02146B40
 
 	.text
 
@@ -156,11 +160,11 @@ _0205F6E4:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	.balign 4, 0
-_0205F6EC: .word 0x020A813C
-_0205F6F0: .word 0x02146B20
+_0205F6EC: .word _020A813C
+_0205F6F0: .word _02146B20
 _0205F6F4: .word 0x000001FE
-_0205F6F8: .word 0x02146B00
-_0205F6FC: .word 0x02146B40
+_0205F6F8: .word _02146B00
+_0205F6FC: .word _02146B40
 	arm_func_end FUN_0205F648
 
 	arm_func_start FUN_0205F700
@@ -176,7 +180,7 @@ FUN_0205F700: ; 0x0205F700
 	moveq r0, #0x10
 	ldmia sp!, {r3, pc}
 	.balign 4, 0
-_0205F728: .word 0x02146B00
+_0205F728: .word _02146B00
 	arm_func_end FUN_0205F700
 
 	arm_func_start FUN_0205F72C
@@ -342,7 +346,7 @@ _0205F958:
 	str r0, [r4]
 	ldmia sp!, {r4, r5, r6, pc}
 	.balign 4, 0
-_0205F96C: .word 0x020A813C
+_0205F96C: .word _020A813C
 	arm_func_end FUN_0205F8A0
 
 	arm_func_start FUN_0205F970

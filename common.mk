@@ -37,23 +37,69 @@ SDK_ROOT      := $(WORK_DIR)/lib/NitroSDK/TwlSDK
 SDK_TOOLS     := $(SDK_ROOT)/tools/bin
 SDK_SPECFILES := $(SDK_ROOT)/include/nitro/specfiles
 
-MWCC          = $(TOOLSDIR)/mwccarm/$(MWCCVER)/mwccarm.exe
-MWAS          = $(TOOLSDIR)/mwccarm/$(MWCCVER)/mwasmarm.exe
-MWLD          = $(TOOLSDIR)/mwccarm/$(MWCCVER)/mwldarm.exe
+# Metroskrew
+SKREW_GET := tools/devtools/get_metroskrew.sh
+SKREW_VER := 0.1.3
+SKREW_DIR := $(TOOLSDIR)/metroskrew
+SKREW_FLAGS = -wrap:sdk $(MWCCVER)
+
+ifneq (,$(findstring Linux,$(UNAME_S)))
+  ifeq (0,$(WSL_ACCESSING_WINDOWS))
+    NATIVE := native.ini
+    CROSS := cross.ini
+    SKREW_SYS := windows
+    SKREW_EXE := $(SKREW_DIR)/bin/skrewrap.exe
+  else
+    NATIVE := native.ini
+    CROSS := cross_unix.ini
+    SKREW_SYS := linux
+    SKREW_EXE := $(SKREW_DIR)/bin/skrewrap
+  endif
+else
+  ifneq (,$(findstring Darwin,$(UNAME_S)))
+    NATIVE := native_macos.ini
+    CROSS := cross_unix.ini
+    SKREW_SYS := wine
+    SKREW_EXE := $(SKREW_DIR)/bin/skrewrap
+  else
+    ifneq (,$(findstring BSD, $(UNAME_S)))
+      NATIVE := native.ini
+      CROSS := cross_unix.ini
+      SKREW_SYS := linux
+      SKREW_EXE := $(SKREW_DIR)/bin/skrewrap
+    else
+      NATIVE := native.ini
+      CROSS := cross.ini
+      SKREW_SYS := windows
+      SKREW_EXE := $(SKREW_DIR)/bin/skrewrap.exe
+    endif
+  endif
+endif
+
+skrew: $(SKREW_EXE)
+
+skrewrm:
+	rm -rf $(SKREW_DIR)
+
+skrewup: skrewrm skrew
+
+$(SKREW_EXE):
+	SKREW_SYS=$(SKREW_SYS) SKREW_VER=$(SKREW_VER) SKREW_DIR=$(SKREW_DIR) $(SKREW_GET)
+
+MWCC          = $(SKREW_DIR)/bin/mwccarm $(SKREW_FLAGS)
+MWAS          = $(SKREW_DIR)/bin/mwasmarm $(SKREW_FLAGS)
+MWLD          = $(SKREW_DIR)/bin/mwldarm $(SKREW_FLAGS)
 MAKELCF      := $(SDK_TOOLS)/makelcf.exe
 COMPSTATIC   := $(SDK_TOOLS)/compstatic.exe
 
 export LM_LICENSE_FILE := $(TOOLSDIR)/mwccarm/license.dat
 
 # Native tools
-ASPATCH      := $(TOOLSDIR)/mwasmarm_patcher/mwasmarm_patcher$(EXE)
 NDSTOOL      := $(TOOLSDIR)/ndstool/ndstool$(EXE)
 NDSDISASM    := $(TOOLSDIR)/ndsdisasm/ndsdisasm$(EXE)
 
-ASM_PROCESSOR := $(TOOLSDIR)/asm_processor/compile.sh
+ASM_PROCESSOR := bash $(TOOLSDIR)/asm_processor/compile.sh
 PYTHON        := python3
-
-NATIVE_TOOLS := $(ASPATCH)
 
 TOOLDIRS := $(foreach tool,$(NATIVE_TOOLS),$(dir $(tool)))
 
@@ -93,16 +139,22 @@ MWASFLAGS          = $(DEFINES) -proc $(PROC_S) -g -gccinc -i . -i $(WORK_DIR) -
 MWLDFLAGS         := -proc $(PROC) -sym on -nopic -nopid -interworking -map closure,unused -symtab sort -m _start -msgstyle gcc
 ARFLAGS           := rcS
 
-MW_COMPILE  = $(WINE) $(MWCC) $(MWCFLAGS)
-MW_ASSEMBLE = $(WINE) $(MWAS) $(MWASFLAGS)
-MW_LINK     = $(WINE) $(MWLD) $(MWLDFLAGS) $(LIBS)
-MW_LINK_LIB = $(WINE) $(MWLD) -library -nodead -w off -proc $(PROC_LD)
+MW_COMPILE  = $(MWCC) $(MWCFLAGS)
+MW_ASSEMBLE = $(MWAS) $(MWASFLAGS)
+MW_LINK     = $(MWLD) $(MWLDFLAGS) $(LIBS)
+MW_LINK_LIB = $(MWLD) -library -nodead -w off -proc $(PROC_LD)
 
 export MWCIncludes := $(SDK_ROOT)/include
 
-LSF               := $(addsuffix .lsf,$(ELFNAME))
+LSF_SRC           := $(addsuffix .lsf,$(ELFNAME))
+OVERLAY_BASE      := $(wildcard $(buildname)/overlay_base.txt)
+ifneq ($(OVERLAY_BASE),)
+LSF               := $(BUILD_DIR)/$(LSF_SRC)
+else
+LSF               := $(LSF_SRC)
+endif
 ifneq ($(LSF),)
-OVERLAYS          := $(shell $(GREP) -o "^Overlay \w+" $(LSF) | cut -d' ' -f2)
+OVERLAYS          := $(shell $(GREP) -o "^Overlay \w+" $(LSF_SRC) | cut -d' ' -f2)
 else
 OVERLAYS          :=
 endif
@@ -112,11 +164,8 @@ DUMMY := $(shell mkdir -p $(ALL_BUILDDIRS))
 
 .SECONDARY:
 .DELETE_ON_ERROR:
-.PHONY: all tidy clean tools clean-tools patch_mwasmarm $(TOOLDIRS)
+.PHONY: all tidy clean tools clean-tools update purge skrew skrewrm skrewup $(TOOLDIRS)
 .PRECIOUS: $(SBIN)
-
-patch_mwasmarm:
-	@$(ASPATCH) -q $(MWAS)
 
 ifeq ($(NODEP),)
 ifneq ($(WINPATH),)
@@ -167,13 +216,19 @@ endif
 
 $(NATIVE_TOOLS): tools ;
 
-tools: $(TOOLDIRS)
+tools: $(TOOLDIRS) $(SKREW_EXE)
 
 $(TOOLDIRS):
 	@$(MAKE) -C $@
 
 clean-tools:
 	$(foreach tool,$(TOOLDIRS),$(MAKE) -C $(tool) clean;)
+
+update: skrewup
+
+purge:
+	rm -rf build
+	rm -rf $(SKREW_DIR)
 
 # addresses the module calls but does not contain, defined for the linker because the assembler cannot turn an absolute address into a PC-relative branch
 FORCE_ACTIVE_LIST := $(BUILD_DIR)/force_active.txt
@@ -184,12 +239,19 @@ $(FORCE_ACTIVE_LIST): $(ASM_SRCS) $(C_SRCS)
 ifeq ($(EXTERN_SYMS),)
 EXTERN_SYMS := $(BUILD_DIR)/extern_syms.lcf
 
-$(EXTERN_SYMS): $(ASM_SRCS) $(C_SRCS)
-	@$(PYTHON) $(SCRIPTS)/gen_extern_syms.py $(SYM_GLOBS) --provided $(C_SRCS) -o $@
+ADDR_SHIFT := $(wildcard $(buildname)/addr_shift.txt)
+OVL_DELTA := $(wildcard $(buildname)/overlay_delta.txt)
+OVL_SHIFT := $(wildcard $(buildname)/overlay_shift.txt)
+
+$(EXTERN_SYMS): $(ASM_SRCS) $(C_SRCS) $(ADDR_SHIFT) $(OVL_DELTA) $(OVL_SHIFT)
+	@$(PYTHON) $(SCRIPTS)/gen_extern_syms.py $(SYM_GLOBS) --provided $(C_SRCS) $(if $(ADDR_SHIFT),--shift $(ADDR_SHIFT)) $(if $(OVL_DELTA),--overlay-delta $(OVL_DELTA)) $(if $(OVL_SHIFT),--overlay-shift $(OVL_SHIFT)) -o $@
 endif
 
 LCF_TEMPLATE_PATH    := $(SDK_SPECFILES)/$(LCF_TEMPLATE)
 RESPONSE_TEMPLATE    := $(SDK_SPECFILES)/mwldarm.response.template
+
+$(BUILD_DIR)/$(LSF_SRC): $(LSF_SRC) $(OVERLAY_BASE)
+	@$(PYTHON) $(SCRIPTS)/gen_lsf.py $< $(OVERLAY_BASE) -o $@
 
 $(LCF): $(LSF) $(LCF_TEMPLATE_PATH) $(EXTERN_SYMS) $(FORCE_ACTIVE_LIST)
 	$(WINE) $(MAKELCF) $(MAKELCF_FLAGS) $< $(LCF_TEMPLATE_PATH) $@

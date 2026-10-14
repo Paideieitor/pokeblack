@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_02066E30
 	.extern FUN_02067080
@@ -6,6 +6,10 @@
 	.extern FUN_02067B64
 	.extern FUN_0207D8E0
 	.extern FUN_02082A48
+	.extern _020A17D8
+	.extern _020A17F0
+	.extern _020A18AC
+	.extern _02148B48
 
 	.text
 
@@ -286,13 +290,13 @@ _02067720:
 	add sp, sp, #0x40
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	.balign 4, 0
-_02067740: .word 0x02148B48
-_02067744: .word 0x020A18AC
+_02067740: .word _02148B48
+_02067744: .word _020A18AC
 _02067748: .word 0x0000FFFE
 _0206774C: .word 0xC000C000
-_02067750: .word 0x020A17F0
+_02067750: .word _020A17F0
 _02067754: .word 0xFE00FFFF
-_02067758: .word 0x020A17D8
+_02067758: .word _020A17D8
 	arm_func_end FUN_0206768c
 
 	arm_func_start FUN_0206775C
@@ -442,10 +446,10 @@ _02067918:
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	.balign 4, 0
-_02067988: .word 0x02148B48
+_02067988: .word _02148B48
 _0206798C: .word 0xC000C000
-_02067990: .word 0x020A17F0
-_02067994: .word 0x020A17D8
+_02067990: .word _020A17F0
+_02067994: .word _020A17D8
 	arm_func_end FUN_0206775C
 
 	arm_func_start FUN_02067998
@@ -504,7 +508,7 @@ _02067A40:
 	bhi _020679C4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	.balign 4, 0
-_02067A5C: .word 0x02148B48
+_02067A5C: .word _02148B48
 	arm_func_end FUN_02067998
 
 	arm_func_start FUN_02067A60

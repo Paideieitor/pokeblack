@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_0205C214
 	.extern FUN_0205D318
@@ -11,6 +11,13 @@
 	.extern MI_CpuCopy8
 	.extern FUN_020923F0
 	.extern FUN_0216576C
+	.extern _0205EC7C
+	.extern _020A1668
+	.extern _020A1674
+	.extern _020A1688
+	.extern _020A80B0
+	.extern _020A8118
+	.extern _020A8124
 
 	.text
 
@@ -219,7 +226,7 @@ FUN_0205EA08: ; 0x0205EA08
 	add sp, sp, #0x18
 	ldmia sp!, {r4, pc}
 	.balign 4, 0
-_0205EA40: .word 0x020A8118
+_0205EA40: .word _020A8118
 	arm_func_end FUN_0205EA08
 
 	arm_func_start FUN_0205EA44
@@ -278,7 +285,7 @@ _0205EAEC:
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
-_0205EAF8: .word 0x020A8118
+_0205EAF8: .word _020A8118
 	arm_func_end FUN_0205EA70
 
 	arm_func_start FUN_0205EAFC
@@ -292,7 +299,7 @@ FUN_0205EAFC: ; 0x0205EAFC
 	movne r0, #0
 	ldmia sp!, {r3, pc}
 	.balign 4, 0
-_0205EB1C: .word 0x020A8124
+_0205EB1C: .word _020A8124
 	arm_func_end FUN_0205EAFC
 
 	arm_func_start FUN_0205EB20
@@ -301,7 +308,7 @@ FUN_0205EB20: ; 0x0205EB20
 	add r0, r0, #0xc
 	bx ip
 	.balign 4, 0
-_0205EB2C: .word 0x0205EC7C ; was FUN_0205EC7C
+_0205EB2C: .word _0205EC7C ; was FUN_0205EC7C
 	arm_func_end FUN_0205EB20
 
 	arm_func_start FUN_0205EB30
@@ -374,8 +381,8 @@ _0205EBFC:
 	add sp, sp, #0x18
 	ldmia sp!, {r4, r5, r6, pc}
 	.balign 4, 0
-_0205EC24: .word 0x020A1688
-_0205EC28: .word 0x020A80B0
+_0205EC24: .word _020A1688
+_0205EC28: .word _020A80B0
 	arm_func_end FUN_0205EB30
 
 	arm_func_start FUN_0205EC2C
@@ -516,8 +523,8 @@ _0205EDB0:
 	ldmia sp!, {r3, r4, r5, pc}
 	.balign 4, 0
 _0205EE18: .word 0x92492493
-_0205EE1C: .word 0x020A80B0
-_0205EE20: .word 0x020A1668
-_0205EE24: .word 0x020A1675
+_0205EE1C: .word _020A80B0
+_0205EE20: .word _020A1668
+_0205EE24: .word _020A1674 + 1
 	arm_func_end FUN_0205EC7C
 
