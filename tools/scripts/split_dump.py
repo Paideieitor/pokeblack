@@ -117,7 +117,7 @@ def main():
     parser.add_argument('--prefix', default='arm9')
     parser.add_argument('--lines', type=int, default=500,
                         help="approximate lines per file")
-    parser.add_argument('--macros', default='asm/macros/function.inc')
+    parser.add_argument('--macros', default='macros/function.inc')
     parser.add_argument('--lsf', help="write an LSF object list here")
     parser.add_argument('--bss', help="size of the .bss section to declare")
     parser.add_argument('--dry-run', action='store_true')
