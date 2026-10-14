@@ -77,7 +77,6 @@ MAKEFLAGS += --no-print-directory
 
 all:
 	$(MAKE) tools
-	$(MAKE) patch_mwasmarm
 	$(MAKE) $(ROM)
 
 main: $(SBIN) $(ELF)
@@ -198,7 +197,7 @@ CANARY_SHA  := test/toolchain_canary.sha1
 # frozen source, so this stays valid however much of the game gets decompiled;
 # it predates the project warning policy and codegen does not depend on it
 check-toolchain: MWCFLAGS += -W off
-check-toolchain: patch_mwasmarm
+check-toolchain:
 	@$(MW_COMPILE) -c -o $(CANARY_OBJ) $(CANARY_SRC)
 	@$(OBJCOPY) -O binary --only-section=.text $(CANARY_OBJ) $(CANARY_TEXT)
 	@actual=$$($(SHA1SUM) $(CANARY_TEXT) | cut -d' ' -f1); \

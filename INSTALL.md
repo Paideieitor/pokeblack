@@ -6,27 +6,9 @@ Verified on Arch Linux. The Windows routes below follow the other DS pret reposi
 
 Clone this repository to your local device. Every step below is performed in the directory you cloned it to.
 
-## 1. Install the CodeWarrior compiler
+## 1. Install the TWL-SDK
 
-The build requires Metrowerks CodeWarrior for DSi, version 1.1, to produce matching code. It is proprietary and cannot be distributed here. Join the Pokeblack Discord and download `mwccarm.zip` from `#resources`, then extract just the pieces the build needs:
-
-```bash
-cd tools
-unzip ~/Downloads/mwccarm.zip 'mwccarm/dsi/1.1/*' 'mwccarm/license.dat'
-cd ..
-```
-
-You should end up with `tools/mwccarm/dsi/1.1/mwccarm.exe`, its two siblings `mwasmarm.exe` and `mwldarm.exe`, and four DLLs. The DLLs must stay beside the executables or Wine cannot start the compiler. `tools/mwccarm/license.dat` ships at the archive root and the command above already places it correctly; the build exports it as `LM_LICENSE_FILE`.
-
-The archive is the full multi-version drop and also contains `1.2`, `2.0` and eight other `dsi` variants. This project uses `dsi/1.1` only.
-
-Running the executables natively on Windows, they may prompt for `license.dat` and then fail to save the setting. Set a system environment variable `LM_LICENSE_FILE` pointing at the file, or run the executable once from an Administrator prompt. Under Wine the build exports the variable itself, so this does not arise.
-
-`mwasmarm.exe` has two bugs that must be patched before use, and `make` runs the patcher itself. The unpatched hash is `7705de17a1eae1b9f181b242232cea0ebbc376d9` and the patched one is `4424d39d773ba544991ad30b5de11387b0728f81`. If the patcher reports an unknown hash, your drop is not the expected one.
-
-## 2. Install the TWL-SDK
-
-Also proprietary, also from `#resources`. The verified drop is `TwlSDK-5_3-1-20090824.zip`, which is TWL-SDK 5.3 patch 1. The archive nests the SDK one level deep, so strip the wrapper directory:
+This is proprietary and cannot be distributed here. Join the Pokeblack Discord and download from `#resources`. The verified drop is `TwlSDK-5_3-1-20090824.zip`, which is TWL-SDK 5.3 patch 1. The archive nests the SDK one level deep, so strip the wrapper directory:
 
 ```bash
 mkdir -p lib/NitroSDK
@@ -50,7 +32,7 @@ The SDK also ships a `libsyscall.a`. Ignore it, because we assemble our own from
 
 Ours defines `SVC_WaitIntr` and `SVC_WaitVBlankIntr` strong, where the SDK has them weak so a title can override them. Nothing overrides them today, but theoretically if you decompile something that should, mark them weak in `_secure_IRBO.s` first or you'll get a duplicate symbol instead of an override.
 
-## 3. Dependencies
+## 2. Dependencies
 
 The CodeWarrior executables are 32-bit Windows binaries, so Wine needs 32-bit support. On Arch that means enabling the `multilib` repository; on Debian it means `dpkg --add-architecture i386`. A 64-bit-only Wine fails on every compiler invocation.
 
@@ -95,7 +77,7 @@ WSL1 also runs the executables directly, converting paths with `wslpath`, so it 
 
 TO REITERATE: WSL2 with Wine does NOT currently work. mwasmarm.exe crashes on every invocation. Use WSL1 (wsl --set-version <distro> 1) or use MSYS2 on Windows directly.
 
-## 4. Supply the base ROM 
+## 3. Supply the base ROM 
 
 Every byte the ROM build needs from the original cartridge ships committed in this repository (`files/`, `black.us/rom_header_template.sbin`, `black.us/fnt.bin`, `black.us/twl_tail.bin`). A normal `make`/`make compare` never touches a base ROM. Skip this step unless you need `make extract` or the granular `compare-overlays`/`compare-table`/`compare-arm7` targets, which come from a dump.
 
@@ -107,7 +89,7 @@ Place it in the repository root as `baserom.nds`. It is gitignored.
 make check-baserom
 ```
 
-## 5. Build ndstool (optional)
+## 4. Build ndstool (optional)
 
 Only needed for the same `make extract`/`compare-*` targets as step 4 above.
 
@@ -122,7 +104,7 @@ If you have devkitPro installed, copy C:\devkitPro\tools\bin\ndstool.exe to tool
 
 Version 2.3.1 builds clean on Arch with no patches. `autogen.sh` needs autoconf and automake, which Arch's `base-devel` provides but Debian's `build-essential` does not.
 
-## 6. Build
+## 5. Build
 
 ```bash
 make check-toolchain   # confirms your compiler produces the expected bytes

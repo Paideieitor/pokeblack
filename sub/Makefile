@@ -30,7 +30,6 @@ include ../common.mk
 
 all:
 	$(MAKE) tools
-	$(MAKE) patch_mwasmarm
 	$(MAKE) target
 
 target: $(SBIN) $(ELF)

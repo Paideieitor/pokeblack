@@ -165,7 +165,7 @@ def main():
             split += ['--bss', hex(bss)]
         run(split, quiet=not args.verbose)
     else:
-        stub = [f'\t.include "asm/macros/function.inc"', '', '\t.text']
+        stub = [f'\t.include "macros/function.inc"', '', '\t.text']
         if bss:
             stub += ['', '\t.section .bss', f'\t.space {bss:#x}']
         open(os.path.join(args.outdir, name + '.s'), 'w').write("\n".join(stub) + "\n")

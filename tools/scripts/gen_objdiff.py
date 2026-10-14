@@ -13,8 +13,9 @@ OUT = os.path.join('build', 'objdiff')
 FUNC_START_RE = re.compile(r'^\s*(thumb|arm)_func_start\s+(\S+)\s*$')
 ADDR_RE = re.compile(r'^\S+:\s*[;@]\s*0x([0-9A-Fa-f]{8})')
 
-MWAS = 'tools/mwccarm/dsi/1.1/mwasmarm.exe'
-MWCC = 'tools/mwccarm/dsi/1.1/mwccarm.exe'
+SKREW = ['-wrap:sdk', 'dsi/1.1']
+MWAS = ['tools/metroskrew/bin/mwasmarm'] + SKREW
+MWCC = ['tools/metroskrew/bin/mwccarm'] + SKREW
 ASFLAGS = ['-proc', 'arm5te', '-gccinc', '-i', '.', '-i', './include', '-i', './asm', '-i', './asm/macros', '-i', './asm/include', '-DSDK_ASM']
 CCFLAGS = ['-DBLACK', '-DENGLISH', '-DPM_KEEP_ASSERTS', '-DSDK_ARM9', '-DSDK_CODE_ARM', '-DSDK_TS', '-O4,p', '-enum', 'int', '-lang', 'c99', '-Cpp_exceptions', 'off', '-gccext,on', '-proc', 'arm946e', '-msgstyle', 'gcc', '-gccinc', '-i', './src', '-i', './include', '-i', './include/msl', '-ipa', 'file', '-interworking', '-inline', 'on,noauto', '-char', 'signed', '-thumb', '-W', 'off']
 
@@ -41,7 +42,7 @@ def index_asm():
     return out
 
 
-def build_target(sym, entry, wine):
+def build_target(sym, entry):
     # without .type objdiff matches the $t mapping symbol instead of the function
     path, lines, i, end, _ = entry
     src = os.path.join(OUT, 'target', sym + '.s')
@@ -58,32 +59,30 @@ def build_target(sym, entry, wine):
             referenced.add(m.group(1) or m.group(2))
     externs = ''.join(f'\t.extern {s}\n' for s in sorted(referenced - defined))
 
-    open(src, 'w').write(f'\t.include "asm/macros/function.inc"\n\n{externs}\n\t.text\n\n{body}\n'
+    open(src, 'w').write(f'\t.include "macros/function.inc"\n\n{externs}\n\t.text\n\n{body}\n'
                          f'\t.type {sym}, @function\n\t.size {sym}, . - {sym}\n')
-    r = subprocess.run(wine + [MWAS] + ASFLAGS + ['-o', obj, src], capture_output=True, text=True)
+    r = subprocess.run(MWAS + ASFLAGS + ['-o', obj, src], capture_output=True, text=True)
     return obj if r.returncode == 0 else None
 
 
-def build_base(sym, addr, wine):
+def build_base(sym, addr):
     if addr is None:
         return None
     csrc = f'src/overlay_93_{addr:08X}.c'
     if not os.path.exists(csrc):
         return None
     obj = os.path.join(OUT, 'base', sym + '.o')
-    r = subprocess.run(wine + [MWCC] + CCFLAGS + ['-c', '-o', obj, csrc], capture_output=True, text=True)
+    r = subprocess.run(MWCC + CCFLAGS + ['-c', '-o', obj, csrc], capture_output=True, text=True)
     return obj if r.returncode == 0 else None
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('symbols', nargs='+', help="function symbol or 8-digit address")
-    parser.add_argument('--wine', default=os.environ.get('WINE', 'wine'))
     args = parser.parse_args()
 
     os.makedirs(os.path.join(OUT, 'target'), exist_ok=True)
     os.makedirs(os.path.join(OUT, 'base'), exist_ok=True)
-    wine = [args.wine] if args.wine else []
 
     index = index_asm()
     units = []
@@ -102,11 +101,11 @@ def main():
             print(f"error: {want} not found in asm/ (already carved?)", file=sys.stderr)
             continue
         sym = FUNC_START_RE.match(entry[1][entry[2]]).group(2)
-        target = build_target(sym, entry, wine)
+        target = build_target(sym, entry)
         if target is None:
             print(f"error: could not assemble target for {sym}", file=sys.stderr)
             continue
-        base = build_base(sym, entry[4], wine)
+        base = build_base(sym, entry[4])
         unit = {'name': sym, 'target_path': os.path.relpath(target, OUT)}
         if base:
             unit['base_path'] = os.path.relpath(base, OUT)
