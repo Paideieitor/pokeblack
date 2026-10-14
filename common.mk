@@ -41,7 +41,7 @@ SDK_SPECFILES := $(SDK_ROOT)/include/nitro/specfiles
 SKREW_GET := tools/devtools/get_metroskrew.sh
 SKREW_VER := 0.1.3
 SKREW_DIR := $(TOOLSDIR)/metroskrew
-SKREW_FLAGS = -wrap:sdk dsi/1.1
+SKREW_FLAGS = -wrap:sdk $(MWCCVER)
 
 ifneq (,$(findstring Linux,$(UNAME_S)))
   ifeq (0,$(WSL_ACCESSING_WINDOWS))
