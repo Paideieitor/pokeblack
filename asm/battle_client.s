@@ -355,7 +355,7 @@
 	.extern FUN_overlay_d_93__021ba004
 	.extern FUN_overlay_d_93__021ba020
 	.extern FUN_overlay_d_93__021ba02c
-	.extern FUN_overlay_d_93__021ba08c
+	.extern MainModule_GetBattlefield
 	.extern FUN_overlay_d_93__021ba1a8
 	.extern FUN_overlay_d_93__021ba1ec
 	.extern FUN_overlay_d_93__021ba73c
@@ -717,7 +717,7 @@ _021CD728:
 	add r0, #0xc
 	strb r1, [r5, r0]
 	ldr r0, [sp, #4]
-	bl FUN_overlay_d_93__021ba08c
+	bl MainModule_GetBattlefield
 	str r0, [r5, #0x34]
 	ldr r1, [sp, #0x34]
 	add r0, r4, #4
@@ -1009,20 +1009,20 @@ FUN_overlay_d_93__021cda0c: ; 0x021CDA0C
 	strb r2, [r0, r1]
 	bx lr
 	thumb_func_end FUN_overlay_d_93__021cda0c
-_021CDA18:
+    
+    thumb_func_start BattleClient_StartBattleServer
+BattleClient_StartBattleServer: ; 0x021CDA18
 	.byte 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x21, 0x1C
 	.byte 0x18, 0x31, 0x06, 0xF0, 0xDB, 0xFA, 0x6A, 0x25, 0xAD, 0x00, 0x60, 0x5D, 0x07, 0x28, 0x00, 0xD9
 	.byte 0xE6, 0xE0
-
-	non_word_aligned_thumb_func_start LAB_overlay_d_93__021cda32
-LAB_overlay_d_93__021cda32: ; 0x021CDA32
+    thumb_func_end BattleClient_StartBattleServer
+_021CDA32:
 	add r0, r0, r0
 	add r0, pc
 	ldrh r0, [r0, #6]
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10
 	add pc, r0
-	thumb_func_end LAB_overlay_d_93__021cda32
 _021CDA3E: ; jump table
 	.hword 0x000E ; case 0
 	.hword 0x00CE ; case 1

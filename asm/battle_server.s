@@ -8157,13 +8157,13 @@ FUN_overlay_d_93__021ba080: ; 0x021BA080
 	thumb_func_end FUN_overlay_d_93__021ba080
 _021BA088: .word 0x0202E7DD
 
-	thumb_func_start FUN_overlay_d_93__021ba08c
-FUN_overlay_d_93__021ba08c: ; 0x021BA08C
+	thumb_func_start MainModule_GetBattlefield
+MainModule_GetBattlefield: ; 0x021BA08C
 	mov r1, #0xaf
 	lsl r1, r1, #2
 	ldr r0, [r0, r1]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021ba08c
+	thumb_func_end MainModule_GetBattlefield
 
 	thumb_func_start FUN_overlay_d_93__021ba094
 FUN_overlay_d_93__021ba094: ; 0x021BA094
