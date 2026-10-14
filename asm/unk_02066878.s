@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_020640B0
 	.extern _020A17D8

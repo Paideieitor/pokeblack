@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern ADDR_0203A5E4
 	.extern ADDR_021B61C4

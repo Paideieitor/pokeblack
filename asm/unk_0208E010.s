@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern FUN_020821C0
 	.extern MI_CpuCopy8

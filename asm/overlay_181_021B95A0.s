@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern ADDR_02005DAC
 	.extern ADDR_02005E30

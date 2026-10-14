@@ -1,4 +1,4 @@
-	.include "asm/macros/function.inc"
+	.include "macros/function.inc"
 
 	.extern SVC_GetCRC16
 	.extern FUN_02082A60

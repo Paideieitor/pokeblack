@@ -40,12 +40,9 @@ tools/ndstool/
 !tools/ndstool/README.md
 tools/ndsdisasm/
 ndstool
-/tools/mwccarm
-tools/mwasmarm_patcher/mwasmarm_patcher
 tools/README.md
 !tools/scripts/
-!tools/PLACE_MWCCARM_HERE.md
-!tools/PLACE_NDSTOOL_HERE.md
+tools/metroskrew/**
 
 # Proprietary SDK (cannot distribute)
 lib/NitroSDK/
