@@ -1,202 +1,5 @@
 	.include "asm/macros/function.inc"
 
-	.extern FUN_020056A0
-	.extern FUN_020056BC
-	.extern FUN_02005DF8
-	.extern FUN_02005E30
-	.extern FUN_02006148
-	.extern FUN_020061E4
-	.extern FUN_020061F8
-	.extern FUN_02006238
-	.extern FUN_02006268
-	.extern FUN_020062BC
-	.extern FUN_02006A64
-	.extern FUN_02006BD0
-	.extern FUN_020083EC
-	.extern FUN_0200854C
-	.extern FUN_02008550
-	.extern FUN_02012FFC
-	.extern FUN_02014B08
-	.extern FUN_02014BA8
-	.extern FUN_02014C08
-	.extern FUN_02014D2C
-	.extern FUN_020159C8
-	.extern FUN_02015BA4
-	.extern FUN_02015BF0
-	.extern FUN_02015C30
-	.extern FUN_02015C48
-	.extern FUN_02015CAC
-	.extern FUN_02015DB0
-	.extern FUN_02015DC0
-	.extern FUN_02015E04
-	.extern FUN_02015E4C
-	.extern FUN_02015EA0
-	.extern FUN_02015EB0
-	.extern FUN_02015F2C
-	.extern FUN_02015FBC
-	.extern FUN_02016020
-	.extern FUN_02016024
-	.extern FUN_02016028
-	.extern FUN_02017100
-	.extern FUN_020173F0
-	.extern FUN_0201C440
-	.extern FUN_0201C4C0
-	.extern FUN_0201C4E4
-	.extern FUN_0201CCE4
-	.extern FUN_0201CE30
-	.extern FUN_0201CE38
-	.extern FUN_0201CE48
-	.extern FUN_0201CE5C
-	.extern FUN_0201D7EC
-	.extern FUN_0201D83C
-	.extern FUN_0201DD60
-	.extern FUN_0201DD68
-	.extern FUN_0201DD78
-	.extern FUN_0201EC64
-	.extern FUN_0201ED04
-	.extern FUN_0201F02C
-	.extern FUN_0201F250
-	.extern FUN_0201F5BC
-	.extern FUN_0201F73C
-	.extern FUN_0201F7A8
-	.extern FUN_0201F81C
-	.extern FUN_0201F868
-	.extern FUN_0201F898
-	.extern FUN_0201FF30
-	.extern FUN_020200CC
-	.extern FUN_0202020C
-	.extern FUN_02020CF8
-	.extern FUN_02020D10
-	.extern FUN_02023EF4
-	.extern FUN_02023F60
-	.extern FUN_02028590
-	.extern FUN_02028604
-	.extern FUN_020286C4
-	.extern FUN_0202EF60
-	.extern FUN_0202EF98
-	.extern FUN_0202F038
-	.extern FUN_0203064C
-	.extern Heap_AllocDebug
-	.extern Heap_Free
-	.extern FUN_02030EAC
-	.extern FUN_0203101C
-	.extern FUN_020310C4
-	.extern FUN_02031140
-	.extern FUN_0203159C
-	.extern FUN_02034AC4
-	.extern FUN_02035C38
-	.extern FUN_02035C60
-	.extern FUN_020362DC
-	.extern FUN_0203630C
-	.extern FUN_0203F0A8
-	.extern FUN_0203F8F4
-	.extern FUN_0203F9B4
-	.extern FUN_0203FC28
-	.extern FUN_0203FCA0
-	.extern FUN_02040588
-	.extern FUN_020409B4
-	.extern FUN_020411E8
-	.extern FUN_02041300
-	.extern FUN_020414AC
-	.extern FUN_02041B6C
-	.extern FUN_02041EE4
-	.extern FUN_0204335C
-	.extern FUN_020433E0
-	.extern FUN_020434CC
-	.extern FUN_020434DC
-	.extern FUN_02043588
-	.extern FUN_02043598
-	.extern FUN_0204361C
-	.extern FUN_0204363C
-	.extern FUN_02043658
-	.extern FUN_02043B5C
-	.extern FUN_02045088
-	.extern FUN_020450C8
-	.extern FUN_020450F0
-	.extern FUN_020452E8
-	.extern FUN_02045334
-	.extern FUN_02045374
-	.extern FUN_02045730
-	.extern FUN_02045770
-	.extern FUN_020457B0
-	.extern FUN_02045808
-	.extern FUN_02045B38
-	.extern FUN_02045C04
-	.extern FUN_02045CAC
-	.extern FUN_02046440
-	.extern FUN_02046788
-	.extern FUN_02046A94
-	.extern FUN_02046BE0
-	.extern FUN_020477A4
-	.extern FUN_020477D4
-	.extern FUN_0204784C
-	.extern FUN_020478B8
-	.extern FUN_02047964
-	.extern FUN_020479D8
-	.extern FUN_02047A60
-	.extern FUN_02047CFC
-	.extern FUN_02047E54
-	.extern FUN_02047E88
-	.extern FUN_020480E4
-	.extern FUN_02048A18
-	.extern FUN_02048A24
-	.extern FUN_02048AC4
-	.extern FUN_02048AD0
-	.extern FUN_02048B60
-	.extern FUN_02048B6C
-	.extern FUN_02048BC4
-	.extern FUN_02048C4C
-	.extern FUN_02048C58
-	.extern FUN_020490F4
-	.extern FUN_02049238
-	.extern FUN_02049658
-	.extern FUN_020498F4
-	.extern FUN_02049B40
-	.extern FUN_02049B68
-	.extern FUN_02049EF4
-	.extern FUN_0204A48C
-	.extern FUN_0204A5AC
-	.extern FUN_0204A6C8
-	.extern FUN_0204A8D4
-	.extern FUN_0204ABF0
-	.extern FUN_0204ADA4
-	.extern FUN_0204AF28
-	.extern FUN_0204AFD8
-	.extern FUN_0204B100
-	.extern FUN_0204B1CC
-	.extern FUN_0204B270
-	.extern FUN_0204B294
-	.extern FUN_0204B3B4
-	.extern FUN_0204B3DC
-	.extern FUN_0204B688
-	.extern FUN_0204B6E4
-	.extern FUN_0204E720
-	.extern FUN_0204E804
-	.extern FUN_02050B80
-	.extern FUN_02050C04
-	.extern FUN_02050ED4
-	.extern FUN_0205121C
-	.extern FUN_02051230
-	.extern FUN_020515B4
-	.extern FUN_02051648
-	.extern FUN_02051758
-	.extern FUN_0207ADC4
-	.extern FUN_0207D63C
-	.extern FUN_0207DC44
-	.extern FUN_0207DD24
-	.extern FUN_02082A60
-	.extern MI_CpuFill8
-	.extern FUN_0209BE04
-	.extern FUN_0209C054
-	.extern FUN_0209C0A4
-	.extern FUN_0209C494
-	.extern FUN_0209C95C
-	.extern FUN_0209CB8C
-	.extern FUN_021BD368
-	.extern FUN_021BD374
-	.extern FUN_021BD380
-	.extern FUN_021BD3A0
-	.extern FUN_020419e4
 	.extern ADDR_02005F38
 	.extern ADDR_0201F7A8
 	.extern ADDR_02024004
@@ -206,20 +9,11 @@
 	.extern ADDR_02050BE8
 	.extern ADDR_0207D63C
 	.extern ADDR_020A1EB8
-	.extern FUN_02005d90
-	.extern FUN_02016374
-	.extern FUN_020306F0
-	.extern FUN_020315D4
-	.extern FUN_02034a5c
-	.extern FUN_02045c04
-	.extern FUN_021BE10C
-	.extern FUN_overlay_203__021bda40
-	.extern FUN_overlay_d_203__021be7a8
-	.extern FUN_overlay_d_203__021be874
-	.extern FUN_overlay_d_204__021bef08
-	.extern FUN_overlay_d_88__021bd2b0
-	.extern LAB_overlay_d_203__021bebec
-	.extern LAB_overlay_d_204__021bf77c
+	.extern ADDR_021BD368_o88
+	.extern ADDR_021BD374_o88
+	.extern ADDR_021BD380_o88
+	.extern ADDR_021BD39C_o88
+	.extern ADDR_021BD3A0_o88
 	.extern ADDR_021BDAE4_o204
 	.extern ADDR_021BDB30_o204
 	.extern ADDR_021BE108_o204
@@ -287,6 +81,214 @@
 	.extern ADDR_021C092C_o204
 	.extern ADDR_021C094C_o204
 	.extern ADDR_021C0960_o204
+	.extern FUN_020056A0
+	.extern FUN_020056BC
+	.extern FUN_02005DF8
+	.extern FUN_02005E30
+	.extern FUN_02005d90
+	.extern FUN_02006148
+	.extern FUN_020061E4
+	.extern FUN_020061F8
+	.extern FUN_02006238
+	.extern FUN_02006268
+	.extern FUN_020062BC
+	.extern FUN_02006A64
+	.extern FUN_02006BD0
+	.extern FUN_020083EC
+	.extern FUN_0200854C
+	.extern FUN_02008550
+	.extern FUN_02012FFC
+	.extern FUN_02014B08
+	.extern FUN_02014BA8
+	.extern FUN_02014C08
+	.extern FUN_02014D2C
+	.extern FUN_020159C8
+	.extern FUN_02015BA4
+	.extern FUN_02015BF0
+	.extern FUN_02015C30
+	.extern FUN_02015C48
+	.extern FUN_02015CAC
+	.extern FUN_02015DB0
+	.extern FUN_02015DC0
+	.extern FUN_02015E04
+	.extern FUN_02015E4C
+	.extern FUN_02015EA0
+	.extern FUN_02015EB0
+	.extern FUN_02015F2C
+	.extern FUN_02015FBC
+	.extern FUN_02016020
+	.extern FUN_02016024
+	.extern FUN_02016028
+	.extern FUN_02016374
+	.extern FUN_02017100
+	.extern FUN_020173F0
+	.extern FUN_0201C440
+	.extern FUN_0201C4C0
+	.extern FUN_0201C4E4
+	.extern FUN_0201CCE4
+	.extern FUN_0201CE30
+	.extern FUN_0201CE38
+	.extern FUN_0201CE48
+	.extern FUN_0201CE5C
+	.extern FUN_0201D7EC
+	.extern FUN_0201D83C
+	.extern FUN_0201DD60
+	.extern FUN_0201DD68
+	.extern FUN_0201DD78
+	.extern FUN_0201EC64
+	.extern FUN_0201ED04
+	.extern FUN_0201F02C
+	.extern FUN_0201F250
+	.extern FUN_0201F5BC
+	.extern FUN_0201F73C
+	.extern FUN_0201F7A8
+	.extern FUN_0201F81C
+	.extern FUN_0201F868
+	.extern FUN_0201F898
+	.extern FUN_0201FF30
+	.extern FUN_020200CC
+	.extern FUN_0202020C
+	.extern FUN_02020CF8
+	.extern FUN_02020D10
+	.extern FUN_02023EF4
+	.extern FUN_02023F60
+	.extern FUN_02028590
+	.extern FUN_02028604
+	.extern FUN_020286C4
+	.extern FUN_0202EF60
+	.extern FUN_0202EF98
+	.extern FUN_0202F038
+	.extern FUN_0203064C
+	.extern FUN_020306F0
+	.extern FUN_02030EAC
+	.extern FUN_0203101C
+	.extern FUN_020310C4
+	.extern FUN_02031140
+	.extern FUN_0203159C
+	.extern FUN_020315D4
+	.extern FUN_02034AC4
+	.extern FUN_02034a5c
+	.extern FUN_02035C38
+	.extern FUN_02035C60
+	.extern FUN_020362DC
+	.extern FUN_0203630C
+	.extern FUN_0203F0A8
+	.extern FUN_0203F8F4
+	.extern FUN_0203F9B4
+	.extern FUN_0203FC28
+	.extern FUN_0203FCA0
+	.extern FUN_02040588
+	.extern FUN_020409B4
+	.extern FUN_020411E8
+	.extern FUN_02041300
+	.extern FUN_020414AC
+	.extern FUN_020419e4
+	.extern FUN_02041B6C
+	.extern FUN_02041EE4
+	.extern FUN_0204335C
+	.extern FUN_020433E0
+	.extern FUN_020434CC
+	.extern FUN_020434DC
+	.extern FUN_02043588
+	.extern FUN_02043598
+	.extern FUN_0204361C
+	.extern FUN_0204363C
+	.extern FUN_02043658
+	.extern FUN_02043B5C
+	.extern FUN_02045088
+	.extern FUN_020450C8
+	.extern FUN_020450F0
+	.extern FUN_020452E8
+	.extern FUN_02045334
+	.extern FUN_02045374
+	.extern FUN_02045730
+	.extern FUN_02045770
+	.extern FUN_020457B0
+	.extern FUN_02045808
+	.extern FUN_02045B38
+	.extern FUN_02045C04
+	.extern FUN_02045CAC
+	.extern FUN_02045c04
+	.extern FUN_02046440
+	.extern FUN_02046788
+	.extern FUN_02046A94
+	.extern FUN_02046BE0
+	.extern FUN_020477A4
+	.extern FUN_020477D4
+	.extern FUN_0204784C
+	.extern FUN_020478B8
+	.extern FUN_02047964
+	.extern FUN_020479D8
+	.extern FUN_02047A60
+	.extern FUN_02047CFC
+	.extern FUN_02047E54
+	.extern FUN_02047E88
+	.extern FUN_020480E4
+	.extern FUN_02048A18
+	.extern FUN_02048A24
+	.extern FUN_02048AC4
+	.extern FUN_02048AD0
+	.extern FUN_02048B60
+	.extern FUN_02048B6C
+	.extern FUN_02048BC4
+	.extern FUN_02048C4C
+	.extern FUN_02048C58
+	.extern FUN_020490F4
+	.extern FUN_02049238
+	.extern FUN_02049658
+	.extern FUN_020498F4
+	.extern FUN_02049B40
+	.extern FUN_02049B68
+	.extern FUN_02049EF4
+	.extern FUN_0204A48C
+	.extern FUN_0204A5AC
+	.extern FUN_0204A6C8
+	.extern FUN_0204A8D4
+	.extern FUN_0204ABF0
+	.extern FUN_0204ADA4
+	.extern FUN_0204AF28
+	.extern FUN_0204AFD8
+	.extern FUN_0204B100
+	.extern FUN_0204B1CC
+	.extern FUN_0204B270
+	.extern FUN_0204B294
+	.extern FUN_0204B3B4
+	.extern FUN_0204B3DC
+	.extern FUN_0204B688
+	.extern FUN_0204B6E4
+	.extern FUN_0204E720
+	.extern FUN_0204E804
+	.extern FUN_02050B80
+	.extern FUN_02050C04
+	.extern FUN_02050ED4
+	.extern FUN_0205121C
+	.extern FUN_02051230
+	.extern FUN_020515B4
+	.extern FUN_02051648
+	.extern FUN_02051758
+	.extern FUN_0207ADC4
+	.extern FUN_0207D63C
+	.extern FUN_0207DC44
+	.extern FUN_0207DD24
+	.extern FUN_02082A60
+	.extern FUN_0209BE04
+	.extern FUN_0209C054
+	.extern FUN_0209C0A4
+	.extern FUN_0209C494
+	.extern FUN_0209C95C
+	.extern FUN_0209CB8C
+	.extern FUN_021BD368
+	.extern FUN_021BD374
+	.extern FUN_021BD380
+	.extern FUN_021BD3A0
+	.extern FUN_overlay_203__021bda40
+	.extern FUN_overlay_d_203__021be7a8
+	.extern FUN_overlay_d_203__021be874
+	.extern FUN_overlay_d_88__021bd2b0
+	.extern Heap_AllocDebug
+	.extern Heap_Free
+	.extern LAB_overlay_d_203__021bebec
+	.extern MI_CpuFill8
 
 	.text
 
@@ -1882,11 +1884,7 @@ FUN_overlay_d_204__021be6b4: ; 0x021BE6B6
 _021BE6C4:
 	add r0, #0xa4
 	ldr r0, [r0]
-#ifdef WHITE
-	.byte 0xFE, 0xF7, 0x58, 0xFE
-#else
-	bl FUN_021BD368
-#endif
+	bl ADDR_021BD368_o88
 	ldr r0, [r4]
 	add r0, r0, #1
 	str r0, [r4]
@@ -1894,11 +1892,7 @@ _021BE6C4:
 _021BE6D4:
 	add r0, #0xa4
 	ldr r0, [r0]
-#ifdef WHITE
-	.byte 0xFE, 0xF7, 0x5C, 0xFE
-#else
-	bl FUN_021BD380
-#endif
+	bl ADDR_021BD380_o88
 	cmp r0, #1
 	bne _021BE6E4
 	mov r0, #1
@@ -1913,24 +1907,17 @@ _021BE6E8:
 FUN_overlay_d_204__021be6e8: ; 0x021BE6EA
 	add r0, #0xa4
 	ldr r0, [r0]
-#ifdef WHITE
-	.byte 0xFE, 0xF7, 0x4B, 0xFE, 0x01, 0x20
-#else
-	bl FUN_021BD374
+	bl ADDR_021BD374_o88
 	mov r0, #1
-#endif
 	pop {r3, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_204__021be6e8
 _021BE6F8:
 	.byte 0x08, 0xB5
 _021BE6FA:
-	.byte 0xA4, 0x30, 0x00, 0x68, 0xFE, 0xF7
-#ifdef WHITE
-	.byte 0x57, 0xFE, 0x01, 0x20, 0x08, 0xBD, 0x00, 0x00, 0x38, 0xB5
-#else
-	.byte 0x4D, 0xFE, 0x01, 0x20, 0x08, 0xBD, 0x00, 0x00, 0x38, 0xB5
-#endif
+	.byte 0xA4, 0x30, 0x00, 0x68
+	bl ADDR_021BD39C_o88
+	.byte 0x01, 0x20, 0x08, 0xBD, 0x00, 0x00, 0x38, 0xB5
 
 	non_word_aligned_thumb_func_start FUN_overlay_d_204__021be708
 FUN_overlay_d_204__021be708: ; 0x021BE70A
@@ -1949,11 +1936,7 @@ _021BE71E:
 	add r0, r5, #0
 	add r0, #0xa4
 	ldr r0, [r0]
-#ifdef WHITE
-	.byte 0xFE, 0xF7, 0x46, 0xFE
-#else
-	bl FUN_021BD3A0
-#endif
+	bl ADDR_021BD3A0_o88
 	cmp r0, #1
 	bne _021BE730
 	mov r0, #1
@@ -1980,12 +1963,8 @@ _021BE754:
 	add r0, r5, #0
 	add r0, #0xa4
 	ldr r0, [r0]
-#ifdef WHITE
-	.byte 0xFE, 0xF7, 0x2B, 0xFE, 0x01, 0x28
-#else
-	bl FUN_021BD3A0
+	bl ADDR_021BD3A0_o88
 	cmp r0, #1
-#endif
 	bne _021BE76C
 	ldr r0, [r5, #0x18]
 	bl FUN_overlay_d_204__021bf580

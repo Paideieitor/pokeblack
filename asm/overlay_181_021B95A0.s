@@ -1,5 +1,44 @@
 	.include "asm/macros/function.inc"
 
+	.extern ADDR_02005DAC
+	.extern ADDR_02005E30
+	.extern ADDR_02005E50
+	.extern ADDR_02005F38
+	.extern ADDR_020221A4
+	.extern ADDR_020434DC
+	.extern ADDR_02043534
+	.extern ADDR_0204363C
+	.extern ADDR_020A1EB8
+	.extern ADDR_021B95A0_o181
+	.extern ADDR_021B95D4_o181
+	.extern ADDR_021B95E8_o181
+	.extern ADDR_021B9630_o181
+	.extern ADDR_021B96B0_o181
+	.extern ADDR_021B96C8_o181
+	.extern ADDR_021B974C_o181
+	.extern ADDR_021B97BC_o181
+	.extern ADDR_021B9A80_o181
+	.extern ADDR_021B9AD4_o181
+	.extern ADDR_021B9FD8_o181
+	.extern ADDR_021BA2A8_o181
+	.extern ADDR_021BA2D8_o181
+	.extern ADDR_021BA5E8_o181
+	.extern ADDR_021BA6F0_o181
+	.extern ADDR_021BAA00_o181
+	.extern ADDR_021BAA54_o181
+	.extern ADDR_021BAA84_o181
+	.extern ADDR_021BAA98_o181
+	.extern ADDR_021BAAA4_o181
+	.extern ADDR_021BAAB0_o181
+	.extern ADDR_021BAABC_o181
+	.extern ADDR_021BAAC0_o181
+	.extern ADDR_021BAAD0_o181
+	.extern ADDR_021BAAE0_o181
+	.extern ADDR_021BAB00_o181
+	.extern ADDR_021BAB30_o181
+	.extern ADDR_021BAB60_o181
+	.extern ADDR_021BAB84_o181
+	.extern ADDR_021BABA8_o181
 	.extern FUN_020056A0
 	.extern FUN_02005D28
 	.extern FUN_02005F38
@@ -9,9 +48,12 @@
 	.extern FUN_0201D83C
 	.extern FUN_0202208C
 	.extern FUN_0203064C
-	.extern Heap_Free
+	.extern FUN_020306F0
+	.extern FUN_02030EAC
 	.extern FUN_0203159C
+	.extern FUN_020315D4
 	.extern FUN_02034A5C
+	.extern FUN_02034ac4
 	.extern FUN_0203630C
 	.extern FUN_0203F8F4
 	.extern FUN_0203F9B4
@@ -22,6 +64,7 @@
 	.extern FUN_02040860
 	.extern FUN_020409B4
 	.extern FUN_02040EBC
+	.extern FUN_020419e4
 	.extern FUN_0204335C
 	.extern FUN_020433E0
 	.extern FUN_020434DC
@@ -81,59 +124,9 @@
 	.extern FUN_0207D534
 	.extern FUN_0207D63C
 	.extern FUN_0207D658
-	.extern MI_CpuFill8
 	.extern FUN_0209C2B0
-	.extern FUN_02030EAC
-	.extern ADDR_02005DAC
-	.extern ADDR_02005E50
-	.extern ADDR_020221A4
-	.extern ADDR_02043534
-	.extern ADDR_0204363C
-	.extern FUN_020306F0
-	.extern FUN_020315D4
-	.extern FUN_02034ac4
-	.extern FUN_overlay_d_181__021b98f4
-	.extern FUN_overlay_d_181__021b9908
-	.extern FUN_overlay_d_181__021b99f8
-	.extern FUN_overlay_d_181__021b9af8
-	.extern FUN_overlay_d_181__021b9b1c
-	.extern FUN_overlay_d_181__021b9d04
-	.extern FUN_overlay_d_181__021b9d34
-	.extern FUN_overlay_d_181__021b9e14
-	.extern ADDR_02005E30
-	.extern ADDR_02005F38
-	.extern ADDR_020434DC
-	.extern ADDR_020A1EB8
-	.extern ADDR_021B95A0_o181
-	.extern ADDR_021B95D4_o181
-	.extern ADDR_021B95E8_o181
-	.extern ADDR_021B9630_o181
-	.extern ADDR_021B96B0_o181
-	.extern ADDR_021B96C8_o181
-	.extern ADDR_021B974C_o181
-	.extern ADDR_021B97BC_o181
-	.extern ADDR_021B9AD4_o181
-	.extern ADDR_021B9FD8_o181
-	.extern ADDR_021BA2A8_o181
-	.extern ADDR_021BA5E8_o181
-	.extern ADDR_021BA6F0_o181
-	.extern ADDR_021BAA00_o181
-	.extern ADDR_021BAA54_o181
-	.extern ADDR_021BAA84_o181
-	.extern ADDR_021BAA98_o181
-	.extern ADDR_021BAAA4_o181
-	.extern ADDR_021BAAB0_o181
-	.extern ADDR_021BAABC_o181
-	.extern ADDR_021BAAC0_o181
-	.extern ADDR_021BAAD0_o181
-	.extern ADDR_021BAAE0_o181
-	.extern ADDR_021BAB00_o181
-	.extern ADDR_021BAB30_o181
-	.extern ADDR_021BAB60_o181
-	.extern ADDR_021BAB84_o181
-	.extern ADDR_021BABA8_o181
-	.extern FUN_020419e4
-	.extern ADDR_021B9A80_o181
+	.extern Heap_Free
+	.extern MI_CpuFill8
 
 	.text
 
@@ -1400,11 +1393,7 @@ FUN_overlay_d_181__021b9f40: ; 0x021B9F40
 	tst r0, r1
 	beq _021B9F96
 	add r0, r5, #0
-#ifdef WHITE
-	.byte 0x00, 0xF0, 0xC0, 0xF9
-#else
-	bl FUN_overlay_d_181__021ba2d8
-#endif
+	bl ADDR_021BA2D8_o181
 	add r0, r5, #0
 	bl FUN_overlay_d_181__021ba128
 	ldr r0, [r5, #0x24]

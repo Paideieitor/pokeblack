@@ -1,5 +1,31 @@
 	.include "asm/macros/function.inc"
 
+	.extern ADDR_0200C0FC
+	.extern ADDR_0200C104
+	.extern ADDR_0201C4C0
+	.extern ADDR_0201C4E4
+	.extern ADDR_0201C6EC
+	.extern ADDR_02025588
+	.extern ADDR_020307B0
+	.extern ADDR_02040DA8
+	.extern ADDR_020419E4
+	.extern ADDR_02045994
+	.extern ADDR_0204A600
+	.extern ADDR_0204A648
+	.extern ADDR_02082BCC
+	.extern ADDR_020A1B38
+	.extern ADDR_020A7370
+	.extern ADDR_021BD368_o88
+	.extern ADDR_021BD374_o88
+	.extern ADDR_021BD380_o88
+	.extern ADDR_021F1440
+	.extern ADDR_021F168C
+	.extern ADDR_021F1744
+	.extern ADDR_021F2A88
+	.extern ADDR_021F2F68
+	.extern ADDR_021F4674
+	.extern ADDR_021F5544
+	.extern ADDR_021F5550
 	.extern FUN_020056A0
 	.extern FUN_020061E4
 	.extern FUN_02012FFC
@@ -23,6 +49,7 @@
 	.extern FUN_0201D304
 	.extern FUN_0201D42C
 	.extern FUN_0201D7EC
+	.extern FUN_0201D83C
 	.extern FUN_0201DD60
 	.extern FUN_0201DD68
 	.extern FUN_0201EC64
@@ -45,13 +72,13 @@
 	.extern FUN_020276AC
 	.extern FUN_020276B0
 	.extern FUN_0203064C
-	.extern Heap_AllocDebug
-	.extern Heap_Free
+	.extern FUN_020306F0
 	.extern FUN_02030EAC
 	.extern FUN_0203101C
 	.extern FUN_020310C4
 	.extern FUN_02031140
 	.extern FUN_0203159C
+	.extern FUN_020315D4
 	.extern FUN_020355C4
 	.extern FUN_020355D8
 	.extern FUN_02035C38
@@ -109,6 +136,7 @@
 	.extern FUN_02045B38
 	.extern FUN_02045CAC
 	.extern FUN_02045EC0
+	.extern FUN_02045c04
 	.extern FUN_020490F4
 	.extern FUN_02049238
 	.extern FUN_02049250
@@ -155,8 +183,6 @@
 	.extern FUN_0207D63C
 	.extern FUN_0207E51C
 	.extern FUN_0207E5D0
-	.extern MI_CpuFill8
-	.extern MI_CpuCopy8
 	.extern FUN_020862F0
 	.extern FUN_0209C0A4
 	.extern FUN_0216C0D4
@@ -164,33 +190,10 @@
 	.extern FUN_021BD368
 	.extern FUN_021BD374
 	.extern FUN_021BD380
-	.extern ADDR_0200C0FC
-	.extern ADDR_0200C104
-	.extern ADDR_0201C4C0
-	.extern ADDR_0201C4E4
-	.extern ADDR_0201C6EC
-	.extern ADDR_02025588
-	.extern ADDR_020307B0
-	.extern ADDR_02040DA8
-	.extern ADDR_020419E4
-	.extern ADDR_02045994
-	.extern ADDR_0204A600
-	.extern ADDR_0204A648
-	.extern ADDR_02082BCC
-	.extern ADDR_020A1B38
-	.extern ADDR_020A7370
-	.extern ADDR_021F1440
-	.extern ADDR_021F168C
-	.extern ADDR_021F1744
-	.extern ADDR_021F2A88
-	.extern ADDR_021F2F68
-	.extern ADDR_021F4674
-	.extern ADDR_021F5544
-	.extern ADDR_021F5550
-	.extern FUN_0201D83C
-	.extern FUN_020306F0
-	.extern FUN_020315D4
-	.extern FUN_02045c04
+	.extern Heap_AllocDebug
+	.extern Heap_Free
+	.extern MI_CpuCopy8
+	.extern MI_CpuFill8
 
 	.text
 
@@ -448,11 +451,7 @@ _021F1670:
 	ldr r0, [r0, #0x24]
 	cmp r0, #0
 	beq _021F1680
-#ifdef WHITE
-	.byte 0xCB, 0xF7, 0x94, 0xFE
-#else
-	bl FUN_021BD374
-#endif
+	bl ADDR_021BD374_o88
 _021F1680:
 	mov r0, #1
 	add sp, #0x20
@@ -7234,12 +7233,8 @@ LAB_overlay_d_194__021f4aba: ; 0x021F4ABA
 	lsl r0, r0, #2
 	ldr r0, [r2, r0]
 	ldr r0, [r0, #0x24]
-#ifdef WHITE
-	.byte 0xC8, 0xF7, 0x6B, 0xFC, 0x01, 0x20
-#else
-	bl FUN_021BD368
+	bl ADDR_021BD368_o88
 	mov r0, #1
-#endif
 	str r0, [r4]
 	pop {r3, r4, r5, pc}
 	thumb_func_end LAB_overlay_d_194__021f4aba
@@ -7250,11 +7245,7 @@ LAB_overlay_d_194__021f4acc: ; 0x021F4ACC
 	lsl r0, r0, #2
 	ldr r0, [r2, r0]
 	ldr r0, [r0, #0x24]
-#ifdef WHITE
-	.byte 0xC8, 0xF7, 0x6E, 0xFC
-#else
-	bl FUN_021BD380
-#endif
+	bl ADDR_021BD380_o88
 	cmp r0, #1
 	bne _021F4AE2
 	add r0, r5, #0
