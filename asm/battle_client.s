@@ -350,8 +350,8 @@
 	.extern FUN_overlay_d_93__021b9b98
 	.extern BattleParty_GetBattleMon
 	.extern FUN_overlay_d_93__021b9c00
-	.extern FUN_overlay_d_93__021b9f84
-	.extern FUN_overlay_d_93__021b9fbc
+	.extern MainModule_GetTrainerItem
+	.extern MainModule_GetAIFlags
 	.extern FUN_overlay_d_93__021ba004
 	.extern FUN_overlay_d_93__021ba020
 	.extern FUN_overlay_d_93__021ba02c
@@ -360,11 +360,11 @@
 	.extern FUN_overlay_d_93__021ba1ec
 	.extern FUN_overlay_d_93__021ba73c
 	.extern FUN_overlay_d_93__021ba7f8
-	.extern FUN_overlay_d_93__021ba820
+	.extern MainModule_GetServerFlow
 	.extern FUN_overlay_d_93__021bb570
 	.extern FUN_overlay_d_93__021cd5e0
-	.extern FUN_overlay_d_93__021d3f04
-	.extern FUN_overlay_d_93__021d3f48
+	.extern RecordPlayer_Clear
+	.extern RecordPlayer_SetChapterCount
 	.extern FUN_overlay_d_93__021d3f4c
 	.extern FUN_overlay_d_93__021d3f54
 	.extern FUN_overlay_d_93__021d3f60
@@ -539,7 +539,7 @@
 	.extern BattleRecord_GetData
 	.extern BattleRecordReader_Reset
 	.extern FUN_overlay_d_93__021ee6b8
-	.extern FUN_overlay_d_93__021ee830
+	.extern BattleRecordReader_GetCurrentChapterCount
 	.extern BattleAdapter_Create
 	.extern FUN_overlay_d_93__021eebdc
 	.extern FUN_overlay_d_93__021eebe8
@@ -896,9 +896,9 @@ _021CD728:
 	bl FUN_overlay_d_93__021d8230
 	add r0, r5, #0
 	add r0, #0x18
-	bl FUN_overlay_d_93__021d3f04
+	bl RecordPlayer_Clear
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d3d9c
+	bl BattleClient_SetTrainerItems
 	ldr r3, [sp, #0x3c]
 	add r2, r5, #0
 	add r2, #0xf4
@@ -917,10 +917,10 @@ _021CD728:
 	bne _021CD88A
 	ldrb r1, [r5, r4]
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021b9fbc
+	bl MainModule_GetAIFlags
 	add r6, r0, #0
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021ba820
+	bl MainModule_GetServerFlow
 	sub r4, #0xc
 	add r1, r0, #0
 	ldrh r0, [r5, r4]
@@ -1036,21 +1036,21 @@ FUN_overlay_d_93__021cd938: ; 0x021CD938
 	strb r2, [r4, r0]
 	add r0, r1, #0
 	str r1, [r4, #0x14]
-	bl FUN_overlay_d_93__021ee830
+	bl BattleRecordReader_GetCurrentChapterCount
 	add r4, #0x18
 	add r1, r0, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d3f48
+	bl RecordPlayer_SetChapterCount
 	pop {r4, pc}
 	nop
 	thumb_func_end FUN_overlay_d_93__021cd938
 _021CD958: .word 0x000001A7
 
-	thumb_func_start FUN_overlay_d_93__021cd95c
-FUN_overlay_d_93__021cd95c: ; 0x021CD95C
+	thumb_func_start BattleClient_SetBattleViewCore
+BattleClient_SetBattleViewCore: ; 0x021CD95C
 	str r1, [r0, #0x54]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021cd95c
+	thumb_func_end BattleClient_SetBattleViewCore
 
 	thumb_func_start FUN_overlay_d_93__021cd960
 FUN_overlay_d_93__021cd960: ; 0x021CD960
@@ -11844,13 +11844,13 @@ FUN_overlay_d_93__021d3d50: ; 0x021D3D50
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021d3d50
 
-	thumb_func_start FUN_overlay_d_93__021d3d70
-FUN_overlay_d_93__021d3d70: ; 0x021D3D70
+	thumb_func_start BattleClient_GetOwnIdx
+BattleClient_GetOwnIdx: ; 0x021D3D70
 	ldr r1, _021D3D78 ; =0x000001A6
 	ldrb r0, [r0, r1]
 	bx lr
 	nop
-	thumb_func_end FUN_overlay_d_93__021d3d70
+	thumb_func_end BattleClient_GetOwnIdx
 _021D3D78: .word 0x000001A6
 
 	thumb_func_start FUN_overlay_d_93__021d3d7c
@@ -11873,19 +11873,19 @@ FUN_overlay_d_93__021d3d90: ; 0x021D3D90
 	thumb_func_end FUN_overlay_d_93__021d3d90
 _021D3D98: .word 0x000001AB
 
-	thumb_func_start FUN_overlay_d_93__021d3d9c
-FUN_overlay_d_93__021d3d9c: ; 0x021D3D9C
+	thumb_func_start BattleClient_SetTrainerItems
+BattleClient_SetTrainerItems: ; 0x021D3D9C
 	push {r4, r5, r6, lr}
 	ldr r6, _021D3DC0 ; =0x000001A6
 	add r5, r0, #0
 	mov r4, #0
-	thumb_func_end FUN_overlay_d_93__021d3d9c
+	thumb_func_end BattleClient_SetTrainerItems
 _021D3DA4:
 	ldrb r1, [r5, r6]
 	lsl r2, r4, #0x18
 	ldr r0, [r5]
 	lsr r2, r2, #0x18
-	bl FUN_overlay_d_93__021b9f84
+	bl MainModule_GetTrainerItem
 	lsl r1, r4, #1
 	add r1, r5, r1
 	add r1, #0xe8

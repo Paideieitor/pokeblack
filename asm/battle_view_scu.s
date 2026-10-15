@@ -337,14 +337,14 @@
 	.extern FUN_overlay_d_93__021b9b04
 	.extern FUN_overlay_d_93__021b9b94
 	.extern FUN_overlay_d_93__021b9c00
-	.extern FUN_overlay_d_93__021b9f70
+	.extern MainModule_TrainerParamsCheckInfo
 	.extern FUN_overlay_d_93__021ba020
 	.extern FUN_overlay_d_93__021ba1a8
 	.extern FUN_overlay_d_93__021ba1e4
 	.extern FUN_overlay_d_93__021cd9c8
 	.extern FUN_overlay_d_93__021cd9dc
 	.extern FUN_overlay_d_93__021cd9e0
-	.extern FUN_overlay_d_93__021d3d70
+	.extern BattleClient_GetOwnIdx
 	.extern FUN_overlay_d_93__021d3d7c
 	.extern FUN_overlay_d_93__021d3d90
 	.extern BattleMon_GetBattleSlot
@@ -1711,7 +1711,7 @@ FUN_overlay_d_93__021e9984: ; 0x021E9984
 	add r4, r1, #0
 	add r6, r2, #0
 	add r7, r3, #0
-	bl FUN_overlay_d_93__021d3d70
+	bl BattleClient_GetOwnIdx
 	str r0, [sp]
 	ldr r0, [r5]
 	ldr r1, [sp]
@@ -4468,8 +4468,8 @@ FUN_overlay_d_93__021eaf78: ; 0x021EAF78
 	bx lr
 	thumb_func_end FUN_overlay_d_93__021eaf78
 
-	thumb_func_start FUN_overlay_d_93__021eaf7c
-FUN_overlay_d_93__021eaf7c: ; 0x021EAF7C
+	thumb_func_start BattleViewScreenUp_Create
+BattleViewScreenUp_Create: ; 0x021EAF7C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	ldr r5, _021EB020 ; =0x00000151
@@ -4548,7 +4548,7 @@ FUN_overlay_d_93__021eaf7c: ; 0x021EAF7C
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021eaf7c
+	thumb_func_end BattleViewScreenUp_Create
 _021EB020: .word 0x00000151
 _021EB024: .word _021F3AD0
 
@@ -7754,7 +7754,7 @@ _021ECB0A:
 	lsl r0, r0, #2
 	ldr r0, [r6, r0]
 	ldr r1, [sp, #8]
-	bl FUN_overlay_d_93__021b9f70
+	bl MainModule_TrainerParamsCheckInfo
 	mov r1, #0xe
 	cmp r0, #0
 	bne _021ECB4C

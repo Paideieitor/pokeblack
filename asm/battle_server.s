@@ -323,7 +323,7 @@
 	.extern FUN_overlay_d_93__021babec
 	.extern FUN_overlay_d_93__021bb828
 	.extern FUN_overlay_d_93__021bb8bc
-	.extern FUN_overlay_d_93__021bb964
+	.extern BattleServer_GetServerFlow
 	.extern ServerFlow_Create
 	.extern FUN_overlay_d_93__021bc550
 	.extern FUN_overlay_d_93__021c7cbc
@@ -339,7 +339,7 @@
 	.extern FUN_overlay_d_93__021cd914
 	.extern FUN_overlay_d_93__021cd924
 	.extern FUN_overlay_d_93__021cd938
-	.extern FUN_overlay_d_93__021cd95c
+	.extern BattleClient_SetBattleViewCore
 	.extern FUN_overlay_d_93__021cd960
 	.extern FUN_overlay_d_93__021cd978
 	.extern FUN_overlay_d_93__021cd97c
@@ -1609,8 +1609,8 @@ _021B6A26:
 	nop
 _021B6A38: .word 0x00000468
 
-	thumb_func_start FUN_overlay_d_93__021b6a3c
-FUN_overlay_d_93__021b6a3c: ; 0x021B6A3C
+	thumb_func_start MainModule_SetBattleRecordReader
+MainModule_SetBattleRecordReader: ; 0x021B6A3C
 	push {r3, r4, r5, lr}
 	add r2, r1, #0
 	add r4, r0, #0
@@ -1633,12 +1633,12 @@ FUN_overlay_d_93__021b6a3c: ; 0x021B6A3C
 	ldr r0, [r4, #0x14]
 	add r1, r4, r5
 	bl FUN_overlay_d_93__021cd938
-	thumb_func_end FUN_overlay_d_93__021b6a3c
+	thumb_func_end MainModule_SetBattleRecordReader
 _021B6A6E:
 	pop {r3, r4, r5, pc}
 
-	thumb_func_start FUN_overlay_d_93__021b6a70
-FUN_overlay_d_93__021b6a70: ; 0x021B6A70
+	thumb_func_start MainModule_CreateBattleView
+MainModule_CreateBattleView: ; 0x021B6A70
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r0, r1, #0
@@ -1653,7 +1653,7 @@ FUN_overlay_d_93__021b6a70: ; 0x021B6A70
 	add r0, r5, r0
 	ldr r4, [r0, #0x10]
 	b _021B6A8E
-	thumb_func_end FUN_overlay_d_93__021b6a70
+	thumb_func_end MainModule_CreateBattleView
 _021B6A8C:
 	ldr r4, [r5, #0x10]
 _021B6A8E:
@@ -1667,7 +1667,7 @@ _021B6A8E:
 	add r1, r0, #0
 	add r0, r4, #0
 	str r1, [r5, #4]
-	bl FUN_overlay_d_93__021cd95c
+	bl BattleClient_SetBattleViewCore
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
 _021B6AAC:
@@ -1964,7 +1964,7 @@ _021B6FE8:
 	ldr r2, [sp, #0x1c]
 	add r0, r4, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021b6a70
+	bl MainModule_CreateBattleView
 	mov r5, #0
 _021B6FF4:
 	lsl r1, r5, #0x18
@@ -3227,7 +3227,7 @@ _021B7C40:
 	lsl r1, r5, #0x18
 	add r0, r4, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9f70
+	bl MainModule_TrainerParamsCheckInfo
 	cmp r0, #0
 	bne _021B7C88
 	lsl r0, r5, #0x18
@@ -4066,7 +4066,7 @@ LAB_overlay_d_93__021b837e: ; 0x021B837E
 	lsl r0, r0, #2
 	add r0, r5, r0
 	ldr r0, [r0, #0x10]
-	bl FUN_overlay_d_93__021cd95c
+	bl BattleClient_SetBattleViewCore
 	add r0, r4, #2
 	ldrb r0, [r5, r0]
 	cmp r0, #0
@@ -8034,8 +8034,8 @@ _021B9F4E:
 	.balign 4, 0
 _021B9F6C: .word 0x00000000
 
-	thumb_func_start FUN_overlay_d_93__021b9f70
-FUN_overlay_d_93__021b9f70: ; 0x021B9F70
+	thumb_func_start MainModule_TrainerParamsCheckInfo
+MainModule_TrainerParamsCheckInfo: ; 0x021B9F70
 	mov r2, #0x28
 	mul r2, r1
 	add r0, r0, r2
@@ -8044,18 +8044,18 @@ FUN_overlay_d_93__021b9f70: ; 0x021B9F70
 	bne _021B9F80
 	mov r0, #1
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021b9f70
+	thumb_func_end MainModule_TrainerParamsCheckInfo
 _021B9F80:
 	mov r0, #0
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021b9f84
-FUN_overlay_d_93__021b9f84: ; 0x021B9F84
+	thumb_func_start MainModule_GetTrainerItem
+MainModule_GetTrainerItem: ; 0x021B9F84
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	add r6, r1, #0
 	add r4, r2, #0
-	bl FUN_overlay_d_93__021b9f70
+	bl MainModule_TrainerParamsCheckInfo
 	cmp r0, #0
 	beq _021B9FA8
 	mov r0, #0x28
@@ -8068,7 +8068,7 @@ FUN_overlay_d_93__021b9f84: ; 0x021B9F84
 	add r0, r1, r0
 	ldrh r0, [r0, #0x10]
 	pop {r4, r5, r6, pc}
-	thumb_func_end FUN_overlay_d_93__021b9f84
+	thumb_func_end MainModule_GetTrainerItem
 _021B9FA8:
 	mov r0, #0
 	pop {r4, r5, r6, pc}
@@ -8085,8 +8085,8 @@ FUN_overlay_d_93__021b9fac: ; 0x021B9FAC
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021b9fac
 
-	thumb_func_start FUN_overlay_d_93__021b9fbc
-FUN_overlay_d_93__021b9fbc: ; 0x021B9FBC
+	thumb_func_start MainModule_GetAIFlags
+MainModule_GetAIFlags: ; 0x021B9FBC
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r1, #0
@@ -8101,7 +8101,7 @@ FUN_overlay_d_93__021b9fbc: ; 0x021B9FBC
 	beq _021B9FDC
 	lsl r0, r4, #8
 	pop {r3, r4, r5, pc}
-	thumb_func_end FUN_overlay_d_93__021b9fbc
+	thumb_func_end MainModule_GetAIFlags
 _021B9FDC:
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021b8588
@@ -8112,7 +8112,7 @@ _021B9FDC:
 _021B9FEA:
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9f70
+	bl MainModule_TrainerParamsCheckInfo
 	cmp r0, #0
 	beq _021BA000
 	mov r0, #0x28
@@ -8129,7 +8129,7 @@ FUN_overlay_d_93__021ba004: ; 0x021BA004
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r1, #0
-	bl FUN_overlay_d_93__021b9f70
+	bl MainModule_TrainerParamsCheckInfo
 	cmp r0, #0
 	beq _021BA01C
 	mov r0, #0x28
@@ -8163,7 +8163,7 @@ FUN_overlay_d_93__021ba02c: ; 0x021BA02C
 	bne _021BA060
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9f70
+	bl MainModule_TrainerParamsCheckInfo
 	cmp r0, #0
 	beq _021BA060
 	cmp r6, #1
@@ -8189,7 +8189,7 @@ FUN_overlay_d_93__021ba064: ; 0x021BA064
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r1, #0
-	bl FUN_overlay_d_93__021b9f70
+	bl MainModule_TrainerParamsCheckInfo
 	cmp r0, #0
 	beq _021BA076
 	mov r0, #0
@@ -9190,7 +9190,7 @@ _021BA7AC:
 	lsl r0, r0, #2
 	add r0, r5, r0
 	ldr r0, [r0, #0x10]
-	bl FUN_overlay_d_93__021cd95c
+	bl BattleClient_SetBattleViewCore
 	ldr r0, [r5, #8]
 	bl FUN_overlay_d_93__021bab40
 	add sp, #8
@@ -9220,13 +9220,13 @@ _021BA816:
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021ba820
-FUN_overlay_d_93__021ba820: ; 0x021BA820
+	thumb_func_start MainModule_GetServerFlow
+MainModule_GetServerFlow: ; 0x021BA820
 	ldr r0, [r0, #8]
-	ldr r3, _021BA828 ; =FUN_overlay_d_93__021bb964
+	ldr r3, _021BA828 ; =BattleServer_GetServerFlow
 	bx r3
 	nop
-	thumb_func_end FUN_overlay_d_93__021ba820
+	thumb_func_end MainModule_GetServerFlow
 _021BA828:
 	.word ADDR_021BB964 + 1
 
@@ -9283,7 +9283,7 @@ FUN_overlay_d_93__021ba878: ; 0x021BA878
 	b _021BA9C4
 	thumb_func_end FUN_overlay_d_93__021ba878
 _021BA886:
-	bl FUN_overlay_d_93__021bb964
+	bl BattleServer_GetServerFlow
 	ldr r1, [sp]
 	add r4, r0, #0
 	ldr r1, [r1]

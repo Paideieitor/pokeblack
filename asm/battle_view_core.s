@@ -325,7 +325,7 @@
 	.extern FUN_overlay_d_93__021c8860
 	.extern FUN_overlay_d_93__021c88a4
 	.extern FUN_overlay_d_93__021c88c8
-	.extern FUN_overlay_d_93__021d3d70
+	.extern BattleClient_GetOwnIdx
 	.extern BattleMon_GetBattleSlot
 	.extern BattleMon_GetSpecies
 	.extern BattleMon_GetMoveCount
@@ -353,8 +353,8 @@
 	.extern FUN_overlay_d_93__021d7b10
 	.extern BattleMon_DivideMaxHPZeroCheck
 	.extern FUN_overlay_d_93__021d7dc0
-	.extern FUN_overlay_d_93__021eaf7c
-	.extern FUN_overlay_d_93__021eec78
+	.extern BattleViewScreenUp_Create
+	.extern MainModule_LoadGlobalBattleString
 	.extern thunk_FUN_overlay_d_93__021b8d08
 	.extern ADDR_02018790
 	.extern ADDR_02018820
@@ -5699,7 +5699,7 @@ BattleViewCore_Create: ; 0x021E8F20
 	ldr r0, [sp, #0x14]
 	str r0, [r4, #4]
 	str r6, [r4, #8]
-	bl FUN_overlay_d_93__021d3d70
+	bl BattleClient_GetOwnIdx
 	strb r0, [r4, #0xc]
 	mov r1, #4
 	add r0, r7, #0
@@ -5757,7 +5757,7 @@ BattleViewCore_Create: ; 0x021E8F20
 	ldr r1, [r4]
 	ldr r3, [r4, r3]
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021eaf7c
+	bl BattleViewScreenUp_Create
 	mov r1, #0x80
 	add r1, #0xfc
 	str r0, [r4, r1]
@@ -5791,7 +5791,7 @@ BattleViewCore_Create: ; 0x021E8F20
 	ldr r0, [sp, #0x10]
 	add r2, r6, #0
 	add r3, r5, #0
-	bl FUN_overlay_d_93__021eec78
+	bl MainModule_LoadGlobalBattleString
 	add r0, r4, #0
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}

@@ -318,8 +318,8 @@
 
 	.text
 
-	thumb_func_start FUN_overlay_d_93__021d3f04
-FUN_overlay_d_93__021d3f04: ; 0x021D3F04
+	thumb_func_start RecordPlayer_Clear
+RecordPlayer_Clear: ; 0x021D3F04
 	ldrb r3, [r0, #2]
 	mov r1, #0
 	mov r2, #8
@@ -354,13 +354,13 @@ FUN_overlay_d_93__021d3f04: ; 0x021D3F04
 	strh r1, [r0, #4]
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d3f04
+	thumb_func_end RecordPlayer_Clear
 
-	thumb_func_start FUN_overlay_d_93__021d3f48
-FUN_overlay_d_93__021d3f48: ; 0x021D3F48
+	thumb_func_start RecordPlayer_SetChapterCount
+RecordPlayer_SetChapterCount: ; 0x021D3F48
 	strh r1, [r0, #0xa]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d3f48
+	thumb_func_end RecordPlayer_SetChapterCount
 
 	thumb_func_start FUN_overlay_d_93__021d3f4c
 FUN_overlay_d_93__021d3f4c: ; 0x021D3F4C

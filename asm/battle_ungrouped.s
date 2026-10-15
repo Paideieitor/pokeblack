@@ -2217,11 +2217,11 @@ _021BB95A:
 	nop
 _021BB960: .word 0x00000CBA
 
-	thumb_func_start FUN_overlay_d_93__021bb964
-FUN_overlay_d_93__021bb964: ; 0x021BB964
+	thumb_func_start BattleServer_GetServerFlow
+BattleServer_GetServerFlow: ; 0x021BB964
 	ldr r0, [r0, #0x44]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021bb964
+	thumb_func_end BattleServer_GetServerFlow
 
 	thumb_func_start ServerFlow_Create
 ServerFlow_Create: ; 0x021BB968

@@ -35,7 +35,7 @@
 	.extern FUN_overlay_d_93__021b8bd0
 	.extern FUN_overlay_d_93__021b8ce8
 	.extern PokemonContainer_GetBattleMonConst
-	.extern FUN_overlay_d_93__021b9f70
+	.extern MainModule_TrainerParamsCheckInfo
 	.extern FUN_overlay_d_93__021b9fac
 	.extern FUN_overlay_d_93__021ba004
 	.extern FUN_overlay_d_93__021ba020
@@ -441,8 +441,8 @@ _021EEC74:
 	mov r0, #1
 	pop {r4, pc}
 
-	thumb_func_start FUN_overlay_d_93__021eec78
-FUN_overlay_d_93__021eec78: ; 0x021EEC78
+	thumb_func_start MainModule_LoadGlobalBattleString
+MainModule_LoadGlobalBattleString: ; 0x021EEC78
 	push {r3, r4, r5, r6, r7, lr}
 	ldr r6, _021EECCC ; =0x021F6398
 	ldr r7, _021EECD0 ; =0x021F63D8
@@ -467,7 +467,7 @@ FUN_overlay_d_93__021eec78: ; 0x021EEC78
 	blx FUN_020457B0
 	ldr r7, _021EECD4 ; =_021F3990
 	str r0, [r6, #0xc]
-	thumb_func_end FUN_overlay_d_93__021eec78
+	thumb_func_end MainModule_LoadGlobalBattleString
 _021EECAE:
 	lsl r2, r4, #1
 	ldrh r2, [r7, r2]
@@ -605,7 +605,7 @@ FUN_overlay_d_93__021eed90: ; 0x021EED90
 	ldr r7, _021EEE20 ; =0x021F6398
 	add r1, r6, #0
 	ldr r0, [r7]
-	bl FUN_overlay_d_93__021b9f70
+	bl MainModule_TrainerParamsCheckInfo
 	cmp r0, #0
 	ldr r0, [r7]
 	beq _021EEDF6
