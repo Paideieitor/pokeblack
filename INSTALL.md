@@ -1,6 +1,6 @@
 This doc details the steps necessary to build the ARM9 of Pokémon Black (EN-US) from the sources contained in this repository.
 
-Verified on Arch Linux. The Windows routes below follow the other DS pret repositories but are untested here; macOS likewise. See [Platform notes](#platform-notes).
+Verified on Arch Linux and on Windows with WSL2. The MSYS2 and WSL1 routes below follow the other DS pret repositories but are untested here; macOS likewise. See [Platform notes](#platform-notes).
 
 ## 0. Clone the repository
 
@@ -34,12 +34,12 @@ Ours defines `SVC_WaitIntr` and `SVC_WaitVBlankIntr` strong, where the SDK has t
 
 ## 2. Dependencies
 
-The CodeWarrior executables are 32-bit Windows binaries, so Wine needs 32-bit support. On Arch that means enabling the `multilib` repository; on Debian it means `dpkg --add-architecture i386`. A 64-bit-only Wine fails on every compiler invocation.
+The compilers come from [Metroskrew](https://github.com/mid-kid/metroskrew), which `make` downloads on its own the first time it needs it (see below), so `wget` and `xz` are required. The native build is a 32-bit program and the SDK tools in step 1 are 32-bit Windows binaries, so both need 32-bit support. On Arch that means enabling the `multilib` repository; on Debian it means `dpkg --add-architecture i386`. A 64-bit-only Wine fails on every `makelcf.exe` invocation.
 
 Arch:
 
 ```bash
-sudo pacman -S base-devel python wine arm-none-eabi-binutils git unzip
+sudo pacman -S base-devel python wine arm-none-eabi-binutils git unzip wget xz lib32-glibc
 ```
 
 Debian/Ubuntu:
@@ -48,25 +48,25 @@ Debian/Ubuntu:
 sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install build-essential autoconf automake python3 wine wine32 \
-                 binutils-arm-none-eabi git unzip
+                 binutils-arm-none-eabi git unzip wget xz-utils libc6:i386
 ```
 
 Fedora:
 
 ```bash
 sudo dnf install gcc gcc-c++ make autoconf automake python3 wine \
-                 arm-none-eabi-binutils-cs git unzip
+                 arm-none-eabi-binutils-cs git unzip wget2 xz glibc32
 ```
 
 Iff `arm-none-eabi-binutils-cs` is not found, try `arm-none-eabi-binutils`. TODO: check this on a live Fedora system
 
 Windows with MSYS2:
 
-MSYS2 sets `OS=Windows_NT`, so `platform.mk` runs the CodeWarrior executables directly and Wine is not involved at all. Install MSYS2 from [msys2.org](https://www.msys2.org/), then from the UCRT64 terminal:
+MSYS2 sets `OS=Windows_NT`, so `platform.mk` runs the executables directly, Metroskrew's Windows build is fetched, and Wine is not involved at all. Install MSYS2 from [msys2.org](https://www.msys2.org/), then from the UCRT64 terminal:
 
 ```bash
 pacman -Syu
-pacman -S git make python autoconf automake unzip mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-arm-none-eabi-binutils
+pacman -S git make python autoconf automake unzip wget p7zip mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-arm-none-eabi-binutils
 ```
 
 `gcc` builds ndstool in step 5, and the arm-none-eabi binutils supply `objcopy` and `ar`. If you already have devkitARM, set `DEVKITARM` instead and `binutils.mk` will take its toolchain.
@@ -75,7 +75,9 @@ Windows Subsystem for Linux:
 
 WSL1 also runs the executables directly, converting paths with `wslpath`, so it needs no Wine either. Install the Debian dependencies above but omit `wine` and `wine32`. Check which version you have with `wsl -l -v`; if it reports 2, either switch that distribution with `wsl --set-version <name> 1` or install Wine and treat it as ordinary Linux.
 
-TO REITERATE: WSL2 with Wine does NOT currently work. mwasmarm.exe crashes on every invocation. Use WSL1 (wsl --set-version <distro> 1) or use MSYS2 on Windows directly.
+WSL2 is treated as ordinary Linux: Metroskrew's native build is used and Wine is only needed for the SDK tools.
+
+Metroskrew itself needs no manual install. `make` (or `make tools`) runs `tools/devtools/get_metroskrew.sh`, which downloads the release pinned as `SKREW_VER` in `common.mk` into `tools/metroskrew/`. Linux and BSD get the native build, macOS gets the Wine build, and Windows gets the `.7z` build, which is why MSYS2 needs `p7zip`. To fetch it ahead of time run `make skrew`; to wipe it and fetch it again, for example after `SKREW_VER` changes or after merging from upstream, run `make skrewup` (`make update` does the same).
 
 ## 3. Supply the base ROM 
 
@@ -152,7 +154,5 @@ Once the build matches, see [CONTRIBUTING.md](CONTRIBUTING.md) for how to carve 
 
 ## Platform notes
 
-`platform.mk` is yoinked verbatim from other DS pret repositories. Under WSL1 it runs the `.exe` files directly instead of through Wine and converts paths with `wslpath`; under WSL2 it uses Wine as on any other Linux. TODO: Has not been tested
-
-If you use a custom `WINEPREFIX`, note that the wrapper scripts in `tools/mwccarm/dsi/1.1/` hardcode `$HOME/.wine` while the root Makefile invokes `wine` directly and inherits the environment. The two will disagree.
+`platform.mk` is yoinked verbatim from other DS pret repositories. Under WSL1 it runs the `.exe` files directly instead of through Wine and converts paths with `wslpath`; under WSL2 it uses Wine as on any other Linux.
 
