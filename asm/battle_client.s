@@ -1067,11 +1067,11 @@ FUN_overlay_d_93__021cd960: ; 0x021CD960
 	thumb_func_end FUN_overlay_d_93__021cd960
 _021CD974: .word 0x000001B2
 
-	thumb_func_start FUN_overlay_d_93__021cd978
-FUN_overlay_d_93__021cd978: ; 0x021CD978
+	thumb_func_start BattleClient_GetBattleAdapter
+BattleClient_GetBattleAdapter: ; 0x021CD978
 	ldr r0, [r0, #0x50]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021cd978
+	thumb_func_end BattleClient_GetBattleAdapter
 
 	thumb_func_start FUN_overlay_d_93__021cd97c
 FUN_overlay_d_93__021cd97c: ; 0x021CD97C

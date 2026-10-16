@@ -341,7 +341,7 @@
 	.extern FUN_overlay_d_93__021cd938
 	.extern BattleClient_SetBattleViewCore
 	.extern FUN_overlay_d_93__021cd960
-	.extern FUN_overlay_d_93__021cd978
+	.extern BattleClient_GetBattleAdapter
 	.extern FUN_overlay_d_93__021cd97c
 	.extern FUN_overlay_d_93__021cd984
 	.extern FUN_overlay_d_93__021cd9b0
@@ -1395,7 +1395,7 @@ _021B68A4:
 	ldrb r0, [r5, r6]
 	lsl r1, r4, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	ldr r1, [r5]
 	add r1, r1, r4
 	add r1, #0x44
@@ -1427,12 +1427,12 @@ FUN_overlay_d_93__021b68d8: ; 0x021B68D8
 	add r4, r1, #0
 	ldrb r0, [r5, r0]
 	mov r1, #0
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	add r6, r0, #0
 	ldr r0, _021B6950 ; =0x0000046C
 	mov r1, #1
 	ldrb r0, [r5, r0]
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	lsl r2, r6, #2
 	add r2, r4, r2
 	add r7, r0, #0
@@ -1449,12 +1449,12 @@ FUN_overlay_d_93__021b68d8: ; 0x021B68D8
 	ldr r0, _021B6950 ; =0x0000046C
 	mov r1, #2
 	ldrb r0, [r5, r0]
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	add r7, r0, #0
 	ldr r0, _021B6950 ; =0x0000046C
 	mov r1, #3
 	ldrb r0, [r5, r0]
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	add r6, r0, #0
 	lsl r0, r7, #2
 	add r0, r4, r0
@@ -1479,15 +1479,15 @@ _021B694E:
 	.balign 4, 0
 _021B6950: .word 0x0000046C
 
-	thumb_func_start FUN_overlay_d_93__021b6954
-FUN_overlay_d_93__021b6954: ; 0x021B6954
+	thumb_func_start MainModule_SetTrainerParams
+MainModule_SetTrainerParams: ; 0x021B6954
 	push {r3, r4, r5, r6, r7, lr}
 	ldr r7, _021B6990 ; =0x0000046C
 	add r5, r0, #0
 	ldrb r0, [r5, r7]
 	ldr r4, [r5]
 	add r6, r1, #0
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	lsl r0, r0, #2
 	add r3, r5, #0
 	mov r1, #0x28
@@ -1500,15 +1500,15 @@ FUN_overlay_d_93__021b6954: ; 0x021B6954
 	cmp r0, #0
 	beq _021B6982
 	add r0, r3, r2
-	bl FUN_overlay_d_93__021b9e7c
+	bl TrainerParams_Init
 	pop {r3, r4, r5, r6, r7, pc}
-	thumb_func_end FUN_overlay_d_93__021b6954
+	thumb_func_end MainModule_SetTrainerParams
 _021B6982:
 	sub r1, r7, #4
 	ldrh r1, [r5, r1]
 	add r0, r3, r2
 	ldr r2, [r4, #0x34]
-	bl FUN_overlay_d_93__021b9e38
+	bl TrainerParams_Create
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 _021B6990: .word 0x0000046C
@@ -1577,8 +1577,8 @@ _021B69F8:
 	mov r0, #1
 	pop {r3, pc}
 
-	thumb_func_start FUN_overlay_d_93__021b69fc
-FUN_overlay_d_93__021b69fc: ; 0x021B69FC
+	thumb_func_start MainModule_CreateTrainerParams
+MainModule_CreateTrainerParams: ; 0x021B69FC
 	push {r3, r4, r5, lr}
 	add r4, r1, #0
 	add r1, #0x23
@@ -1592,19 +1592,19 @@ FUN_overlay_d_93__021b69fc: ; 0x021B69FC
 	ldrh r1, [r5, r1]
 	ldr r2, [r2]
 	add r0, #0x20
-	bl FUN_overlay_d_93__021b9e38
+	bl TrainerParams_Create
 	add r5, #0x48
 	ldr r1, [r4, #0x4c]
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021b9e7c
+	bl TrainerParams_Init
 	pop {r3, r4, r5, pc}
-	thumb_func_end FUN_overlay_d_93__021b69fc
+	thumb_func_end MainModule_CreateTrainerParams
 _021B6A26:
 	mov r1, #0
-	bl FUN_overlay_d_93__021b6954
+	bl MainModule_SetTrainerParams
 	add r0, r5, #0
 	mov r1, #1
-	bl FUN_overlay_d_93__021b6954
+	bl MainModule_SetTrainerParams
 	pop {r3, r4, r5, pc}
 	nop
 _021B6A38: .word 0x00000468
@@ -1813,11 +1813,11 @@ _021B6E9A:
 	ldrh r1, [r4, r1]
 	ldr r2, [r2]
 	add r0, #0x20
-	bl FUN_overlay_d_93__021b9e38
+	bl TrainerParams_Create
 	add r0, r4, #0
 	ldr r1, [r6, #0x4c]
 	add r0, #0x48
-	bl FUN_overlay_d_93__021b9e7c
+	bl TrainerParams_Init
 	add r0, r4, #0
 	mov r1, #2
 	bl FUN_overlay_d_93__021b8b9c
@@ -1826,7 +1826,7 @@ _021B6E9A:
 	add r0, r4, #0
 	ldr r1, [r6, #0x50]
 	add r0, #0x70
-	bl FUN_overlay_d_93__021b9e7c
+	bl TrainerParams_Init
 _021B6EDC:
 	add r0, r4, #0
 	mov r1, #3
@@ -1836,7 +1836,7 @@ _021B6EDC:
 	add r0, r4, #0
 	ldr r1, [r6, #0x54]
 	add r0, #0x98
-	bl FUN_overlay_d_93__021b9e7c
+	bl TrainerParams_Init
 	b _021B6F14
 _021B6EF4:
 	mov r5, #0
@@ -1850,7 +1850,7 @@ _021B6EF6:
 	lsl r1, r5, #0x18
 	add r0, r4, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b6954
+	bl MainModule_SetTrainerParams
 _021B6F0E:
 	add r5, r5, #1
 	cmp r5, #4
@@ -1982,7 +1982,7 @@ _021B6FF4:
 	lsl r0, r5, #2
 	add r0, r4, r0
 	ldr r0, [r0, #0x10]
-	bl FUN_overlay_d_93__021cd978
+	bl BattleClient_GetBattleAdapter
 	add r1, r0, #0
 	lsl r2, r5, #0x18
 	ldr r0, [r4, #8]
@@ -2952,7 +2952,7 @@ _021B79FC:
 	ldr r4, _021B7BA4 ; =0x00000468
 	add r0, r1, r0
 	ldrh r1, [r6, r4]
-	bl FUN_overlay_d_93__021b9e38
+	bl TrainerParams_Create
 	add r0, r4, #4
 	ldrb r1, [r6, r0]
 	ldr r0, [sp, #8]
@@ -3329,7 +3329,7 @@ LAB_overlay_d_93__021b7ce6: ; 0x021B7CE6
 	ldr r2, [sp, #0x24]
 	ldr r1, [sp, #0x28]
 	str r0, [r2, r1]
-	bl FUN_overlay_d_93__021cd978
+	bl BattleClient_GetBattleAdapter
 	add r1, r0, #0
 	ldr r0, [r5, #8]
 	add r2, r4, #0
@@ -3510,7 +3510,7 @@ _021B7E68:
 	ldr r2, [sp, #0x24]
 	ldr r1, [sp, #0x28]
 	str r0, [r2, r1]
-	bl FUN_overlay_d_93__021cd978
+	bl BattleClient_GetBattleAdapter
 	add r1, r0, #0
 	ldr r0, [r4, #8]
 	ldr r2, [sp, #0x1c]
@@ -3549,7 +3549,7 @@ _021B7E68:
 	add r0, r4, #0
 	bl BattleClient_Create
 	str r0, [r4, #0x14]
-	bl FUN_overlay_d_93__021cd978
+	bl BattleClient_GetBattleAdapter
 	add r1, r0, #0
 	ldr r0, [r4, #8]
 	mov r2, #1
@@ -3580,7 +3580,7 @@ _021B7E68:
 	add r0, r4, #0
 	bl BattleClient_Create
 	str r0, [r4, #0x1c]
-	bl FUN_overlay_d_93__021cd978
+	bl BattleClient_GetBattleAdapter
 	add r1, r0, #0
 	ldr r0, [r4, #8]
 	mov r2, #3
@@ -3767,7 +3767,7 @@ LAB_overlay_d_93__021b80a2: ; 0x021B80A2
 	ldr r2, [sp, #0x24]
 	ldr r1, [sp, #0x28]
 	str r0, [r2, r1]
-	bl FUN_overlay_d_93__021cd978
+	bl BattleClient_GetBattleAdapter
 	add r1, r0, #0
 	ldr r0, [r5, #8]
 	add r2, r4, #0
@@ -3925,7 +3925,7 @@ LAB_overlay_d_93__021b8210: ; 0x021B8210
 	ldr r2, [sp, #0x24]
 	ldr r1, [sp, #0x28]
 	str r0, [r2, r1]
-	bl FUN_overlay_d_93__021cd978
+	bl BattleClient_GetBattleAdapter
 	add r1, r0, #0
 	ldr r0, [r4, #8]
 	ldr r2, [sp, #0x1c]
@@ -7880,8 +7880,8 @@ _021B9E2E:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021b9e38
-FUN_overlay_d_93__021b9e38: ; 0x021B9E38
+	thumb_func_start TrainerParams_Create
+TrainerParams_Create: ; 0x021B9E38
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	add r0, r1, #0
@@ -7898,7 +7898,7 @@ FUN_overlay_d_93__021b9e38: ; 0x021B9E38
 	cmp r0, #0
 	beq _021B9E5E
 	mov r5, #1
-	thumb_func_end FUN_overlay_d_93__021b9e38
+	thumb_func_end TrainerParams_Create
 _021B9E5E:
 	ldr r0, [r4]
 	mov r1, #0x12
@@ -7913,8 +7913,8 @@ _021B9E5E:
 	bl FUN_0202428C
 	pop {r3, r4, r5, pc}
 
-	thumb_func_start FUN_overlay_d_93__021b9e7c
-FUN_overlay_d_93__021b9e7c: ; 0x021B9E7C
+	thumb_func_start TrainerParams_Init
+TrainerParams_Init: ; 0x021B9E7C
 	push {r3, r4, r5, lr}
 	ldr r2, _021B9EEC ; =0x00000000
 	add r5, r0, #0
@@ -7948,7 +7948,7 @@ FUN_overlay_d_93__021b9e7c: ; 0x021B9E7C
 	add r1, r4, #0
 	bl FUN_02024570
 	pop {r3, r4, r5, pc}
-	thumb_func_end FUN_overlay_d_93__021b9e7c
+	thumb_func_end TrainerParams_Init
 _021B9EC6:
 	strh r2, [r5, #0xa]
 	strh r2, [r5, #8]
@@ -8707,7 +8707,7 @@ _021BA432:
 	ldrb r0, [r5, r0]
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	str r0, [sp, #0x18]
 	ldr r1, [sp, #0x18]
 	mov r0, #0
@@ -8982,7 +8982,7 @@ FUN_overlay_d_93__021ba648: ; 0x021BA648
 	ldr r0, _021BA66C ; =0x0000046C
 	add r4, r2, #0
 	ldrb r0, [r5, r0]
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	ldr r1, [r5]
 	lsl r0, r0, #2
 	add r0, r1, r0
@@ -9004,7 +9004,7 @@ FUN_overlay_d_93__021ba670: ; 0x021BA670
 	ldr r0, _021BA694 ; =0x0000046C
 	add r4, r2, #0
 	ldrb r0, [r5, r0]
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	ldr r1, [r5]
 	lsl r0, r0, #2
 	add r0, r1, r0
@@ -9026,7 +9026,7 @@ FUN_overlay_d_93__021ba698: ; 0x021BA698
 	ldr r0, _021BA6BC ; =0x0000046C
 	add r6, r1, #0
 	ldrb r0, [r5, r0]
-	bl FUN_overlay_d_93__021ba710
+	bl GetClientType
 	add r4, r0, #0
 	add r0, r5, #0
 	add r1, r6, #0
@@ -9081,13 +9081,13 @@ _021BA708:
 	nop
 _021BA70C: .word 0x0000046C
 
-	thumb_func_start FUN_overlay_d_93__021ba710
-FUN_overlay_d_93__021ba710: ; 0x021BA710
+	thumb_func_start GetClientType
+GetClientType: ; 0x021BA710
 	cmp r0, r1
 	bne _021BA718
 	mov r0, #0
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021ba710
+	thumb_func_end GetClientType
 _021BA718:
 	mov r2, #1
 	and r0, r2
