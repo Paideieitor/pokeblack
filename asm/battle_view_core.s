@@ -307,7 +307,7 @@
 	.extern FUN_0220F3E8
 	.extern BattleMon_Get
 	.extern FUN_overlay_d_93__021b9a24
-	.extern FUN_overlay_d_93__021b9b94
+	.extern BattleParty_GetMemberCount
 	.extern FUN_overlay_d_93__021b9c00
 	.extern FUN_overlay_d_93__021c7cf4
 	.extern FUN_overlay_d_93__021c7d00
@@ -3832,7 +3832,7 @@ FUN_overlay_d_93__021e60a8: ; 0x021E60A8
 	add r5, r2, #0
 	bl FUN_overlay_d_93__021c7fcc
 	str r0, [sp, #8]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	str r0, [sp, #4]
 	cmp r5, r0
 	blo _021E60C6

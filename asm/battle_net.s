@@ -665,8 +665,8 @@ _021D4148:
 	nop
 _021D414C: .word 0x000001A7
 
-	thumb_func_start FUN_overlay_d_93__021d4150
-FUN_overlay_d_93__021d4150: ; 0x021D4150
+	thumb_func_start GlobalBattleNet_Create
+GlobalBattleNet_Create: ; 0x021D4150
 	push {r3, r4, r5, r6, r7, lr}
 	add r5, r0, #0
 	ldr r4, _021D4218 ; =0x021F3B88
@@ -701,7 +701,7 @@ FUN_overlay_d_93__021d4150: ; 0x021D4150
 	ldr r1, [r4]
 	strb r0, [r1, #0xe]
 	mov r1, #1
-	thumb_func_end FUN_overlay_d_93__021d4150
+	thumb_func_end GlobalBattleNet_Create
 _021D4198:
 	add r2, r1, #0
 	lsl r2, r0

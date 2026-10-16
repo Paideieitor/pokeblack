@@ -346,8 +346,8 @@
 	.extern FUN_overlay_d_93__021b9ab0
 	.extern PokemonContainer_GetBattleParty
 	.extern PokemonContainer_GetBattlePartyConst
-	.extern FUN_overlay_d_93__021b9b94
-	.extern FUN_overlay_d_93__021b9b98
+	.extern BattleParty_GetMemberCount
+	.extern BattleParty_GetAliveMemberCount
 	.extern BattleParty_GetBattleMon
 	.extern FUN_overlay_d_93__021b9c00
 	.extern MainModule_GetTrainerItem
@@ -450,7 +450,7 @@
 	.extern FUN_overlay_d_93__021d8090
 	.extern FUN_overlay_d_93__021d80a8
 	.extern FUN_overlay_d_93__021d81f8
-	.extern FUN_overlay_d_93__021d8230
+	.extern EscapeInfo_Clear
 	.extern FUN_overlay_d_93__021d82d0
 	.extern FUN_overlay_d_93__021d832c
 	.extern FUN_overlay_d_93__021d8340
@@ -893,7 +893,7 @@ _021CD728:
 	strb r1, [r5, r0]
 	add r0, r5, #0
 	add r0, #0x2c
-	bl FUN_overlay_d_93__021d8230
+	bl EscapeInfo_Clear
 	add r0, r5, #0
 	add r0, #0x18
 	bl RecordPlayer_Clear
@@ -4987,7 +4987,7 @@ _021CFC16:
 	mov r4, #0x46
 	lsl r4, r4, #2
 	ldr r0, [r5, r4]
-	bl FUN_overlay_d_93__021b9b98
+	bl BattleParty_GetAliveMemberCount
 	add r1, r4, #4
 	ldrb r1, [r5, r1]
 	cmp r0, r1
@@ -5957,7 +5957,7 @@ _021D0386:
 	mov r0, #0x46
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	add r7, r0, #0
 	ldr r0, [r5]
 	bl FUN_overlay_d_93__021b8588
@@ -6127,7 +6127,7 @@ FUN_overlay_d_93__021d04e4: ; 0x021D04E4
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
 	str r2, [sp, #4]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	add r7, r0, #0
 	ldr r0, [r5]
 	bl FUN_overlay_d_93__021b8588
@@ -6186,7 +6186,7 @@ FUN_overlay_d_93__021d055c: ; 0x021D055C
 	ldr r0, [r5, r0]
 	add r7, r1, #0
 	str r2, [sp]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	add r6, r0, #0
 	ldr r0, [r5]
 	bl FUN_overlay_d_93__021b8588
@@ -6241,7 +6241,7 @@ FUN_overlay_d_93__021d05c4: ; 0x021D05C4
 	ldr r0, [r5, r0]
 	str r2, [sp, #4]
 	str r3, [sp, #8]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	add r7, r0, #0
 	ldr r0, [r5]
 	bl FUN_overlay_d_93__021b8588
@@ -6647,7 +6647,7 @@ FUN_overlay_d_93__021d0980: ; 0x021D0980
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	add r6, r1, #0
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	str r0, [sp]
 	ldr r0, [r7]
 	bl FUN_overlay_d_93__021b8588
@@ -6969,7 +6969,7 @@ FUN_021D0BB0: ; 0x021D0BB0
 	lsl r4, r4, #2
 	str r0, [sp, #4]
 	ldr r0, [r5, r4]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	add r1, r4, #0
 	add r1, #0x8e
 	add r7, r0, #0
@@ -11904,7 +11904,7 @@ FUN_overlay_d_93__021d3dc4: ; 0x021D3DC4
 	add r6, r0, #0
 	add r5, r1, #0
 	add r0, r2, #0
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	str r0, [sp, #4]
 	add r0, r5, #0
 	mov r1, #0x13

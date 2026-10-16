@@ -167,8 +167,8 @@ _021EEAC8: .word _021F3AE8
 _021EEACC:
 	.word ADDR_021F6384
 
-	thumb_func_start FUN_overlay_d_93__021eead0
-FUN_overlay_d_93__021eead0: ; 0x021EEAD0
+	thumb_func_start BattleAdapter_Init
+BattleAdapter_Init: ; 0x021EEAD0
 	ldrb r2, [r0, #0xc]
 	mov r1, #0
 	strb r1, [r0, #0xe]
@@ -177,7 +177,7 @@ FUN_overlay_d_93__021eead0: ; 0x021EEAD0
 	bic r2, r1
 	strb r2, [r0, #0xc]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021eead0
+	thumb_func_end BattleAdapter_Init
 
 	thumb_func_start FUN_021EEAE0
 FUN_021EEAE0: ; 0x021EEAE0

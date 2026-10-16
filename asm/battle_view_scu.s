@@ -335,7 +335,7 @@
 	.extern FUN_overlay_d_93__021b9ae0
 	.extern PokemonContainer_GetBattlePartyConst
 	.extern FUN_overlay_d_93__021b9b04
-	.extern FUN_overlay_d_93__021b9b94
+	.extern BattleParty_GetMemberCount
 	.extern FUN_overlay_d_93__021b9c00
 	.extern MainModule_TrainerParamsCheckInfo
 	.extern FUN_overlay_d_93__021ba020
@@ -2341,7 +2341,7 @@ _021E9DFA:
 	ldr r0, [r5, #4]
 	bl FUN_overlay_d_93__021d3d7c
 	str r0, [sp, #8]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	add r7, r0, #0
 	beq _021E9E40
 	add r6, #0x38
@@ -10647,7 +10647,7 @@ FUN_overlay_d_93__021ee104: ; 0x021EE104
 	add r1, r6, #0
 	bl PokemonContainer_GetBattlePartyConst
 	str r0, [sp, #0x14]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	str r0, [sp, #0xc]
 	cmp r5, #4
 	bhs _021EE166
@@ -10657,7 +10657,7 @@ FUN_overlay_d_93__021ee104: ; 0x021EE104
 	add r1, r5, #0
 	bl PokemonContainer_GetBattlePartyConst
 	str r0, [sp, #0x18]
-	bl FUN_overlay_d_93__021b9b94
+	bl BattleParty_GetMemberCount
 	str r0, [sp, #0x10]
 	ldr r0, [sp, #0xc]
 	cmp r0, #3
