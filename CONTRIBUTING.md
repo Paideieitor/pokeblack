@@ -25,7 +25,16 @@ pokeblack does not accept submissions that were written in part or whole by an L
 
 ## Decompiling
 
-The decompilation workflow is being reworked, and this section will be filled in once it is settled. Until then, please ask on Discord before starting on a function or file.
+Decompile one original source file at a time. Most of `asm/` is still cut into runs by address, so first split a module into one `.s` per source file:
+
+1. Find the files. Assert macros leave GameFreak's filenames in `.data`, and a function that loads one belongs to that file. In overlay 93 the order of these strings was also the link order.
+2. Narrow each file's start to a window between those anchors. A drop in object size in `.rodata` also marks a new file, since CodeWarrior sorts each file's `.rodata` small to large.
+3. Within a window, cut where the fewest calls cross. Name a stretch with no evidence after its address instead of guessing.
+4. Split with `tools/scripts/split_tu.py`, running `--dry-run` first. Output names must match `SYM_GLOBS` in the Makefile. Replace the module's object in `main.lsf` with the `--lsf` block, delete `build/`, and check `make` and `make white`.
+
+Any legal cut builds a matching ROM, so the match does not prove the boundaries. Give your evidence in the commit message. All `.data` and `.rodata` lands in the last file, to be moved to its owners afterwards.
+
+Then replace a whole `.s` with C in `src/`, keeping the symbol names, and swap its object for yours in `main.lsf` and `LINKED_C_SRCS`. `src/battle_record.c` is one such file. Every source file includes a header of the same name declaring what it defines, since `MWCFLAGS` passes `-W error`. Check it with `make compare-overlays`, or `make compare-arm9` for the ARM9.
 
 ## Functions that will not match
 

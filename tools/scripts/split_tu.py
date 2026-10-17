@@ -2,12 +2,70 @@
 """split a dump into named objects at given <address>:<name> boundaries"""
 
 import argparse
+import fnmatch
 import os
 import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import split_dump as sd
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+SYM_GLOBS_RE = re.compile(r'^SYM_GLOBS\s*:=\s*(.*)$', re.M)
+
+
+def sym_globs():
+    """the asm patterns the Makefile keeps functions from"""
+    try:
+        m = SYM_GLOBS_RE.search(open(os.path.join(ROOT, 'Makefile')).read())
+    except OSError:
+        return []
+    return re.findall(r"'([^']+)'", m.group(1)) if m else []
+
+
+WORD_REF_RE = re.compile(r'^(\w+:\s*\.word\s+)(\w+)\s*(?:([+-])\s*(\d+|0x[0-9A-Fa-f]+))?(\s*(?:[;@].*)?)$')
+
+
+def thumb_data_labels(body):
+    """non-function labels assembled in thumb mode, which the assembler gives the thumb bit"""
+    out = set()
+    mode = None
+    funcs = set()
+    for l in body:
+        m = sd.FUNC_START_RE.match(l)
+        if m:
+            mode = 'thumb' if 'thumb' in m.group(1) else 'arm'
+            funcs.update(l.split()[1:2])
+            continue
+        m = re.match(r'^(\w+):', l)
+        if m and mode == 'thumb' and m.group(1) not in funcs:
+            out.add(m.group(1))
+    return out
+
+
+def rebase_thumb_refs(lines, imported):
+    """keep .word references to imported thumb-mode labels at the value they had in one object"""
+    out = []
+    for l in lines:
+        m = WORD_REF_RE.match(l)
+        if m and m.group(2) in imported:
+            offset = int(m.group(4), 0) * (-1 if m.group(3) == '-' else 1) if m.group(3) else 0
+            offset += 1
+            tail = f' + {offset}' if offset > 0 else f' - {-offset}' if offset < 0 else ''
+            l = f'{m.group(1)}{m.group(2)}{tail}{m.group(5)}'
+        out.append(l)
+    return out
+
+
+def already_global(lines, sym):
+    """whether the piece already exports sym through a func_start macro or .global"""
+    for l in lines:
+        m = sd.FUNC_START_RE.match(l)
+        if m and sym in l.split():
+            return True
+        if l.strip() == f'.global {sym}':
+            return True
+    return False
 
 
 def candidates(lines):
@@ -84,6 +142,7 @@ def main():
     trailer = raw[dstart:]
 
     valid = valid_points(body)
+    thumb_labels = thumb_data_labels(body)
     bounds = []
     for spec in args.boundary:
         a, name = spec.split(':')
@@ -124,25 +183,40 @@ def main():
                 code = code.split(':', 1)[1]
             out.update(TOKEN.findall(code))
         return out
-    os.makedirs(args.outdir, exist_ok=True)
-    written = []
+    pieces = []
     for k, (s, e, name) in enumerate(ranges):
         chunk = body[s:e]
         if not any(x.strip() for x in chunk):
             continue
-        local = sd.defined_symbols(chunk)
-        need = sorted(x for x in refs(chunk)
-                      if x not in local and x in all_defined)
+        full = chunk + trailer if k == len(ranges) - 1 else chunk
+        local = sd.defined_symbols(full)
+        need = {x for x in refs(full) if x not in local and x in all_defined}
+        pieces.append((k, name, chunk, full, local, need))
+
+    globs = sym_globs()
+    for _, name, _, _, _, _ in pieces:
+        path = f'asm/{name}.s'
+        if globs and not any(fnmatch.fnmatch(path, g) for g in globs):
+            print(f"warning: {path} matches no SYM_GLOBS pattern in the Makefile, "
+                  f"so the linker will drop its functions", file=sys.stderr)
+
+    os.makedirs(args.outdir, exist_ok=True)
+    written = []
+    for k, name, chunk, full, local, need in pieces:
+        wanted = set().union(*(p[5] for p in pieces if p[1] != name))
+        exports = sorted(x for x in local & wanted if not already_global(full, x))
         out = [f'\t.include "{args.macros}"', '']
         out += header_externs
-        for sym in need:
+        for sym in sorted(need):
             out.append(f'\t.extern {sym}')
+        for sym in exports:
+            out.append(f'\t.global {sym}')
         out += ['', '\t.text', '']
         if not any(sd.FUNC_START_RE.match(x) for x in chunk):
             out += [f'\t.global {name}', f'{name}:']
-        out += chunk
+        out += rebase_thumb_refs(chunk, need & thumb_labels)
         if k == len(ranges) - 1:
-            out += [''] + trailer
+            out += [''] + rebase_thumb_refs(trailer, need & thumb_labels)
         if not args.dry_run:
             open(os.path.join(args.outdir, name + '.s'), 'w').write("\n".join(out) + "\n")
         written.append((sd.first_address(chunk), name, len(chunk)))
