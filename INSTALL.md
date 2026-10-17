@@ -150,7 +150,7 @@ The ARM7 builds out of `sub/`, with its own `Makefile`, `arm7.lsf` and `arm7.sha
 
 ## Decompiling a function
 
-Once the build matches, see [CONTRIBUTING.md](CONTRIBUTING.md) for how to carve a function out of `asm/` and replace it with C.
+Once the build matches, see [CONTRIBUTING.md](CONTRIBUTING.md) for how to split a module in `asm/` into its source files and replace them with C.
 
 ## Platform notes
 
