@@ -73,13 +73,13 @@
 
 	.text
 
-	thumb_func_start FUN_overlay_d_93__021eea30
-FUN_overlay_d_93__021eea30: ; 0x021EEA30
+	thumb_func_start GlobalBattleAdapters_Clear
+GlobalBattleAdapters_Clear: ; 0x021EEA30
 	push {r3, r4}
 	mov r4, #0
 	ldr r1, _021EEA4C ; =0x021F6388
 	add r3, r4, #0
-	thumb_func_end FUN_overlay_d_93__021eea30
+	thumb_func_end GlobalBattleAdapters_Clear
 _021EEA38:
 	lsl r2, r4, #2
 	add r4, r4, #1

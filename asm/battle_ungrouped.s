@@ -370,7 +370,7 @@
 	.extern FUN_overlay_d_93__021b9ce8
 	.extern FUN_overlay_d_93__021b9d10
 	.extern FUN_overlay_d_93__021ba1a8
-	.extern FUN_overlay_d_93__021ba1b4
+	.extern MainModule_AddOneRecord
 	.extern FUN_overlay_d_93__021ba1cc
 	.extern FUN_overlay_d_93__021ba250
 	.extern FUN_overlay_d_93__021ba534
@@ -2162,10 +2162,10 @@ FUN_overlay_d_93__021bb8dc: ; 0x021BB8DC
 	bl FUN_020271DC
 	ldr r0, [r4, #0xc]
 	mov r1, #7
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 	ldr r0, [r4, #0xc]
 	mov r1, #0x54
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 	pop {r4, pc}
 	thumb_func_end FUN_overlay_d_93__021bb8dc
 _021BB908:
@@ -5997,7 +5997,7 @@ _021BD5B6:
 	bne _021BD5CC
 	ldr r0, [r5, #4]
 	mov r1, #0x4e
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 	ldr r0, [r5, #0xc]
 	mov r1, #0x5a
 	mov r2, #0x49
@@ -8792,7 +8792,7 @@ FUN_overlay_d_93__021bec2c: ; 0x021BEC2C
 	bne _021BEC48
 	ldr r0, [r5, #4]
 	mov r1, #0x49
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 	pop {r3, r4, r5, pc}
 	thumb_func_end FUN_overlay_d_93__021bec2c
 _021BEC48:
@@ -8800,7 +8800,7 @@ _021BEC48:
 	bne _021BEC54
 	ldr r0, [r5, #4]
 	mov r1, #0x4a
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 _021BEC54:
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
@@ -9854,7 +9854,7 @@ _021BF3FC:
 	bne _021BF45A
 	ldr r0, [r4, #4]
 	mov r1, #0x4b
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 _021BF45A:
 	ldr r0, [sp, #8]
 	bl FUN_021BF49C
@@ -13198,7 +13198,7 @@ _021C0DC0:
 	beq _021C0E80
 	ldr r0, [r5, #4]
 	mov r1, #0x4d
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 _021C0E80:
 	ldr r0, _021C0EC0 ; =0x0000085C
 	ldr r0, [r5, r0]
@@ -21377,11 +21377,11 @@ _021C5040:
 	bne _021C505A
 	ldr r0, [r4, #4]
 	mov r1, #0x19
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 	ldr r0, [r4, #4]
 	mov r1, #0x52
 _021C5056:
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 _021C505A:
 	add sp, #8
 	mov r0, #1
@@ -34495,7 +34495,7 @@ _021CB808:
 	bne _021CB832
 	ldr r0, [r5, #4]
 	mov r1, #0x6f
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 _021CB832:
 	ldr r0, [sp, #0x2c]
 	cmp r0, #0

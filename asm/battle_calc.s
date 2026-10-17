@@ -2320,8 +2320,8 @@ _021D783A:
 	pop {r4, r5}
 	bx lr
 
-	thumb_func_start BattleCalc_CreateGlobal
-BattleCalc_CreateGlobal: ; 0x021D7840
+	thumb_func_start GlobalBattleCalc_Create
+GlobalBattleCalc_Create: ; 0x021D7840
 	push {r3, r4, lr}
 	sub sp, #4
 	add r4, r0, #0
@@ -2345,7 +2345,7 @@ BattleCalc_CreateGlobal: ; 0x021D7840
 	add sp, #4
 	pop {r3, r4, pc}
 	nop
-	thumb_func_end BattleCalc_CreateGlobal
+	thumb_func_end GlobalBattleCalc_Create
 _021D7870: .word _021F3AB8
 _021D7874:
 	.word ADDR_021F6360

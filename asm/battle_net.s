@@ -778,8 +778,8 @@ _021D4224: .word 0x00003AE4
 _021D4228: .word 0x00003B04
 _021D422C: .word 0x00003B14
 
-	thumb_func_start FUN_overlay_d_93__021d4230
-FUN_overlay_d_93__021d4230: ; 0x021D4230
+	thumb_func_start GlobalBattleNet_IsEnabled
+GlobalBattleNet_IsEnabled: ; 0x021D4230
 	push {r4, lr}
 	ldr r0, _021D4250 ; =0x021F3B88
 	ldr r0, [r0]
@@ -791,7 +791,7 @@ FUN_overlay_d_93__021d4230: ; 0x021D4230
 	cmp r0, #0
 	bne _021D4248
 	mov r4, #0
-	thumb_func_end FUN_overlay_d_93__021d4230
+	thumb_func_end GlobalBattleNet_IsEnabled
 _021D4248:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -819,8 +819,8 @@ _021D4268:
 _021D426C:
 	.word ADDR_021F3B88
 
-	thumb_func_start FUN_overlay_d_93__021d4270
-FUN_overlay_d_93__021d4270: ; 0x021D4270
+	thumb_func_start GlobalBattleNet_CheckError
+GlobalBattleNet_CheckError: ; 0x021D4270
 	push {r3, lr}
 	ldr r0, _021D4290 ; =0x021F3B88
 	ldr r0, [r0]
@@ -831,7 +831,7 @@ FUN_overlay_d_93__021d4270: ; 0x021D4270
 	beq _021D4286
 	mov r0, #1
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021d4270
+	thumb_func_end GlobalBattleNet_CheckError
 _021D4286:
 	mov r0, #0
 	pop {r3, pc}

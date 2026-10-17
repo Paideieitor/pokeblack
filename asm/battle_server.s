@@ -350,9 +350,9 @@
 	.extern FUN_overlay_d_93__021cdda0
 	.extern FUN_overlay_d_93__021cddcc
 	.extern GlobalBattleNet_Create
-	.extern FUN_overlay_d_93__021d4230
+	.extern GlobalBattleNet_IsEnabled
 	.extern FUN_overlay_d_93__021d4254
-	.extern FUN_overlay_d_93__021d4270
+	.extern GlobalBattleNet_CheckError
 	.extern FUN_overlay_d_93__021d4294
 	.extern FUN_overlay_d_93__021d4348
 	.extern FUN_overlay_d_93__021d4360
@@ -392,7 +392,7 @@
 	.extern BattleMon_Update
 	.extern BattleMon_CheckIllusion
 	.extern BattleMon_SetPartySource
-	.extern BattleCalc_CreateGlobal
+	.extern GlobalBattleCalc_Create
 	.extern FUN_overlay_d_93__021d787c
 	.extern FUN_overlay_d_93__021d7894
 	.extern FUN_overlay_d_93__021d7f60
@@ -413,7 +413,7 @@
 	.extern FUN_overlay_d_93__021e908c
 	.extern BattleRecordReader_Init
 	.extern BattleRecordReader_IsAtEnd
-	.extern FUN_overlay_d_93__021eea30
+	.extern GlobalBattleAdapters_Clear
 	.extern FUN_overlay_d_93__021eea54
 	.extern FUN_overlay_d_93__021ef958
 	.extern thunk_FUN_overlay_d_93__021d4a6c
@@ -669,7 +669,7 @@ _021B62C0:
 	add r1, #0x78
 	ldrh r1, [r4, r1]
 	add r0, r4, r5
-	bl BattleCalc_CreateGlobal
+	bl GlobalBattleCalc_Create
 	bl FUN_overlay_d_93__021cd6ec
 	add r0, r7, #0
 	bl BattleSetup_GetWinMoney
@@ -726,7 +726,7 @@ _021B633A:
 	ldr r0, [r0, #0x1c]
 	cmp r0, #0
 	beq _021B6364
-	bl FUN_overlay_d_93__021d4270
+	bl GlobalBattleNet_CheckError
 	cmp r0, #0
 	beq _021B6364
 	ldr r2, _021B6428 ; =0x00000473
@@ -743,13 +743,13 @@ _021B633A:
 	strb r1, [r4, r2]
 	pop {r3, r4, r5, r6, r7, pc}
 _021B6364:
-	bl FUN_overlay_d_93__021d4230
+	bl GlobalBattleNet_IsEnabled
 	cmp r0, #0
 	beq _021B6416
 	ldr r0, [r4]
 	add r0, #0x20
 	ldrb r0, [r0]
-	bl FUN_overlay_d_93__021eea30
+	bl GlobalBattleAdapters_Clear
 	mov r5, #0x45
 	lsl r5, r5, #4
 	ldr r2, [r4]
@@ -760,9 +760,9 @@ _021B6364:
 	add r5, #0x10
 	str r0, [r4, r5]
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021b9db8
+	bl MainModule_ClearTrainerParams
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021ba094
+	bl MainModule_CreatePokemonParties
 	b _021B6332
 _021B6398:
 	mov r5, #0x45
@@ -829,7 +829,7 @@ _021B6400:
 	beq _021B6410
 	add r0, r4, #0
 	mov r1, #4
-	bl FUN_overlay_d_93__021ba1b4
+	bl MainModule_AddOneRecord
 _021B6410:
 	add sp, #8
 	mov r0, #1
@@ -3441,7 +3441,7 @@ LAB_overlay_d_93__021b7e3c: ; 0x021B7E3C
 LAB_overlay_d_93__021b7e3e: ; 0x021B7E3E
 	lsl r0, r0, #0x18
 	lsr r7, r0, #0x18
-	bl FUN_overlay_d_93__021d4270
+	bl GlobalBattleNet_CheckError
 	cmp r0, #0
 	beq _021B7E5C
 	ldr r1, _021B8068 ; =0x00000473
@@ -7804,13 +7804,13 @@ _021B9DB2:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021b9db8
-FUN_overlay_d_93__021b9db8: ; 0x021B9DB8
+	thumb_func_start MainModule_ClearTrainerParams
+MainModule_ClearTrainerParams: ; 0x021B9DB8
 	push {r3, r4}
 	mov r4, #0
 	add r1, r4, #0
 	mov r2, #0x28
-	thumb_func_end FUN_overlay_d_93__021b9db8
+	thumb_func_end MainModule_ClearTrainerParams
 _021B9DC0:
 	add r3, r4, #0
 	mul r3, r2
@@ -8221,15 +8221,15 @@ MainModule_GetBattlefield: ; 0x021BA08C
 	bx lr
 	thumb_func_end MainModule_GetBattlefield
 
-	thumb_func_start FUN_overlay_d_93__021ba094
-FUN_overlay_d_93__021ba094: ; 0x021BA094
+	thumb_func_start MainModule_CreatePokemonParties
+MainModule_CreatePokemonParties: ; 0x021BA094
 	push {r3, r4, r5, r6, r7, lr}
 	mov r7, #0xa6
 	lsl r7, r7, #2
 	add r6, r0, #0
 	mov r4, #0
 	add r7, #0x10
-	thumb_func_end FUN_overlay_d_93__021ba094
+	thumb_func_end MainModule_CreatePokemonParties
 _021BA0A0:
 	lsl r0, r4, #2
 	add r5, r6, r0
@@ -8378,8 +8378,8 @@ FUN_overlay_d_93__021ba1a8: ; 0x021BA1A8
 	thumb_func_end FUN_overlay_d_93__021ba1a8
 _021BA1B0: .word 0x02013159
 
-	thumb_func_start FUN_overlay_d_93__021ba1b4
-FUN_overlay_d_93__021ba1b4: ; 0x021BA1B4
+	thumb_func_start MainModule_AddOneRecord
+MainModule_AddOneRecord: ; 0x021BA1B4
 	push {r3, lr}
 	ldr r2, [r0]
 	add r0, r2, #0
@@ -8389,7 +8389,7 @@ FUN_overlay_d_93__021ba1b4: ; 0x021BA1B4
 	bne _021BA1C8
 	ldr r0, [r2, #0x6c]
 	bl FUN_02008DF0
-	thumb_func_end FUN_overlay_d_93__021ba1b4
+	thumb_func_end MainModule_AddOneRecord
 _021BA1C8:
 	pop {r3, pc}
 	.balign 4, 0
