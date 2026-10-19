@@ -326,11 +326,11 @@
 	.extern FUN_overlay_d_93__021b8e28
 	.extern FUN_overlay_d_93__021b8e70
 	.extern FUN_overlay_d_93__021b8ff4
-	.extern FUN_overlay_d_93__021b902c
+	.extern AreClientsAllies
 	.extern FUN_overlay_d_93__021b904c
-	.extern FUN_overlay_d_93__021b9064
+	.extern MainModule_GetAllyClientIdx
 	.extern FUN_overlay_d_93__021b90bc
-	.extern FUN_overlay_d_93__021b90f8
+	.extern MainModule_IsNotRecording
 	.extern FUN_overlay_d_93__021b916c
 	.extern FUN_overlay_d_93__021b9184
 	.extern FUN_overlay_d_93__021b919c
@@ -353,7 +353,7 @@
 	.extern MainModule_GetTrainerItem
 	.extern MainModule_GetAIFlags
 	.extern FUN_overlay_d_93__021ba004
-	.extern FUN_overlay_d_93__021ba020
+	.extern MainModule_GetTrainerClass
 	.extern FUN_overlay_d_93__021ba02c
 	.extern MainModule_GetBattlefield
 	.extern FUN_overlay_d_93__021ba1a8
@@ -552,7 +552,7 @@
 	.extern FUN_overlay_d_93__021efc1c
 	.extern Battlefield_CheckEffectCore
 	.extern GetTypeEffectivenessClass
-	.extern thunk_FUN_overlay_d_93__021b6994
+	.extern thunk_MainModule_GetFrontlineCount
 	.extern thunk_FUN_overlay_d_93__021b8cfc
 	.extern thunk_FUN_overlay_d_93__021ccad4
 	.extern thunk_FUN_overlay_d_93__021e9738
@@ -953,7 +953,7 @@ _021CD898:
 	cmp r0, #0
 	bne _021CD8BC
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021b90f8
+	bl MainModule_IsNotRecording
 	cmp r0, #0
 	beq _021CD8BC
 	ldr r0, [sp, #0x40]
@@ -974,15 +974,15 @@ _021CD8D4: .word BattleClient_StartBattleServer
 _021CD8D8: .word 0x00000112
 _021CD8DC: .word 0x000001A7
 
-	thumb_func_start FUN_overlay_d_93__021cd8e0
-FUN_overlay_d_93__021cd8e0: ; 0x021CD8E0
+	thumb_func_start BattleClient_Free
+BattleClient_Free: ; 0x021CD8E0
 	push {r4, lr}
 	add r4, r0, #0
 	ldr r0, [r4, #0x10]
 	cmp r0, #0
 	beq _021CD8EE
 	bl BattleRecord_Free
-	thumb_func_end FUN_overlay_d_93__021cd8e0
+	thumb_func_end BattleClient_Free
 _021CD8EE:
 	add r0, r4, #0
 	add r0, #0xf0
@@ -1013,15 +1013,15 @@ FUN_overlay_d_93__021cd914: ; 0x021CD914
 	thumb_func_end FUN_overlay_d_93__021cd914
 _021CD920: .word 0x000001B2
 
-	thumb_func_start FUN_overlay_d_93__021cd924
-FUN_overlay_d_93__021cd924: ; 0x021CD924
+	thumb_func_start BattleClient_GetBattleRecordData
+BattleClient_GetBattleRecordData: ; 0x021CD924
 	push {r3, lr}
 	ldr r0, [r0, #0x10]
 	cmp r0, #0
 	beq _021CD932
 	bl BattleRecord_GetData
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021cd924
+	thumb_func_end BattleClient_GetBattleRecordData
 _021CD932:
 	mov r0, #0
 	pop {r3, pc}
@@ -1743,7 +1743,7 @@ FUN_overlay_d_93__021cdf1c: ; 0x021CDF1C
 	ldr r0, [r4]
 	ldrb r1, [r4, r1]
 	mov r2, #0
-	bl FUN_overlay_d_93__021b9064
+	bl MainModule_GetAllyClientIdx
 	lsl r0, r0, #0x18
 	lsr r1, r0, #0x18
 	ldr r0, [r4, #4]
@@ -2864,7 +2864,7 @@ _021CE91E:
 	beq _021CE96A
 	ldr r0, [r7]
 	add r1, r5, #0
-	bl thunk_FUN_overlay_d_93__021b6994
+	bl thunk_MainModule_GetFrontlineCount
 	mov r4, #1
 	str r0, [sp, #0xc]
 	cmp r0, #1
@@ -7916,7 +7916,7 @@ _021D13C0:
 	lsl r0, r0, #0x18
 	ldrb r1, [r4, r1]
 	lsr r0, r0, #0x18
-	bl FUN_overlay_d_93__021b902c
+	bl AreClientsAllies
 	cmp r0, #0
 	bne _021D13F0
 	add sp, #4
@@ -7928,7 +7928,7 @@ _021D13D8:
 	lsl r0, r0, #0x18
 	ldrb r1, [r4, r1]
 	lsr r0, r0, #0x18
-	bl FUN_overlay_d_93__021b902c
+	bl AreClientsAllies
 	cmp r0, #0
 	bne _021D13F0
 	add sp, #4
@@ -8065,7 +8065,7 @@ _021D14F4:
 	bl FUN_overlay_d_93__021b904c
 	add r1, r0, #0
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	mov r1, #9
 	mov r2, #0
 	mov r3, #0
@@ -8121,7 +8121,7 @@ _021D157A:
 	bl FUN_overlay_d_93__021b904c
 	add r1, r0, #0
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	mov r2, #0
 	mov r1, #9
 	mov r3, #0
@@ -8349,7 +8349,7 @@ _021D176C:
 	bl FUN_overlay_d_93__021b904c
 	add r1, r0, #0
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	mov r1, #9
 	mov r2, #0
 	mov r3, #0
@@ -8411,7 +8411,7 @@ _021D17EC:
 	bl FUN_overlay_d_93__021b904c
 	add r1, r0, #0
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	mov r2, #0
 	mov r1, #9
 	mov r3, #0

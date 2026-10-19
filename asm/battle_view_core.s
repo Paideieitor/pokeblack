@@ -4968,8 +4968,8 @@ _021E88F0: .word 0x0000008C
 _021E88F4:
 	.word ADDR_021F6380
 
-	thumb_func_start FUN_overlay_d_93__021e88f8
-FUN_overlay_d_93__021e88f8: ; 0x021E88F8
+	thumb_func_start UnloadBattleDebugOverlay
+UnloadBattleDebugOverlay: ; 0x021E88F8
 	push {r4, lr}
 	ldr r4, _021E8910 ; =0x021F6380
 	ldr r0, [r4]
@@ -4979,7 +4979,7 @@ FUN_overlay_d_93__021e88f8: ; 0x021E88F8
 	blx FUN_02034A5C
 	mov r0, #0
 	str r0, [r4]
-	thumb_func_end FUN_overlay_d_93__021e88f8
+	thumb_func_end UnloadBattleDebugOverlay
 _021E890C:
 	pop {r4, pc}
 	nop
@@ -5540,10 +5540,10 @@ _021E8DEC: .word 0x0000005E
 _021E8DF0: .word 0x0000005F
 _021E8DF4: .word 0x00000060
 
-	thumb_func_start FUN_overlay_d_93__021e8df8
-FUN_overlay_d_93__021e8df8: ; 0x021E8DF8
+	thumb_func_start UnloadBattleOverlays
+UnloadBattleOverlays: ; 0x021E8DF8
 	push {r3, lr}
-	bl FUN_overlay_d_93__021e8f08
+	bl FreeBattleGraphics
 	ldr r0, _021E8E1C ; =0x0000005E
 	blx FUN_02034A5C
 	ldr r0, _021E8E20 ; =0x0000005F
@@ -5553,7 +5553,7 @@ FUN_overlay_d_93__021e8df8: ; 0x021E8DF8
 	bne _021E8E18
 	ldr r0, _021E8E24 ; =0x00000060
 	blx FUN_02034A5C
-	thumb_func_end FUN_overlay_d_93__021e8df8
+	thumb_func_end UnloadBattleOverlays
 _021E8E18:
 	pop {r3, pc}
 	nop
@@ -5565,7 +5565,7 @@ _021E8E24: .word 0x00000060
 FUN_overlay_d_93__021e8e28: ; 0x021E8E28
 	push {r4, lr}
 	add r4, r0, #0
-	bl FUN_overlay_d_93__021e8f08
+	bl FreeBattleGraphics
 	add r0, r4, #0
 	bl FUN_overlay_d_93__021e8e38
 	pop {r4, pc}
@@ -5665,8 +5665,8 @@ _021E8F00: .word 0x0000CFDF
 _021E8F04:
 	.word ADDR_021F3860
 
-	thumb_func_start FUN_overlay_d_93__021e8f08
-FUN_overlay_d_93__021e8f08: ; 0x021E8F08
+	thumb_func_start FreeBattleGraphics
+FreeBattleGraphics: ; 0x021E8F08
 	push {r3, lr}
 	bl FUN_021F7808
 	blx FUN_0204A5AC
@@ -5674,7 +5674,7 @@ FUN_overlay_d_93__021e8f08: ; 0x021E8F08
 	blx FUN_0203F9B4
 	blx FUN_02046788
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021e8f08
+	thumb_func_end FreeBattleGraphics
 
 	thumb_func_start BattleViewCore_Create
 BattleViewCore_Create: ; 0x021E8F20

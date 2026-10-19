@@ -312,7 +312,7 @@
 	.extern FUN_overlay_d_93__021b8c50
 	.extern FUN_overlay_d_93__021b8d38
 	.extern FUN_overlay_d_93__021b8d8c
-	.extern FUN_overlay_d_93__021b902c
+	.extern AreClientsAllies
 	.extern FUN_overlay_d_93__021b9a24
 	.extern FUN_overlay_d_93__021b9a40
 	.extern FUN_overlay_d_93__021b9a5c
@@ -2368,8 +2368,8 @@ FUN_overlay_d_93__021d787c: ; 0x021D787C
 _021D7890:
 	.word ADDR_021F6368
 
-	thumb_func_start FUN_overlay_d_93__021d7894
-FUN_overlay_d_93__021d7894: ; 0x021D7894
+	thumb_func_start GlobalBattleCalc_Free
+GlobalBattleCalc_Free: ; 0x021D7894
 	push {r4, lr}
 	ldr r4, _021D78A8 ; =0x021F6360
 	ldr r0, [r4, #4]
@@ -2378,7 +2378,7 @@ FUN_overlay_d_93__021d7894: ; 0x021D7894
 	blx Heap_Free
 	mov r0, #0
 	str r0, [r4, #4]
-	thumb_func_end FUN_overlay_d_93__021d7894
+	thumb_func_end GlobalBattleCalc_Free
 _021D78A6:
 	pop {r4, pc}
 	.balign 4, 0
@@ -3303,15 +3303,15 @@ _021D7F32:
 	bx lr
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021d7f38
-FUN_overlay_d_93__021d7f38: ; 0x021D7F38
+	thumb_func_start TrainerClass_IsGymLeader
+TrainerClass_IsGymLeader: ; 0x021D7F38
 	push {r3, lr}
 	bl FUN_0202A3FC
 	cmp r0, #2
 	bne _021D7F46
 	mov r0, #1
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021d7f38
+	thumb_func_end TrainerClass_IsGymLeader
 _021D7F46:
 	mov r0, #0
 	pop {r3, pc}
@@ -3331,16 +3331,16 @@ _021D7F5A:
 	pop {r3, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021d7f60
-FUN_overlay_d_93__021d7f60: ; 0x021D7F60
+	thumb_func_start TrainerClass_IsGymLeaderOrEliteFour
+TrainerClass_IsGymLeaderOrEliteFour: ; 0x021D7F60
 	push {r4, lr}
 	add r4, r0, #0
-	bl FUN_overlay_d_93__021d7f38
+	bl TrainerClass_IsGymLeader
 	cmp r0, #0
 	beq _021D7F70
 	mov r0, #1
 	pop {r4, pc}
-	thumb_func_end FUN_overlay_d_93__021d7f60
+	thumb_func_end TrainerClass_IsGymLeaderOrEliteFour
 _021D7F70:
 	add r0, r4, #0
 	bl FUN_overlay_d_93__021d7f4c
@@ -3788,14 +3788,14 @@ _021D8266:
 	bx lr
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021d826c
-FUN_overlay_d_93__021d826c: ; 0x021D826C
+	thumb_func_start BattleClientList_GetCount
+BattleClientList_GetCount: ; 0x021D826C
 	ldr r0, [r0]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d826c
+	thumb_func_end BattleClientList_GetCount
 
-	thumb_func_start FUN_overlay_d_93__021d8270
-FUN_overlay_d_93__021d8270: ; 0x021D8270
+	thumb_func_start EscapeClientList_GetWinner
+EscapeClientList_GetWinner: ; 0x021D8270
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8
 	add r5, r0, #0
@@ -3808,12 +3808,12 @@ FUN_overlay_d_93__021d8270: ; 0x021D8270
 	mov r4, #0
 	cmp r0, #0
 	bls _021D82A6
-	thumb_func_end FUN_overlay_d_93__021d8270
+	thumb_func_end EscapeClientList_GetWinner
 _021D8288:
 	add r0, r5, r4
 	ldrb r0, [r0, #4]
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021b902c
+	bl AreClientsAllies
 	cmp r0, #0
 	beq _021D829A
 	mov r7, #1

@@ -327,7 +327,7 @@
 	.extern FUN_overlay_d_93__021b8fc0
 	.extern FUN_overlay_d_93__021b8fe4
 	.extern FUN_overlay_d_93__021b8ff4
-	.extern FUN_overlay_d_93__021b9064
+	.extern MainModule_GetAllyClientIdx
 	.extern FUN_overlay_d_93__021b90e8
 	.extern FUN_overlay_d_93__021b90f0
 	.extern FUN_overlay_d_93__021b98ac
@@ -338,7 +338,7 @@
 	.extern BattleParty_GetMemberCount
 	.extern FUN_overlay_d_93__021b9c00
 	.extern MainModule_TrainerParamsCheckInfo
-	.extern FUN_overlay_d_93__021ba020
+	.extern MainModule_GetTrainerClass
 	.extern FUN_overlay_d_93__021ba1a8
 	.extern FUN_overlay_d_93__021ba1e4
 	.extern FUN_overlay_d_93__021cd9c8
@@ -361,7 +361,7 @@
 	.extern FUN_overlay_d_93__021ef694
 	.extern FUN_overlay_d_93__021ef6a8
 	.extern FUN_overlay_d_93__021ef6e8
-	.extern thunk_FUN_overlay_d_93__021b6994
+	.extern thunk_MainModule_GetFrontlineCount
 	.extern thunk_FUN_overlay_d_93__021b8cfc
 	.extern FUN_02045838
 	.extern ADDR_020082B8
@@ -427,8 +427,8 @@ thunk_EXT_FUN_06899af0: ; 0x021E9028
 	arm_func_end thunk_EXT_FUN_06899af0
 _021E9030: .word 0x06899AF1
 
-	thumb_func_start FUN_overlay_d_93__021e9034
-FUN_overlay_d_93__021e9034: ; 0x021E9034
+	thumb_func_start BattleViewCore_Free
+BattleViewCore_Free: ; 0x021E9034
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	bl FUN_overlay_d_93__021eecd8
@@ -457,7 +457,7 @@ FUN_overlay_d_93__021e9034: ; 0x021E9034
 	add r0, r5, #0
 	blx Heap_Free
 	pop {r3, r4, r5, pc}
-	thumb_func_end FUN_overlay_d_93__021e9034
+	thumb_func_end BattleViewCore_Free
 
 	thumb_func_start FUN_021E907C
 FUN_021E907C: ; 0x021E907C
@@ -1749,7 +1749,7 @@ _021E99CC:
 	beq _021E99EA
 	ldr r0, [r5]
 	ldr r1, [sp]
-	bl thunk_FUN_overlay_d_93__021b6994
+	bl thunk_MainModule_GetFrontlineCount
 	add r1, r4, #0
 	add r1, #0x22
 	strb r0, [r1]
@@ -5650,7 +5650,7 @@ _021EB8BE:
 	sub r0, #0x1c
 	ldr r0, [r4, r0]
 	ldr r1, [sp, #8]
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	mov r1, #0
 	str r1, [sp]
 	mov r1, #9
@@ -6484,7 +6484,7 @@ _021EC006:
 	lsl r7, r7, #2
 	ldr r0, [r5, r7]
 	ldr r1, [sp, #4]
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	mov r2, #0
 	str r2, [sp]
 	ldrb r1, [r6, #1]
@@ -6616,7 +6616,7 @@ _021EC10A:
 	lsl r7, r7, #2
 	ldr r0, [r4, r7]
 	ldr r1, [sp, #4]
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	mov r1, #0
 	str r1, [sp]
 	ldrb r1, [r6]
@@ -6625,7 +6625,7 @@ _021EC10A:
 	bl FUN_021F7F58
 	ldr r0, [r4, r7]
 	ldr r1, [sp, #8]
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	mov r1, #0
 	str r1, [sp]
 	ldrb r1, [r6, #1]
@@ -7136,7 +7136,7 @@ _021EC5FA:
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	mov r2, #0
-	bl FUN_overlay_d_93__021b9064
+	bl MainModule_GetAllyClientIdx
 	strb r0, [r4, #0x16]
 	add r0, r4, #0
 	str r0, [sp, #0x14]

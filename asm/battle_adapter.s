@@ -38,7 +38,7 @@
 	.extern MainModule_TrainerParamsCheckInfo
 	.extern FUN_overlay_d_93__021b9fac
 	.extern FUN_overlay_d_93__021ba004
-	.extern FUN_overlay_d_93__021ba020
+	.extern MainModule_GetTrainerClass
 	.extern FUN_overlay_d_93__021ba064
 	.extern FUN_overlay_d_93__021ba080
 	.extern FUN_overlay_d_93__021ba1a8
@@ -580,7 +580,7 @@ FUN_overlay_d_93__021eed6c: ; 0x021EED6C
 	add r4, r1, #0
 	ldr r0, [r0]
 	add r1, r2, #0
-	bl FUN_overlay_d_93__021ba020
+	bl MainModule_GetTrainerClass
 	add r2, r0, #0
 	lsl r2, r2, #0x18
 	add r0, r5, #0

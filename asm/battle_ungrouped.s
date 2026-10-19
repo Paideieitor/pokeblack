@@ -324,7 +324,7 @@
 	.extern FUN_overlay_d_93__021b86c0
 	.extern FUN_overlay_d_93__021b86dc
 	.extern FUN_overlay_d_93__021b86e4
-	.extern FUN_overlay_d_93__021b8714
+	.extern MainModule_GetBattlefieldStatus
 	.extern FUN_overlay_d_93__021b871c
 	.extern FUN_overlay_d_93__021b8724
 	.extern FUN_overlay_d_93__021b873c
@@ -341,10 +341,10 @@
 	.extern FUN_overlay_d_93__021b8e28
 	.extern FUN_overlay_d_93__021b8ff4
 	.extern FUN_overlay_d_93__021b9010
-	.extern FUN_overlay_d_93__021b902c
-	.extern FUN_overlay_d_93__021b9064
+	.extern AreClientsAllies
+	.extern MainModule_GetAllyClientIdx
 	.extern FUN_overlay_d_93__021b9090
-	.extern FUN_overlay_d_93__021b9114
+	.extern MainModule_IsRecording
 	.extern FUN_overlay_d_93__021b911c
 	.extern FUN_overlay_d_93__021b916c
 	.extern FUN_overlay_d_93__021b92b0
@@ -559,7 +559,7 @@
 	.extern FUN_overlay_d_93__021ef934
 	.extern Battlefield_CheckEffect
 	.extern GetTypeEffectivenessClass
-	.extern thunk_FUN_overlay_d_93__021b6994
+	.extern thunk_MainModule_GetFrontlineCount
 	.extern thunk_FUN_overlay_d_93__021b8cfc
 	.extern thunk_FUN_overlay_d_93__021b8d08
 	.extern thunk_FUN_overlay_d_93__021b98ac
@@ -736,8 +736,8 @@ BattleServer_StartBattle: ; 0x021BAB40
 	thumb_func_end BattleServer_StartBattle
 _021BAB58: .word ServerProcess_StartBattle
 
-	thumb_func_start FUN_overlay_d_93__021bab5c
-FUN_overlay_d_93__021bab5c: ; 0x021BAB5C
+	thumb_func_start BattleServer_Free
+BattleServer_Free: ; 0x021BAB5C
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	add r0, #0xac
@@ -747,7 +747,7 @@ FUN_overlay_d_93__021bab5c: ; 0x021BAB5C
 	bl FUN_overlay_d_93__021bbb48
 	mov r4, #0
 	mov r6, #0xc
-	thumb_func_end FUN_overlay_d_93__021bab5c
+	thumb_func_end BattleServer_Free
 _021BAB72:
 	add r0, r4, #0
 	mul r0, r6
@@ -1499,7 +1499,7 @@ _021BB322:
 LAB_overlay_d_93__021bb330: ; 0x021BB330
 	ldr r0, [r0, #0xc]
 	mov r4, #0
-	bl FUN_overlay_d_93__021b9114
+	bl MainModule_IsRecording
 	cmp r0, #0
 	bne _021BB350
 	blx FUN_020362DC
@@ -2499,7 +2499,7 @@ FUN_overlay_d_93__021bbb60: ; 0x021BBB60
 	str r0, [sp]
 	str r0, [r1, #4]
 	ldr r0, [r6, #4]
-	bl FUN_overlay_d_93__021b8714
+	bl MainModule_GetBattlefieldStatus
 	ldrb r1, [r0, #8]
 	cmp r1, #0
 	beq _021BBB8C
@@ -6174,7 +6174,7 @@ FUN_overlay_d_93__021bd708: ; 0x021BD708
 	bl FUN_overlay_d_93__021b8ff4
 	add r1, r0, #0
 	ldr r0, [sp, #0xc]
-	bl FUN_overlay_d_93__021b902c
+	bl AreClientsAllies
 	cmp r0, #0
 	bne _021BD740
 	mov r0, #1
@@ -6445,7 +6445,7 @@ _021BD926:
 	bne _021BD98A
 	ldr r0, [r5, #4]
 	add r1, r6, #0
-	bl thunk_FUN_overlay_d_93__021b6994
+	bl thunk_MainModule_GetFrontlineCount
 	cmp r0, r4
 	bhi _021BD98A
 	ldr r1, [sp, #0x14]
@@ -20209,7 +20209,7 @@ FUN_overlay_d_93__021c4614: ; 0x021C4614
 	add r1, r6, #0
 	mov r2, #0
 	add r7, r6, #0
-	bl FUN_overlay_d_93__021b9064
+	bl MainModule_GetAllyClientIdx
 	lsl r0, r0, #0x18
 	lsr r4, r0, #0x18
 	cmp r6, r4
@@ -21372,7 +21372,7 @@ _021C501C:
 	b _021C5056
 _021C5040:
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021b902c
+	bl AreClientsAllies
 	cmp r0, #0
 	bne _021C505A
 	ldr r0, [r4, #4]
@@ -21444,7 +21444,7 @@ _021C50B0:
 	bl thunk_FUN_overlay_d_93__021b8cfc
 	add r1, r0, #0
 	ldr r0, [sp]
-	bl FUN_overlay_d_93__021b902c
+	bl AreClientsAllies
 	cmp r0, #0
 	bne _021C50EA
 	ldr r0, _021C50F4 ; =0x00001AB8
@@ -34400,7 +34400,7 @@ FUN_overlay_d_93__021cb730: ; 0x021CB730
 	str r0, [sp, #0x38]
 	ldr r0, [r5, #4]
 	ldr r1, [sp, #0x34]
-	bl thunk_FUN_overlay_d_93__021b6994
+	bl thunk_MainModule_GetFrontlineCount
 	str r0, [sp, #0x3c]
 	ldr r0, [sp, #0x38]
 	add r1, r6, #0
@@ -35216,7 +35216,7 @@ _021CBDAA:
 	pop {r3, r4, r5, pc}
 _021CBDBC:
 	ldr r0, [r4, #4]
-	bl FUN_overlay_d_93__021b8714
+	bl MainModule_GetBattlefieldStatus
 	ldr r0, [r0, #4]
 	cmp r0, #6
 	bne _021CBE8E
@@ -35282,7 +35282,7 @@ _021CBE2E:
 	pop {r3, r4, r5, pc}
 _021CBE44:
 	ldr r0, [r4, #4]
-	bl FUN_overlay_d_93__021b8714
+	bl MainModule_GetBattlefieldStatus
 	add r4, r0, #0
 	ldrb r0, [r4, #9]
 	ldrb r1, [r4, #0xc]

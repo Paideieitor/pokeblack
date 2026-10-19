@@ -342,8 +342,8 @@ FUN_021D4D5C: ; 0x021D4D5C
 _021D4D60:
 	.word ADDR_020307B0
 
-	thumb_func_start FUN_overlay_d_93__021d4d64
-FUN_overlay_d_93__021d4d64: ; 0x021D4D64
+	thumb_func_start PokemonParty_CopyFromNetwork
+PokemonParty_CopyFromNetwork: ; 0x021D4D64
 	push {r4, lr}
 	add r3, r0, #0
 	ldr r4, [r3]
@@ -359,7 +359,7 @@ FUN_overlay_d_93__021d4d64: ; 0x021D4D64
 	lsr r2, r2, #8
 	blx FUN_02082D44
 	pop {r4, pc}
-	thumb_func_end FUN_overlay_d_93__021d4d64
+	thumb_func_end PokemonParty_CopyFromNetwork
 
 	thumb_func_start BattleMon_Create
 BattleMon_Create: ; 0x021D4D84
