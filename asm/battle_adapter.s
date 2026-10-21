@@ -42,9 +42,9 @@
 	.extern FUN_overlay_d_93__021ba064
 	.extern FUN_overlay_d_93__021ba080
 	.extern FUN_overlay_d_93__021ba1a8
-	.extern FUN_overlay_d_93__021d4b58
-	.extern FUN_overlay_d_93__021d4b98
-	.extern FUN_overlay_d_93__021d4bd4
+	.extern GlobalBattleNet_SendBuffer
+	.extern GlobalBattleNet_AdapterHasReceived
+	.extern GlobalBattleNet_GetRecvBufferSize
 	.extern FUN_overlay_d_93__021d4c60
 	.extern FUN_overlay_d_93__021d4c6c
 	.extern FUN_overlay_d_93__021d4c84
@@ -209,8 +209,8 @@ FUN_overlay_d_93__021eeafc: ; 0x021EEAFC
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021eeafc
 
-	thumb_func_start FUN_overlay_d_93__021eeb00
-FUN_overlay_d_93__021eeb00: ; 0x021EEB00
+	thumb_func_start BattleAdapter_SetSendData
+BattleAdapter_SetSendData: ; 0x021EEB00
 	push {r4, lr}
 	add r4, r0, #0
 	mov r0, #1
@@ -232,10 +232,10 @@ FUN_overlay_d_93__021eeb00: ; 0x021EEB00
 	strb r1, [r4, #0xc]
 	pop {r4, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021eeb00
+	thumb_func_end BattleAdapter_SetSendData
 
-	thumb_func_start FUN_overlay_d_93__021eeb2c
-FUN_overlay_d_93__021eeb2c: ; 0x021EEB2C
+	thumb_func_start BattleAdapter_WaitClientReply
+BattleAdapter_WaitClientReply: ; 0x021EEB2C
 	push {r4, lr}
 	add r4, r0, #0
 	ldrb r1, [r4, #0xe]
@@ -246,16 +246,16 @@ FUN_overlay_d_93__021eeb2c: ; 0x021EEB2C
 	cmp r1, #4
 	beq _021EEB5A
 	b _021EEB5E
-	thumb_func_end FUN_overlay_d_93__021eeb2c
+	thumb_func_end BattleAdapter_WaitClientReply
 _021EEB40:
-	bl FUN_overlay_d_93__021eeb84
+	bl BattleAdapter_SendBuffer
 	cmp r0, #0
 	beq _021EEB5E
 	mov r0, #3
 	strb r0, [r4, #0xe]
 _021EEB4C:
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021eeba4
+	bl BattleAdapter_HasReceived
 	cmp r0, #0
 	beq _021EEB5E
 	mov r0, #4
@@ -293,8 +293,8 @@ FUN_overlay_d_93__021eeb70: ; 0x021EEB70
 _021EEB82:
 	pop {r3, pc}
 
-	thumb_func_start FUN_overlay_d_93__021eeb84
-FUN_overlay_d_93__021eeb84: ; 0x021EEB84
+	thumb_func_start BattleAdapter_SendBuffer
+BattleAdapter_SendBuffer: ; 0x021EEB84
 	push {r3, lr}
 	ldrb r1, [r0, #0xc]
 	lsl r1, r1, #0x18
@@ -305,28 +305,28 @@ FUN_overlay_d_93__021eeb84: ; 0x021EEB84
 	ldrh r2, [r1, #2]
 	ldrb r0, [r0, #0xd]
 	add r2, r2, #4
-	bl FUN_overlay_d_93__021d4b58
+	bl GlobalBattleNet_SendBuffer
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021eeb84
+	thumb_func_end BattleAdapter_SendBuffer
 _021EEB9E:
 	mov r0, #1
 	pop {r3, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021eeba4
-FUN_overlay_d_93__021eeba4: ; 0x021EEBA4
+	thumb_func_start BattleAdapter_HasReceived
+BattleAdapter_HasReceived: ; 0x021EEBA4
 	push {r4, lr}
 	add r4, r0, #0
 	ldrb r0, [r4, #0xc]
 	lsl r1, r0, #0x18
 	lsr r1, r1, #0x1c
 	beq _021EEBD4
-	bl FUN_overlay_d_93__021d4b98
+	bl GlobalBattleNet_AdapterHasReceived
 	cmp r0, #0
 	beq _021EEBD0
 	ldrb r0, [r4, #0xd]
 	add r1, r4, #4
-	bl FUN_overlay_d_93__021d4bd4
+	bl GlobalBattleNet_GetRecvBufferSize
 	str r0, [r4, #8]
 	ldrb r1, [r4, #0xc]
 	mov r0, #0xf
@@ -335,7 +335,7 @@ FUN_overlay_d_93__021eeba4: ; 0x021EEBA4
 	orr r1, r0
 	strb r1, [r4, #0xc]
 	pop {r4, pc}
-	thumb_func_end FUN_overlay_d_93__021eeba4
+	thumb_func_end BattleAdapter_HasReceived
 _021EEBD0:
 	mov r0, #0
 	pop {r4, pc}

@@ -312,7 +312,7 @@
 	.extern BattleRecord_Free
 	.extern FUN_021EEAE0
 	.extern FUN_overlay_d_93__021b8588
-	.extern FUN_overlay_d_93__021b8590
+	.extern MainModule_MoveAnimationsEnabled
 	.extern MainModule_GetBattleType
 	.extern FUN_overlay_d_93__021b86c0
 	.extern FUN_overlay_d_93__021b86c8
@@ -1001,8 +1001,8 @@ _021CD8FC:
 	blx Heap_Free
 	pop {r4, pc}
 
-	thumb_func_start FUN_overlay_d_93__021cd914
-FUN_overlay_d_93__021cd914: ; 0x021CD914
+	thumb_func_start BattleClient_SetForceQuitActionSelectFlag
+BattleClient_SetForceQuitActionSelectFlag: ; 0x021CD914
 	ldr r2, _021CD920 ; =0x000001B2
 	mov r1, #2
 	ldrb r3, [r0, r2]
@@ -1010,7 +1010,7 @@ FUN_overlay_d_93__021cd914: ; 0x021CD914
 	strb r1, [r0, r2]
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021cd914
+	thumb_func_end BattleClient_SetForceQuitActionSelectFlag
 _021CD920: .word 0x000001B2
 
 	thumb_func_start BattleClient_GetBattleRecordData
@@ -1052,8 +1052,8 @@ BattleClient_SetBattleViewCore: ; 0x021CD95C
 	bx lr
 	thumb_func_end BattleClient_SetBattleViewCore
 
-	thumb_func_start FUN_overlay_d_93__021cd960
-FUN_overlay_d_93__021cd960: ; 0x021CD960
+	thumb_func_start BattleClient_SetDisplayCheckActionSelectFlag
+BattleClient_SetDisplayCheckActionSelectFlag: ; 0x021CD960
 	add r2, r0, #0
 	add r2, #0xa0
 	str r1, [r2]
@@ -1064,7 +1064,7 @@ FUN_overlay_d_93__021cd960: ; 0x021CD960
 	strb r1, [r0, r2]
 	bx lr
 	nop
-	thumb_func_end FUN_overlay_d_93__021cd960
+	thumb_func_end BattleClient_SetDisplayCheckActionSelectFlag
 _021CD974: .word 0x000001B2
 
 	thumb_func_start BattleClient_GetBattleAdapter
@@ -1073,13 +1073,13 @@ BattleClient_GetBattleAdapter: ; 0x021CD978
 	bx lr
 	thumb_func_end BattleClient_GetBattleAdapter
 
-	thumb_func_start FUN_overlay_d_93__021cd97c
-FUN_overlay_d_93__021cd97c: ; 0x021CD97C
+	thumb_func_start BattleClient_RunProcess
+BattleClient_RunProcess: ; 0x021CD97C
 	push {r3, lr}
 	ldr r1, [r0, #0x28]
 	blx r1
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021cd97c
+	thumb_func_end BattleClient_RunProcess
 
 	thumb_func_start FUN_overlay_d_93__021cd984
 FUN_overlay_d_93__021cd984: ; 0x021CD984
@@ -1631,15 +1631,15 @@ _021CDD8C: .word 0x000001A7
 _021CDD90:
 	.word ADDR_021EFFF0
 
-	thumb_func_start FUN_overlay_d_93__021cdd94
-FUN_overlay_d_93__021cdd94: ; 0x021CDD94
+	thumb_func_start BattleClient_SetEscapeClientList
+BattleClient_SetEscapeClientList: ; 0x021CDD94
 	ldr r2, [r0, #0x2c]
 	ldr r0, [r0, #0x30]
 	str r2, [r1]
 	str r0, [r1, #4]
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021cdd94
+	thumb_func_end BattleClient_SetEscapeClientList
 
 	thumb_func_start FUN_overlay_d_93__021cdda0
 FUN_overlay_d_93__021cdda0: ; 0x021CDDA0
@@ -9004,7 +9004,7 @@ _021D2046:
 	pop {r4, r5, r6, r7, pc}
 _021D2054:
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021b8590
+	bl MainModule_MoveAnimationsEnabled
 	cmp r0, #0
 	beq _021D20A0
 	ldr r0, [r4]
@@ -9498,7 +9498,7 @@ _021D23E2:
 	pop {r4, r5, r6, pc}
 _021D23F0:
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021b8590
+	bl MainModule_MoveAnimationsEnabled
 	cmp r0, #0
 	bne _021D23FE
 	mov r0, #1
@@ -9555,7 +9555,7 @@ _021D244E:
 	pop {r4, r5, r6, pc}
 _021D245C:
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021b8590
+	bl MainModule_MoveAnimationsEnabled
 	cmp r0, #0
 	bne _021D246A
 	mov r0, #1
@@ -9724,7 +9724,7 @@ _021D25E6:
 	pop {r4, r5, r6, pc}
 _021D25F4:
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021b8590
+	bl MainModule_MoveAnimationsEnabled
 	cmp r0, #0
 	bne _021D2602
 	mov r0, #1
@@ -10781,7 +10781,7 @@ FUN_overlay_d_93__021d34e8: ; 0x021D34E8
 	thumb_func_end FUN_overlay_d_93__021d34e8
 _021D3512:
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021b8590
+	bl MainModule_MoveAnimationsEnabled
 	cmp r0, #0
 	bne _021D352E
 	ldr r0, [r6, #4]

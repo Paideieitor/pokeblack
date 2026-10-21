@@ -314,18 +314,18 @@
 	.extern FUN_021D4D5C
 	.extern FUN_021D53B8
 	.extern BattleServer_AttachServerClient
-	.extern FUN_overlay_d_93__021baacc
-	.extern FUN_overlay_d_93__021bab10
+	.extern BattleServer_CreateAttachedAdapter
+	.extern BattleServer_DeattachBattleAdapter
 	.extern BattleServer_StartBattle
 	.extern BattleServer_Free
-	.extern FUN_overlay_d_93__021bab9c
-	.extern FUN_overlay_d_93__021babdc
+	.extern BattleServer_RunProcess
+	.extern BattleServer_SetEscapeClientList
 	.extern BattleServer_SetServerProcess
 	.extern FUN_overlay_d_93__021bb828
 	.extern FUN_overlay_d_93__021bb8bc
 	.extern BattleServer_GetServerFlow
 	.extern ServerFlow_Create
-	.extern FUN_overlay_d_93__021bc550
+	.extern ServerFlow_GetEscapeClientList
 	.extern FUN_overlay_d_93__021c7cbc
 	.extern FUN_overlay_d_93__021c7cc8
 	.extern FUN_overlay_d_93__021c7cd4
@@ -336,17 +336,17 @@
 	.extern FUN_overlay_d_93__021cd6ec
 	.extern BattleClient_Create
 	.extern BattleClient_Free
-	.extern FUN_overlay_d_93__021cd914
+	.extern BattleClient_SetForceQuitActionSelectFlag
 	.extern BattleClient_GetBattleRecordData
 	.extern FUN_overlay_d_93__021cd938
 	.extern BattleClient_SetBattleViewCore
-	.extern FUN_overlay_d_93__021cd960
+	.extern BattleClient_SetDisplayCheckActionSelectFlag
 	.extern BattleClient_GetBattleAdapter
-	.extern FUN_overlay_d_93__021cd97c
+	.extern BattleClient_RunProcess
 	.extern FUN_overlay_d_93__021cd984
 	.extern FUN_overlay_d_93__021cd9b0
 	.extern FUN_overlay_d_93__021cd9f4
-	.extern FUN_overlay_d_93__021cdd94
+	.extern BattleClient_SetEscapeClientList
 	.extern FUN_overlay_d_93__021cdda0
 	.extern FUN_overlay_d_93__021cddcc
 	.extern GlobalBattleNet_Create
@@ -363,7 +363,7 @@
 	.extern FUN_overlay_d_93__021d44cc
 	.extern GlobalBattleNet_StartChatterExchange
 	.extern GlobalBattleNet_SendChatterData
-	.extern GlobalBattleNet_HasReceivedClient
+	.extern GlobalBattleNet_ClientHasReceived
 	.extern GlobalBattleNet_GetRecvBuffer
 	.extern GlobalBattleNet_EndChatterExchange
 	.extern GlobalBattleNet_SendNetPokemonParty
@@ -410,7 +410,7 @@
 	.extern FUN_overlay_d_93__021e8e28
 	.extern BattleViewCore_Create
 	.extern BattleViewCore_Free
-	.extern FUN_overlay_d_93__021e908c
+	.extern BattleViewCore_Update
 	.extern BattleRecordReader_Init
 	.extern BattleRecordReader_IsAtEnd
 	.extern GlobalBattleAdapters_Clear
@@ -428,12 +428,6 @@
 	.extern ADDR_021B6C08
 	.extern ADDR_021B71D4
 	.extern ADDR_021B734C
-	.extern ADDR_021B7CB4
-	.extern ADDR_021B7E18
-	.extern ADDR_021B8070
-	.extern ADDR_021B81DC
-	.extern ADDR_021B835C
-	.extern ADDR_021B83F4
 	.extern ADDR_021BB964
 	.extern ADDR_021EFCF4
 	.extern ADDR_021EFCFA
@@ -1691,7 +1685,7 @@ MainModuleProcess_StartSingleBattle: ; 0x021B6AAC
 _021B6C00:
 	.byte 0x6B, 0x04, 0x00, 0x00
 _021B6C04:
-	.word ADDR_021B83F4 + 1
+	.word MainModuleFunction_Update
 MainModuleProcess_FreeBattleServer: ; 0x021B6C08
 	.byte 0x38, 0xB5
 _021B6C0A:
@@ -1761,7 +1755,7 @@ MainModuleProcess_StartDoubleBattle: ; 0x021B6C5C
 _021B6DC8:
 	.byte 0x6C, 0x04, 0x00, 0x00
 _021B6DCC:
-	.word ADDR_021B83F4 + 1
+	.word MainModuleFunction_Update
 MainModuleProcess_StartDoubleTagBattle: ; 0x021B6DD0
 	.byte 0xF0, 0xB5, 0x89, 0xB0, 0x0C, 0x1C, 0x26, 0x68, 0x30, 0x1C, 0xFF, 0xF7, 0x1D, 0xFD, 0x07, 0x90
 	.byte 0x97, 0x48, 0x00, 0x21, 0x21, 0x54, 0x02, 0x22, 0x43, 0x1E, 0xE2, 0x54, 0x03, 0x1C, 0x44, 0x3B
@@ -2001,7 +1995,7 @@ _021B7028:
 _021B7040:
 	.byte 0x6C, 0x04, 0x00, 0x00
 _021B7044: .word 0x00000468
-_021B7048: .word _021B83F4
+_021B7048: .word MainModuleFunction_Update
 _021B704C: .word 0x00000464
 MainModuleProcess_StartTripleBattle: ; 0x021B7050
 	.byte 0xF0, 0xB5, 0x87, 0xB0, 0x0D, 0x1C, 0x2C, 0x68, 0x20, 0x1C, 0xFF, 0xF7, 0xDD, 0xFB, 0x06, 0x1C
@@ -2384,7 +2378,7 @@ _021B759C:
 _021B75A0: .word 0x0000046B
 _021B75A4: .word 0x021EFD54
 
-MainModuleFunction_NetworkStablishServer: ; 0x021B75A8
+MainModuleFunction_NetStablishServer: ; 0x021B75A8
 	.byte 0x70, 0xB5, 0x04, 0x1C, 0x0E, 0x1C, 0x1C, 0xF0
 	.byte 0x5F, 0xFE, 0x00, 0x28, 0x07, 0xD0, 0x64, 0x49, 0x01, 0x20, 0x62, 0x5C, 0x82, 0x43, 0x01, 0x20
 	.byte 0x02, 0x43, 0x62, 0x54, 0x70, 0xBD
@@ -2863,7 +2857,7 @@ _021B795C: .word 0x00007FFF
 _021B7960: .word 0x00000472
 _021B7964: .word 0x0000046E
 
-MainModuleFunction_ExchangeTrainerData: ; 0x021B7968
+MainModuleFunction_NetExchangeTrainerData: ; 0x021B7968
 	.byte 0xF8, 0xB5
 _021B796A:
 	.byte 0x8C, 0xB0, 0x06, 0x1C, 0x30, 0x68
@@ -3157,7 +3151,7 @@ _021B7BA4: .word 0x00000468
 _021B7BA8: .word 0x00000471
 _021B7BAC: .word 0x00000472
 
-MainModuleFunction_ExchangeChatterData: ; 0x021B7BB0
+MainModuleFunction_NetExchangeChatterData: ; 0x021B7BB0
 	.byte 0xF0, 0xB5, 0x83, 0xB0, 0x04, 0x1C, 0x00, 0x91, 0x25, 0x68, 0x1C, 0xF0, 0x59, 0xFB, 0x00, 0x28
 	.byte 0x08, 0xD0, 0x3A, 0x49, 0x01, 0x20, 0x62, 0x5C, 0x03, 0xB0, 0x82, 0x43, 0x01, 0x20, 0x02, 0x43
 	.byte 0x62, 0x54, 0xF0, 0xBD
@@ -3206,7 +3200,7 @@ _021B7C12:
 	beq _021B7CA4
 	b _021B7BFA
 _021B7C26:
-	bl GlobalBattleNet_HasReceivedClient
+	bl GlobalBattleNet_ClientHasReceived
 	cmp r0, #0
 	beq _021B7CA4
 	ldr r0, _021B7CB0 ; =0x00000468
@@ -3271,7 +3265,7 @@ _021B7CA4:
 _021B7CAC:
 	.byte 0x73, 0x04, 0x00, 0x00
 _021B7CB0: .word 0x00000468
-_021B7CB4:
+MainModuleFunction_NetSetSingleBattle: ; 0x021B7CB4
 	.byte 0xF0, 0xB5, 0x8D, 0xB0, 0x05, 0x1C, 0x2F, 0x68, 0x55, 0x4E, 0x38, 0x1C
 	.byte 0xAC, 0x5D, 0xFE, 0xF7, 0xA9, 0xFD, 0x08, 0x90, 0x1C, 0xF0, 0xD2, 0xFA, 0x00, 0x28, 0x0A, 0xD0
 	.byte 0xF0, 0x1D, 0x29, 0x5C, 0x01, 0x20, 0x0D, 0xB0, 0x81, 0x43, 0x0A, 0x1C, 0x01, 0x20, 0x02, 0x43
@@ -3352,7 +3346,7 @@ _021B7D68:
 	ldr r0, [r5, #8]
 	ldr r2, [r7, #0x1c]
 	lsr r3, r3, #0x18
-	bl FUN_overlay_d_93__021baacc
+	bl BattleServer_CreateAttachedAdapter
 	b _021B7E0C
 _021B7D82:
 	add r0, r5, #0
@@ -3411,7 +3405,7 @@ _021B7DE0:
 	ldr r0, [r5, #0xc]
 	lsr r1, r1, #0x18
 	add r2, r6, #0
-	bl FUN_overlay_d_93__021bab10
+	bl BattleServer_DeattachBattleAdapter
 _021B7DFA:
 	add r4, r4, #1
 	cmp r4, #4
@@ -3420,14 +3414,17 @@ _021B7DFA:
 	ldr r0, [sp, #0x30]
 	ldr r0, [r1, r0]
 	ldr r1, [r5, #0xc]
-	bl FUN_overlay_d_93__021cd960
+	bl BattleClient_SetDisplayCheckActionSelectFlag
 _021B7E0C:
 	mov r0, #1
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
 	nop
 _021B7E14:
-	.byte 0x6C, 0x04, 0x00, 0x00, 0xF8, 0xB5
+	.byte 0x6C, 0x04, 0x00, 0x00
+
+MainModuleFunction_NetSetDoubleBattle: ; 0x021B7E18
+    .byte 0xF8, 0xB5
 _021B7E1A:
 	.byte 0x90, 0xB0, 0x04, 0x1C, 0x91, 0x48
 	.byte 0x26, 0x68, 0x20, 0x5C, 0x07, 0x90, 0x30, 0x1C, 0xFE, 0xF7, 0xF6, 0xFC, 0x08, 0x90, 0x30, 0x1C
@@ -3524,7 +3521,7 @@ _021B7E68:
 	bne _021B7F8A
 	ldr r1, [sp, #0x1c]
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021b9010
+	bl MainModule_GetAllyClientIdxFast
 	str r0, [sp, #0x2c]
 	mov r0, #1
 	str r0, [sp]
@@ -3594,7 +3591,7 @@ _021B7E68:
 	ldr r0, [r4, #8]
 	ldr r2, [r6, #0x1c]
 	ldr r3, [sp, #0x2c]
-	bl FUN_overlay_d_93__021baacc
+	bl BattleServer_CreateAttachedAdapter
 	b _021B805C
 _021B7F8A:
 	ldr r0, [sp, #0x38]
@@ -3617,7 +3614,7 @@ _021B7F9A:
 	ldr r0, [r4, #8]
 	ldr r2, [r6, #0x1c]
 	lsr r3, r3, #0x18
-	bl FUN_overlay_d_93__021baacc
+	bl BattleServer_CreateAttachedAdapter
 _021B7FB4:
 	ldr r0, [sp, #0x3c]
 	add r5, r5, #1
@@ -3690,7 +3687,7 @@ _021B8026:
 	lsl r1, r5, #0x18
 	ldr r0, [r4, #0xc]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021bab10
+	bl BattleServer_DeattachBattleAdapter
 _021B804A:
 	add r5, r5, #1
 	cmp r5, #4
@@ -3699,7 +3696,7 @@ _021B804A:
 	ldr r0, [sp, #0x34]
 	ldr r0, [r1, r0]
 	ldr r1, [r4, #0xc]
-	bl FUN_overlay_d_93__021cd960
+	bl BattleClient_SetDisplayCheckActionSelectFlag
 _021B805C:
 	mov r0, #1
 	add sp, #0x40
@@ -3709,7 +3706,7 @@ _021B8064:
 	.byte 0x6C, 0x04, 0x00, 0x00
 _021B8068: .word 0x00000473
 _021B806C: .word 0x0000046E
-_021B8070:
+MainModuleFunction_NetSetTripleBattle: ; 0x021B8070
 	.byte 0xF0, 0xB5, 0x8D, 0xB0, 0x05, 0x1C, 0x2F, 0x68, 0x57, 0x4E, 0x38, 0x1C, 0xAC, 0x5D, 0xFE, 0xF7
 	.byte 0xCB, 0xFB, 0x08, 0x90, 0x1C, 0xF0, 0xF4, 0xF8, 0x00, 0x28, 0x0A, 0xD0, 0xF0, 0x1D, 0x29, 0x5C
 	.byte 0x01, 0x20, 0x0D, 0xB0, 0x81, 0x43, 0x0A, 0x1C, 0x01, 0x20, 0x02, 0x43, 0xF1, 0x1D, 0x6A, 0x54
@@ -3790,7 +3787,7 @@ _021B8124:
 	ldr r0, [r5, #8]
 	ldr r2, [r7, #0x1c]
 	lsr r3, r3, #0x18
-	bl FUN_overlay_d_93__021baacc
+	bl BattleServer_CreateAttachedAdapter
 	b _021B81D0
 _021B813E:
 	add r0, r5, #0
@@ -3852,7 +3849,7 @@ _021B819A:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, #0xc]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021bab10
+	bl BattleServer_DeattachBattleAdapter
 _021B81BE:
 	add r4, r4, #1
 	cmp r4, #4
@@ -3861,14 +3858,17 @@ _021B81BE:
 	ldr r0, [sp, #0x30]
 	ldr r0, [r1, r0]
 	ldr r1, [r5, #0xc]
-	bl FUN_overlay_d_93__021cd960
+	bl BattleClient_SetDisplayCheckActionSelectFlag
 _021B81D0:
 	mov r0, #1
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
 	nop
 _021B81D8:
-	.byte 0x6C, 0x04, 0x00, 0x00, 0xF0, 0xB5, 0x8D, 0xB0
+	.byte 0x6C, 0x04, 0x00, 0x00
+
+MainModuleFunction_NetSetRotationBattle: ; 0x021B81DC
+    .byte 0xF0, 0xB5, 0x8D, 0xB0
 	.byte 0x5D, 0x4F, 0x04, 0x1C, 0xE0, 0x5D, 0x26, 0x68, 0x07, 0x90, 0x30, 0x1C, 0xFE, 0xF7, 0x14, 0xFB
 	.byte 0x08, 0x90, 0x1C, 0xF0, 0x3D, 0xF8, 0x00, 0x28, 0x0A, 0xD0, 0xF8, 0x1D, 0x21, 0x5C, 0x01, 0x20
 	.byte 0x0D, 0xB0, 0x81, 0x43, 0x0A, 0x1C, 0x01, 0x20, 0x02, 0x43, 0xF9, 0x1D, 0x62, 0x54, 0xF0, 0xBD
@@ -3951,7 +3951,7 @@ _021B8294:
 	ldr r0, [r4, #8]
 	ldr r2, [r6, #0x1c]
 	lsr r3, r3, #0x18
-	bl FUN_overlay_d_93__021baacc
+	bl BattleServer_CreateAttachedAdapter
 _021B82B0:
 	ldrb r0, [r4, r7]
 	add r5, r5, #1
@@ -4020,7 +4020,7 @@ _021B831A:
 	lsl r1, r5, #0x18
 	ldr r0, [r4, #0xc]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021bab10
+	bl BattleServer_DeattachBattleAdapter
 _021B833E:
 	add r5, r5, #1
 	cmp r5, #4
@@ -4029,14 +4029,17 @@ _021B833E:
 	ldr r0, [sp, #0x30]
 	ldr r0, [r1, r0]
 	ldr r1, [r4, #0xc]
-	bl FUN_overlay_d_93__021cd960
+	bl BattleClient_SetDisplayCheckActionSelectFlag
 _021B8350:
 	mov r0, #1
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
 	nop
 _021B8358:
-	.byte 0x6C, 0x04, 0x00, 0x00, 0x78, 0xB5
+	.byte 0x6C, 0x04, 0x00, 0x00
+
+MainModuleFunction_NetStartBattle: ; 0x021B835C
+    .byte 0x78, 0xB5
 _021B835E:
 	.byte 0x81, 0xB0
 	.byte 0x05, 0x1C, 0x0E, 0x1C, 0x1B, 0xF0, 0x84, 0xFF, 0x00, 0x28, 0x08, 0xD0, 0x1D, 0x49, 0x01, 0x20
@@ -4099,9 +4102,9 @@ _021B83DE:
 _021B83E4:
 	.byte 0x73, 0x04, 0x00, 0x00
 _021B83E8: .word 0x0000046C
-_021B83EC: .word _021B8434
-_021B83F0: .word _021B84D8
-_021B83F4:
+_021B83EC: .word MainModuleFunction_UpdateServer
+_021B83F0: .word MainModuleFunction_UpdateClient
+MainModuleFunction_Update: ; 0x021B83F4
 	.byte 0xF8, 0xB5
 _021B83F6:
 	.byte 0x05, 0x1C, 0xA8, 0x68, 0x00, 0x27, 0x02, 0xF0, 0xCE, 0xFB
@@ -4112,25 +4115,25 @@ _021B8402:
 	ldr r0, [r6, #0x10]
 	cmp r0, #0
 	beq _021B8420
-	bl FUN_overlay_d_93__021cd97c
+	bl BattleClient_RunProcess
 	cmp r0, #0
 	beq _021B8420
 	ldr r1, _021B8430 ; =0x00000448
 	ldr r0, [r6, #0x10]
 	add r1, r5, r1
-	bl FUN_overlay_d_93__021cdd94
+	bl BattleClient_SetEscapeClientList
 	mov r7, #1
 _021B8420:
 	add r4, r4, #1
 	cmp r4, #4
 	blt _021B8402
 	ldr r0, [r5, #4]
-	bl FUN_overlay_d_93__021e908c
+	bl BattleViewCore_Update
 	add r0, r7, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 _021B8430: .word 0x00000448
-_021B8434:
+MainModuleFunction_UpdateServer: ; 0x021B8434
 	.byte 0x70, 0xB5, 0x25, 0x4C, 0x05, 0x1C, 0x28, 0x5D, 0xC1, 0x07, 0xC9, 0x0F
 	.byte 0x0D, 0xD1, 0x1B, 0xF0, 0x15, 0xFF, 0x00, 0x28, 0x0E, 0xD0, 0x29, 0x5D, 0x01, 0x20, 0x81, 0x43
 	.byte 0x01, 0x20, 0x08, 0x43, 0x28, 0x55, 0x28, 0x1C, 0x00, 0xF0, 0x76, 0xF8, 0x04, 0xE0
@@ -4145,13 +4148,13 @@ LAB_overlay_d_93__021b845e: ; 0x021B845E
 	thumb_func_end LAB_overlay_d_93__021b845e
 _021B8468:
 	ldr r0, [r5, #8]
-	bl FUN_overlay_d_93__021bab9c
+	bl BattleServer_RunProcess
 	add r6, r0, #0
 	beq _021B847C
 	ldr r1, _021B84D0 ; =0x00000448
 	ldr r0, [r5, #8]
 	add r1, r5, r1
-	bl FUN_overlay_d_93__021babdc
+	bl BattleServer_SetEscapeClientList
 _021B847C:
 	mov r4, #0
 _021B847E:
@@ -4165,7 +4168,7 @@ _021B847E:
 	ldrb r1, [r1]
 	cmp r1, #0
 	bne _021B849C
-	bl FUN_overlay_d_93__021cd97c
+	bl BattleClient_RunProcess
 	add r1, r5, r4
 	add r1, #0xc4
 	strb r0, [r1]
@@ -4174,7 +4177,7 @@ _021B849C:
 	cmp r4, #4
 	blt _021B847E
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021b8564
+	bl MainModule_WaitForClientProcess
 	cmp r0, #0
 	beq _021B84C0
 	ldr r1, _021B84D4 ; =0x0000046C
@@ -4184,11 +4187,11 @@ _021B849C:
 	lsl r0, r0, #2
 	add r0, r5, r0
 	ldr r0, [r0, #0x10]
-	bl FUN_overlay_d_93__021cdd94
+	bl BattleClient_SetEscapeClientList
 	mov r6, #1
 _021B84C0:
 	ldr r0, [r5, #4]
-	bl FUN_overlay_d_93__021e908c
+	bl BattleViewCore_Update
 	add r0, r6, #0
 	pop {r4, r5, r6, pc}
 	nop
@@ -4196,7 +4199,8 @@ _021B84CC:
 	.byte 0x73, 0x04, 0x00, 0x00
 _021B84D0: .word 0x00000448
 _021B84D4: .word 0x0000046C
-_021B84D8:
+
+MainModuleFunction_UpdateClient: ; 0x021B84D8
 	.byte 0xF8, 0xB5
 _021B84DA:
 	.byte 0x19, 0x4C, 0x05, 0x1C, 0x28, 0x5D
@@ -4221,20 +4225,20 @@ _021B8510:
 	ldr r0, [r6, #0x10]
 	cmp r0, #0
 	beq _021B852E
-	bl FUN_overlay_d_93__021cd97c
+	bl BattleClient_RunProcess
 	cmp r0, #0
 	beq _021B852E
 	ldr r1, _021B8544 ; =0x00000448
 	ldr r0, [r6, #0x10]
 	add r1, r5, r1
-	bl FUN_overlay_d_93__021cdd94
+	bl BattleClient_SetEscapeClientList
 	mov r7, #1
 _021B852E:
 	add r4, r4, #1
 	cmp r4, #4
 	blt _021B8510
 	ldr r0, [r5, #4]
-	bl FUN_overlay_d_93__021e908c
+	bl BattleViewCore_Update
 	add r0, r7, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -4242,29 +4246,29 @@ _021B8540:
 	.byte 0x73, 0x04, 0x00, 0x00
 _021B8544: .word 0x00000448
 
-	thumb_func_start FUN_overlay_d_93__021b8548
-FUN_overlay_d_93__021b8548: ; 0x021B8548
+	thumb_func_start MainModule_ForceQuitClients
+MainModule_ForceQuitClients: ; 0x021B8548
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	mov r4, #0
-	thumb_func_end FUN_overlay_d_93__021b8548
+	thumb_func_end MainModule_ForceQuitClients
 _021B854E:
 	lsl r0, r4, #2
 	add r0, r5, r0
 	ldr r0, [r0, #0x10]
 	cmp r0, #0
 	beq _021B855C
-	bl FUN_overlay_d_93__021cd914
+	bl BattleClient_SetForceQuitActionSelectFlag
 _021B855C:
 	add r4, r4, #1
 	cmp r4, #4
 	blo _021B854E
 	pop {r3, r4, r5, pc}
 
-	thumb_func_start FUN_overlay_d_93__021b8564
-FUN_overlay_d_93__021b8564: ; 0x021B8564
+	thumb_func_start MainModule_WaitForClientProcess
+MainModule_WaitForClientProcess: ; 0x021B8564
 	mov r2, #0
-	thumb_func_end FUN_overlay_d_93__021b8564
+	thumb_func_end MainModule_WaitForClientProcess
 _021B8566:
 	lsl r1, r2, #2
 	add r1, r0, r1
@@ -4293,27 +4297,27 @@ FUN_overlay_d_93__021b8588: ; 0x021B8588
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021b8588
 
-	thumb_func_start FUN_overlay_d_93__021b8590
-FUN_overlay_d_93__021b8590: ; 0x021B8590
+	thumb_func_start MainModule_MoveAnimationsEnabled
+MainModule_MoveAnimationsEnabled: ; 0x021B8590
 	ldr r1, _021B859C ; =0x00000473
 	ldrb r0, [r0, r1]
 	lsl r0, r0, #0x1d
 	lsr r0, r0, #0x1f
 	bx lr
 	nop
-	thumb_func_end FUN_overlay_d_93__021b8590
+	thumb_func_end MainModule_MoveAnimationsEnabled
 _021B859C: .word 0x00000473
 
-	thumb_func_start FUN_overlay_d_93__021b85a0
-FUN_overlay_d_93__021b85a0: ; 0x021B85A0
+	thumb_func_start MainModule_GetBadgeCount
+MainModule_GetBadgeCount: ; 0x021B85A0
 	ldr r0, [r0]
 	add r0, #0x80
 	ldrb r0, [r0]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021b85a0
+	thumb_func_end MainModule_GetBadgeCount
 
-	thumb_func_start FUN_overlay_d_93__021b85a8
-FUN_overlay_d_93__021b85a8: ; 0x021B85A8
+	thumb_func_start MainModule_SwitchModeEnabled
+MainModule_SwitchModeEnabled: ; 0x021B85A8
 	push {r4, lr}
 	add r4, r0, #0
 	bl MainModule_GetBattleType
@@ -4334,7 +4338,7 @@ FUN_overlay_d_93__021b85a8: ; 0x021B85A8
 	bne _021B85D8
 	mov r0, #1
 	pop {r4, pc}
-	thumb_func_end FUN_overlay_d_93__021b85a8
+	thumb_func_end MainModule_SwitchModeEnabled
 _021B85D8:
 	mov r0, #0
 	pop {r4, pc}
@@ -4350,8 +4354,8 @@ FUN_overlay_d_93__021b85dc: ; 0x021B85DC
 _021B85E4: .word 0x0000043C
 _021B85E8: .word FUN_02013080
 
-	thumb_func_start FUN_overlay_d_93__021b85ec
-FUN_overlay_d_93__021b85ec: ; 0x021B85EC
+	thumb_func_start MainModule_CheckLegitCartridge
+MainModule_CheckLegitCartridge: ; 0x021B85EC
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	ldr r0, [r5]
@@ -4369,7 +4373,7 @@ FUN_overlay_d_93__021b85ec: ; 0x021B85EC
 	bne _021B8614
 	mov r0, #0
 	pop {r4, r5, r6, pc}
-	thumb_func_end FUN_overlay_d_93__021b85ec
+	thumb_func_end MainModule_CheckLegitCartridge
 _021B8614:
 	mov r1, #2
 	add r0, r5, #0
@@ -5816,16 +5820,16 @@ _021B8FFC: .word 0x0000046C
 	thumb_func_start FUN_overlay_d_93__021b9000
 FUN_overlay_d_93__021b9000: ; 0x021B9000
 	ldr r1, _021B9008 ; =0x0000046C
-	ldr r3, _021B900C ; =FUN_overlay_d_93__021b9010
+	ldr r3, _021B900C ; =MainModule_GetAllyClientIdxFast
 	ldrb r1, [r0, r1]
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021b9000
 _021B9008: .word 0x0000046C
-_021B900C: .word FUN_overlay_d_93__021b9010
+_021B900C: .word MainModule_GetAllyClientIdxFast
 
-	thumb_func_start FUN_overlay_d_93__021b9010
-FUN_overlay_d_93__021b9010: ; 0x021B9010
+	thumb_func_start MainModule_GetAllyClientIdxFast
+MainModule_GetAllyClientIdxFast: ; 0x021B9010
 	push {r4, lr}
 	add r2, r1, #2
 	mov r1, #3
@@ -5837,7 +5841,7 @@ FUN_overlay_d_93__021b9010: ; 0x021B9010
 	cmp r0, #0
 	bne _021B9028
 	mov r4, #4
-	thumb_func_end FUN_overlay_d_93__021b9010
+	thumb_func_end MainModule_GetAllyClientIdxFast
 _021B9028:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -9512,7 +9516,7 @@ _021BAA44:
 	add r0, r4, #0
 	bl ServerFlow_Create
 	str r0, [r4, #0x44]
-	bl FUN_overlay_d_93__021bc550
+	bl ServerFlow_GetEscapeClientList
 	add r1, r4, #0
 	add r1, #0xb0
 	str r0, [r1]
@@ -9535,33 +9539,33 @@ battle_server_rodata:
 _021EFCF0:
 	.byte 0x00, 0x0C, 0x06, 0x12, 0x03, 0x05, 0x00, 0x02, 0x04, 0x00, 0x03, 0x05, 0x07, 0x02, 0x04, 0x06
 	.byte 0x00, 0x00, 0x00, 0x00
-	.word MainModuleFunction_NetworkStablishServer
+	.word MainModuleFunction_NetStablishServer
 	.word MainModuleFunction_NetExchangePokemonParty
-	.word MainModuleFunction_ExchangeTrainerData
-	.word MainModuleFunction_ExchangeChatterData
-	.word ADDR_021B7E18 + 1
-	.word ADDR_021B835C + 1
+	.word MainModuleFunction_NetExchangeTrainerData
+	.word MainModuleFunction_NetExchangeChatterData
+	.word MainModuleFunction_NetSetDoubleBattle
+	.word MainModuleFunction_NetStartBattle
 	.byte 0x00, 0x00, 0x00, 0x00
-	.word MainModuleFunction_NetworkStablishServer
+	.word MainModuleFunction_NetStablishServer
 	.word MainModuleFunction_NetExchangePokemonParty
-	.word MainModuleFunction_ExchangeTrainerData
-	.word MainModuleFunction_ExchangeChatterData
-	.word ADDR_021B7CB4 + 1
-	.word ADDR_021B835C + 1
+	.word MainModuleFunction_NetExchangeTrainerData
+	.word MainModuleFunction_NetExchangeChatterData
+	.word MainModuleFunction_NetSetSingleBattle
+	.word MainModuleFunction_NetStartBattle
 	.byte 0x00, 0x00, 0x00, 0x00
-	.word MainModuleFunction_NetworkStablishServer
+	.word MainModuleFunction_NetStablishServer
 	.word MainModuleFunction_NetExchangePokemonParty
-	.word MainModuleFunction_ExchangeTrainerData
-	.word MainModuleFunction_ExchangeChatterData
-	.word ADDR_021B81DC + 1
-	.word ADDR_021B835C + 1
+	.word MainModuleFunction_NetExchangeTrainerData
+	.word MainModuleFunction_NetExchangeChatterData
+	.word MainModuleFunction_NetSetRotationBattle
+	.word MainModuleFunction_NetStartBattle
 	.byte 0x00, 0x00, 0x00, 0x00
-	.word MainModuleFunction_NetworkStablishServer
+	.word MainModuleFunction_NetStablishServer
 	.word MainModuleFunction_NetExchangePokemonParty
-	.word MainModuleFunction_ExchangeTrainerData
-	.word MainModuleFunction_ExchangeChatterData
-	.word ADDR_021B8070 + 1
-	.word ADDR_021B835C + 1
+	.word MainModuleFunction_NetExchangeTrainerData
+	.word MainModuleFunction_NetExchangeChatterData
+	.word MainModuleFunction_NetSetTripleBattle
+	.word MainModuleFunction_NetStartBattle
 	.byte 0x02, 0x00, 0x02, 0x00, 0x05, 0x03, 0x06, 0x00, 0x02, 0x06, 0x02, 0x00, 0x02, 0x00, 0x04, 0x02
 	.byte 0x06, 0x01, 0x03, 0x06, 0x03, 0x00, 0x03, 0x00, 0x01, 0x03, 0x05, 0x00, 0x02, 0x04, 0x03, 0x00
 	.byte 0x03, 0x00, 0x00, 0x02, 0x04, 0x01, 0x03, 0x05, 0x02, 0x00, 0x02, 0x00, 0x01, 0x03, 0x06, 0x04

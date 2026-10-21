@@ -1220,14 +1220,14 @@ _021D45F4:
 	.byte 0xF4, 0x0B, 0x00, 0x00
 _021D45F8: .word 0x00003AF4
 
-	thumb_func_start GlobalBattleNet_HasReceivedClient
-GlobalBattleNet_HasReceivedClient: ; 0x021D45FC
+	thumb_func_start GlobalBattleNet_ClientHasReceived
+GlobalBattleNet_ClientHasReceived: ; 0x021D45FC
 	push {r3, r4, r5, r6, r7, lr}
 	ldr r4, _021D4638 ; =0x021F3B88
 	ldr r7, _021D463C ; =0x00000BBC
 	ldr r6, _021D4640 ; =0x000017AE
 	mov r5, #0
-	thumb_func_end GlobalBattleNet_HasReceivedClient
+	thumb_func_end GlobalBattleNet_ClientHasReceived
 _021D4606:
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021d4330
@@ -1893,8 +1893,8 @@ _021D4B50:
 _021D4B54:
 	.word ADDR_021F3B88
 
-	thumb_func_start FUN_overlay_d_93__021d4b58
-FUN_overlay_d_93__021d4b58: ; 0x021D4B58
+	thumb_func_start GlobalBattleNet_SendBuffer
+GlobalBattleNet_SendBuffer: ; 0x021D4B58
 	push {r3, r4, r5, lr}
 	sub sp, #0x10
 	add r5, r1, #0
@@ -1917,7 +1917,7 @@ FUN_overlay_d_93__021d4b58: ; 0x021D4B58
 	blx FUN_0203D3F8
 	add sp, #0x10
 	pop {r3, r4, r5, pc}
-	thumb_func_end FUN_overlay_d_93__021d4b58
+	thumb_func_end GlobalBattleNet_SendBuffer
 _021D4B88:
 	mov r0, #1
 	add sp, #0x10
@@ -1927,14 +1927,14 @@ _021D4B90:
 	.word ADDR_021F3B88
 _021D4B94: .word 0x00000107
 
-	thumb_func_start FUN_overlay_d_93__021d4b98
-FUN_overlay_d_93__021d4b98: ; 0x021D4B98
+	thumb_func_start GlobalBattleNet_AdapterHasReceived
+GlobalBattleNet_AdapterHasReceived: ; 0x021D4B98
 	push {r3, r4, r5, r6, r7, lr}
 	ldr r4, _021D4BC8 ; =0x021F3B88
 	ldr r7, _021D4BCC ; =0x00000BBC
 	ldr r6, _021D4BD0 ; =0x000017AE
 	mov r5, #0
-	thumb_func_end FUN_overlay_d_93__021d4b98
+	thumb_func_end GlobalBattleNet_AdapterHasReceived
 _021D4BA2:
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021d4330
@@ -1961,8 +1961,8 @@ _021D4BC8:
 _021D4BCC: .word 0x00000BBC
 _021D4BD0: .word 0x000017AE
 
-	thumb_func_start FUN_overlay_d_93__021d4bd4
-FUN_overlay_d_93__021d4bd4: ; 0x021D4BD4
+	thumb_func_start GlobalBattleNet_GetRecvBufferSize
+GlobalBattleNet_GetRecvBufferSize: ; 0x021D4BD4
 	push {r4, lr}
 	add r4, r1, #0
 	bl GlobalBattleNet_GetClientNetIdx
@@ -1979,7 +1979,7 @@ FUN_overlay_d_93__021d4bd4: ; 0x021D4BD4
 	ldrh r0, [r0, r2]
 	pop {r4, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d4bd4
+	thumb_func_end GlobalBattleNet_GetRecvBufferSize
 _021D4BF4:
 	.word ADDR_021F3B88
 _021D4BF8: .word 0x00000BF4
