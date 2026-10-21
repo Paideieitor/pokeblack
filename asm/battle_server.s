@@ -361,21 +361,21 @@
 	.extern GlobalBattleNet_ReceiveServerRandomSet
 	.extern GlobalBattleNet_SendPokemonParty
 	.extern FUN_overlay_d_93__021d44cc
-	.extern FUN_overlay_d_93__021d4500
-	.extern FUN_overlay_d_93__021d450c
-	.extern FUN_overlay_d_93__021d45fc
-	.extern FUN_overlay_d_93__021d4648
-	.extern FUN_overlay_d_93__021d4674
-	.extern FUN_overlay_d_93__021d4680
-	.extern FUN_overlay_d_93__021d4784
-	.extern FUN_overlay_d_93__021d47a4
-	.extern FUN_overlay_d_93__021d4808
-	.extern FUN_overlay_d_93__021d4898
-	.extern FUN_overlay_d_93__021d48cc
-	.extern FUN_overlay_d_93__021d4908
-	.extern FUN_overlay_d_93__021d49b0
-	.extern FUN_overlay_d_93__021d49cc
-	.extern FUN_overlay_d_93__021d49e0
+	.extern GlobalBattleNet_StartChatterExchange
+	.extern GlobalBattleNet_SendChatterData
+	.extern GlobalBattleNet_HasReceivedClient
+	.extern GlobalBattleNet_GetRecvBuffer
+	.extern GlobalBattleNet_EndChatterExchange
+	.extern GlobalBattleNet_SendNetPokemonParty
+	.extern GlobalBattleNet_PokemonPartyExists
+	.extern GlobalBattleNet_ReceivePokemonParty
+	.extern GlobalBattleNet_SendTrainerInfo
+	.extern GlobalBattleNet_HasReceived
+	.extern GlobalBattleNet_ReceiveTrainerInfo
+	.extern GlobalBattleNet_SendTrainerSetup
+	.extern GlobalBattleNet_TempBufferExists
+	.extern GlobalBattleNet_GetTempBuffer
+	.extern GlobalBattleNet_FreeTempBuffer
 	.extern GlobalBattleNet_SetTiming
 	.extern FUN_overlay_d_93__021d4b18
 	.extern BattleNet_Allocate
@@ -416,7 +416,7 @@
 	.extern GlobalBattleAdapters_Clear
 	.extern FUN_overlay_d_93__021eea54
 	.extern FUN_overlay_d_93__021ef958
-	.extern thunk_GlobalBattleNet_FreeCore
+	.extern thunk_GlobalBattleNet_Clear
 	.extern ADDR_02005CA4
 	.extern ADDR_02005E30
 	.extern ADDR_02005E50
@@ -428,9 +428,6 @@
 	.extern ADDR_021B6C08
 	.extern ADDR_021B71D4
 	.extern ADDR_021B734C
-	.extern ADDR_021B7758
-	.extern ADDR_021B7968
-	.extern ADDR_021B7BB0
 	.extern ADDR_021B7CB4
 	.extern ADDR_021B7E18
 	.extern ADDR_021B8070
@@ -1381,7 +1378,7 @@ MainModule_SetUpChattotChatter: ; 0x021B6848
 	bl FUN_02007C20
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b997c
+	bl MainModule_GetChatterLoudIdx
 	ldr r1, [r5]
 	add r1, #0x44
 	strb r0, [r1]
@@ -2599,7 +2596,8 @@ _021B7748:
 _021B774C: .word 0x0000046C
 _021B7750: .word 0x0000046A
 _021B7754: .word 0x00000408
-_021B7758:
+
+MainModuleFunction_NetExchangePokemonParty: ; 0x021B7758
 	.byte 0xF8, 0xB5
 _021B775A:
 	.byte 0x04, 0x1C, 0x0E, 0x1C, 0x25, 0x68
@@ -2745,7 +2743,7 @@ _021B7862:
 	mov r0, #0xb1
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021d4680
+	bl GlobalBattleNet_SendNetPokemonParty
 	cmp r0, #0
 	beq _021B794E
 _021B7878:
@@ -2753,7 +2751,7 @@ _021B7878:
 _021B787A:
 	ldr r5, _021B7960 ; =0x00000472
 	ldrb r0, [r4, r5]
-	bl FUN_overlay_d_93__021d4784
+	bl GlobalBattleNet_PokemonPartyExists
 	cmp r0, #0
 	beq _021B794E
 	sub r0, r5, #2
@@ -2799,7 +2797,7 @@ _021B78C8:
 	beq _021B790A
 	lsl r0, r5, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_overlay_d_93__021d47a4
+	bl GlobalBattleNet_ReceivePokemonParty
 	lsl r1, r5, #0x18
 	add r2, r0, #0
 	add r0, r4, #0
@@ -2807,12 +2805,12 @@ _021B78C8:
 	bl MainModule_InitParty
 	lsl r0, r5, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_overlay_d_93__021d47a4
+	bl GlobalBattleNet_ReceivePokemonParty
 	lsl r1, r5, #0x18
 	add r2, r0, #0
 	add r0, r4, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021ba648
+	bl MainModule_SetPlayerParty
 	lsl r2, r5, #0x18
 	add r0, r7, #0
 	add r1, r4, #0
@@ -2864,7 +2862,8 @@ _021B7958: .word 0x00000471
 _021B795C: .word 0x00007FFF
 _021B7960: .word 0x00000472
 _021B7964: .word 0x0000046E
-_021B7968:
+
+MainModuleFunction_ExchangeTrainerData: ; 0x021B7968
 	.byte 0xF8, 0xB5
 _021B796A:
 	.byte 0x8C, 0xB0, 0x06, 0x1C, 0x30, 0x68
@@ -2919,12 +2918,12 @@ _021B79CC:
 _021B79D8:
 	add r6, #0xc0
 	ldr r0, [r6]
-	bl FUN_overlay_d_93__021d4808
+	bl GlobalBattleNet_SendTrainerInfo
 	cmp r0, #0
 	beq _021B79EE
 	b _021B79C0
 _021B79E6:
-	bl FUN_overlay_d_93__021d4898
+	bl GlobalBattleNet_HasReceived
 	cmp r0, #0
 	bne _021B79F0
 _021B79EE:
@@ -2940,7 +2939,7 @@ _021B79FC:
 	ldr r0, [sp, #8]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_overlay_d_93__021d48cc
+	bl GlobalBattleNet_ReceiveTrainerInfo
 	add r2, r0, #0
 	beq _021B7ACC
 	ldr r0, [sp, #8]
@@ -3037,7 +3036,7 @@ _021B7ABA:
 	ldr r2, [r2, #0x20]
 	add r0, r6, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021ba670
+	bl MainModule_SetPlayerTrainerInfo
 _021B7ACC:
 	ldr r0, [sp, #8]
 	add r0, r0, #1
@@ -3102,7 +3101,7 @@ _021B7B24:
 	ldr r0, [sp, #0xc]
 	add r0, r0, r1
 	ldr r0, [r0, #0x48]
-	bl FUN_overlay_d_93__021d4908
+	bl GlobalBattleNet_SendTrainerSetup
 	cmp r0, #0
 	beq _021B7B96
 _021B7B42:
@@ -3112,10 +3111,10 @@ _021B7B42:
 	ldr r0, [sp]
 	str r1, [r0]
 _021B7B4C:
-	bl FUN_overlay_d_93__021d49b0
+	bl GlobalBattleNet_TempBufferExists
 	cmp r0, #0
 	beq _021B7B96
-	bl FUN_overlay_d_93__021d49cc
+	bl GlobalBattleNet_GetTempBuffer
 	ldr r4, _021B7BAC ; =0x00000472
 	add r1, r0, #0
 	add r3, r6, #0
@@ -3124,8 +3123,8 @@ _021B7B4C:
 	add r3, #0x20
 	mul r0, r2
 	add r0, r3, r0
-	bl FUN_overlay_d_93__021b9ef0
-	bl FUN_overlay_d_93__021d49e0
+	bl TrainerParams_CopyFromNetwork
+	bl GlobalBattleNet_FreeTempBuffer
 	sub r0, r4, #2
 	ldrb r0, [r6, r0]
 	add r1, r0, #1
@@ -3141,7 +3140,7 @@ _021B7B86:
 	mov r1, #5
 	b _021B7AE8
 _021B7B8A:
-	bl thunk_GlobalBattleNet_FreeCore
+	bl thunk_GlobalBattleNet_Clear
 	b _021B79C0
 _021B7B90:
 	add sp, #0x30
@@ -3157,7 +3156,8 @@ _021B7BA0: .word 0x0000046B
 _021B7BA4: .word 0x00000468
 _021B7BA8: .word 0x00000471
 _021B7BAC: .word 0x00000472
-_021B7BB0:
+
+MainModuleFunction_ExchangeChatterData: ; 0x021B7BB0
 	.byte 0xF0, 0xB5, 0x83, 0xB0, 0x04, 0x1C, 0x00, 0x91, 0x25, 0x68, 0x1C, 0xF0, 0x59, 0xFB, 0x00, 0x28
 	.byte 0x08, 0xD0, 0x3A, 0x49, 0x01, 0x20, 0x62, 0x5C, 0x03, 0xB0, 0x82, 0x43, 0x01, 0x20, 0x02, 0x43
 	.byte 0x62, 0x54, 0xF0, 0xBD
@@ -3181,7 +3181,7 @@ _021B7BE8: ; jump table
 	.hword 0x0028 ; case 2
 	.hword 0x003C ; case 3
 _021B7BF0:
-	bl FUN_overlay_d_93__021d4500
+	bl GlobalBattleNet_StartChatterExchange
 	mov r0, #3
 	bl GlobalBattleNet_SetTiming
 _021B7BFA:
@@ -3201,12 +3201,12 @@ _021B7C12:
 	ldr r0, [r5, #0x58]
 	bl FUN_02012EBC
 	bl FUN_02007B44
-	bl FUN_overlay_d_93__021d450c
+	bl GlobalBattleNet_SendChatterData
 	cmp r0, #0
 	beq _021B7CA4
 	b _021B7BFA
 _021B7C26:
-	bl FUN_overlay_d_93__021d45fc
+	bl GlobalBattleNet_HasReceivedClient
 	cmp r0, #0
 	beq _021B7CA4
 	ldr r0, _021B7CB0 ; =0x00000468
@@ -3233,7 +3233,7 @@ _021B7C40:
 	bne _021B7C88
 	lsl r0, r5, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_overlay_d_93__021d4648
+	bl GlobalBattleNet_GetRecvBuffer
 	add r7, r0, #0
 	beq _021B7C88
 	lsl r0, r5, #2
@@ -3253,11 +3253,11 @@ _021B7C88:
 	lsl r1, r5, #0x18
 	add r0, r4, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021ba698
+	bl MainModule_SetPlayerChatterLoudIdx
 	add r5, r5, #1
 	cmp r5, #4
 	blo _021B7C40
-	bl FUN_overlay_d_93__021d4674
+	bl GlobalBattleNet_EndChatterExchange
 	b _021B7BFA
 _021B7C9E:
 	add sp, #0xc
@@ -7105,8 +7105,8 @@ _021B994C:
 	.byte 0x41, 0xFA, 0x80, 0x00, 0x29, 0x18, 0x3E, 0x20, 0x00, 0x01, 0x08, 0x58, 0x00, 0x28, 0x02, 0xD0
 	.byte 0x20, 0x60, 0x01, 0x20, 0x38, 0xBD, 0x00, 0x20, 0x38, 0xBD, 0x00, 0x00
 
-	thumb_func_start FUN_overlay_d_93__021b997c
-FUN_overlay_d_93__021b997c: ; 0x021B997C
+	thumb_func_start MainModule_GetChatterLoudIdx
+MainModule_GetChatterLoudIdx: ; 0x021B997C
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	add r5, r1, #0
@@ -7126,7 +7126,7 @@ FUN_overlay_d_93__021b997c: ; 0x021B997C
 	ldr r0, [r4, r5]
 	bl FUN_02007C70
 	pop {r3, r4, r5, pc}
-	thumb_func_end FUN_overlay_d_93__021b997c
+	thumb_func_end MainModule_GetChatterLoudIdx
 _021B99A8:
 	mov r0, #0
 	pop {r3, r4, r5, pc}
@@ -7972,8 +7972,8 @@ _021B9ECE:
 	.balign 4, 0
 _021B9EEC: .word 0x00000000
 
-	thumb_func_start FUN_overlay_d_93__021b9ef0
-FUN_overlay_d_93__021b9ef0: ; 0x021B9EF0
+	thumb_func_start TrainerParams_CopyFromNetwork
+TrainerParams_CopyFromNetwork: ; 0x021B9EF0
 	push {r3, r4, r5, lr}
 	ldr r2, _021B9F6C ; =0x00000000
 	add r5, r0, #0
@@ -8012,7 +8012,7 @@ FUN_overlay_d_93__021b9ef0: ; 0x021B9EF0
 	add r1, r4, #0
 	bl FUN_02024570
 	pop {r3, r4, r5, pc}
-	thumb_func_end FUN_overlay_d_93__021b9ef0
+	thumb_func_end TrainerParams_CopyFromNetwork
 _021B9F46:
 	strh r2, [r5, #0xa]
 	strh r2, [r5, #8]
@@ -8976,8 +8976,8 @@ _021BA642:
 	.balign 4, 0
 _021BA644: .word 0x0000046C
 
-	thumb_func_start FUN_overlay_d_93__021ba648
-FUN_overlay_d_93__021ba648: ; 0x021BA648
+	thumb_func_start MainModule_SetPlayerParty
+MainModule_SetPlayerParty: ; 0x021BA648
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	ldr r0, _021BA66C ; =0x0000046C
@@ -8992,14 +8992,14 @@ FUN_overlay_d_93__021ba648: ; 0x021BA648
 	beq _021BA668
 	add r0, r4, #0
 	bl FUN_0201AC2C
-	thumb_func_end FUN_overlay_d_93__021ba648
+	thumb_func_end MainModule_SetPlayerParty
 _021BA668:
 	pop {r3, r4, r5, pc}
 	nop
 _021BA66C: .word 0x0000046C
 
-	thumb_func_start FUN_overlay_d_93__021ba670
-FUN_overlay_d_93__021ba670: ; 0x021BA670
+	thumb_func_start MainModule_SetPlayerTrainerInfo
+MainModule_SetPlayerTrainerInfo: ; 0x021BA670
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	ldr r0, _021BA694 ; =0x0000046C
@@ -9014,14 +9014,14 @@ FUN_overlay_d_93__021ba670: ; 0x021BA670
 	beq _021BA690
 	add r0, r4, #0
 	bl FUN_02008494
-	thumb_func_end FUN_overlay_d_93__021ba670
+	thumb_func_end MainModule_SetPlayerTrainerInfo
 _021BA690:
 	pop {r3, r4, r5, pc}
 	nop
 _021BA694: .word 0x0000046C
 
-	thumb_func_start FUN_overlay_d_93__021ba698
-FUN_overlay_d_93__021ba698: ; 0x021BA698
+	thumb_func_start MainModule_SetPlayerChatterLoudIdx
+MainModule_SetPlayerChatterLoudIdx: ; 0x021BA698
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	ldr r0, _021BA6BC ; =0x0000046C
@@ -9031,14 +9031,14 @@ FUN_overlay_d_93__021ba698: ; 0x021BA698
 	add r4, r0, #0
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021b997c
+	bl MainModule_GetChatterLoudIdx
 	ldr r1, [r5]
 	add r1, r1, r4
 	add r1, #0x44
 	strb r0, [r1]
 	pop {r4, r5, r6, pc}
 	nop
-	thumb_func_end FUN_overlay_d_93__021ba698
+	thumb_func_end MainModule_SetPlayerChatterLoudIdx
 _021BA6BC: .word 0x0000046C
 
 	thumb_func_start MainModule_UpdateBattleSetupRecordData
@@ -9536,30 +9536,30 @@ _021EFCF0:
 	.byte 0x00, 0x0C, 0x06, 0x12, 0x03, 0x05, 0x00, 0x02, 0x04, 0x00, 0x03, 0x05, 0x07, 0x02, 0x04, 0x06
 	.byte 0x00, 0x00, 0x00, 0x00
 	.word MainModuleFunction_NetworkStablishServer
-	.word ADDR_021B7758 + 1
-	.word ADDR_021B7968 + 1
-	.word ADDR_021B7BB0 + 1
+	.word MainModuleFunction_NetExchangePokemonParty
+	.word MainModuleFunction_ExchangeTrainerData
+	.word MainModuleFunction_ExchangeChatterData
 	.word ADDR_021B7E18 + 1
 	.word ADDR_021B835C + 1
 	.byte 0x00, 0x00, 0x00, 0x00
 	.word MainModuleFunction_NetworkStablishServer
-	.word ADDR_021B7758 + 1
-	.word ADDR_021B7968 + 1
-	.word ADDR_021B7BB0 + 1
+	.word MainModuleFunction_NetExchangePokemonParty
+	.word MainModuleFunction_ExchangeTrainerData
+	.word MainModuleFunction_ExchangeChatterData
 	.word ADDR_021B7CB4 + 1
 	.word ADDR_021B835C + 1
 	.byte 0x00, 0x00, 0x00, 0x00
 	.word MainModuleFunction_NetworkStablishServer
-	.word ADDR_021B7758 + 1
-	.word ADDR_021B7968 + 1
-	.word ADDR_021B7BB0 + 1
+	.word MainModuleFunction_NetExchangePokemonParty
+	.word MainModuleFunction_ExchangeTrainerData
+	.word MainModuleFunction_ExchangeChatterData
 	.word ADDR_021B81DC + 1
 	.word ADDR_021B835C + 1
 	.byte 0x00, 0x00, 0x00, 0x00
 	.word MainModuleFunction_NetworkStablishServer
-	.word ADDR_021B7758 + 1
-	.word ADDR_021B7968 + 1
-	.word ADDR_021B7BB0 + 1
+	.word MainModuleFunction_NetExchangePokemonParty
+	.word MainModuleFunction_ExchangeTrainerData
+	.word MainModuleFunction_ExchangeChatterData
 	.word ADDR_021B8070 + 1
 	.word ADDR_021B835C + 1
 	.byte 0x02, 0x00, 0x02, 0x00, 0x05, 0x03, 0x06, 0x00, 0x02, 0x06, 0x02, 0x00, 0x02, 0x00, 0x04, 0x02

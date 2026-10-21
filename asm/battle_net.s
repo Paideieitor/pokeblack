@@ -809,7 +809,7 @@ GlobalBattleNet_Free: ; 0x021D4254
 	ldr r0, [r4]
 	cmp r0, #0
 	beq _021D4268
-	bl GlobalBattleNet_FreeCore
+	bl GlobalBattleNet_Clear
 	ldr r0, [r4]
 	blx Heap_Free
 	thumb_func_end GlobalBattleNet_Free
@@ -943,12 +943,12 @@ _021D438C:
 	.word ADDR_021F3B88
 _021D4390: .word 0x00003B29
 
-	thumb_func_start FUN_overlay_d_93__021d4394
-FUN_overlay_d_93__021d4394: ; 0x021D4394
+	thumb_func_start GlobalBattleNet_GetClientNetIdx
+GlobalBattleNet_GetClientNetIdx: ; 0x021D4394
 	ldr r1, _021D43B4 ; =0x021F3B88
 	mov r2, #0
 	ldr r3, [r1]
-	thumb_func_end FUN_overlay_d_93__021d4394
+	thumb_func_end GlobalBattleNet_GetClientNetIdx
 _021D439A:
 	add r1, r3, r2
 	ldrb r1, [r1, #0x11]
@@ -1106,16 +1106,16 @@ _021D44F8:
 	.word ADDR_021F3B88
 _021D44FC: .word 0x00003AF4
 
-	thumb_func_start FUN_overlay_d_93__021d4500
-FUN_overlay_d_93__021d4500: ; 0x021D4500
+	thumb_func_start GlobalBattleNet_StartChatterExchange
+GlobalBattleNet_StartChatterExchange: ; 0x021D4500
 	push {r3, lr}
-	bl FUN_overlay_d_93__021d4cec
-	bl GlobalBattleNet_FreeCore
+	bl GlobalBattleNet_ClearClientRecvBuffers
+	bl GlobalBattleNet_Clear
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021d4500
+	thumb_func_end GlobalBattleNet_StartChatterExchange
 
-	thumb_func_start FUN_overlay_d_93__021d450c
-FUN_overlay_d_93__021d450c: ; 0x021D450C
+	thumb_func_start GlobalBattleNet_SendChatterData
+GlobalBattleNet_SendChatterData: ; 0x021D450C
 	push {r4, lr}
 	sub sp, #0x10
 	add r4, r0, #0
@@ -1125,7 +1125,7 @@ FUN_overlay_d_93__021d450c: ; 0x021D450C
 	bl FUN_02007B00
 	add r3, r0, #0
 	b _021D4530
-	thumb_func_end FUN_overlay_d_93__021d450c
+	thumb_func_end GlobalBattleNet_SendChatterData
 _021D4522:
 	ldr r0, _021D4550 ; =0x021F3B88
 	mov r3, #4
@@ -1220,14 +1220,14 @@ _021D45F4:
 	.byte 0xF4, 0x0B, 0x00, 0x00
 _021D45F8: .word 0x00003AF4
 
-	thumb_func_start FUN_overlay_d_93__021d45fc
-FUN_overlay_d_93__021d45fc: ; 0x021D45FC
+	thumb_func_start GlobalBattleNet_HasReceivedClient
+GlobalBattleNet_HasReceivedClient: ; 0x021D45FC
 	push {r3, r4, r5, r6, r7, lr}
 	ldr r4, _021D4638 ; =0x021F3B88
 	ldr r7, _021D463C ; =0x00000BBC
 	ldr r6, _021D4640 ; =0x000017AE
 	mov r5, #0
-	thumb_func_end FUN_overlay_d_93__021d45fc
+	thumb_func_end GlobalBattleNet_HasReceivedClient
 _021D4606:
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021d4330
@@ -1261,10 +1261,10 @@ _021D463C: .word 0x00000BBC
 _021D4640: .word 0x000017AE
 _021D4644: .word 0x00003AF4
 
-	thumb_func_start FUN_overlay_d_93__021d4648
-FUN_overlay_d_93__021d4648: ; 0x021D4648
+	thumb_func_start GlobalBattleNet_GetRecvBuffer
+GlobalBattleNet_GetRecvBuffer: ; 0x021D4648
 	push {r3, lr}
-	bl FUN_overlay_d_93__021d4394
+	bl GlobalBattleNet_GetClientNetIdx
 	cmp r0, #0x28
 	beq _021D4668
 	lsl r1, r0, #2
@@ -1278,7 +1278,7 @@ FUN_overlay_d_93__021d4648: ; 0x021D4648
 	sub r0, #0x10
 	ldr r0, [r2, r0]
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021d4648
+	thumb_func_end GlobalBattleNet_GetRecvBuffer
 _021D4668:
 	mov r0, #0
 	pop {r3, pc}
@@ -1287,16 +1287,16 @@ _021D466C:
 	.word ADDR_021F3B88
 _021D4670: .word 0x00003AF4
 
-	thumb_func_start FUN_overlay_d_93__021d4674
-FUN_overlay_d_93__021d4674: ; 0x021D4674
+	thumb_func_start GlobalBattleNet_EndChatterExchange
+GlobalBattleNet_EndChatterExchange: ; 0x021D4674
 	push {r3, lr}
-	bl FUN_overlay_d_93__021d4cec
-	bl GlobalBattleNet_FreeCore
+	bl GlobalBattleNet_ClearClientRecvBuffers
+	bl GlobalBattleNet_Clear
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021d4674
+	thumb_func_end GlobalBattleNet_EndChatterExchange
 
-	thumb_func_start FUN_overlay_d_93__021d4680
-FUN_overlay_d_93__021d4680: ; 0x021D4680
+	thumb_func_start GlobalBattleNet_SendNetPokemonParty
+GlobalBattleNet_SendNetPokemonParty: ; 0x021D4680
 	push {r3, lr}
 	sub sp, #0x10
 	add r3, r0, #0
@@ -1318,7 +1318,7 @@ FUN_overlay_d_93__021d4680: ; 0x021D4680
 	add sp, #0x10
 	pop {r3, pc}
 	nop
-	thumb_func_end FUN_overlay_d_93__021d4680
+	thumb_func_end GlobalBattleNet_SendNetPokemonParty
 _021D46AC:
 	.word ADDR_021F3B88
 _021D46B0:
@@ -1392,8 +1392,8 @@ _021D477C:
 _021D4780:
 	.byte 0xFF, 0x7F, 0x00, 0x00
 
-	thumb_func_start FUN_overlay_d_93__021d4784
-FUN_overlay_d_93__021d4784: ; 0x021D4784
+	thumb_func_start GlobalBattleNet_PokemonPartyExists
+GlobalBattleNet_PokemonPartyExists: ; 0x021D4784
 	ldr r1, _021D479C ; =0x021F3B88
 	lsl r0, r0, #2
 	ldr r1, [r1]
@@ -1404,7 +1404,7 @@ FUN_overlay_d_93__021d4784: ; 0x021D4784
 	beq _021D4798
 	mov r0, #1
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d4784
+	thumb_func_end GlobalBattleNet_PokemonPartyExists
 _021D4798:
 	mov r0, #0
 	bx lr
@@ -1413,11 +1413,11 @@ _021D479C:
 	.word ADDR_021F3B88
 _021D47A0: .word 0x00003B04
 
-	thumb_func_start FUN_overlay_d_93__021d47a4
-FUN_overlay_d_93__021d47a4: ; 0x021D47A4
+	thumb_func_start GlobalBattleNet_ReceivePokemonParty
+GlobalBattleNet_ReceivePokemonParty: ; 0x021D47A4
 	push {r4, r5, r6, lr}
 	add r4, r0, #0
-	bl FUN_overlay_d_93__021d4394
+	bl GlobalBattleNet_GetClientNetIdx
 	cmp r0, #0x28
 	beq _021D47BE
 	ldr r1, _021D47F0 ; =0x021F3B88
@@ -1427,7 +1427,7 @@ FUN_overlay_d_93__021d47a4: ; 0x021D47A4
 	ldr r0, _021D47F4 ; =0x00003AE4
 	ldr r0, [r1, r0]
 	pop {r4, r5, r6, pc}
-	thumb_func_end FUN_overlay_d_93__021d47a4
+	thumb_func_end GlobalBattleNet_ReceivePokemonParty
 _021D47BE:
 	ldr r0, _021D47F0 ; =0x021F3B88
 	ldr r1, [r0]
@@ -1464,14 +1464,14 @@ _021D47FC: .word 0x00000000
 
 	thumb_func_start FUN_021D4800
 FUN_021D4800: ; 0x021D4800
-	ldr r3, _021D4804 ; =GlobalBattleNet_FreeCore
+	ldr r3, _021D4804 ; =GlobalBattleNet_Clear
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_021D4800
-_021D4804: .word thunk_GlobalBattleNet_FreeCore + 104
+_021D4804: .word thunk_GlobalBattleNet_Clear + 104
 
-	thumb_func_start FUN_overlay_d_93__021d4808
-FUN_overlay_d_93__021d4808: ; 0x021D4808
+	thumb_func_start GlobalBattleNet_SendTrainerInfo
+GlobalBattleNet_SendTrainerInfo: ; 0x021D4808
 	push {r4, lr}
 	sub sp, #0x10
 	add r4, r0, #0
@@ -1492,7 +1492,7 @@ FUN_overlay_d_93__021d4808: ; 0x021D4808
 	add sp, #0x10
 	pop {r4, pc}
 	nop
-	thumb_func_end FUN_overlay_d_93__021d4808
+	thumb_func_end GlobalBattleNet_SendTrainerInfo
 _021D4834:
 	.word ADDR_021F3B88
 _021D4838:
@@ -1520,13 +1520,13 @@ _021D4890:
 _021D4894:
 	.byte 0xF4, 0x3A, 0x00, 0x00
 
-	thumb_func_start FUN_overlay_d_93__021d4898
-FUN_overlay_d_93__021d4898: ; 0x021D4898
+	thumb_func_start GlobalBattleNet_HasReceived
+GlobalBattleNet_HasReceived: ; 0x021D4898
 	push {r4, r5, r6, lr}
 	ldr r4, _021D48C4 ; =0x021F3B88
 	ldr r6, _021D48C8 ; =0x00003AF4
 	mov r5, #0
-	thumb_func_end FUN_overlay_d_93__021d4898
+	thumb_func_end GlobalBattleNet_HasReceived
 _021D48A0:
 	add r0, r5, #0
 	bl FUN_overlay_d_93__021d4330
@@ -1551,10 +1551,10 @@ _021D48C4:
 	.word ADDR_021F3B88
 _021D48C8: .word 0x00003AF4
 
-	thumb_func_start FUN_overlay_d_93__021d48cc
-FUN_overlay_d_93__021d48cc: ; 0x021D48CC
+	thumb_func_start GlobalBattleNet_ReceiveTrainerInfo
+GlobalBattleNet_ReceiveTrainerInfo: ; 0x021D48CC
 	push {r3, lr}
-	bl FUN_overlay_d_93__021d4394
+	bl GlobalBattleNet_GetClientNetIdx
 	cmp r0, #0x28
 	beq _021D48E4
 	ldr r1, _021D48FC ; =0x021F3B88
@@ -1564,7 +1564,7 @@ FUN_overlay_d_93__021d48cc: ; 0x021D48CC
 	ldr r0, _021D4900 ; =0x00003AE4
 	ldr r0, [r1, r0]
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021d48cc
+	thumb_func_end GlobalBattleNet_ReceiveTrainerInfo
 _021D48E4:
 	ldr r0, _021D48FC ; =0x021F3B88
 	ldr r1, _021D4904 ; =0x00003B14
@@ -1586,8 +1586,8 @@ _021D48FC:
 _021D4900: .word 0x00003AE4
 _021D4904: .word 0x00003B14
 
-	thumb_func_start FUN_overlay_d_93__021d4908
-FUN_overlay_d_93__021d4908: ; 0x021D4908
+	thumb_func_start GlobalBattleNet_SendTrainerSetup
+GlobalBattleNet_SendTrainerSetup: ; 0x021D4908
 	push {r3, r4, r5, lr}
 	sub sp, #0x10
 	ldr r4, _021D494C ; =0x021F3B88
@@ -1599,7 +1599,7 @@ FUN_overlay_d_93__021d4908: ; 0x021D4908
 	orr r1, r2
 	lsl r1, r1, #0x10
 	lsr r1, r1, #0x10
-	bl FUN_overlay_d_93__021d4a0c
+	bl BattleNetTrainer_Create
 	add r5, r0, #0
 	str r5, [sp]
 	mov r1, #0
@@ -1620,7 +1620,7 @@ FUN_overlay_d_93__021d4908: ; 0x021D4908
 	add sp, #0x10
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d4908
+	thumb_func_end GlobalBattleNet_SendTrainerSetup
 _021D494C:
 	.word ADDR_021F3B88
 _021D4950: .word 0x00007FFF
@@ -1651,8 +1651,8 @@ _021D49A8:
 _021D49AC:
 	.byte 0x18, 0x3B, 0x00, 0x00
 
-	thumb_func_start FUN_overlay_d_93__021d49b0
-FUN_overlay_d_93__021d49b0: ; 0x021D49B0
+	thumb_func_start GlobalBattleNet_TempBufferExists
+GlobalBattleNet_TempBufferExists: ; 0x021D49B0
 	ldr r0, _021D49C4 ; =0x021F3B88
 	ldr r1, [r0]
 	ldr r0, _021D49C8 ; =0x00003B18
@@ -1661,7 +1661,7 @@ FUN_overlay_d_93__021d49b0: ; 0x021D49B0
 	beq _021D49C0
 	mov r0, #1
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021d49b0
+	thumb_func_end GlobalBattleNet_TempBufferExists
 _021D49C0:
 	mov r0, #0
 	bx lr
@@ -1670,21 +1670,21 @@ _021D49C4:
 	.word ADDR_021F3B88
 _021D49C8: .word 0x00003B18
 
-	thumb_func_start FUN_overlay_d_93__021d49cc
-FUN_overlay_d_93__021d49cc: ; 0x021D49CC
+	thumb_func_start GlobalBattleNet_GetTempBuffer
+GlobalBattleNet_GetTempBuffer: ; 0x021D49CC
 	ldr r0, _021D49D8 ; =0x021F3B88
 	ldr r1, [r0]
 	ldr r0, _021D49DC ; =0x00003B14
 	ldr r0, [r1, r0]
 	bx lr
 	nop
-	thumb_func_end FUN_overlay_d_93__021d49cc
+	thumb_func_end GlobalBattleNet_GetTempBuffer
 _021D49D8:
 	.word ADDR_021F3B88
 _021D49DC: .word 0x00003B14
 
-	thumb_func_start FUN_overlay_d_93__021d49e0
-FUN_overlay_d_93__021d49e0: ; 0x021D49E0
+	thumb_func_start GlobalBattleNet_FreeTempBuffer
+GlobalBattleNet_FreeTempBuffer: ; 0x021D49E0
 	push {r3, r4, r5, lr}
 	ldr r5, _021D49FC ; =0x021F3B88
 	ldr r4, _021D4A00 ; =0x00003B14
@@ -1699,21 +1699,21 @@ FUN_overlay_d_93__021d49e0: ; 0x021D49E0
 	str r2, [r1, r0]
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d49e0
+	thumb_func_end GlobalBattleNet_FreeTempBuffer
 _021D49FC:
 	.word ADDR_021F3B88
 _021D4A00: .word 0x00003B14
 
-	thumb_func_start thunk_GlobalBattleNet_FreeCore
-thunk_GlobalBattleNet_FreeCore: ; 0x021D4A04
-	ldr r3, _021D4A08 ; =GlobalBattleNet_FreeCore
+	thumb_func_start thunk_GlobalBattleNet_Clear
+thunk_GlobalBattleNet_Clear: ; 0x021D4A04
+	ldr r3, _021D4A08 ; =GlobalBattleNet_Clear
 	bx r3
 	.balign 4, 0
-	thumb_func_end thunk_GlobalBattleNet_FreeCore
-_021D4A08: .word thunk_GlobalBattleNet_FreeCore + 104
+	thumb_func_end thunk_GlobalBattleNet_Clear
+_021D4A08: .word thunk_GlobalBattleNet_Clear + 104
 
-	thumb_func_start FUN_overlay_d_93__021d4a0c
-FUN_overlay_d_93__021d4a0c: ; 0x021D4A0C
+	thumb_func_start BattleNetTrainer_Create
+BattleNetTrainer_Create: ; 0x021D4A0C
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	ldr r0, _021D4A5C ; =0x00000349
@@ -1744,7 +1744,7 @@ FUN_overlay_d_93__021d4a0c: ; 0x021D4A0C
 	add r1, #0x28
 	mov r2, #0x20
 	bl FUN_0201F41C
-	thumb_func_end FUN_overlay_d_93__021d4a0c
+	thumb_func_end BattleNetTrainer_Create
 _021D4A56:
 	add r0, r5, #0
 	pop {r3, r4, r5, pc}
@@ -1761,14 +1761,14 @@ FUN_021D4A64: ; 0x021D4A64
 _021D4A68:
 	.word ADDR_020307B0
 
-	thumb_func_start GlobalBattleNet_FreeCore
-GlobalBattleNet_FreeCore: ; 0x021D4A6C
+	thumb_func_start GlobalBattleNet_Clear
+GlobalBattleNet_Clear: ; 0x021D4A6C
 	push {r3, r4, r5, r6, r7, lr}
 	ldr r7, _021D4AE4 ; =0x00003AE4
 	ldr r6, _021D4AE8 ; =0x021F3B88
 	mov r4, #0
 	add r7, #0x10
-	thumb_func_end GlobalBattleNet_FreeCore
+	thumb_func_end GlobalBattleNet_Clear
 _021D4A76:
 	ldr r0, [r6]
 	lsl r5, r4, #2
@@ -1899,7 +1899,7 @@ FUN_overlay_d_93__021d4b58: ; 0x021D4B58
 	sub sp, #0x10
 	add r5, r1, #0
 	add r4, r2, #0
-	bl FUN_overlay_d_93__021d4394
+	bl GlobalBattleNet_GetClientNetIdx
 	add r1, r0, #0
 	cmp r1, #0x28
 	beq _021D4B88
@@ -1965,7 +1965,7 @@ _021D4BD0: .word 0x000017AE
 FUN_overlay_d_93__021d4bd4: ; 0x021D4BD4
 	push {r4, lr}
 	add r4, r1, #0
-	bl FUN_overlay_d_93__021d4394
+	bl GlobalBattleNet_GetClientNetIdx
 	ldr r1, _021D4BF4 ; =0x021F3B88
 	ldr r2, _021D4BF8 ; =0x00000BF4
 	ldr r1, [r1]
@@ -2004,13 +2004,13 @@ _021D4C50:
 _021D4C54:
 	.byte 0xAC, 0x17, 0x00, 0x00
 
-	thumb_func_start thunk_FUN_overlay_d_93__021d4cec
-thunk_FUN_overlay_d_93__021d4cec: ; 0x021D4C58
-	ldr r3, _021D4C5C ; =FUN_overlay_d_93__021d4cec
+	thumb_func_start thunk_GlobalBattleNet_ClearClientRecvBuffers
+thunk_GlobalBattleNet_ClearClientRecvBuffers: ; 0x021D4C58
+	ldr r3, _021D4C5C ; =GlobalBattleNet_ClearClientRecvBuffers
 	bx r3
 	.balign 4, 0
-	thumb_func_end thunk_FUN_overlay_d_93__021d4cec
-_021D4C5C: .word thunk_FUN_overlay_d_93__021d4cec + 148
+	thumb_func_end thunk_GlobalBattleNet_ClearClientRecvBuffers
+_021D4C5C: .word thunk_GlobalBattleNet_ClearClientRecvBuffers + 148
 
 	thumb_func_start FUN_overlay_d_93__021d4c60
 FUN_overlay_d_93__021d4c60: ; 0x021D4C60
@@ -2089,8 +2089,8 @@ _021D4CE2:
 _021D4CE8:
 	.word ADDR_021F3B88
 
-	thumb_func_start FUN_overlay_d_93__021d4cec
-FUN_overlay_d_93__021d4cec: ; 0x021D4CEC
+	thumb_func_start GlobalBattleNet_ClearClientRecvBuffers
+GlobalBattleNet_ClearClientRecvBuffers: ; 0x021D4CEC
 	push {r4, r5, r6, r7}
 	ldr r2, _021D4D1C ; =0x00000BF4
 	ldr r3, _021D4D1C ; =0x00000BF4
@@ -2101,7 +2101,7 @@ FUN_overlay_d_93__021d4cec: ; 0x021D4CEC
 	sub r2, #0x38
 	sub r3, #0x3c
 	sub r4, #0x3a
-	thumb_func_end FUN_overlay_d_93__021d4cec
+	thumb_func_end GlobalBattleNet_ClearClientRecvBuffers
 _021D4D00:
 	ldr r1, _021D4D20 ; =0x021F3B88
 	ldr r7, [r1]

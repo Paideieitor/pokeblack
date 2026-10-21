@@ -49,7 +49,7 @@
 	.extern FUN_overlay_d_93__021d4c6c
 	.extern FUN_overlay_d_93__021d4c84
 	.extern thunk_FUN_overlay_d_93__021b8d08
-	.extern thunk_FUN_overlay_d_93__021d4cec
+	.extern thunk_GlobalBattleNet_ClearClientRecvBuffers
 	.extern Heap_AllocDebug
 	.extern Heap_Free
 	.extern _021F39A0
@@ -195,7 +195,7 @@ FUN_overlay_d_93__021eeae8: ; 0x021EEAE8
 	ldr r0, [r0]
 	cmp r0, #0
 	beq _021EEAF6
-	bl thunk_FUN_overlay_d_93__021d4cec
+	bl thunk_GlobalBattleNet_ClearClientRecvBuffers
 	thumb_func_end FUN_overlay_d_93__021eeae8
 _021EEAF6:
 	pop {r3, pc}
@@ -288,7 +288,7 @@ FUN_overlay_d_93__021eeb70: ; 0x021EEB70
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x1c
 	beq _021EEB82
-	bl thunk_FUN_overlay_d_93__021d4cec
+	bl thunk_GlobalBattleNet_ClearClientRecvBuffers
 	thumb_func_end FUN_overlay_d_93__021eeb70
 _021EEB82:
 	pop {r3, pc}
