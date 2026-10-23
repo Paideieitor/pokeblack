@@ -5235,7 +5235,7 @@ _021D6EB4:
 	str r1, [r0, #4]
 	str r1, [r0, #8]
 	str r1, [r0]
-	bl FUN_overlay_d_93__021d74c8
+	bl BattleEvent_InitVariableStackCore
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021D6EDC:
@@ -5245,14 +5245,14 @@ _021D6EE0:
 _021D6EE4:
 	.word ADDR_021F3CB0
 
-	thumb_func_start FUN_overlay_d_93__021d6ee8
-FUN_overlay_d_93__021d6ee8: ; 0x021D6EE8
+	thumb_func_start BattleEvent_StartTurn
+BattleEvent_StartTurn: ; 0x021D6EE8
 	ldr r0, _021D6F00 ; =0x021F3CB0
 	ldr r2, [r0, #4]
 	cmp r2, #0
 	beq _021D6EFE
 	ldr r0, _021D6F04 ; =0xFDFFFFFF
-	thumb_func_end FUN_overlay_d_93__021d6ee8
+	thumb_func_end BattleEvent_StartTurn
 _021D6EF2:
 	ldr r1, [r2, #0x18]
 	and r1, r0
@@ -6148,13 +6148,13 @@ FUN_overlay_d_93__021d74bc: ; 0x021D74BC
 _021D74C4:
 	.word ADDR_02082BCC
 
-	thumb_func_start FUN_overlay_d_93__021d74c8
-FUN_overlay_d_93__021d74c8: ; 0x021D74C8
+	thumb_func_start BattleEvent_InitVariableStackCore
+BattleEvent_InitVariableStackCore: ; 0x021D74C8
 	ldr r2, _021D74E0 ; =0x021F3ECC
 	mov r3, #0
 	str r3, [r2]
 	add r1, r3, #0
-	thumb_func_end FUN_overlay_d_93__021d74c8
+	thumb_func_end BattleEvent_InitVariableStackCore
 _021D74D0:
 	lsl r0, r3, #1
 	add r0, r2, r0
@@ -6167,15 +6167,15 @@ _021D74D0:
 _021D74E0:
 	.word ADDR_021F3ECC
 
-	thumb_func_start FUN_overlay_d_93__021d74e4
-FUN_overlay_d_93__021d74e4: ; 0x021D74E4
+	thumb_func_start BattleEvent_InitVariableStack
+BattleEvent_InitVariableStack: ; 0x021D74E4
 	push {r3, lr}
 	ldr r0, _021D74F4 ; =0x021F3ECC
 	ldr r0, [r0]
 	cmp r0, #0
 	beq _021D74F2
-	bl FUN_overlay_d_93__021d74c8
-	thumb_func_end FUN_overlay_d_93__021d74e4
+	bl BattleEvent_InitVariableStackCore
+	thumb_func_end BattleEvent_InitVariableStack
 _021D74F2:
 	pop {r3, pc}
 	.balign 4, 0

@@ -308,7 +308,7 @@
 	.extern BattleMon_Get
 	.extern FUN_overlay_d_93__021b9a24
 	.extern BattleParty_GetMemberCount
-	.extern FUN_overlay_d_93__021b9c00
+	.extern BattleParty_GetMember
 	.extern FUN_overlay_d_93__021c7cf4
 	.extern FUN_overlay_d_93__021c7d00
 	.extern FUN_overlay_d_93__021c7d44
@@ -3849,7 +3849,7 @@ _021E60CC:
 	ldr r0, [sp, #8]
 	lsr r1, r1, #0x18
 	mov r6, #0
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r7, r0, #0
 	bl BattleMon_GetBattleSlot
 	ldr r1, [sp]

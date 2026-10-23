@@ -321,7 +321,7 @@
 	.extern BattleServer_RunProcess
 	.extern BattleServer_SetEscapeClientList
 	.extern BattleServer_SetServerProcess
-	.extern FUN_overlay_d_93__021bb828
+	.extern BattleServerClient_Clear
 	.extern FUN_overlay_d_93__021bb8bc
 	.extern BattleServer_GetServerFlow
 	.extern ServerFlow_Create
@@ -347,7 +347,7 @@
 	.extern FUN_overlay_d_93__021cd9b0
 	.extern FUN_overlay_d_93__021cd9f4
 	.extern BattleClient_SetEscapeClientList
-	.extern FUN_overlay_d_93__021cdda0
+	.extern BattleClient_IsTimerFinished
 	.extern FUN_overlay_d_93__021cddcc
 	.extern GlobalBattleNet_Create
 	.extern GlobalBattleNet_IsEnabled
@@ -393,7 +393,7 @@
 	.extern BattleMon_CheckIllusion
 	.extern BattleMon_SetPartySource
 	.extern GlobalBattleCalc_Create
-	.extern FUN_overlay_d_93__021d787c
+	.extern GlobalBattleCalc_SetRandomSet
 	.extern GlobalBattleCalc_Free
 	.extern TrainerClass_IsGymLeaderOrEliteFour
 	.extern BattleSetup_GetWinMoney
@@ -4328,7 +4328,7 @@ MainModule_SwitchModeEnabled: ; 0x021B85A8
 	cmp r0, #0
 	bne _021B85D8
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021b86c0
+	bl MainModule_GetNetMode
 	cmp r0, #0
 	bne _021B85D8
 	ldr r0, [r4]
@@ -4436,8 +4436,8 @@ _021B866C:
 	mov r0, #5
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021b8670
-FUN_overlay_d_93__021b8670: ; 0x021B8670
+	thumb_func_start MainModule_GetPokemonCountPerSide
+MainModule_GetPokemonCountPerSide: ; 0x021B8670
 	ldr r0, [r0]
 	ldr r0, [r0, #4]
 	cmp r0, #3
@@ -4448,7 +4448,7 @@ FUN_overlay_d_93__021b8670: ; 0x021B8670
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10
 	add pc, r0
-	thumb_func_end FUN_overlay_d_93__021b8670
+	thumb_func_end MainModule_GetPokemonCountPerSide
 _021B8684: ; jump table
 	.hword 0x0006 ; case 0
 	.hword 0x000A ; case 1
@@ -4470,17 +4470,17 @@ _021B869C:
 	mov r0, #1
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021b86a0
-FUN_overlay_d_93__021b86a0: ; 0x021B86A0
+	thumb_func_start MainModule_BattlePositionExists
+MainModule_BattlePositionExists: ; 0x021B86A0
 	push {r4, lr}
 	add r4, r1, #0
-	bl FUN_overlay_d_93__021b8670
+	bl MainModule_GetPokemonCountPerSide
 	lsl r0, r0, #1
 	cmp r4, r0
 	bhs _021B86B2
 	mov r0, #1
 	pop {r4, pc}
-	thumb_func_end FUN_overlay_d_93__021b86a0
+	thumb_func_end MainModule_BattlePositionExists
 _021B86B2:
 	mov r0, #0
 	pop {r4, pc}
@@ -4494,16 +4494,16 @@ MainModule_GetBattleType: ; 0x021B86B8
 	.balign 4, 0
 	thumb_func_end MainModule_GetBattleType
 
-	thumb_func_start FUN_overlay_d_93__021b86c0
-FUN_overlay_d_93__021b86c0: ; 0x021B86C0
+	thumb_func_start MainModule_GetNetMode
+MainModule_GetNetMode: ; 0x021B86C0
 	ldr r0, [r0]
 	add r0, #0x20
 	ldrb r0, [r0]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021b86c0
+	thumb_func_end MainModule_GetNetMode
 
-	thumb_func_start FUN_overlay_d_93__021b86c8
-FUN_overlay_d_93__021b86c8: ; 0x021B86C8
+	thumb_func_start MainModule_IsSpecialDoubleBattle
+MainModule_IsSpecialDoubleBattle: ; 0x021B86C8
 	ldr r0, [r0]
 	add r0, #0x22
 	ldrb r0, [r0]
@@ -4511,22 +4511,22 @@ FUN_overlay_d_93__021b86c8: ; 0x021B86C8
 	beq _021B86D6
 	mov r0, #1
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021b86c8
+	thumb_func_end MainModule_IsSpecialDoubleBattle
 _021B86D6:
 	mov r0, #0
 	bx lr
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021b86dc
-FUN_overlay_d_93__021b86dc: ; 0x021B86DC
+	thumb_func_start MainModule_GetWinBGM
+MainModule_GetWinBGM: ; 0x021B86DC
 	ldr r0, [r0]
 	ldrh r0, [r0, #0x1a]
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021b86dc
+	thumb_func_end MainModule_GetWinBGM
 
-	thumb_func_start FUN_overlay_d_93__021b86e4
-FUN_overlay_d_93__021b86e4: ; 0x021B86E4
+	thumb_func_start MainModule_GetEscapeType
+MainModule_GetEscapeType: ; 0x021B86E4
 	ldr r0, [r0]
 	ldr r0, [r0]
 	cmp r0, #3
@@ -4537,7 +4537,7 @@ FUN_overlay_d_93__021b86e4: ; 0x021B86E4
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10
 	add pc, r0
-	thumb_func_end FUN_overlay_d_93__021b86e4
+	thumb_func_end MainModule_GetEscapeType
 _021B86F8: ; jump table
 	.hword 0x0006 ; case 0
 	.hword 0x000A ; case 1
@@ -4567,13 +4567,13 @@ MainModule_GetBattlefieldStatus: ; 0x021B8714
 	.balign 4, 0
 	thumb_func_end MainModule_GetBattlefieldStatus
 
-	thumb_func_start FUN_overlay_d_93__021b871c
-FUN_overlay_d_93__021b871c: ; 0x021B871C
+	thumb_func_start MainModule_GetTrainerInfo
+MainModule_GetTrainerInfo: ; 0x021B871C
 	add r0, #0xc0
 	ldr r0, [r0]
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021b871c
+	thumb_func_end MainModule_GetTrainerInfo
 
 	thumb_func_start FUN_overlay_d_93__021b8724
 FUN_overlay_d_93__021b8724: ; 0x021B8724
@@ -5703,7 +5703,7 @@ _021B8F34: .word 0x0000046D
 FUN_overlay_d_93__021b8f38: ; 0x021B8F38
 	push {r4, lr}
 	add r4, r0, #0
-	bl FUN_overlay_d_93__021b86c8
+	bl MainModule_IsSpecialDoubleBattle
 	cmp r0, #0
 	beq _021B8F56
 	add r0, r4, #0
@@ -5743,7 +5743,7 @@ FUN_overlay_d_93__021b8f7c: ; 0x021B8F7C
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	add r5, r1, #0
-	bl FUN_overlay_d_93__021b86c8
+	bl MainModule_IsSpecialDoubleBattle
 	cmp r0, #0
 	beq _021B8FBA
 	add r1, r5, #2
@@ -5777,7 +5777,7 @@ _021B8FBA:
 FUN_overlay_d_93__021b8fc0: ; 0x021B8FC0
 	push {r4, lr}
 	add r4, r1, #0
-	bl FUN_overlay_d_93__021b86c8
+	bl MainModule_IsSpecialDoubleBattle
 	cmp r0, #0
 	beq _021B8FDE
 	mov r0, #2
@@ -6353,7 +6353,7 @@ _021B93B6:
 	lsl r1, r5, #0x18
 	add r0, r7, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	str r0, [sp, #4]
 	bl BattleMon_GetPokemon
 	cmp r0, r6
@@ -6981,7 +6981,7 @@ _021B987E:
 	lsl r1, r5, #0x18
 	add r0, r4, r6
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	bl BattleMon_GetBattleSlot
 	cmp r7, r0
 	bne _021B9894
@@ -7050,7 +7050,7 @@ _021B98E6:
 	bhs _021B9902
 	add r0, r4, r6
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	pop {r3, r4, r5, r6, r7, pc}
 _021B9902:
 	mov r0, #0
@@ -7077,12 +7077,12 @@ FUN_overlay_d_93__021b9920: ; 0x021B9920
 	mov r0, #0x1c
 	mul r0, r1
 	add r0, r3, r0
-	ldr r3, _021B9930 ; =FUN_overlay_d_93__021b9c00
+	ldr r3, _021B9930 ; =BattleParty_GetMember
 	add r1, r2, #0
 	bx r3
 	nop
 	thumb_func_end FUN_overlay_d_93__021b9920
-_021B9930: .word FUN_overlay_d_93__021b9c00
+_021B9930: .word BattleParty_GetMember
 
 	thumb_func_start PokemonContainer_GetBattleMon
 PokemonContainer_GetBattleMon: ; 0x021B9934
@@ -7546,15 +7546,15 @@ _021B9BFC:
 	mov r0, #0
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021b9c00
-FUN_overlay_d_93__021b9c00: ; 0x021B9C00
+	thumb_func_start BattleParty_GetMember
+BattleParty_GetMember: ; 0x021B9C00
 	ldrb r2, [r0, #0x18]
 	cmp r1, r2
 	bhs _021B9C0C
 	lsl r1, r1, #2
 	ldr r0, [r0, r1]
 	bx lr
-	thumb_func_end FUN_overlay_d_93__021b9c00
+	thumb_func_end BattleParty_GetMember
 _021B9C0C:
 	mov r0, #0
 	bx lr
@@ -8916,8 +8916,8 @@ _021BA5C4:
 	.byte 0x01, 0x49, 0x40, 0x5A, 0x70, 0x47, 0xC0, 0x46, 0x42, 0x04, 0x00, 0x00
 	.byte 0x11, 0x21, 0x89, 0x01, 0x40, 0x5A, 0x70, 0x47
 
-	thumb_func_start FUN_overlay_d_93__021ba5d8
-FUN_overlay_d_93__021ba5d8: ; 0x021BA5D8
+	thumb_func_start MainModule_IsTimerFinished
+MainModule_IsTimerFinished: ; 0x021BA5D8
 	push {r3, lr}
 	ldr r1, [r0]
 	add r1, #0x23
@@ -8934,9 +8934,9 @@ FUN_overlay_d_93__021ba5d8: ; 0x021BA5D8
 	lsl r1, r1, #2
 	add r0, r0, r1
 	ldr r0, [r0, #0x10]
-	bl FUN_overlay_d_93__021cdda0
+	bl BattleClient_IsTimerFinished
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021ba5d8
+	thumb_func_end MainModule_IsTimerFinished
 _021BA5FE:
 	mov r0, #0
 	pop {r3, pc}
@@ -8946,7 +8946,7 @@ _021BA602:
 	lsl r1, r1, #2
 	add r0, r0, r1
 	ldr r0, [r0, #0x10]
-	bl FUN_overlay_d_93__021cdda0
+	bl BattleClient_IsTimerFinished
 	pop {r3, pc}
 	nop
 _021BA614: .word 0x0000046C
@@ -9127,7 +9127,7 @@ FUN_overlay_d_93__021ba73c: ; 0x021BA73C
 	mov r0, #0x3f
 	lsl r0, r0, #4
 	add r0, r5, r0
-	bl FUN_overlay_d_93__021d787c
+	bl GlobalBattleCalc_SetRandomSet
 	ldr r1, [r5]
 	add r0, r5, #0
 	bl MainModule_InitParties
@@ -9490,7 +9490,7 @@ BattleServer_Create: ; 0x021BA9C8
 	add r1, #0xac
 	str r0, [r1]
 	ldr r0, [sp, #8]
-	bl FUN_overlay_d_93__021d787c
+	bl GlobalBattleCalc_SetRandomSet
 	add r6, r4, #0
 	add r6, #0x14
 	mov r7, #0xc
@@ -9499,7 +9499,7 @@ _021BAA44:
 	add r0, r5, #0
 	mul r0, r7
 	add r0, r6, r0
-	bl FUN_overlay_d_93__021bb828
+	bl BattleServerClient_Clear
 	add r5, r5, #1
 	cmp r5, #4
 	blt _021BAA44

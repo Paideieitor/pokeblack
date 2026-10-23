@@ -314,10 +314,10 @@
 	.extern FUN_overlay_d_93__021b8588
 	.extern MainModule_MoveAnimationsEnabled
 	.extern MainModule_GetBattleType
-	.extern FUN_overlay_d_93__021b86c0
-	.extern FUN_overlay_d_93__021b86c8
-	.extern FUN_overlay_d_93__021b86dc
-	.extern FUN_overlay_d_93__021b86e4
+	.extern MainModule_GetNetMode
+	.extern MainModule_IsSpecialDoubleBattle
+	.extern MainModule_GetWinBGM
+	.extern MainModule_GetEscapeType
 	.extern MainModule_GetClientBattlePosition
 	.extern FUN_overlay_d_93__021b8d38
 	.extern FUN_overlay_d_93__021b8d8c
@@ -349,7 +349,7 @@
 	.extern BattleParty_GetMemberCount
 	.extern BattleParty_GetAliveMemberCount
 	.extern BattleParty_GetBattleMon
-	.extern FUN_overlay_d_93__021b9c00
+	.extern BattleParty_GetMember
 	.extern MainModule_GetTrainerItem
 	.extern MainModule_GetAIFlags
 	.extern FUN_overlay_d_93__021ba004
@@ -1641,8 +1641,8 @@ BattleClient_SetEscapeClientList: ; 0x021CDD94
 	.balign 4, 0
 	thumb_func_end BattleClient_SetEscapeClientList
 
-	thumb_func_start FUN_overlay_d_93__021cdda0
-FUN_overlay_d_93__021cdda0: ; 0x021CDDA0
+	thumb_func_start BattleClient_IsTimerFinished
+BattleClient_IsTimerFinished: ; 0x021CDDA0
 	push {r3, lr}
 	ldr r1, _021CDDC8 ; =0x000001A7
 	ldrb r2, [r0, r1]
@@ -1655,7 +1655,7 @@ FUN_overlay_d_93__021cdda0: ; 0x021CDDA0
 	mov r0, #0
 	bl FUN_021F8524
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021cdda0
+	thumb_func_end BattleClient_IsTimerFinished
 _021CDDBA:
 	mov r0, #0
 	pop {r3, pc}
@@ -1736,7 +1736,7 @@ FUN_overlay_d_93__021cdf1c: ; 0x021CDF1C
 	cmp r0, #0
 	bne _021CDF4E
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021b86c0
+	bl MainModule_GetNetMode
 	cmp r0, #0
 	bne _021CDF4E
 	ldr r1, _021CDF54 ; =0x000001A6
@@ -2633,7 +2633,7 @@ _021CE668:
 	cmp r0, #0
 	beq _021CE68E
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021b86e4
+	bl MainModule_GetEscapeType
 	cmp r0, #2
 	beq _021CE68E
 _021CE68A:
@@ -3227,7 +3227,7 @@ _021CECC0:
 	lsl r1, r1, #0x18
 	ldr r0, [r7, r0]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r4, r0, #0
 	ldr r0, [sp, #8]
 	mov r2, #0
@@ -3529,7 +3529,7 @@ _021CF094: ; jump table
 	.hword 0x0156 ; case 5
 _021CF0A0:
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021b86e4
+	bl MainModule_GetEscapeType
 	cmp r0, #0
 	beq _021CF0B2
 	cmp r0, #1
@@ -3822,7 +3822,7 @@ _021CF2F2:
 LAB_overlay_d_93__021cf306: ; 0x021CF306
 	bl FUN_overlay_d_93__021cf3f8
 	ldr r0, [r5]
-	bl FUN_overlay_d_93__021b86c0
+	bl MainModule_GetNetMode
 	cmp r0, #0
 	beq _021CF328
 	ldr r0, _021CF35C ; =0x000001A9
@@ -4594,7 +4594,7 @@ _021CF934:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, r7]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -4637,7 +4637,7 @@ _021CF98C:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, r6]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r1, r0, #0
 	ldr r2, [sp]
 	ldr r3, [sp, #4]
@@ -6018,7 +6018,7 @@ _021D0400:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, r0]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r6, r0, #0
 	ldr r2, [sp]
 	add r0, r5, #0
@@ -6152,7 +6152,7 @@ _021D0512:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, r0]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -6211,7 +6211,7 @@ _021D0588:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, r0]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r1, r0, #0
 	ldr r3, [sp]
 	add r0, r5, #0
@@ -6266,7 +6266,7 @@ _021D05F4:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, r0]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r6, r0, #0
 	bl BattleMon_CanBattle
 	cmp r0, #0
@@ -6373,7 +6373,7 @@ FUN_overlay_d_93__021d06c8: ; 0x021D06C8
 	lsl r1, r1, #0x18
 	ldr r0, [r5, r0]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	bl BattleMon_IsFainted
 	cmp r0, #0
 	bne _021D06F6
@@ -6390,7 +6390,7 @@ _021D06F6:
 	lsl r1, r1, #0x18
 	ldr r0, [r5, r0]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	bl BattleMon_IsFainted
 	cmp r0, #0
 	bne _021D071C
@@ -6457,7 +6457,7 @@ LAB_overlay_d_93__021d07b0: ; 0x021D07B0
 LAB_overlay_d_93__021d07b2: ; 0x021D07B2
 	sub r0, r6, #5
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r1, r6, #7
 	str r0, [r4, #8]
 	add r2, r4, r1
@@ -6530,7 +6530,7 @@ _021D082C:
 	lsl r6, r6, #2
 	ldr r0, [r4, r6]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	str r0, [r4, #8]
 	mov r0, #1
 	add r6, #0x97
@@ -6667,7 +6667,7 @@ _021D09AE:
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	bl BattleMon_CanBattle
 	cmp r0, #0
 	beq _021D09CE
@@ -6719,7 +6719,7 @@ _021D09FC:
 	ldr r0, [r0, r1]
 	ldr r1, [sp, #0x10]
 	ldrb r1, [r7, r1]
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	add r6, r0, #0
 	bl BattleMon_IsFainted
 	cmp r0, #0
@@ -7006,7 +7006,7 @@ _021D0C06:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, r6]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	bl BattleMon_IsFainted
 	cmp r0, #0
 	bne _021D0C40
@@ -7310,7 +7310,7 @@ _021D0ED6:
 	lsl r6, r6, #2
 	ldr r0, [r4, r6]
 	mov r1, #0
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	cmp r7, #1
 	bne _021D0F1A
 	bl BattleMon_IsFainted
@@ -7436,7 +7436,7 @@ _021D0FE8:
 	b _021D0F18
 _021D0FEC:
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021b86c0
+	bl MainModule_GetNetMode
 	cmp r0, #0
 	beq _021D1006
 	ldr r0, _021D1028 ; =0x000001A9
@@ -7481,7 +7481,7 @@ FUN_overlay_d_93__021d102c: ; 0x021D102C
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
 	mov r1, #0
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	bl BattleMon_IsFainted
 	cmp r0, #0
 	beq _021D1052
@@ -7507,7 +7507,7 @@ FUN_overlay_d_93__021d1058: ; 0x021D1058
 	lsl r1, r1, #0x18
 	ldr r0, [r5, r6]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	bl BattleMon_IsFainted
 	cmp r0, #0
 	bne _021D108A
@@ -7525,7 +7525,7 @@ _021D108A:
 	lsl r1, r1, #0x18
 	ldr r0, [r5, r6]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	bl BattleMon_IsFainted
 	cmp r0, #0
 	bne _021D10B2
@@ -7787,7 +7787,7 @@ _021D12BE:
 	bl FUN_overlay_d_93__021d13a4
 	add r7, r0, #0
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021b86c8
+	bl MainModule_IsSpecialDoubleBattle
 	lsl r0, r0, #0x18
 	lsr r6, r0, #0x18
 	ldr r0, [r4]
@@ -7852,7 +7852,7 @@ _021D1340:
 	cmp r7, #1
 	bne _021D1362
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021b86dc
+	bl MainModule_GetWinBGM
 	ldr r1, _021D13A0 ; =0x0000FFFF
 	bl FUN_02005D90
 _021D135A:
@@ -7980,7 +7980,7 @@ _021D1442:
 	cmp r0, #1
 	ldr r0, [r4]
 	bne _021D14AE
-	bl FUN_overlay_d_93__021b86dc
+	bl MainModule_GetWinBGM
 	bl FUN_021F878C
 	ldr r0, [r4]
 	mov r1, #0
@@ -8338,7 +8338,7 @@ _021D1750:
 	cmp r6, #1
 	bne _021D176C
 	ldr r0, [r4]
-	bl FUN_overlay_d_93__021b86dc
+	bl MainModule_GetWinBGM
 	bl FUN_021F878C
 _021D176C:
 	cmp r6, #1

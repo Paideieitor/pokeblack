@@ -312,8 +312,8 @@
 	.extern FUN_overlay_d_93__021b85dc
 	.extern FUN_overlay_d_93__021b8640
 	.extern MainModule_GetBattleType
-	.extern FUN_overlay_d_93__021b86c0
-	.extern FUN_overlay_d_93__021b86c8
+	.extern MainModule_GetNetMode
+	.extern MainModule_IsSpecialDoubleBattle
 	.extern FUN_overlay_d_93__021b8748
 	.extern FUN_overlay_d_93__021b8bd0
 	.extern MainModule_GetClientBattlePosition
@@ -336,7 +336,7 @@
 	.extern PokemonContainer_GetBattlePartyConst
 	.extern FUN_overlay_d_93__021b9b04
 	.extern BattleParty_GetMemberCount
-	.extern FUN_overlay_d_93__021b9c00
+	.extern BattleParty_GetMember
 	.extern MainModule_TrainerParamsCheckInfo
 	.extern MainModule_GetTrainerClass
 	.extern FUN_overlay_d_93__021ba1a8
@@ -2349,7 +2349,7 @@ _021E9E26:
 	lsl r1, r4, #0x18
 	ldr r0, [sp, #8]
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	mov r1, #0x13
 	bl BattleMon_HasCondition
 	add r1, r5, r4
@@ -5036,7 +5036,7 @@ _021EB410:
 	mov r0, #0x4d
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021b86c8
+	bl MainModule_IsSpecialDoubleBattle
 	cmp r0, #0
 	bne _021EB438
 	add r0, r4, #0
@@ -5070,7 +5070,7 @@ _021EB452:
 	mov r0, #0x4d
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021b86c8
+	bl MainModule_IsSpecialDoubleBattle
 	cmp r0, #0
 	bne _021EB47A
 	add r0, r4, #0
@@ -8292,7 +8292,7 @@ _021ECFDA:
 	mov r0, #0x4d
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021b86c0
+	bl MainModule_GetNetMode
 	cmp r0, #0
 	bne _021ED02A
 	blx FUN_0203630C
@@ -8331,7 +8331,7 @@ _021ED02A:
 	add r0, r5, #0
 	sub r0, #0x10
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021b86c0
+	bl MainModule_GetNetMode
 	cmp r0, #0
 	bne _021ED04C
 	mov r1, #3
@@ -10701,7 +10701,7 @@ _021EE18E:
 	ldr r0, [r0, r1]
 	lsl r1, r5, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	str r0, [sp, #8]
 	bl BattleMon_IsFainted
 	cmp r0, #0

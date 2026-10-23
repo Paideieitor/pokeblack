@@ -215,7 +215,7 @@ void BattleRecordBuilder_Init(BattleRecordBuilder *builder, BOOL tagFlag)
     builder->tagFlag = tagFlag;
 }
 
-void *FUN_overlay_d_93__021ee8d8(BattleRecordBuilder *builder, u32 *dataSize, BOOL tagFlag)
+void *BattleRecordBuilder_InitHeader(BattleRecordBuilder *builder, u32 *dataSize, BOOL tagFlag)
 {
     builder->buffer[HEADER_CODE] = HEADER_CODE_4;
     builder->buffer[HEADER_TAG] = PackHeaderTag(TAG_TYPE_UNK_2, 0, tagFlag);

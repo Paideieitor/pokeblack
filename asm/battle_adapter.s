@@ -268,19 +268,19 @@ _021EEB5E:
 	pop {r4, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021eeb64
-FUN_overlay_d_93__021eeb64: ; 0x021EEB64
+	thumb_func_start BattleAdapter_Receive
+BattleAdapter_Receive: ; 0x021EEB64
 	cmp r1, #0
 	beq _021EEB6C
 	ldr r2, [r0, #8]
 	str r2, [r1]
-	thumb_func_end FUN_overlay_d_93__021eeb64
+	thumb_func_end BattleAdapter_Receive
 _021EEB6C:
 	ldr r0, [r0, #4]
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021eeb70
-FUN_overlay_d_93__021eeb70: ; 0x021EEB70
+	thumb_func_start BattleAdapter_Clear
+BattleAdapter_Clear: ; 0x021EEB70
 	push {r3, lr}
 	mov r1, #0
 	strb r1, [r0, #0xe]
@@ -289,7 +289,7 @@ FUN_overlay_d_93__021eeb70: ; 0x021EEB70
 	lsr r0, r0, #0x1c
 	beq _021EEB82
 	bl thunk_GlobalBattleNet_ClearClientRecvBuffers
-	thumb_func_end FUN_overlay_d_93__021eeb70
+	thumb_func_end BattleAdapter_Clear
 _021EEB82:
 	pop {r3, pc}
 

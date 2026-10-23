@@ -317,7 +317,7 @@
 	.extern FUN_overlay_d_93__021b9a40
 	.extern FUN_overlay_d_93__021b9a5c
 	.extern BattleParty_GetMemberCount
-	.extern FUN_overlay_d_93__021b9c00
+	.extern BattleParty_GetMember
 	.extern FUN_overlay_d_93__021c7cf4
 	.extern FUN_overlay_d_93__021c8010
 	.extern FUN_overlay_d_93__021c804c
@@ -2352,8 +2352,8 @@ _021D7874:
 _021D7878:
 	.word ADDR_021F6368
 
-	thumb_func_start FUN_overlay_d_93__021d787c
-FUN_overlay_d_93__021d787c: ; 0x021D787C
+	thumb_func_start GlobalBattleCalc_SetRandomSet
+GlobalBattleCalc_SetRandomSet: ; 0x021D787C
 	ldr r2, _021D7890 ; =0x021F6368
 	add r3, r0, #0
 	ldmia r3!, {r0, r1}
@@ -2364,7 +2364,7 @@ FUN_overlay_d_93__021d787c: ; 0x021D787C
 	stmia r2!, {r0, r1}
 	bx lr
 	nop
-	thumb_func_end FUN_overlay_d_93__021d787c
+	thumb_func_end GlobalBattleCalc_SetRandomSet
 _021D7890:
 	.word ADDR_021F6368
 
@@ -3433,7 +3433,7 @@ _021D800C:
 	lsl r1, r5, #0x18
 	add r0, r7, #0
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021b9c00
+	bl BattleParty_GetMember
 	mov r1, #0xf
 	bl BattleMon_Get
 	cmp r0, r4
