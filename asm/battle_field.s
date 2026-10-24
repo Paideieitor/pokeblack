@@ -305,7 +305,7 @@
 	.extern FUN_021F8B28
 	.extern FUN_0220C834
 	.extern FUN_0220F3E8
-	.extern PokemonContainer_GetBattleMonConst
+	.extern PokemonContainer_GetActiveBattleMonConst
 	.extern FUN_overlay_d_93__021b9a24
 	.extern BattleMon_GetBattleSlot
 	.extern BattleMon_HasMove
@@ -499,16 +499,16 @@ _021EF87C:
 	.word ADDR_021F63F4
 _021EF880: .word FUN_overlay_d_93__021ef988
 
-	thumb_func_start FUN_overlay_d_93__021ef884
-FUN_overlay_d_93__021ef884: ; 0x021EF884
+	thumb_func_start GlobalBattlefield_GetWeather
+GlobalBattlefield_GetWeather: ; 0x021EF884
 	ldr r0, _021EF88C ; =0x021F63F4
-	ldr r3, _021EF890 ; =LAB_overlay_d_93__021ef9a8
+	ldr r3, _021EF890 ; =Battlefield_GetWeather
 	bx r3
 	nop
-	thumb_func_end FUN_overlay_d_93__021ef884
+	thumb_func_end GlobalBattlefield_GetWeather
 _021EF88C:
 	.word ADDR_021F63F4
-_021EF890: .word LAB_overlay_d_93__021ef9a8
+_021EF890: .word Battlefield_GetWeather
 
 	thumb_func_start FUN_overlay_d_93__021ef894
 FUN_overlay_d_93__021ef894: ; 0x021EF894
@@ -535,16 +535,16 @@ _021EF8B0:
 	.word ADDR_021F63F4
 _021EF8B4: .word FUN_overlay_d_93__021ef9c0
 
-	thumb_func_start FUN_overlay_d_93__021ef8b8
-FUN_overlay_d_93__021ef8b8: ; 0x021EF8B8
+	thumb_func_start GlobalBattlefield_TurnCheckWeather
+GlobalBattlefield_TurnCheckWeather: ; 0x021EF8B8
 	ldr r0, _021EF8C0 ; =0x021F63F4
-	ldr r3, _021EF8C4 ; =LAB_overlay_d_93__021ef9d0
+	ldr r3, _021EF8C4 ; =Battlefield_TurnCheckWeather
 	bx r3
 	nop
-	thumb_func_end FUN_overlay_d_93__021ef8b8
+	thumb_func_end GlobalBattlefield_TurnCheckWeather
 _021EF8C0:
 	.word ADDR_021F63F4
-_021EF8C4: .word LAB_overlay_d_93__021ef9d0
+_021EF8C4: .word Battlefield_TurnCheckWeather
 
 	thumb_func_start FUN_overlay_d_93__021ef8c8
 FUN_overlay_d_93__021ef8c8: ; 0x021EF8C8
@@ -690,13 +690,13 @@ _021EF990:
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
 
-	thumb_func_start LAB_overlay_d_93__021ef9a8
-LAB_overlay_d_93__021ef9a8: ; 0x021EF9A8
+	thumb_func_start Battlefield_GetWeather
+Battlefield_GetWeather: ; 0x021EF9A8
 	ldr r0, [r0]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	bx lr
-	thumb_func_end LAB_overlay_d_93__021ef9a8
+	thumb_func_end Battlefield_GetWeather
 
 	thumb_func_start LAB_overlay_d_93__021ef9b0
 LAB_overlay_d_93__021ef9b0: ; 0x021EF9B0
@@ -721,8 +721,8 @@ FUN_overlay_d_93__021ef9c0: ; 0x021EF9C0
 _021EF9C8:
 	.byte 0x00, 0x21, 0x01, 0x60, 0x41, 0x60, 0x70, 0x47
 
-	thumb_func_start LAB_overlay_d_93__021ef9d0
-LAB_overlay_d_93__021ef9d0: ; 0x021EF9D0
+	thumb_func_start Battlefield_TurnCheckWeather
+Battlefield_TurnCheckWeather: ; 0x021EF9D0
 	ldr r2, [r0]
 	cmp r2, #0
 	beq _021EF9EE
@@ -738,7 +738,7 @@ LAB_overlay_d_93__021ef9d0: ; 0x021EF9D0
 	str r1, [r0]
 	add r0, r2, #0
 	bx lr
-	thumb_func_end LAB_overlay_d_93__021ef9d0
+	thumb_func_end Battlefield_TurnCheckWeather
 _021EF9EE:
 	mov r0, #0
 	bx lr
@@ -1085,7 +1085,7 @@ _021EFC3A:
 	bne _021EFC6A
 	ldr r0, [sp]
 	add r1, r4, #0
-	bl PokemonContainer_GetBattleMonConst
+	bl PokemonContainer_GetActiveBattleMonConst
 	ldr r1, [sp, #4]
 	bl BattleMon_HasMove
 	cmp r0, #0

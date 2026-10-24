@@ -5557,14 +5557,14 @@ FUN_overlay_d_93__021d70e4: ; 0x021D70E4
 	pop {r3, pc}
 	thumb_func_end FUN_overlay_d_93__021d70e4
 
-	thumb_func_start FUN_overlay_d_93__021d70f0
-FUN_overlay_d_93__021d70f0: ; 0x021D70F0
+	thumb_func_start BattleEvent_CallEventHandlers
+BattleEvent_CallEventHandlers: ; 0x021D70F0
 	push {r3, lr}
 	mov r2, #7
 	mov r3, #1
 	bl FUN_overlay_d_93__021d7108
 	pop {r3, pc}
-	thumb_func_end FUN_overlay_d_93__021d70f0
+	thumb_func_end BattleEvent_CallEventHandlers
 
 	thumb_func_start FUN_overlay_d_93__021d70fc
 FUN_overlay_d_93__021d70fc: ; 0x021D70FC

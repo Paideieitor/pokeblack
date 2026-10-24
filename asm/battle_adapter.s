@@ -34,7 +34,7 @@
 	.extern MainModule_GetBattleType
 	.extern FUN_overlay_d_93__021b8bd0
 	.extern FUN_overlay_d_93__021b8ce8
-	.extern PokemonContainer_GetBattleMonConst
+	.extern PokemonContainer_GetActiveBattleMonConst
 	.extern MainModule_TrainerParamsCheckInfo
 	.extern FUN_overlay_d_93__021b9fac
 	.extern FUN_overlay_d_93__021ba004
@@ -48,7 +48,7 @@
 	.extern FUN_overlay_d_93__021d4c60
 	.extern FUN_overlay_d_93__021d4c6c
 	.extern FUN_overlay_d_93__021d4c84
-	.extern thunk_FUN_overlay_d_93__021b8d08
+	.extern thunk_GetBattleSlotClient
 	.extern thunk_GlobalBattleNet_ClearClientRecvBuffers
 	.extern Heap_AllocDebug
 	.extern Heap_Free
@@ -520,7 +520,7 @@ FUN_overlay_d_93__021eed00: ; 0x021EED00
 	ldr r0, [r4, #4]
 	add r5, r1, #0
 	add r1, r2, #0
-	bl PokemonContainer_GetBattleMonConst
+	bl PokemonContainer_GetActiveBattleMonConst
 	bl BattleMon_GetVisibleMon
 	add r2, r0, #0
 	ldr r0, [r4, #8]
@@ -540,7 +540,7 @@ FUN_overlay_d_93__021eed24: ; 0x021EED24
 	ldr r0, [r4, #4]
 	add r5, r1, #0
 	add r1, r2, #0
-	bl PokemonContainer_GetBattleMonConst
+	bl PokemonContainer_GetActiveBattleMonConst
 	bl BattleMon_GetPokemon
 	add r2, r0, #0
 	ldr r0, [r4, #8]
@@ -560,7 +560,7 @@ FUN_overlay_d_93__021eed48: ; 0x021EED48
 	ldr r0, [r4, #4]
 	add r5, r1, #0
 	add r1, r2, #0
-	bl PokemonContainer_GetBattleMonConst
+	bl PokemonContainer_GetActiveBattleMonConst
 	bl BattleMon_GetVisibleMon
 	add r2, r0, #0
 	ldr r0, [r4, #8]
@@ -1210,7 +1210,7 @@ FUN_overlay_d_93__021ef204: ; 0x021EF204
 	lsr r0, r0, #0x18
 	cmp r1, #0
 	bne _021EF24E
-	bl thunk_FUN_overlay_d_93__021b8d08
+	bl thunk_GetBattleSlotClient
 	ldr r5, _021EF27C ; =0x021F6398
 	add r2, r0, #0
 	ldr r1, [r5, #0x54]
@@ -1276,7 +1276,7 @@ FUN_overlay_d_93__021ef280: ; 0x021EF280
 	lsr r0, r0, #0x18
 	cmp r1, #0
 	bne _021EF2D0
-	bl thunk_FUN_overlay_d_93__021b8d08
+	bl thunk_GetBattleSlotClient
 	ldr r4, _021EF3A0 ; =0x021F6398
 	add r2, r0, #0
 	ldr r1, [r4, #0x54]
@@ -1317,7 +1317,7 @@ _021EF2E0:
 	cmp r0, #0
 	bne _021EF31E
 	add r0, r6, #0
-	bl thunk_FUN_overlay_d_93__021b8d08
+	bl thunk_GetBattleSlotClient
 	ldr r4, _021EF3A0 ; =0x021F6398
 	add r2, r0, #0
 	ldr r1, [r4, #0x54]
@@ -1360,7 +1360,7 @@ _021EF32E:
 	cmp r0, #0
 	bne _021EF36C
 	add r0, r6, #0
-	bl thunk_FUN_overlay_d_93__021b8d08
+	bl thunk_GetBattleSlotClient
 	ldr r6, _021EF3A0 ; =0x021F6398
 	add r2, r0, #0
 	ldr r1, [r6, #0x54]
@@ -1462,7 +1462,7 @@ _021EF480:
 	lsr r0, r0, #0x18
 	cmp r1, #0
 	bne _021EF4DC
-	bl thunk_FUN_overlay_d_93__021b8d08
+	bl thunk_GetBattleSlotClient
 	ldr r4, _021EF504 ; =0x021F6398
 	add r2, r0, #0
 	ldr r1, [r4, #0x54]
@@ -1547,7 +1547,7 @@ FUN_overlay_d_93__021ef5e8: ; 0x021EF5E8
 	cmp r0, #0
 	bne _021EF62E
 	add r0, r4, #0
-	bl thunk_FUN_overlay_d_93__021b8d08
+	bl thunk_GetBattleSlotClient
 	ldr r5, _021EF660 ; =0x021F6398
 	add r2, r0, #0
 	ldr r1, [r5, #0x54]

@@ -318,7 +318,7 @@
 	.extern FUN_overlay_d_93__021b8bd0
 	.extern MainModule_GetClientBattlePosition
 	.extern FUN_overlay_d_93__021b8c50
-	.extern FUN_overlay_d_93__021b8d8c
+	.extern MainModule_BattleSlotToBattlePosition
 	.extern FUN_overlay_d_93__021b8e70
 	.extern FUN_overlay_d_93__021b8ed8
 	.extern FUN_overlay_d_93__021b8f38
@@ -326,17 +326,17 @@
 	.extern FUN_overlay_d_93__021b8f7c
 	.extern FUN_overlay_d_93__021b8fc0
 	.extern FUN_overlay_d_93__021b8fe4
-	.extern FUN_overlay_d_93__021b8ff4
+	.extern MainModule_GetPlayerClientIdx
 	.extern MainModule_GetAllyClientIdx
 	.extern FUN_overlay_d_93__021b90e8
 	.extern FUN_overlay_d_93__021b90f0
 	.extern FUN_overlay_d_93__021b98ac
-	.extern FUN_overlay_d_93__021b9920
+	.extern PokemonContainer_GetPartyBattleMonConst
 	.extern FUN_overlay_d_93__021b9ae0
 	.extern PokemonContainer_GetBattlePartyConst
 	.extern FUN_overlay_d_93__021b9b04
-	.extern BattleParty_GetMemberCount
-	.extern BattleParty_GetMember
+	.extern BattleParty_GetBattleMonCount
+	.extern BattleParty_GetBattleMonConst
 	.extern MainModule_TrainerParamsCheckInfo
 	.extern MainModule_GetTrainerClass
 	.extern FUN_overlay_d_93__021ba1a8
@@ -2341,7 +2341,7 @@ _021E9DFA:
 	ldr r0, [r5, #4]
 	bl FUN_overlay_d_93__021d3d7c
 	str r0, [sp, #8]
-	bl BattleParty_GetMemberCount
+	bl BattleParty_GetBattleMonCount
 	add r7, r0, #0
 	beq _021E9E40
 	add r6, #0x38
@@ -2349,7 +2349,7 @@ _021E9E26:
 	lsl r1, r4, #0x18
 	ldr r0, [sp, #8]
 	lsr r1, r1, #0x18
-	bl BattleParty_GetMember
+	bl BattleParty_GetBattleMonConst
 	mov r1, #0x13
 	bl BattleMon_HasCondition
 	add r1, r5, r4
@@ -2935,7 +2935,7 @@ _021EA2A4:
 	ldr r0, [r7]
 	ldrb r2, [r2, r5]
 	ldr r1, [r7, #8]
-	bl FUN_overlay_d_93__021b8d8c
+	bl MainModule_BattleSlotToBattlePosition
 	strb r0, [r4, r5]
 	add r5, r5, #1
 	cmp r5, r6
@@ -5769,7 +5769,7 @@ _021EB9CE:
 	bne _021EBABA
 	sub r7, #0x1c
 	ldr r0, [r4, r7]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -5879,7 +5879,7 @@ LAB_overlay_d_93__021ebada: ; 0x021EBADA
 	add r0, r6, #0
 	sub r0, #0x1c
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	add r2, r0, #0
 	sub r3, r6, #1
 	ldrb r3, [r4, r3]
@@ -6090,7 +6090,7 @@ _021EBC9E:
 	ldr r0, [sp, #8]
 	sub r0, #0x1c
 	ldr r0, [r6, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	strb r0, [r4, #0xf]
 	ldr r0, [sp, #8]
 	mov r7, #0
@@ -6279,7 +6279,7 @@ LAB_overlay_d_93__021ebe42: ; 0x021EBE42
 	add r0, r6, #0
 	sub r0, #0x1c
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	add r2, r0, #0
 	sub r3, r6, #1
 	ldrb r3, [r4, r3]
@@ -6400,7 +6400,7 @@ LAB_overlay_d_93__021ebf3a: ; 0x021EBF3A
 	add r0, r6, #0
 	sub r0, #0x1c
 	ldr r0, [r4, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	add r2, r0, #0
 	sub r3, r6, #1
 	ldrb r3, [r4, r3]
@@ -7130,7 +7130,7 @@ _021EC5FA:
 	strb r6, [r4, #0x15]
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	add r1, r0, #0
 	mov r0, #0x4d
 	lsl r0, r0, #2
@@ -7316,7 +7316,7 @@ _021EC794:
 	mov r0, #0x4d
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	strb r0, [r4, #7]
 	mov r0, #0
 	str r0, [sp]
@@ -7353,7 +7353,7 @@ _021EC7D0:
 	lsl r7, r7, #2
 	strb r0, [r4, #5]
 	ldr r0, [r5, r7]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	strb r0, [r4, #7]
 	ldrb r1, [r4, #5]
 	ldr r0, [r5, r7]
@@ -7510,7 +7510,7 @@ _021EC938:
 	strb r6, [r4, #0xe]
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	strb r0, [r4, #0xf]
 	add r0, r4, #0
 	str r0, [sp, #0xc]
@@ -7714,7 +7714,7 @@ _021ECADA:
 	mov r0, #0x4d
 	lsl r0, r0, #2
 	ldr r0, [r6, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	strb r0, [r7, #0xf]
 	mov r0, #0x4d
 	lsl r0, r0, #2
@@ -7900,7 +7900,7 @@ LAB_overlay_d_93__021eccac: ; 0x021ECCAC
 	strb r6, [r4, #0x15]
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
-	bl FUN_overlay_d_93__021b8ff4
+	bl MainModule_GetPlayerClientIdx
 	strb r0, [r4, #0x16]
 	add r0, r4, #0
 	str r0, [sp, #0x10]
@@ -8861,7 +8861,7 @@ FUN_overlay_d_93__021ed3d4: ; 0x021ED3D4
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021b9920
+	bl PokemonContainer_GetPartyBattleMonConst
 	add r6, r0, #0
 	mov r0, #0x4e
 	lsl r0, r0, #2
@@ -10647,7 +10647,7 @@ FUN_overlay_d_93__021ee104: ; 0x021EE104
 	add r1, r6, #0
 	bl PokemonContainer_GetBattlePartyConst
 	str r0, [sp, #0x14]
-	bl BattleParty_GetMemberCount
+	bl BattleParty_GetBattleMonCount
 	str r0, [sp, #0xc]
 	cmp r5, #4
 	bhs _021EE166
@@ -10657,7 +10657,7 @@ FUN_overlay_d_93__021ee104: ; 0x021EE104
 	add r1, r5, #0
 	bl PokemonContainer_GetBattlePartyConst
 	str r0, [sp, #0x18]
-	bl BattleParty_GetMemberCount
+	bl BattleParty_GetBattleMonCount
 	str r0, [sp, #0x10]
 	ldr r0, [sp, #0xc]
 	cmp r0, #3
@@ -10701,7 +10701,7 @@ _021EE18E:
 	ldr r0, [r0, r1]
 	lsl r1, r5, #0x18
 	lsr r1, r1, #0x18
-	bl BattleParty_GetMember
+	bl BattleParty_GetBattleMonConst
 	str r0, [sp, #8]
 	bl BattleMon_IsFainted
 	cmp r0, #0
