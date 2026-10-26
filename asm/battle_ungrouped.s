@@ -347,7 +347,7 @@
 	.extern MainModule_IsRecording
 	.extern FUN_overlay_d_93__021b911c
 	.extern FUN_overlay_d_93__021b916c
-	.extern FUN_overlay_d_93__021b92b0
+	.extern MainModule_UpdateFriendshipForFaint
 	.extern PokemonContainer_GetPartyBattleMon
 	.extern PokemonContainer_GetPartyBattleMonConst
 	.extern PokemonContainer_GetActiveBattleMon
@@ -355,8 +355,8 @@
 	.extern FUN_overlay_d_93__021b99c0
 	.extern FUN_overlay_d_93__021b99e0
 	.extern FUN_overlay_d_93__021b99f0
-	.extern FUN_overlay_d_93__021b9a24
-	.extern FUN_overlay_d_93__021b9a40
+	.extern IsBattleSlotAlly
+	.extern GetBattleSlotSide
 	.extern FUN_overlay_d_93__021b9a6c
 	.extern GetRotatedBattleSlot
 	.extern PokemonContainer_GetBattleParty
@@ -510,19 +510,19 @@
 	.extern BattleAction_CheckSwitchDepleteFlag
 	.extern BattleAction_GetType
 	.extern FUN_overlay_d_93__021d8484
-	.extern FUN_overlay_d_93__021d8510
-	.extern FUN_overlay_d_93__021d8538
+	.extern BattleMon_RemoveAbilityEvent
+	.extern BattleMon_PauseAbilityEvent
 	.extern FUN_overlay_d_93__021d8548
 	.extern FUN_overlay_d_93__021d8564
-	.extern FUN_overlay_d_93__021dcf24
+	.extern BattleMon_RemoveItemEvent
 	.extern FUN_overlay_d_93__021dcf5c
 	.extern FUN_overlay_d_93__021dcf78
-	.extern FUN_overlay_d_93__021dcfa4
+	.extern BattleMon_PauseItemEvent
 	.extern FUN_overlay_d_93__021dcfb4
 	.extern FUN_overlay_d_93__021e02dc
 	.extern FUN_overlay_d_93__021e0394
 	.extern FUN_overlay_d_93__021e03d8
-	.extern FUN_overlay_d_93__021e0434
+	.extern BattleMon_RemoveMoveEvents
 	.extern FUN_overlay_d_93__021e8940
 	.extern FUN_overlay_d_93__021e896c
 	.extern FUN_overlay_d_93__021e899c
@@ -554,16 +554,16 @@
 	.extern FUN_overlay_d_93__021ef8c8
 	.extern FUN_overlay_d_93__021ef8e8
 	.extern FUN_overlay_d_93__021ef8f8
-	.extern FUN_overlay_d_93__021ef90c
+	.extern GlobalBattlefield_RemoveDependentFieldEffect
 	.extern FUN_overlay_d_93__021ef91c
 	.extern FUN_overlay_d_93__021ef934
 	.extern Battlefield_CheckEffect
 	.extern GetTypeEffectivenessClass
 	.extern thunk_MainModule_GetFrontlineCount
-	.extern thunk_FUN_overlay_d_93__021b8cfc
+	.extern thunk_MainModule_BattlePositionToClientIdx
 	.extern thunk_GetBattleSlotClient
 	.extern thunk_FUN_overlay_d_93__021b98ac
-	.extern thunk_FUN_overlay_d_93__021d7040
+	.extern thunk_BattleEvent_RemoveItem
 	.extern ADDR_0201B718
 	.extern ADDR_0201C314
 	.extern ADDR_02082BCC
@@ -1170,7 +1170,7 @@ _021BB060:
 	add r1, r5, r4
 	ldrb r1, [r1, r6]
 	ldr r0, [r5, #0xc]
-	bl thunk_FUN_overlay_d_93__021b8cfc
+	bl thunk_MainModule_BattlePositionToClientIdx
 	cmp r0, #0
 	bne _021BB072
 	mov r0, #0
@@ -3503,12 +3503,12 @@ _021BC30A:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021bc310
-FUN_overlay_d_93__021bc310: ; 0x021BC310
+	thumb_func_start ServerFlow_IsPlayerOutOfPokemon
+ServerFlow_IsPlayerOutOfPokemon: ; 0x021BC310
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	mov r4, #0
-	thumb_func_end FUN_overlay_d_93__021bc310
+	thumb_func_end ServerFlow_IsPlayerOutOfPokemon
 _021BC316:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, #4]
@@ -3679,7 +3679,7 @@ FUN_overlay_d_93__021bc418: ; 0x021BC418
 	ldr r1, [sp, #8]
 	add r0, r5, #0
 	mov r2, #1
-	bl FUN_overlay_d_93__021c5108
+	bl ServerFlow_RemoveDependentEvents
 	thumb_func_end FUN_overlay_d_93__021bc418
 _021BC45E:
 	ldr r0, [sp, #4]
@@ -3700,7 +3700,7 @@ _021BC45E:
 	add r0, r5, #0
 	add r2, r7, #0
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 _021BC48C:
 	ldr r0, [sp, #4]
 	mov r1, #0x1e
@@ -3712,7 +3712,7 @@ _021BC48C:
 	add r0, r5, #0
 	add r2, r7, #0
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 _021BC4A6:
 	ldr r0, [sp, #4]
 	bl FUN_overlay_d_93__021d8548
@@ -4594,7 +4594,7 @@ _021BCB26:
 	bl BattleMon_GetBattleSlot
 	add r1, r0, #0
 	add r0, r7, #0
-	bl FUN_overlay_d_93__021b9a24
+	bl IsBattleSlotAlly
 	cmp r0, #0
 	beq _021BCB46
 	ldr r0, [r4]
@@ -4909,7 +4909,7 @@ _021BCD66:
 	add r1, r5, #0
 	add r2, r6, #0
 	mov r3, #0
-	bl FUN_overlay_d_93__021c0780
+	bl ServerFlow_SetBattleCounter
 	b _021BCEBE
 _021BCD74:
 	ldr r2, [r6, #4]
@@ -5664,8 +5664,8 @@ _021BD326:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 
-	thumb_func_start FUN_overlay_d_93__021bd338
-FUN_overlay_d_93__021bd338: ; 0x021BD338
+	thumb_func_start FrontlineSet_SetRotationBattleFlag
+FrontlineSet_SetRotationBattleFlag: ; 0x021BD338
 	push {r4, lr}
 	add r4, r0, #0
 	ldr r0, [r1, #4]
@@ -5674,7 +5674,7 @@ FUN_overlay_d_93__021bd338: ; 0x021BD338
 	bne _021BD34A
 	mov r0, #1
 	strb r0, [r4, #3]
-	thumb_func_end FUN_overlay_d_93__021bd338
+	thumb_func_end FrontlineSet_SetRotationBattleFlag
 _021BD34A:
 	pop {r4, pc}
 
@@ -5797,7 +5797,7 @@ _021BD410:
 	add r0, r5, #0
 	add r1, r6, #0
 	mov r2, #0xe7
-	bl FUN_overlay_d_93__021c5d88
+	bl ServerFlow_Message
 	lsl r2, r4, #0x18
 	add r0, r5, #0
 	add r1, r7, #0
@@ -7007,7 +7007,7 @@ _021BDDA6:
 	add r0, r5, #0
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_overlay_d_93__021c5108
+	bl ServerFlow_RemoveDependentEvents
 	add r0, r4, #0
 	bl BattleMon_ClearForSwitchOut
 	add r0, r4, #0
@@ -7463,7 +7463,7 @@ _021BE180:
 	add r1, r4, #0
 	mov r2, #0x22
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 	add r0, r4, #0
 	mov r1, #0xe
 	bl BattleMon_SetTurnFlag
@@ -7593,7 +7593,7 @@ _021BE2A8:
 	add r1, r4, #0
 	mov r2, #3
 	mov r3, #0
-	bl FUN_overlay_d_93__021c0780
+	bl ServerFlow_SetBattleCounter
 _021BE2C0:
 	ldr r0, [sp, #0x38]
 	cmp r0, #0x10
@@ -7621,7 +7621,7 @@ _021BE2D8:
 	add r0, r5, #0
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_overlay_d_93__021bff60
+	bl ServerFlow_SkyDropRelease
 _021BE300:
 	add r3, sp, #0x44
 	ldrb r3, [r3]
@@ -9240,7 +9240,7 @@ _021BEFBC:
 	bl FUN_overlay_d_93__021bf2b4
 	add r0, r4, #0
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 	ldr r0, [sp, #0x18]
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
@@ -11160,7 +11160,7 @@ FUN_overlay_d_93__021bfe60: ; 0x021BFE60
 	add r1, r4, #0
 	add r2, r6, #0
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 	add r0, r4, #0
 	mov r1, #0xb
 	bl BattleMon_SetTurnFlag
@@ -11228,7 +11228,7 @@ FUN_overlay_d_93__021bfeac: ; 0x021BFEAC
 	add r1, r6, #0
 	mov r2, #4
 	lsr r3, r3, #0x18
-	bl FUN_overlay_d_93__021c0780
+	bl ServerFlow_SetBattleCounter
 	add r0, r6, #0
 	bl BattleMon_GetBattleSlot
 	bl FUN_overlay_d_93__021e899c
@@ -11266,8 +11266,8 @@ _021BFF52:
 _021BFF58: .word 0xFFFF0000
 _021BFF5C: .word 0x0000020B
 
-	thumb_func_start FUN_overlay_d_93__021bff60
-FUN_overlay_d_93__021bff60: ; 0x021BFF60
+	thumb_func_start ServerFlow_SkyDropRelease
+ServerFlow_SkyDropRelease: ; 0x021BFF60
 	push {r3, r4, r5, r6, r7, lr}
 	add r6, r1, #0
 	add r5, r0, #0
@@ -11282,7 +11282,7 @@ FUN_overlay_d_93__021bff60: ; 0x021BFF60
 	lsr r4, r0, #0x18
 	cmp r4, #0x18
 	blo _021BFF80
-	thumb_func_end FUN_overlay_d_93__021bff60
+	thumb_func_end ServerFlow_SkyDropRelease
 _021BFF7E:
 	mov r4, #0x1f
 _021BFF80:
@@ -11300,7 +11300,7 @@ _021BFF80:
 	add r1, r7, #0
 	mov r2, #0x21
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 	add r0, r5, #0
 	add r1, r7, #0
 	mov r2, #3
@@ -11319,14 +11319,14 @@ _021BFF80:
 	ldr r2, _021C0008 ; =0x00000465
 	add r0, r5, #0
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021c5d88
+	bl ServerFlow_Message
 _021BFFD2:
 	add r0, r5, #0
 	add r1, r6, #0
 	mov r2, #4
 	mov r3, #0
 	mov r4, #0
-	bl FUN_overlay_d_93__021c0780
+	bl ServerFlow_SetBattleCounter
 	ldr r0, [sp]
 	cmp r0, #0
 	bne _021C0002
@@ -11762,7 +11762,7 @@ _021C0348:
 	add r1, r4, #0
 	add r2, r6, #0
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 	add r0, r4, #0
 	bl BattleMon_GetBattleSlot
 	add r3, r0, #0
@@ -11894,7 +11894,7 @@ FUN_overlay_d_93__021c0450: ; 0x021C0450
 	bl FUN_overlay_d_93__021c63d0
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 	cmp r0, #0
 	beq _021C04DE
 	add r0, r5, #0
@@ -12276,8 +12276,8 @@ _021C0774: .word 0x0000037D
 _021C0778: .word 0x000001C3
 _021C077C: .word 0x0000043E
 
-	thumb_func_start FUN_overlay_d_93__021c0780
-FUN_overlay_d_93__021c0780: ; 0x021C0780
+	thumb_func_start ServerFlow_SetBattleCounter
+ServerFlow_SetBattleCounter: ; 0x021C0780
 	push {r3, r4, r5, r6, r7, lr}
 	add r7, r1, #0
 	add r6, r0, #0
@@ -12297,7 +12297,7 @@ FUN_overlay_d_93__021c0780: ; 0x021C0780
 	add r2, r4, #0
 	bl BattleMon_SetCounter
 	pop {r3, r4, r5, r6, r7, pc}
-	thumb_func_end FUN_overlay_d_93__021c0780
+	thumb_func_end ServerFlow_SetBattleCounter
 
 	thumb_func_start FUN_overlay_d_93__021c07ac
 FUN_overlay_d_93__021c07ac: ; 0x021C07AC
@@ -13982,7 +13982,7 @@ _021C1472:
 	lsl r1, r4, #2
 	ldr r1, [r6, r1]
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 	ldr r0, [sp, #0x18]
 	add r4, r4, #1
 	cmp r4, r0
@@ -13990,7 +13990,7 @@ _021C1472:
 _021C1484:
 	ldr r1, [sp, #0x44]
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 	ldr r0, [sp, #0x2c]
 	add sp, #0x48
 	pop {r3, r4, r5, r6, r7, pc}
@@ -15198,7 +15198,7 @@ FUN_overlay_d_93__021c1dcc: ; 0x021C1DCC
 	ldr r2, _021C1E10 ; =0x00000383
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021c5d88
+	bl ServerFlow_Message
 	thumb_func_end FUN_overlay_d_93__021c1dcc
 _021C1E0E:
 	pop {r3, r4, r5, r6, r7, pc}
@@ -15558,7 +15558,7 @@ _021C20FC:
 	bl ServerFlow_EventCheckItemReaction
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 	cmp r0, #0
 	beq _021C211E
 	add r0, r5, #0
@@ -15751,7 +15751,7 @@ FUN_overlay_d_93__021c2250: ; 0x021C2250
 	thumb_func_end FUN_overlay_d_93__021c2250
 _021C22A2:
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021dcf24
+	bl BattleMon_RemoveItemEvent
 	ldr r0, [r5, #0xc]
 	ldr r2, [sp, #4]
 	mov r1, #0x1e
@@ -15809,7 +15809,7 @@ FUN_overlay_d_93__021c2314: ; 0x021C2314
 	bl FUN_overlay_d_93__021c5be4
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021c2314
@@ -16656,7 +16656,7 @@ _021C29B8:
 	cmp r0, #1
 	bne _021C2A06
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d8510
+	bl BattleMon_RemoveAbilityEvent
 	add r0, r5, #0
 	mov r1, #0
 	bl BattleMon_ChangeForm
@@ -16672,7 +16672,7 @@ _021C29B8:
 	add r0, r4, #0
 	add r1, r5, #0
 	mov r2, #0xde
-	bl FUN_overlay_d_93__021c5d88
+	bl ServerFlow_Message
 _021C2A06:
 	ldr r0, _021C2A98 ; =0x00001D74
 	mov r1, #0x1f
@@ -16705,7 +16705,7 @@ _021C2A30:
 	bne _021C2A5E
 	add r0, r4, #0
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021c3fdc
+	bl ServerEvent_UnnerveReaction
 	b _021C2A5E
 _021C2A52:
 	add r0, r4, #0
@@ -18184,7 +18184,7 @@ _021C360A:
 _021C361A:
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 	b _021C3638
 _021C3624:
 	add r0, r5, #0
@@ -19356,7 +19356,7 @@ _021C3F54:
 	bne _021C3F60
 	add r0, r5, #0
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021c3fdc
+	bl ServerEvent_UnnerveReaction
 _021C3F60:
 	ldr r0, [sp, #0x10]
 	mov r1, #0x10
@@ -19374,7 +19374,7 @@ _021C3F7A:
 	bne _021C3F96
 	ldr r1, [sp, #0x10]
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021c3fdc
+	bl ServerEvent_UnnerveReaction
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
 _021C3F8A:
@@ -19426,8 +19426,8 @@ thunk_EXT_FUN_0689c954: ; 0x021C3FD0
 	arm_func_end thunk_EXT_FUN_0689c954
 _021C3FD8: .word 0x0689C955
 
-	thumb_func_start FUN_overlay_d_93__021c3fdc
-FUN_overlay_d_93__021c3fdc: ; 0x021C3FDC
+	thumb_func_start ServerEvent_UnnerveReaction
+ServerEvent_UnnerveReaction: ; 0x021C3FDC
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8
 	add r5, r0, #0
@@ -19445,13 +19445,13 @@ FUN_overlay_d_93__021c3fdc: ; 0x021C3FDC
 	cmp r0, #0
 	beq _021C402E
 	mov r6, #0
-	thumb_func_end FUN_overlay_d_93__021c3fdc
+	thumb_func_end ServerEvent_UnnerveReaction
 _021C4004:
 	ldr r0, [sp]
 	bl BattleMon_GetBattleSlot
 	add r1, r0, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021b9a24
+	bl IsBattleSlotAlly
 	cmp r0, #0
 	bne _021C4020
 	ldr r1, [sp]
@@ -19546,7 +19546,7 @@ _021C40D6:
 	add r0, r5, #0
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl FUN_overlay_d_93__021c5d88
+	bl ServerFlow_Message
 _021C40E2:
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
@@ -19589,7 +19589,7 @@ FUN_overlay_d_93__021c4104: ; 0x021C4104
 	ldr r1, [sp, #0x30]
 	ldr r2, _021C41BC ; =0x00000317
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021c5d88
+	bl ServerFlow_Message
 	mov r7, #0
 	str r7, [sp]
 	add r0, r5, #0
@@ -19669,7 +19669,7 @@ FUN_overlay_d_93__021c41c0: ; 0x021C41C0
 	ldr r2, _021C4204 ; =0x0000031A
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021c5d88
+	bl ServerFlow_Message
 	add r0, r6, #0
 	bl BattleMon_RemoveSubstitute
 	ldr r0, [r5, #0xc]
@@ -20511,7 +20511,7 @@ _021C488A:
 	bl FUN_overlay_d_93__021cc95c
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 	add r0, r5, #0
 	bl ServerFlow_CheckMatchup
 	cmp r0, #0
@@ -20984,8 +20984,8 @@ _021C4D10:
 _021C4D18:
 	.byte 0x8D, 0xCC, 0x89, 0x06
 
-	thumb_func_start FUN_overlay_d_93__021c4d1c
-FUN_overlay_d_93__021c4d1c: ; 0x021C4D1C
+	thumb_func_start ServerFlow_TurnCheckWeather
+ServerFlow_TurnCheckWeather: ; 0x021C4D1C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	add r5, r0, #0
@@ -21002,7 +21002,7 @@ FUN_overlay_d_93__021c4d1c: ; 0x021C4D1C
 	add sp, #0x14
 	mov r0, #0
 	pop {r4, r5, r6, r7, pc}
-	thumb_func_end FUN_overlay_d_93__021c4d1c
+	thumb_func_end ServerFlow_TurnCheckWeather
 _021C4D42:
 	mov r0, #0
 	str r0, [sp, #0xc]
@@ -21063,7 +21063,7 @@ _021C4DBA:
 	bl FUN_overlay_d_93__021cc95c
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021c4f64
+	bl ServerFlow_CheckFainted
 _021C4DCE:
 	ldr r0, [sp, #8]
 	bl FUN_021C4E28
@@ -21270,8 +21270,8 @@ _021C4F56:
 _021C4F5C: .word 0x00001AE4
 _021C4F60: .word 0x0000018F
 
-	thumb_func_start FUN_overlay_d_93__021c4f64
-FUN_overlay_d_93__021c4f64: ; 0x021C4F64
+	thumb_func_start ServerFlow_CheckFainted
+ServerFlow_CheckFainted: ; 0x021C4F64
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8
 	add r7, r1, #0
@@ -21305,7 +21305,7 @@ FUN_overlay_d_93__021c4f64: ; 0x021C4F64
 	bl thunk_GetBattleSlotClient
 	cmp r0, #0
 	bne _021C4FC8
-	thumb_func_end FUN_overlay_d_93__021c4f64
+	thumb_func_end ServerFlow_CheckFainted
 _021C4FB0:
 	ldr r0, _021C506C ; =0x00000789
 	ldrb r0, [r4, r0]
@@ -21328,7 +21328,7 @@ _021C4FC8:
 	add r0, r4, #0
 	add r1, r7, #0
 	mov r2, #0
-	bl FUN_overlay_d_93__021c5108
+	bl ServerFlow_RemoveDependentEvents
 	add r0, r7, #0
 	bl BattleMon_ClearForFainted
 	add r0, r6, #0
@@ -21343,7 +21343,7 @@ _021C4FC8:
 	bl BattleMon_Get
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021c5098
+	bl ServerFlow_GetOpponentMaxLevel
 	add r5, #0x1e
 	cmp r5, r0
 	bgt _021C5012
@@ -21353,7 +21353,7 @@ _021C5012:
 	ldr r0, [r4, #4]
 	ldr r2, [sp, #4]
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021b92b0
+	bl MainModule_UpdateFriendshipForFaint
 _021C501C:
 	ldr r0, _021C5074 ; =0x00001AB8
 	add r1, r6, #0
@@ -21424,8 +21424,8 @@ thunk_EXT_FUN_0689d2f8: ; 0x021C508C
 	arm_func_end thunk_EXT_FUN_0689d2f8
 _021C5094: .word 0x0689D2F9
 
-	thumb_func_start FUN_overlay_d_93__021c5098
-FUN_overlay_d_93__021c5098: ; 0x021C5098
+	thumb_func_start ServerFlow_GetOpponentMaxLevel
+ServerFlow_GetOpponentMaxLevel: ; 0x021C5098
 	push {r3, r4, r5, r6, r7, lr}
 	add r5, r0, #0
 	ldr r0, [r5, #4]
@@ -21436,12 +21436,12 @@ FUN_overlay_d_93__021c5098: ; 0x021C5098
 	bl MainModule_GetPlayerClientIdx
 	str r0, [sp]
 	mov r4, #0
-	thumb_func_end FUN_overlay_d_93__021c5098
+	thumb_func_end ServerFlow_GetOpponentMaxLevel
 _021C50B0:
 	lsl r1, r4, #0x18
 	ldr r0, [r5, #4]
 	lsr r1, r1, #0x18
-	bl thunk_FUN_overlay_d_93__021b8cfc
+	bl thunk_MainModule_BattlePositionToClientIdx
 	add r1, r0, #0
 	ldr r0, [sp]
 	bl AreClientsAllies
@@ -21485,8 +21485,8 @@ thunk_EXT_FUN_0689d5fc: ; 0x021C50FC
 	arm_func_end thunk_EXT_FUN_0689d5fc
 _021C5104: .word 0x0689D5FD
 
-	thumb_func_start FUN_overlay_d_93__021c5108
-FUN_overlay_d_93__021c5108: ; 0x021C5108
+	thumb_func_start ServerFlow_RemoveDependentEvents
+ServerFlow_RemoveDependentEvents: ; 0x021C5108
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8
 	add r6, r1, #0
@@ -21497,33 +21497,33 @@ FUN_overlay_d_93__021c5108: ; 0x021C5108
 	add r4, r0, #0
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021c51d0
+	bl ServerEvent_BeforeFainting
 	add r0, r5, #0
 	add r1, r6, #0
 	mov r2, #0
-	bl FUN_overlay_d_93__021bff60
+	bl ServerFlow_SkyDropRelease
 	cmp r7, #0
 	bne _021C513E
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d8510
+	bl BattleMon_RemoveAbilityEvent
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021dcf24
+	bl BattleMon_RemoveItemEvent
 	b _021C514A
-	thumb_func_end FUN_overlay_d_93__021c5108
+	thumb_func_end ServerFlow_RemoveDependentEvents
 _021C513E:
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021d8538
+	bl BattleMon_PauseAbilityEvent
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021dcfa4
+	bl BattleMon_PauseItemEvent
 _021C514A:
 	add r0, r6, #0
-	bl FUN_overlay_d_93__021e0434
+	bl BattleMon_RemoveMoveEvents
 	add r0, sp, #4
 	add r1, r5, #0
 	bl FrontlineSet_InitSeek
 	add r0, sp, #4
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021bd338
+	bl FrontlineSet_SetRotationBattleFlag
 	add r0, sp, #4
 	add r1, r5, #0
 	add r2, sp, #0
@@ -21550,7 +21550,7 @@ _021C5170:
 	bne _021C5170
 _021C5198:
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021ef90c
+	bl GlobalBattlefield_RemoveDependentFieldEffect
 	ldr r0, [r5, #0xc]
 	mov r1, #0x23
 	add r2, r4, #0
@@ -21568,14 +21568,14 @@ _021C5198:
 	bne _021C51CA
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021c3fdc
+	bl ServerEvent_UnnerveReaction
 _021C51CA:
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021c51d0
-FUN_overlay_d_93__021c51d0: ; 0x021C51D0
+	thumb_func_start ServerEvent_BeforeFainting
+ServerEvent_BeforeFainting: ; 0x021C51D0
 	push {r4, r5, r6, lr}
 	ldr r6, _021C51FC ; =0x000027DF
 	add r5, r0, #0
@@ -21594,7 +21594,7 @@ FUN_overlay_d_93__021c51d0: ; 0x021C51D0
 	bl BattleEvent_Pop
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021c51d0
+	thumb_func_end ServerEvent_BeforeFainting
 _021C51FC: .word 0x000027DF
 
 	thumb_func_start FUN_overlay_d_93__021c5200
@@ -21652,7 +21652,7 @@ _021C522E:
 	cmp r0, #0
 	beq _021C5298
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021bc310
+	bl ServerFlow_IsPlayerOutOfPokemon
 	cmp r0, #0
 	beq _021C5298
 	ldr r0, [r5, #4]
@@ -21756,7 +21756,7 @@ FUN_overlay_d_93__021c5308: ; 0x021C5308
 	add r5, r0, #0
 	add r0, r4, #0
 	bl BattleMon_GetBattleSlot
-	bl FUN_overlay_d_93__021b9a40
+	bl GetBattleSlotSide
 	cmp r0, #1
 	bne _021C5346
 	ldr r0, [r5, #4]
@@ -21770,7 +21770,7 @@ FUN_overlay_d_93__021c5308: ; 0x021C5308
 	add r0, r5, #0
 	add r1, r6, #0
 	add r3, r5, r4
-	bl FUN_overlay_d_93__021cb2d4
+	bl ServerFlow_AddExpAndEVs
 	add r0, r5, #0
 	add r1, r6, #0
 	add r2, r5, r4
@@ -21912,7 +21912,7 @@ FUN_overlay_d_93__021c5418: ; 0x021C5418
 	add r1, r4, #0
 	add r2, r7, #0
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 	thumb_func_end FUN_overlay_d_93__021c5418
 _021C5458:
 	ldr r0, [r5, #0xc]
@@ -21976,12 +21976,12 @@ _021C54B8:
 	thumb_func_start FUN_overlay_d_93__021c54bc
 FUN_overlay_d_93__021c54bc: ; 0x021C54BC
 	mov r2, #0x35
-	ldr r3, _021C54C4 ; =FUN_overlay_d_93__021c5d88
+	ldr r3, _021C54C4 ; =ServerFlow_Message
 	lsl r2, r2, #4
 	bx r3
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021c54bc
-_021C54C4: .word FUN_overlay_d_93__021c5d88
+_021C54C4: .word ServerFlow_Message
 
 	thumb_func_start FUN_overlay_d_93__021c54c8
 FUN_overlay_d_93__021c54c8: ; 0x021C54C8
@@ -22156,8 +22156,8 @@ FUN_overlay_d_93__021c5604: ; 0x021C5604
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021c5604
 
-	thumb_func_start FUN_overlay_d_93__021c5620
-FUN_overlay_d_93__021c5620: ; 0x021C5620
+	thumb_func_start ServerFlow_CureCondition
+ServerFlow_CureCondition: ; 0x021C5620
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8
 	add r4, r2, #0
@@ -22175,7 +22175,7 @@ FUN_overlay_d_93__021c5620: ; 0x021C5620
 	add r1, r4, #0
 	bl BattleMon_GetConditionData
 	str r0, [r7]
-	thumb_func_end FUN_overlay_d_93__021c5620
+	thumb_func_end ServerFlow_CureCondition
 _021C5646:
 	cmp r4, #6
 	bge _021C5678
@@ -23172,8 +23172,8 @@ _021C5D7C: .word 0xFFFF0000
 _021C5D80: .word 0x00000162
 _021C5D84: .word 0x0000078A
 
-	thumb_func_start FUN_overlay_d_93__021c5d88
-FUN_overlay_d_93__021c5d88: ; 0x021C5D88
+	thumb_func_start ServerFlow_Message
+ServerFlow_Message: ; 0x021C5D88
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r0, r1, #0
@@ -23188,7 +23188,7 @@ FUN_overlay_d_93__021c5d88: ; 0x021C5D88
 	bl ServerDisplay_Message
 	pop {r3, r4, r5, pc}
 	nop
-	thumb_func_end FUN_overlay_d_93__021c5d88
+	thumb_func_end ServerFlow_Message
 _021C5DA8: .word 0xFFFF0000
 
 	thumb_func_start ServerFlow_DisplayMessageSimple
@@ -26894,7 +26894,7 @@ FUN_overlay_d_93__021c7c24: ; 0x021C7C24
 	add r6, r0, #0
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
-	bl FUN_overlay_d_93__021b9a24
+	bl IsBattleSlotAlly
 	cmp r0, #0
 	bne _021C7C5E
 	mov r0, #1
@@ -27704,7 +27704,7 @@ FUN_overlay_d_93__021c8494: ; 0x021C8494
 	add r1, r0, #0
 	add r0, r4, #0
 	mov r2, #1
-	bl FUN_overlay_d_93__021bff60
+	bl ServerFlow_SkyDropRelease
 	pop {r4, pc}
 	.balign 4, 0
 	thumb_func_end FUN_overlay_d_93__021c8494
@@ -29309,7 +29309,7 @@ _021C90E0:
 	add r1, r4, #0
 	add r2, r6, #0
 	add r3, sp, #0x1c
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 	ldr r0, [sp, #4]
 	ldrb r0, [r0, #0x15]
 	cmp r0, #0
@@ -30663,7 +30663,7 @@ _021C9AC0:
 	add r2, r2, #2
 	bl FUN_overlay_d_93__021cc95c
 	add r0, r7, #0
-	bl FUN_overlay_d_93__021d8510
+	bl BattleMon_RemoveAbilityEvent
 	ldrh r1, [r4, #4]
 	add r0, r7, #0
 	bl BattleMon_ChangeAbility
@@ -30726,7 +30726,7 @@ _021C9B86:
 	bne _021C9B92
 	add r0, r5, #0
 	add r1, r7, #0
-	bl FUN_overlay_d_93__021c3fdc
+	bl ServerEvent_UnnerveReaction
 _021C9B92:
 	add sp, #0xc
 	mov r0, #1
@@ -31110,7 +31110,7 @@ _021C9EA2:
 	add r1, r7, #0
 	bl FUN_overlay_d_93__021cc95c
 	ldr r0, [sp]
-	bl thunk_FUN_overlay_d_93__021d7040
+	bl thunk_BattleEvent_RemoveItem
 	add sp, #8
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
@@ -31201,7 +31201,7 @@ FUN_overlay_d_93__021c9f4c: ; 0x021C9F4C
 	ldrb r2, [r4, #5]
 	ldrb r3, [r4, #6]
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021c0780
+	bl ServerFlow_SetBattleCounter
 	mov r0, #1
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
@@ -31934,9 +31934,9 @@ FUN_overlay_d_93__021ca47c: ; 0x021CA47C
 	thumb_func_end FUN_overlay_d_93__021ca47c
 _021CA4F6:
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021e0434
+	bl BattleMon_RemoveMoveEvents
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d8510
+	bl BattleMon_RemoveAbilityEvent
 	add r0, r4, #0
 	bl FUN_overlay_d_93__021d8484
 	ldr r0, [r5, #0xc]
@@ -32116,7 +32116,7 @@ _021CA65E:
 	add r1, r4, #0
 	mov r2, #0x1e
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 	mov r7, #1
 _021CA678:
 	add r0, r4, #0
@@ -32128,7 +32128,7 @@ _021CA678:
 	add r1, r4, #0
 	mov r2, #0x20
 	mov r3, #0
-	bl FUN_overlay_d_93__021c5620
+	bl ServerFlow_CureCondition
 	mov r7, #1
 _021CA692:
 	cmp r7, #0
@@ -33450,7 +33450,7 @@ FUN_overlay_d_93__021cafd8: ; 0x021CAFD8
 	bl BattleMon_GetBattleSlot
 	add r1, r0, #0
 	ldr r0, [sp, #4]
-	bl FUN_overlay_d_93__021b9a24
+	bl IsBattleSlotAlly
 	cmp r0, #0
 	beq _021CB028
 	thumb_func_end FUN_overlay_d_93__021cafd8
@@ -33818,8 +33818,8 @@ _021CB2CE:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021cb2d4
-FUN_overlay_d_93__021cb2d4: ; 0x021CB2D4
+	thumb_func_start ServerFlow_AddExpAndEVs
+ServerFlow_AddExpAndEVs: ; 0x021CB2D4
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x30
 	str r0, [sp]
@@ -33844,7 +33844,7 @@ FUN_overlay_d_93__021cb2d4: ; 0x021CB2D4
 	mov r1, #0xa
 	blx FUN_0209C2B0
 	str r0, [sp, #0x20]
-	thumb_func_end FUN_overlay_d_93__021cb2d4
+	thumb_func_end ServerFlow_AddExpAndEVs
 _021CB30C:
 	mov r6, #0
 	add r4, r6, #0
@@ -35501,7 +35501,7 @@ FUN_overlay_d_93__021cbfa0: ; 0x021CBFA0
 	add r5, r0, #0
 	add r0, r1, #0
 	bl BattleMon_GetBattleSlot
-	bl FUN_overlay_d_93__021b9a40
+	bl GetBattleSlotSide
 	add r6, r0, #0
 	mov r0, #5
 	bl FUN_overlay_d_93__021e8940
@@ -36033,7 +36033,7 @@ _021CC71E:
 	bl FUN_021CC758
 	cmp r0, #0x1f
 	beq _021CC744
-	bl FUN_overlay_d_93__021b9a40
+	bl GetBattleSlotSide
 	cmp r0, r4
 	bne _021CC740
 	mov r0, #1

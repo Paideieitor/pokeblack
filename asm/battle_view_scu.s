@@ -362,7 +362,7 @@
 	.extern FUN_overlay_d_93__021ef6a8
 	.extern FUN_overlay_d_93__021ef6e8
 	.extern thunk_MainModule_GetFrontlineCount
-	.extern thunk_FUN_overlay_d_93__021b8cfc
+	.extern thunk_MainModule_BattlePositionToClientIdx
 	.extern FUN_02045838
 	.extern ADDR_020082B8
 	.extern ADDR_020082D4
@@ -5644,7 +5644,7 @@ _021EB8BE:
 	sub r0, #0x1c
 	ldr r0, [r4, r0]
 	ldr r1, [sp, #4]
-	bl thunk_FUN_overlay_d_93__021b8cfc
+	bl thunk_MainModule_BattlePositionToClientIdx
 	str r0, [sp, #8]
 	add r0, r7, #0
 	sub r0, #0x1c

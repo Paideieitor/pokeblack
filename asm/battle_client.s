@@ -342,7 +342,7 @@
 	.extern PokemonContainer_GetPartyBattleMonConst
 	.extern PokemonContainer_GetActiveBattleMon
 	.extern FUN_overlay_d_93__021b99c0
-	.extern FUN_overlay_d_93__021b9a24
+	.extern IsBattleSlotAlly
 	.extern GetRotatedBattleSlot
 	.extern PokemonContainer_GetBattleParty
 	.extern PokemonContainer_GetBattlePartyConst
@@ -548,12 +548,12 @@
 	.extern FUN_overlay_d_93__021ef9c0
 	.extern FUN_overlay_d_93__021ef9f4
 	.extern FUN_overlay_d_93__021efad8
-	.extern FUN_overlay_d_93__021efb34
+	.extern Battlefield_RemoveDependentFieldEffect
 	.extern FUN_overlay_d_93__021efc1c
 	.extern Battlefield_CheckEffectCore
 	.extern GetTypeEffectivenessClass
 	.extern thunk_MainModule_GetFrontlineCount
-	.extern thunk_FUN_overlay_d_93__021b8cfc
+	.extern thunk_MainModule_BattlePositionToClientIdx
 	.extern thunk_FUN_overlay_d_93__021ccad4
 	.extern thunk_FUN_overlay_d_93__021e9738
 	.extern ADDR_02005E30
@@ -7080,7 +7080,7 @@ _021D0C94:
 	ldr r1, [sp, #4]
 	ldr r0, [r6]
 	ldrb r1, [r1, r4]
-	bl thunk_FUN_overlay_d_93__021b8cfc
+	bl thunk_MainModule_BattlePositionToClientIdx
 	ldr r1, _021D0CC0 ; =0x000001A6
 	ldrb r1, [r6, r1]
 	cmp r1, r0
@@ -10609,7 +10609,7 @@ _021D3354:
 _021D3374:
 	ldr r0, [sp, #8]
 	ldr r1, [sp, #4]
-	bl FUN_overlay_d_93__021b9a24
+	bl IsBattleSlotAlly
 	cmp r0, #0
 	beq _021D3396
 	ldr r0, [sp, #0x10]
@@ -11669,7 +11669,7 @@ FUN_overlay_d_93__021d3b9c: ; 0x021D3B9C
 	ldr r0, [r0, #0x34]
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021efb34
+	bl Battlefield_RemoveDependentFieldEffect
 	mov r0, #1
 	pop {r3, pc}
 	.balign 4, 0

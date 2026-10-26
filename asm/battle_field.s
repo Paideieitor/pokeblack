@@ -306,12 +306,12 @@
 	.extern FUN_0220C834
 	.extern FUN_0220F3E8
 	.extern PokemonContainer_GetActiveBattleMonConst
-	.extern FUN_overlay_d_93__021b9a24
+	.extern IsBattleSlotAlly
 	.extern BattleMon_GetBattleSlot
 	.extern BattleMon_HasMove
 	.extern ConditionData_MakeNull
 	.extern ConditionData_GetBattleSlot
-	.extern FUN_overlay_d_93__021e8ac8
+	.extern ConditionData_SetBattleSlot
 	.extern ConditionData_GetTurnMax
 	.extern ADDR_020307B0
 	.extern ADDR_021F6398
@@ -591,17 +591,17 @@ _021EF904:
 	.word ADDR_021F63F4
 _021EF908: .word FUN_overlay_d_93__021efad8
 
-	thumb_func_start FUN_overlay_d_93__021ef90c
-FUN_overlay_d_93__021ef90c: ; 0x021EF90C
+	thumb_func_start GlobalBattlefield_RemoveDependentFieldEffect
+GlobalBattlefield_RemoveDependentFieldEffect: ; 0x021EF90C
 	add r1, r0, #0
 	ldr r0, _021EF914 ; =0x021F63F4
-	ldr r3, _021EF918 ; =FUN_overlay_d_93__021efb34
+	ldr r3, _021EF918 ; =Battlefield_RemoveDependentFieldEffect
 	bx r3
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021ef90c
+	thumb_func_end GlobalBattlefield_RemoveDependentFieldEffect
 _021EF914:
 	.word ADDR_021F63F4
-_021EF918: .word FUN_overlay_d_93__021efb34
+_021EF918: .word Battlefield_RemoveDependentFieldEffect
 
 	thumb_func_start FUN_overlay_d_93__021ef91c
 FUN_overlay_d_93__021ef91c: ; 0x021EF91C
@@ -928,14 +928,14 @@ _021EFB2E:
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021efb34
-FUN_overlay_d_93__021efb34: ; 0x021EFB34
+	thumb_func_start Battlefield_RemoveDependentFieldEffect
+Battlefield_RemoveDependentFieldEffect: ; 0x021EFB34
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0xc
 	add r5, r0, #0
 	add r4, r1, #0
 	mov r6, #0
-	thumb_func_end FUN_overlay_d_93__021efb34
+	thumb_func_end Battlefield_RemoveDependentFieldEffect
 _021EFB3E:
 	add r0, r5, #0
 	add r1, r6, #0
@@ -1036,7 +1036,7 @@ _021EFBE2:
 	ldr r1, [r1, #0x68]
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_overlay_d_93__021e8ac8
+	bl ConditionData_SetBattleSlot
 _021EFC02:
 	add r6, r6, #1
 	cmp r6, #8
@@ -1080,7 +1080,7 @@ _021EFC3A:
 	lsr r4, r0, #0x18
 	ldr r0, [sp, #8]
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021b9a24
+	bl IsBattleSlotAlly
 	cmp r0, #0
 	bne _021EFC6A
 	ldr r0, [sp]

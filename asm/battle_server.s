@@ -5361,14 +5361,14 @@ _021B8CF8:
 	bx lr
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021b8cfc
-FUN_overlay_d_93__021b8cfc: ; 0x021B8CFC
+	thumb_func_start MainModule_BattlePositionToClientIdx
+MainModule_BattlePositionToClientIdx: ; 0x021B8CFC
 	add r1, r0, r1
 	ldr r0, _021B8D04 ; =0x00000428
 	ldrb r0, [r1, r0]
 	bx lr
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021b8cfc
+	thumb_func_end MainModule_BattlePositionToClientIdx
 _021B8D04: .word 0x00000428
 
 	thumb_func_start GetBattleSlotClient
@@ -5500,13 +5500,13 @@ thunk_GetBattleSlotClient: ; 0x021B8DDC
 	thumb_func_end thunk_GetBattleSlotClient
 _021B8DE0: .word GetBattleSlotClient
 
-	thumb_func_start thunk_FUN_overlay_d_93__021b8cfc
-thunk_FUN_overlay_d_93__021b8cfc: ; 0x021B8DE4
-	ldr r3, _021B8DE8 ; =FUN_overlay_d_93__021b8cfc
+	thumb_func_start thunk_MainModule_BattlePositionToClientIdx
+thunk_MainModule_BattlePositionToClientIdx: ; 0x021B8DE4
+	ldr r3, _021B8DE8 ; =MainModule_BattlePositionToClientIdx
 	bx r3
 	.balign 4, 0
-	thumb_func_end thunk_FUN_overlay_d_93__021b8cfc
-_021B8DE8: .word FUN_overlay_d_93__021b8cfc
+	thumb_func_end thunk_MainModule_BattlePositionToClientIdx
+_021B8DE8: .word MainModule_BattlePositionToClientIdx
 
 	thumb_func_start FUN_overlay_d_93__021b8dec
 FUN_overlay_d_93__021b8dec: ; 0x021B8DEC
@@ -5514,7 +5514,7 @@ FUN_overlay_d_93__021b8dec: ; 0x021B8DEC
 	add r6, r1, #0
 	add r4, r6, #0
 	add r5, r0, #0
-	bl FUN_overlay_d_93__021b8cfc
+	bl MainModule_BattlePositionToClientIdx
 	sub r2, r4, #1
 	lsl r2, r2, #0x18
 	mov r1, #0
@@ -5552,7 +5552,7 @@ FUN_overlay_d_93__021b8e28: ; 0x021B8E28
 	add r4, r7, #0
 	add r5, r0, #0
 	str r3, [sp]
-	bl FUN_overlay_d_93__021b8cfc
+	bl MainModule_BattlePositionToClientIdx
 	strb r0, [r6]
 	sub r0, r4, #1
 	lsl r0, r0, #0x18
@@ -6020,7 +6020,7 @@ FUN_overlay_d_93__021b9120: ; 0x021B9120
 	cmp r2, #6
 	bne _021B9164
 	add r4, r6, #0
-	bl FUN_overlay_d_93__021b8cfc
+	bl MainModule_BattlePositionToClientIdx
 	sub r2, r4, #1
 	lsl r2, r2, #0x18
 	mov r1, #0
@@ -6219,8 +6219,8 @@ FUN_overlay_d_93__021b92a0: ; 0x021B92A0
 	thumb_func_end FUN_overlay_d_93__021b92a0
 _021B92AC: .word 0x00000473
 
-	thumb_func_start FUN_overlay_d_93__021b92b0
-FUN_overlay_d_93__021b92b0: ; 0x021B92B0
+	thumb_func_start MainModule_UpdateFriendshipForFaint
+MainModule_UpdateFriendshipForFaint: ; 0x021B92B0
 	push {r4, lr}
 	ldr r4, [r0]
 	ldr r3, [r4]
@@ -6234,17 +6234,17 @@ FUN_overlay_d_93__021b92b0: ; 0x021B92B0
 	beq _021B92CA
 	mov r2, #5
 	b _021B92CC
-	thumb_func_end FUN_overlay_d_93__021b92b0
+	thumb_func_end MainModule_UpdateFriendshipForFaint
 _021B92CA:
 	mov r2, #4
 _021B92CC:
-	bl FUN_overlay_d_93__021b92d4
+	bl MainModule_UpdateFriendship
 _021B92D0:
 	pop {r4, pc}
 	.balign 4, 0
 
-	thumb_func_start FUN_overlay_d_93__021b92d4
-FUN_overlay_d_93__021b92d4: ; 0x021B92D4
+	thumb_func_start MainModule_UpdateFriendship
+MainModule_UpdateFriendship: ; 0x021B92D4
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8
 	add r5, r0, #0
@@ -6300,7 +6300,7 @@ FUN_overlay_d_93__021b92d4: ; 0x021B92D4
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021b92d4
+	thumb_func_end MainModule_UpdateFriendship
 _021B9350: .word 0x00000468
 _021B9354: .word 0x00007FFF
 
@@ -7014,7 +7014,7 @@ FUN_overlay_d_93__021b98ac: ; 0x021B98AC
 	add r4, r1, #0
 	add r0, r6, #0
 	str r1, [sp]
-	bl FUN_overlay_d_93__021b8cfc
+	bl MainModule_BattlePositionToClientIdx
 	sub r1, r4, #1
 	lsl r1, r1, #0x18
 	lsr r4, r1, #0x18
@@ -7216,30 +7216,30 @@ _021B9A20:
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 
-	thumb_func_start FUN_overlay_d_93__021b9a24
-FUN_overlay_d_93__021b9a24: ; 0x021B9A24
+	thumb_func_start IsBattleSlotAlly
+IsBattleSlotAlly: ; 0x021B9A24
 	push {r3, r4, r5, lr}
 	add r5, r1, #0
-	bl FUN_overlay_d_93__021b9a40
+	bl GetBattleSlotSide
 	add r4, r0, #0
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021b9a40
+	bl GetBattleSlotSide
 	cmp r4, r0
 	bne _021B9A3C
 	mov r0, #1
 	pop {r3, r4, r5, pc}
-	thumb_func_end FUN_overlay_d_93__021b9a24
+	thumb_func_end IsBattleSlotAlly
 _021B9A3C:
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 
-	thumb_func_start FUN_overlay_d_93__021b9a40
-FUN_overlay_d_93__021b9a40: ; 0x021B9A40
+	thumb_func_start GetBattleSlotSide
+GetBattleSlotSide: ; 0x021B9A40
 	cmp r0, #0xc
 	bhs _021B9A48
 	mov r0, #0
 	b _021B9A4A
-	thumb_func_end FUN_overlay_d_93__021b9a40
+	thumb_func_end GetBattleSlotSide
 _021B9A48:
 	mov r0, #1
 _021B9A4A:
@@ -7250,7 +7250,7 @@ _021B9A4A:
 	thumb_func_start FUN_overlay_d_93__021b9a50
 FUN_overlay_d_93__021b9a50: ; 0x021B9A50
 	push {r3, lr}
-	bl FUN_overlay_d_93__021b9a40
+	bl GetBattleSlotSide
 	bl FUN_overlay_d_93__021b9a5c
 	pop {r3, pc}
 	thumb_func_end FUN_overlay_d_93__021b9a50
@@ -8475,7 +8475,7 @@ FUN_overlay_d_93__021ba238: ; 0x021BA238
 	add r5, r0, #0
 	mov r2, #0
 	add r4, r1, #0
-	bl FUN_overlay_d_93__021b92d4
+	bl MainModule_UpdateFriendship
 	ldr r0, [r5, #8]
 	add r1, r4, #0
 	bl FUN_overlay_d_93__021bb8bc

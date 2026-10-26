@@ -313,8 +313,8 @@
 	.extern FUN_overlay_d_93__021b8d38
 	.extern MainModule_BattleSlotToBattlePosition
 	.extern AreClientsAllies
-	.extern FUN_overlay_d_93__021b9a24
-	.extern FUN_overlay_d_93__021b9a40
+	.extern IsBattleSlotAlly
+	.extern GetBattleSlotSide
 	.extern FUN_overlay_d_93__021b9a5c
 	.extern BattleParty_GetBattleMonCount
 	.extern BattleParty_GetBattleMonConst
@@ -346,17 +346,17 @@
 	.extern BattleMon_GetPreviousSelectedMove
 	.extern BattleMon_CheckIllusion
 	.extern FUN_overlay_d_93__021d6f0c
-	.extern FUN_overlay_d_93__021d7040
+	.extern BattleEvent_RemoveItem
 	.extern FUN_overlay_d_93__021d70a8
-	.extern FUN_overlay_d_93__021d70b4
+	.extern BattleEventItem_GetWorkValue
 	.extern FUN_overlay_d_93__021d70bc
 	.extern FUN_overlay_d_93__021d70c8
 	.extern FUN_overlay_d_93__021d70dc
 	.extern FUN_overlay_d_93__021d7320
 	.extern FUN_overlay_d_93__021d7324
-	.extern FUN_overlay_d_93__021d732c
-	.extern FUN_overlay_d_93__021d7360
-	.extern FUN_overlay_d_93__021d7404
+	.extern BattleEvent_SeekNext
+	.extern BattleEventItem_GetNext
+	.extern BattleEvent_PauseItem
 	.extern FUN_overlay_d_93__021d7438
 	.extern FUN_overlay_d_93__021e8940
 	.extern FUN_overlay_d_93__021e896c
@@ -4201,37 +4201,37 @@ _021D8504:
 	add r0, r2, #0
 	bx lr
 
-	thumb_func_start FUN_overlay_d_93__021d8510
-FUN_overlay_d_93__021d8510: ; 0x021D8510
+	thumb_func_start BattleMon_RemoveAbilityEvent
+BattleMon_RemoveAbilityEvent: ; 0x021D8510
 	push {r3, r4, r5, lr}
 	bl BattleMon_GetBattleSlot
 	add r5, r0, #0
 	mov r0, #4
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021d732c
+	bl BattleEvent_SeekNext
 	cmp r0, #0
 	beq _021D8536
 	mov r4, #4
-	thumb_func_end FUN_overlay_d_93__021d8510
+	thumb_func_end BattleMon_RemoveAbilityEvent
 _021D8526:
-	bl FUN_overlay_d_93__021d7040
+	bl BattleEvent_RemoveItem
 	add r0, r4, #0
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021d732c
+	bl BattleEvent_SeekNext
 	cmp r0, #0
 	bne _021D8526
 _021D8536:
 	pop {r3, r4, r5, pc}
 
-	thumb_func_start FUN_overlay_d_93__021d8538
-FUN_overlay_d_93__021d8538: ; 0x021D8538
+	thumb_func_start BattleMon_PauseAbilityEvent
+BattleMon_PauseAbilityEvent: ; 0x021D8538
 	push {r3, lr}
 	bl BattleMon_GetBattleSlot
 	mov r1, #4
-	bl FUN_overlay_d_93__021d7404
+	bl BattleEvent_PauseItem
 	pop {r3, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021d8538
+	thumb_func_end BattleMon_PauseAbilityEvent
 
 	thumb_func_start FUN_overlay_d_93__021d8548
 FUN_overlay_d_93__021d8548: ; 0x021D8548
@@ -4261,22 +4261,22 @@ FUN_overlay_d_93__021d8564: ; 0x021D8564
 	add r5, r0, #0
 	mov r0, #4
 	add r1, r4, #0
-	bl FUN_overlay_d_93__021d732c
+	bl BattleEvent_SeekNext
 	add r4, r0, #0
 	mov r0, #4
 	add r1, r5, #0
-	bl FUN_overlay_d_93__021d732c
+	bl BattleEvent_SeekNext
 	add r5, r0, #0
 	cmp r4, #0
 	beq _021D8596
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d7040
+	bl BattleEvent_RemoveItem
 	thumb_func_end FUN_overlay_d_93__021d8564
 _021D8596:
 	cmp r5, #0
 	beq _021D85A0
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021d7040
+	bl BattleEvent_RemoveItem
 _021D85A0:
 	add r0, r7, #0
 	bl FUN_overlay_d_93__021d8484
@@ -4739,7 +4739,7 @@ FUN_overlay_d_93__021d8fcc: ; 0x021D8FCC
 	lsl r0, r0, #0x18
 	lsr r1, r0, #0x18
 	add r0, r5, #0
-	bl FUN_overlay_d_93__021b9a24
+	bl IsBattleSlotAlly
 	cmp r0, #0
 	beq _021D9018
 	mov r0, #0x12
@@ -4776,7 +4776,7 @@ FUN_overlay_d_93__021d901c: ; 0x021D901C
 	lsl r0, r0, #0x18
 	lsr r1, r0, #0x18
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021b9a24
+	bl IsBattleSlotAlly
 	cmp r0, #0
 	beq _021D9060
 	mov r0, #0x1a
@@ -6664,7 +6664,7 @@ FUN_overlay_d_93__021dcc80: ; 0x021DCC80
 	cmp r0, #0
 	bne _021DCCE4
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021b9a40
+	bl GetBattleSlotSide
 	bl FUN_overlay_d_93__021b9a5c
 	str r0, [sp, #4]
 	add r0, r5, #0
@@ -6855,28 +6855,28 @@ _021DCF1C:
 _021DCF20:
 	.word ADDR_021F1EA8
 
-	thumb_func_start FUN_overlay_d_93__021dcf24
-FUN_overlay_d_93__021dcf24: ; 0x021DCF24
+	thumb_func_start BattleMon_RemoveItemEvent
+BattleMon_RemoveItemEvent: ; 0x021DCF24
 	push {r4, r5, r6, lr}
 	bl BattleMon_GetBattleSlot
 	add r1, r0, #0
 	mov r0, #5
-	bl FUN_overlay_d_93__021d732c
+	bl BattleEvent_SeekNext
 	add r4, r0, #0
 	beq _021DCF58
 	mov r6, #6
-	thumb_func_end FUN_overlay_d_93__021dcf24
+	thumb_func_end BattleMon_RemoveItemEvent
 _021DCF38:
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d7360
+	bl BattleEventItem_GetNext
 	add r5, r0, #0
 	add r0, r4, #0
 	add r1, r6, #0
-	bl FUN_overlay_d_93__021d70b4
+	bl BattleEventItem_GetWorkValue
 	cmp r0, #0
 	bne _021DCF52
 	add r0, r4, #0
-	bl FUN_overlay_d_93__021d7040
+	bl BattleEvent_RemoveItem
 _021DCF52:
 	add r4, r5, #0
 	cmp r5, #0
@@ -6922,23 +6922,23 @@ _021DCF98:
 	mov r0, #0
 	pop {r4, pc}
 
-	thumb_func_start thunk_FUN_overlay_d_93__021d7040
-thunk_FUN_overlay_d_93__021d7040: ; 0x021DCF9C
-	ldr r3, _021DCFA0 ; =FUN_overlay_d_93__021d7040
+	thumb_func_start thunk_BattleEvent_RemoveItem
+thunk_BattleEvent_RemoveItem: ; 0x021DCF9C
+	ldr r3, _021DCFA0 ; =BattleEvent_RemoveItem
 	bx r3
 	.balign 4, 0
-	thumb_func_end thunk_FUN_overlay_d_93__021d7040
-_021DCFA0: .word thunk_FUN_overlay_d_93__021d7040 - 24412
+	thumb_func_end thunk_BattleEvent_RemoveItem
+_021DCFA0: .word thunk_BattleEvent_RemoveItem - 24412
 
-	thumb_func_start FUN_overlay_d_93__021dcfa4
-FUN_overlay_d_93__021dcfa4: ; 0x021DCFA4
+	thumb_func_start BattleMon_PauseItemEvent
+BattleMon_PauseItemEvent: ; 0x021DCFA4
 	push {r3, lr}
 	bl BattleMon_GetBattleSlot
 	mov r1, #5
-	bl FUN_overlay_d_93__021d7404
+	bl BattleEvent_PauseItem
 	pop {r3, pc}
 	.balign 4, 0
-	thumb_func_end FUN_overlay_d_93__021dcfa4
+	thumb_func_end BattleMon_PauseItemEvent
 
 	thumb_func_start FUN_overlay_d_93__021dcfb4
 FUN_overlay_d_93__021dcfb4: ; 0x021DCFB4
